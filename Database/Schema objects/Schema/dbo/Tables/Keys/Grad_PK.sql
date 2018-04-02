@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Grad]
+	ADD CONSTRAINT [Grad_PK]
+	PRIMARY KEY (id)
