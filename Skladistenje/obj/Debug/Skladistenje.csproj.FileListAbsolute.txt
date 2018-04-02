@@ -38,3 +38,5 @@ D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.csproj.
 D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.exe
 D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\obj\Debug\LoginWindow.g.cs
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\obj\Debug\LoginWindow.baml
