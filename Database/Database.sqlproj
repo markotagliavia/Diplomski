@@ -74,5 +74,8 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Grad.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\JedinicaMere.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\JedinicaMere_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\JedinicaMere_PK.sql" />
   </ItemGroup>
 </Project>
