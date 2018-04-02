@@ -70,4 +70,9 @@
     <Folder Include="Schema objects\Schema\dbo\Tables\Indexes" />
     <Folder Include="Schema objects\Schema\dbo\Tables\Triggers" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema objects\Schema\dbo\Tables\Grad.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_UQ.sql" />
+  </ItemGroup>
 </Project>
