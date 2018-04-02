@@ -74,5 +74,10 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Grad.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Grad_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\ZaposleniSkladista.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\ZaposleniSkladista_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Zaposleni.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Zaposleni_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Zaposleni_UQ.sql" />
   </ItemGroup>
 </Project>
