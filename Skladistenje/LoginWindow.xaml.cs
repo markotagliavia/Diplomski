@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Skladistenje
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window, INotifyPropertyChanged
+    public partial class LoginWindow : MetroWindow, INotifyPropertyChanged
     {
         #region Fields
         private System.Windows.Media.Color c1;
@@ -58,7 +59,8 @@ namespace Skladistenje
         }
 
         #region Constructors Block
-        public Brush FirmColor {
+        public Brush FirmColor
+        {
             get { return _firmColor; }
             set
             {
@@ -67,7 +69,8 @@ namespace Skladistenje
             }
         }
 
-        public Brush LightFirmColor {
+        public Brush LightFirmColor
+        {
             get { return _lightFirmColor; }
             set
             {
@@ -111,11 +114,11 @@ namespace Skladistenje
         private void usernameTextBoxFocus(object sender, RoutedEventArgs e)
         {
             if (usernameTextBox.Text.Equals("Korisnicko ime")) usernameTextBox.Text = "";
-            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(1), BeginTime = TimeSpan.Zero };
+            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
             colAnim.To = c1;
-            colAnim.Duration = new Duration(TimeSpan.FromSeconds(1));
+            colAnim.Duration = new Duration(TimeSpan.FromSeconds(0.7));
             colAnim.AutoReverse = false;
 
             sb.Children.Add(colAnim);
@@ -127,11 +130,11 @@ namespace Skladistenje
 
         private void usernameTextBoxUnFocus(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(1), BeginTime = TimeSpan.Zero };
+            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
-            colAnim.To = System.Windows.Media.Color.FromArgb(255,177,177,177);
-            colAnim.Duration = new Duration(TimeSpan.FromSeconds(1));
+            colAnim.To = System.Windows.Media.Color.FromArgb(255, 177, 177, 177);
+            colAnim.Duration = new Duration(TimeSpan.FromSeconds(0.7));
             colAnim.AutoReverse = false;
 
             sb.Children.Add(colAnim);
@@ -143,11 +146,11 @@ namespace Skladistenje
 
         private void passwordBoxFocus(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(1), BeginTime = TimeSpan.Zero };
+            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
             colAnim.To = c1;
-            colAnim.Duration = new Duration(TimeSpan.FromSeconds(1));
+            colAnim.Duration = new Duration(TimeSpan.FromSeconds(0.7));
             colAnim.AutoReverse = false;
 
             sb.Children.Add(colAnim);
@@ -159,11 +162,11 @@ namespace Skladistenje
 
         private void passwordBoxUnFocus(object sender, RoutedEventArgs e)
         {
-            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(1), BeginTime = TimeSpan.Zero };
+            Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
             colAnim.To = System.Windows.Media.Color.FromArgb(255, 177, 177, 177);
-            colAnim.Duration = new Duration(TimeSpan.FromSeconds(1));
+            colAnim.Duration = new Duration(TimeSpan.FromSeconds(0.7));
             colAnim.AutoReverse = false;
 
             sb.Children.Add(colAnim);
@@ -205,7 +208,5 @@ namespace Skladistenje
             //TO DO: zaboravljena lozinka
         }
         #endregion EventsLogic
-
-
     }
 }

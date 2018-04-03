@@ -1,8 +1,9 @@
-﻿<Window x:Class="Administracija.LoginWindow"
+﻿<Controls:MetroWindow x:Class="Administracija.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Administracija"
         mc:Ignorable="d"
         Title="Prijava" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}">
@@ -43,4 +44,4 @@
         <Image Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="46,115,251,0" VerticalAlignment="Top" Width="24" Source="Images\lock1.png"/>
 
     </Grid>
-</Window>
+</Controls:MetroWindow>

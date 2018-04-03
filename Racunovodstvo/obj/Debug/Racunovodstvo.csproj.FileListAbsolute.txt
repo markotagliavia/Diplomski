@@ -40,3 +40,10 @@ D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.g.cs
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.baml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\ControlzEx.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\ControlzEx.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.xml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\App.baml

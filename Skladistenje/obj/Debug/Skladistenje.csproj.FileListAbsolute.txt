@@ -40,3 +40,10 @@ D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.exe
 D:\cetvrta godina\Diplomski\Projekat\Skladistenje\obj\Debug\Skladistenje.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\obj\Debug\LoginWindow.g.cs
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\obj\Debug\LoginWindow.baml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\ControlzEx.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\MahApps.Metro.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\ControlzEx.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\MahApps.Metro.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\bin\Debug\MahApps.Metro.xml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Skladistenje\obj\Debug\App.baml
