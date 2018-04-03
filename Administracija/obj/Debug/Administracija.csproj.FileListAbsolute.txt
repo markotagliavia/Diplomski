@@ -38,6 +38,7 @@ D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.csp
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.pdb
+<<<<<<< HEAD
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\bin\Debug\Administracija.exe.config
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\bin\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\bin\Debug\Administracija.pdb
@@ -58,3 +59,14 @@ D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\obj\Debug\Administraci
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\obj\Debug\Administracija.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\obj\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\BusinessSystem\Administracija\obj\Debug\Administracija.pdb
+=======
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\LoginWindow.g.cs
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\LoginWindow.baml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\ControlzEx.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\ControlzEx.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.xml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\App.baml
+>>>>>>> 3e56a853bee2af39e555b03f5eeb71c1af13c01f

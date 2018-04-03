@@ -2,10 +2,6 @@ D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\bin\Debug\Database.
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\bin\Debug\Database.dll
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\bin\Debug\Database.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
-D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\Model.xml
-D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\refactor.xml
-D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\postdeploy.sql
-D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\predeploy.sql
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\Database.dll
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Database\obj\Debug\Database.pdb
 D:\cetvrta godina\Diplomski\Projekat\Database\bin\Debug\Database.dacpac

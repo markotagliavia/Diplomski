@@ -1,0 +1,47 @@
+﻿<Controls:MetroWindow x:Class="Skladistenje.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Skladistenje"
+        mc:Ignorable="d"
+        Title="Prijava" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}">
+
+    <Window.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{Binding ButtonColor}" BorderThickness="1" Padding="2">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0" Source="Images\businessPhoto7.jpg" Stretch="Fill"/>
+
+        <TextBox x:Name="usernameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="54,63,0,0" MaxLength="30" Text="Korisnicko ime" VerticalAlignment="Top" Width="206" BorderBrush="White" GotFocus="usernameTextBoxFocus" LostFocus="usernameTextBoxUnFocus"/>
+        <PasswordBox x:Name="passBox" Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="54,115,0,0" MaxLength="30" VerticalAlignment="Top" Width="206" BorderBrush="White" GotFocus="passwordBoxFocus" LostFocus="passwordBoxUnFocus"/>
+        <Button x:Name="prijaviSeButton" Style="{DynamicResource RoundedButtonStyle}" Content="Prijavi se" Foreground="White" Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="54,169,0,0" VerticalAlignment="Top" Width="206" Background="{Binding ButtonColor}" FontWeight="Bold" MouseEnter="prijavaMouseEnter" MouseLeave="prijavaMouseLeave" Click="prijaviSe"/>
+        <Label x:Name="zaboravljenaLozinkaLabel" Content="Zaboravljena lozinka?" Foreground="{Binding LabelColor}" Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="115,218,72,0" VerticalAlignment="Top" Width="134" MouseEnter="labelEnter" MouseLeave="labelLeave" MouseDown="labelClick"/>
+        <Rectangle x:Name="kvadrat1" Grid.Column="1" Fill="LightGray" HorizontalAlignment="Center" Height="2" Margin="54,88,0,0" VerticalAlignment="Top" Width="206"/>
+        <Rectangle x:Name="kvadrat2" Grid.Column="1" Fill="LightGray" HorizontalAlignment="Center" Height="2" Margin="54,140,0,0" VerticalAlignment="Top" Width="206"/>
+        <Image Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="46,63,251,0" VerticalAlignment="Top" Width="24" Source="Images\username1.png"/>
+        <Image Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="46,115,251,0" VerticalAlignment="Top" Width="24" Source="Images\lock1.png"/>
+
+    </Grid>
+</Controls:MetroWindow>

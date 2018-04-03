@@ -38,6 +38,7 @@ D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.cspro
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+<<<<<<< HEAD
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.exe.config
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.pdb
@@ -58,3 +59,14 @@ D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+=======
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.g.cs
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.baml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\ControlzEx.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\ControlzEx.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.xml
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\App.baml
+>>>>>>> 3e56a853bee2af39e555b03f5eeb71c1af13c01f
