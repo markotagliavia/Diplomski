@@ -38,28 +38,6 @@ D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.cspro
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
-<<<<<<< HEAD
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.exe.config
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.exe
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\Racunovodstvo.pdb
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\EntityFramework.dll
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\EntityFramework.SqlServer.dll
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\EntityFramework.xml
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\bin\Debug\EntityFramework.SqlServer.xml
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.csprojResolveAssemblyReference.cache
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\MainWindow.g.cs
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\App.g.cs
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo_MarkupCompile.cache
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo_MarkupCompile.lref
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\MainWindow.baml
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.g.resources
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.Properties.Resources.resources
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.GenerateResource.cache
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CoreCompileInputs.cache
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.exe
-D:\cetvrta godina\Diplomski\BusinessSystem\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
-=======
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.g.cs
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.baml
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\ControlzEx.dll
@@ -69,4 +47,4 @@ D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\Cont
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.xml
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\App.baml
->>>>>>> 3e56a853bee2af39e555b03f5eeb71c1af13c01f
+
