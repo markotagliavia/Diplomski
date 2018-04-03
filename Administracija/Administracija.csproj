@@ -46,6 +46,12 @@
     <Reference Include="MahApps.Metro, Version=1.6.1.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.6.1\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -71,6 +77,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ValidationBase.cs" />
+    <Compile Include="ValidationErrors.cs" />
+    <Compile Include="ViewModel\AuditViewModel.cs" />
+    <Compile Include="ViewModel\DodajKorisnikaViewModel.cs" />
+    <Compile Include="ViewModel\DodajUloguViewModel.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\IzmeniKorisnikaViewModel.cs" />
+    <Compile Include="ViewModel\IzmeniUloguViewModel.cs" />
+    <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
+    <Compile Include="ViewModel\PregledKorisnikaViewModel.cs" />
+    <Compile Include="ViewModel\PregledUlogaViewModel.cs" />
+    <Compile Include="View\Audit.xaml.cs">
+      <DependentUpon>Audit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajKorisnika.xaml.cs">
+      <DependentUpon>DodajKorisnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajUlogu.xaml.cs">
+      <DependentUpon>DodajUlogu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IzmeniKorisnika.xaml.cs">
+      <DependentUpon>IzmeniKorisnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IzmeniUlogu.xaml.cs">
+      <DependentUpon>IzmeniUlogu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NaprednaPretraga.xaml.cs">
+      <DependentUpon>NaprednaPretraga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PregledKorisnika.xaml.cs">
+      <DependentUpon>PregledKorisnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PregledUloga.xaml.cs">
+      <DependentUpon>PregledUloga.xaml</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +127,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindableBase.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -90,8 +135,46 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Audit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajUlogu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IzmeniKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IzmeniUlogu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NaprednaPretraga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PregledKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PregledUloga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MyICommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,8 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
