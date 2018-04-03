@@ -38,3 +38,5 @@ D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.csp
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\Projekat\Administracija\obj\Debug\Administracija.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\LoginWindow.g.cs
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\LoginWindow.baml

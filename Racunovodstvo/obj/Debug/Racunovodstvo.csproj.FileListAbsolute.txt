@@ -38,3 +38,5 @@ D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.cspro
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\cetvrta godina\Diplomski\Projekat\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.g.cs
+D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\LoginWindow.baml
