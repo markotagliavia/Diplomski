@@ -201,6 +201,11 @@ namespace Racunovodstvo
         {
             //TO DO: prijava
         }
+
+        private void labelClick(object sender, MouseButtonEventArgs e)
+        {
+            //TO DO: zaboravljena lozinka
+        }
         #endregion EventsLogic
     }
 }
