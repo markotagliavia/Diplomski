@@ -23,6 +23,12 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+/Administracija/bin
+/Skladistenje/bin
+/Racunovodstvo/bin
+/Administracija/obj
+/Skladistenje/obj
+/Racunovodstvo/obj
 
 # Visual Studio 2015 cache/options directory
 .vs/
