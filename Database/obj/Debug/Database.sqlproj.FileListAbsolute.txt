@@ -14,3 +14,13 @@ D:\cetvrta godina\Diplomski\Projekat\Database\bin\Debug\Database.pdb
 D:\cetvrta godina\Diplomski\Projekat\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
 D:\cetvrta godina\Diplomski\Projekat\Database\obj\Debug\Database.dll
 D:\cetvrta godina\Diplomski\Projekat\Database\obj\Debug\Database.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\bin\Debug\Database.dacpac
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\bin\Debug\Database.dll
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\bin\Debug\Database.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\Model.xml
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\refactor.xml
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\postdeploy.sql
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\predeploy.sql
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\Database.dll
+D:\cetvrta godina\Diplomski\BusinessSystem\Database\obj\Debug\Database.pdb
