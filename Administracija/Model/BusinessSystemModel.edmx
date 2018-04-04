@@ -1,0 +1,2775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DeltaEximModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="korisnickoime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="akcija" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="vreme" Type="datetime" Nullable="false" />
+          <Property Name="tip" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datumfakturisanja" Type="date" Nullable="false" />
+          <Property Name="upripremi" Type="bit" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+          <Property Name="datumprometadobara" Type="date" />
+          <Property Name="redovna" Type="bit" Nullable="false" />
+          <Property Name="ulazna" Type="bit" />
+          <Property Name="placeno" Type="float" Nullable="false" />
+          <Property Name="pdv" Type="float" Nullable="false" />
+          <Property Name="otpremljena" Type="bit" Nullable="false" />
+          <Property Name="rokplacanja" Type="date" Nullable="false" />
+          <Property Name="avansnoplacanje" Type="bit" Nullable="false" />
+          <Property Name="avans" Type="float" Nullable="false" />
+          <Property Name="profaktura_id" Type="int" Nullable="false" />
+          <Property Name="likvidirano" Type="bit" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
+          <Property Name="stornoceo" Type="bit" Nullable="false" />
+          <Property Name="oznaka" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="grad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="drzava" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="postanskibroj" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jedinicamere">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Karakteristika">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kompenzacija">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="zaposleni_id" />
+          </Key>
+          <Property Name="korisnickoime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="lozinka" Type="varchar" MaxLength="65" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="ulogovan" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Opomena">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission_Uloga">
+          <Key>
+            <PropertyRef Name="uloga_id" />
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="uloga_id" Type="int" Nullable="false" />
+          <Property Name="permission_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Popis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" Nullable="false" />
+          <Property Name="oznaka" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopisnaKomisija">
+          <Key>
+            <PropertyRef Name="popis_id" />
+            <PropertyRef Name="zaposleni_id" />
+          </Key>
+          <Property Name="popis_id" Type="int" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PoslovniPartner">
+          <Key>
+            <PropertyRef Name="mbr" />
+          </Key>
+          <Property Name="mbr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pib" Type="varchar" MaxLength="30" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dugovanja" Type="float" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="brojtelefona" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tekuciracun" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="grad_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profaktura">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="int" Nullable="false" />
+          <Property Name="oznaka" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proizvod">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="minimumkolicine" Type="float" Nullable="false" />
+          <Property Name="jedinicamere_id" Type="int" Nullable="false" />
+          <Property Name="sifra" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="proizvodjac_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proizvodjac">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="grad_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ProizvodKarakteristika">
+          <Key>
+            <PropertyRef Name="karakteristika_id" />
+            <PropertyRef Name="proizvod_id" />
+          </Key>
+          <Property Name="karakteristika_id" Type="int" Nullable="false" />
+          <Property Name="proizvod_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skladiste">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sifra" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="grad_id" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkladisteniDokument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="upripremi" Type="bit" Nullable="false" />
+          <Property Name="zaposleniskladista_zaposleni_id" Type="int" Nullable="false" />
+          <Property Name="zaposleniskladista_skladiste_id" Type="int" Nullable="false" />
+          <Property Name="sifra" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="redovni" Type="bit" Nullable="false" />
+          <Property Name="tipredovnog" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="redovniskldok_id" Type="int" Nullable="false" />
+          <Property Name="storniranceo" Type="bit" Nullable="false" />
+          <Property Name="vozac" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="regbr" Type="varchar" MaxLength="30" />
+          <Property Name="nacinotpreme" Type="varchar" MaxLength="40" />
+          <Property Name="izdao" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="primio" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpoljniSklDokument_RedovnaFak">
+          <Key>
+            <PropertyRef Name="spoljniredovniskldok_id" />
+            <PropertyRef Name="redovnafaktura_id" />
+          </Key>
+          <Property Name="spoljniredovniskldok_id" Type="int" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StavkaFakture">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="faktura_id" />
+          </Key>
+          <Property Name="rednibroj" Type="int" Nullable="false" />
+          <Property Name="kolicina" Type="float" Nullable="false" />
+          <Property Name="rabat" Type="float" Nullable="false" />
+          <Property Name="cena" Type="float" Nullable="false" />
+          <Property Name="izdatorobe" Type="float" Nullable="false" />
+          <Property Name="faktura_id" Type="int" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
+          <Property Name="zalihe_skladiste_id" Type="int" Nullable="false" />
+          <Property Name="stavkaprofakture_rednibroj" Type="int" />
+          <Property Name="stavkaprofakture_profaktura_id" Type="int" />
+          <Property Name="stavkaskldok_rednibroj" Type="int" />
+          <Property Name="stavkaskldok_skladistenidokument_id" Type="int" />
+          <Property Name="stavkaskldok_idproizvod" Type="int" />
+          <Property Name="stavkaskldok_idskladista" Type="int" />
+        </EntityType>
+        <EntityType Name="StavkaKompenzacije">
+          <Key>
+            <PropertyRef Name="stavkafakture_faktura_id" />
+            <PropertyRef Name="stavkafakture_rednibroj" />
+            <PropertyRef Name="kompenzacija_id" />
+          </Key>
+          <Property Name="stavkafakture_faktura_id" Type="int" Nullable="false" />
+          <Property Name="stavkafakture_rednibroj" Type="int" Nullable="false" />
+          <Property Name="kompenzacija_id" Type="int" Nullable="false" />
+          <Property Name="kolicina" Type="int" Nullable="false" />
+          <Property Name="rednibroj" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StavkaPopisa">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="proizvod_id" />
+            <PropertyRef Name="popis_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="rednibroj" Type="int" Nullable="false" />
+          <Property Name="kolicina" Type="float" Nullable="false" />
+          <Property Name="proizvod_id" Type="int" Nullable="false" />
+          <Property Name="popis_id" Type="int" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" Nullable="false" />
+          <Property Name="raf" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="StavkaProfakture">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="profaktura_id" />
+          </Key>
+          <Property Name="kolicina" Type="float" Nullable="false" />
+          <Property Name="rabat" Type="float" Nullable="false" />
+          <Property Name="cena" Type="float" Nullable="false" />
+          <Property Name="rednibroj" Type="int" Nullable="false" />
+          <Property Name="profaktura_id" Type="int" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
+          <Property Name="zalihe_skladiste_id" Type="int" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id" Type="int" />
+          <Property Name="stavkafakture_rednibroj" Type="int" />
+        </EntityType>
+        <EntityType Name="StavkaSklDokumenta">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="zalihe_proizvod_id" />
+            <PropertyRef Name="zalihe_idskladista" />
+            <PropertyRef Name="skladistenidokument_id" />
+          </Key>
+          <Property Name="storno" Type="bit" Nullable="false" />
+          <Property Name="kolicina" Type="float" Nullable="false" />
+          <Property Name="rednibroj" Type="int" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
+          <Property Name="zalihe_idskladista" Type="int" Nullable="false" />
+          <Property Name="skladistenidokument_id" Type="int" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id" Type="int" />
+          <Property Name="stavkafakture_rednibroj" Type="int" />
+        </EntityType>
+        <EntityType Name="StornoFaktura_RedovnaFaktura">
+          <Key>
+            <PropertyRef Name="stornafaktura_id" />
+            <PropertyRef Name="redovnafaktura_id" />
+          </Key>
+          <Property Name="stornafaktura_id" Type="int" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uloga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zalihe">
+          <Key>
+            <PropertyRef Name="proizvod_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="kolicina" Type="float" Nullable="false" />
+          <Property Name="minimumkolicine" Type="float" Nullable="false" />
+          <Property Name="proizvod_id" Type="int" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" Nullable="false" />
+          <Property Name="raf" Type="varchar" MaxLength="30" />
+          <Property Name="rezervisano" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zaposleni">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jmbg" Type="varchar" MaxLength="30" />
+          <Property Name="ime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="plata" Type="float" Nullable="false" />
+          <Property Name="doprinosi" Type="float" Nullable="false" />
+          <Property Name="bonus" Type="float" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="tekuciracun" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="brojtelefona" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sef_id" Type="int" />
+          <Property Name="grad_id" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zaposleni_Uloge">
+          <Key>
+            <PropertyRef Name="uloga_id" />
+            <PropertyRef Name="zaposleni_id" />
+          </Key>
+          <Property Name="uloga_id" Type="int" Nullable="false" />
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZaposleniSkladista">
+          <Key>
+            <PropertyRef Name="zaposleni_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="zaposleni_id" Type="int" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Faktura_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Faktura_FK1">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Faktura_FK2">
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profaktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kompenzacija_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Kompenzacija" Type="Self.Kompenzacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Kompenzacija">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Korisnik_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Opomena_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Opomena" Type="Self.Opomena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Opomena">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Permission_Uloga_FK">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
+          <End Role="Permission_Uloga" Type="Self.Permission_Uloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloga">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Permission_Uloga">
+              <PropertyRef Name="uloga_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Permission_Uloga_FK1">
+          <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
+          <End Role="Permission_Uloga" Type="Self.Permission_Uloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Permission_Uloga">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Popis_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Popis" Type="Self.Popis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Popis">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PopisnaKomisija_FK">
+          <End Role="Popis" Type="Self.Popis" Multiplicity="1" />
+          <End Role="PopisnaKomisija" Type="Self.PopisnaKomisija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Popis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PopisnaKomisija">
+              <PropertyRef Name="popis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PopisnaKomisija_FK1">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="PopisnaKomisija" Type="Self.PopisnaKomisija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PopisnaKomisija">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PoslovniPartner_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoslovniPartner">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK1">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK2">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvod_FK">
+          <End Role="jedinicamere" Type="Self.jedinicamere" Multiplicity="1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jedinicamere">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="jedinicamere_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvod_FK1">
+          <End Role="Proizvodjac" Type="Self.Proizvodjac" Multiplicity="1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvodjac">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="proizvodjac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvodjac_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="0..1" />
+          <End Role="Proizvodjac" Type="Self.Proizvodjac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvodjac">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProizvodKarakteristika_FK">
+          <End Role="Karakteristika" Type="Self.Karakteristika" Multiplicity="1" />
+          <End Role="ProizvodKarakteristika" Type="Self.ProizvodKarakteristika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Karakteristika">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProizvodKarakteristika">
+              <PropertyRef Name="karakteristika_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProizvodKarakteristika_FK1">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="ProizvodKarakteristika" Type="Self.ProizvodKarakteristika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProizvodKarakteristika">
+              <PropertyRef Name="proizvod_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Skladiste_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Skladiste">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK1">
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZaposleniSkladista">
+              <PropertyRef Name="zaposleni_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="zaposleniskladista_zaposleni_id" />
+              <PropertyRef Name="zaposleniskladista_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK2">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK3">
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="1" />
+          <End Role="SkladisteniDokument1" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladisteniDokument">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument1">
+              <PropertyRef Name="redovniskldok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpoljniSklDokument_RedovnaFak_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="SpoljniSklDokument_RedovnaFak" Type="Self.SpoljniSklDokument_RedovnaFak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpoljniSklDokument_RedovnaFak">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SpoljniSklDokument_RedovnaFak_FK1">
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="1" />
+          <End Role="SpoljniSklDokument_RedovnaFak" Type="Self.SpoljniSklDokument_RedovnaFak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladisteniDokument">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpoljniSklDokument_RedovnaFak">
+              <PropertyRef Name="spoljniredovniskldok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK1">
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="0..1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaProfakture">
+              <PropertyRef Name="rednibroj" />
+              <PropertyRef Name="profaktura_id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="stavkaprofakture_rednibroj" />
+              <PropertyRef Name="stavkaprofakture_profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK2">
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="0..1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaSklDokumenta">
+              <PropertyRef Name="rednibroj" />
+              <PropertyRef Name="skladistenidokument_id" />
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_idskladista" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="stavkaskldok_rednibroj" />
+              <PropertyRef Name="stavkaskldok_skladistenidokument_id" />
+              <PropertyRef Name="stavkaskldok_idproizvod" />
+              <PropertyRef Name="stavkaskldok_idskladista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK3">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK">
+          <End Role="Kompenzacija" Type="Self.Kompenzacija" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompenzacija">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="kompenzacija_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK">
+          <End Role="Popis" Type="Self.Popis" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Popis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="popis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK1">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="proizvod_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK2">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK">
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profaktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="0..1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK2">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK">
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladisteniDokument">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="skladistenidokument_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="0..1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK2">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_idskladista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StornoFaktura_RedovnaFaktura_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="StornoFaktura_RedovnaFaktura" Type="Self.StornoFaktura_RedovnaFaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StornoFaktura_RedovnaFaktura">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StornoFaktura_RedovnaFaktura_FK1">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="StornoFaktura_RedovnaFaktura" Type="Self.StornoFaktura_RedovnaFaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StornoFaktura_RedovnaFaktura">
+              <PropertyRef Name="stornafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zalihe_FK">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zalihe_FK1">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zalihe">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_FK2">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="0..1" />
+          <End Role="Zaposleni1" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni1">
+              <PropertyRef Name="sef_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_Uloge_FK">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
+          <End Role="Zaposleni_Uloge" Type="Self.Zaposleni_Uloge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloga">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni_Uloge">
+              <PropertyRef Name="uloga_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_Uloge_FK1">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Zaposleni_Uloge" Type="Self.Zaposleni_Uloge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni_Uloge">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZaposleniSkladista_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZaposleniSkladista">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZaposleniSkladista_FK1">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZaposleniSkladista">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DeltaEximModelStoreContainer">
+          <EntitySet Name="Audit" EntityType="Self.Audit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grad" EntityType="Self.grad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jedinicamere" EntityType="Self.jedinicamere" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Karakteristika" EntityType="Self.Karakteristika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kompenzacija" EntityType="Self.Kompenzacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opomena" EntityType="Self.Opomena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission_Uloga" EntityType="Self.Permission_Uloga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Popis" EntityType="Self.Popis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PopisnaKomisija" EntityType="Self.PopisnaKomisija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoslovniPartner" EntityType="Self.PoslovniPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profaktura" EntityType="Self.Profaktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proizvod" EntityType="Self.Proizvod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proizvodjac" EntityType="Self.Proizvodjac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProizvodKarakteristika" EntityType="Self.ProizvodKarakteristika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skladiste" EntityType="Self.Skladiste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkladisteniDokument" EntityType="Self.SkladisteniDokument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpoljniSklDokument_RedovnaFak" EntityType="Self.SpoljniSklDokument_RedovnaFak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StavkaFakture" EntityType="Self.StavkaFakture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StavkaKompenzacije" EntityType="Self.StavkaKompenzacije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StavkaPopisa" EntityType="Self.StavkaPopisa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StavkaProfakture" EntityType="Self.StavkaProfakture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StavkaSklDokumenta" EntityType="Self.StavkaSklDokumenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StornoFaktura_RedovnaFaktura" EntityType="Self.StornoFaktura_RedovnaFaktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uloga" EntityType="Self.Uloga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zalihe" EntityType="Self.Zalihe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposleni" EntityType="Self.Zaposleni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zaposleni_Uloge" EntityType="Self.Zaposleni_Uloge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZaposleniSkladista" EntityType="Self.ZaposleniSkladista" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Faktura_FK" Association="Self.Faktura_FK">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="Faktura_FK1" Association="Self.Faktura_FK1">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartner" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="Faktura_FK2" Association="Self.Faktura_FK2">
+            <End Role="Profaktura" EntitySet="Profaktura" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="Kompenzacija_FK" Association="Self.Kompenzacija_FK">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Kompenzacija" EntitySet="Kompenzacija" />
+          </AssociationSet>
+          <AssociationSet Name="Korisnik_FK" Association="Self.Korisnik_FK">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
+          <AssociationSet Name="Opomena_FK" Association="Self.Opomena_FK">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Opomena" EntitySet="Opomena" />
+          </AssociationSet>
+          <AssociationSet Name="Permission_Uloga_FK" Association="Self.Permission_Uloga_FK">
+            <End Role="Uloga" EntitySet="Uloga" />
+            <End Role="Permission_Uloga" EntitySet="Permission_Uloga" />
+          </AssociationSet>
+          <AssociationSet Name="Permission_Uloga_FK1" Association="Self.Permission_Uloga_FK1">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="Permission_Uloga" EntitySet="Permission_Uloga" />
+          </AssociationSet>
+          <AssociationSet Name="Popis_FK" Association="Self.Popis_FK">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="Popis" EntitySet="Popis" />
+          </AssociationSet>
+          <AssociationSet Name="PopisnaKomisija_FK" Association="Self.PopisnaKomisija_FK">
+            <End Role="Popis" EntitySet="Popis" />
+            <End Role="PopisnaKomisija" EntitySet="PopisnaKomisija" />
+          </AssociationSet>
+          <AssociationSet Name="PopisnaKomisija_FK1" Association="Self.PopisnaKomisija_FK1">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="PopisnaKomisija" EntitySet="PopisnaKomisija" />
+          </AssociationSet>
+          <AssociationSet Name="PoslovniPartner_FK" Association="Self.PoslovniPartner_FK">
+            <End Role="grad" EntitySet="grad" />
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartner" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK" Association="Self.Profaktura_FK">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartner" />
+            <End Role="Profaktura" EntitySet="Profaktura" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK1" Association="Self.Profaktura_FK1">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="Profaktura" EntitySet="Profaktura" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK2" Association="Self.Profaktura_FK2">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Profaktura" EntitySet="Profaktura" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvod_FK" Association="Self.Proizvod_FK">
+            <End Role="jedinicamere" EntitySet="jedinicamere" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvod_FK1" Association="Self.Proizvod_FK1">
+            <End Role="Proizvodjac" EntitySet="Proizvodjac" />
+            <End Role="Proizvod" EntitySet="Proizvod" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvodjac_FK" Association="Self.Proizvodjac_FK">
+            <End Role="grad" EntitySet="grad" />
+            <End Role="Proizvodjac" EntitySet="Proizvodjac" />
+          </AssociationSet>
+          <AssociationSet Name="ProizvodKarakteristika_FK" Association="Self.ProizvodKarakteristika_FK">
+            <End Role="Karakteristika" EntitySet="Karakteristika" />
+            <End Role="ProizvodKarakteristika" EntitySet="ProizvodKarakteristika" />
+          </AssociationSet>
+          <AssociationSet Name="ProizvodKarakteristika_FK1" Association="Self.ProizvodKarakteristika_FK1">
+            <End Role="Proizvod" EntitySet="Proizvod" />
+            <End Role="ProizvodKarakteristika" EntitySet="ProizvodKarakteristika" />
+          </AssociationSet>
+          <AssociationSet Name="Skladiste_FK" Association="Self.Skladiste_FK">
+            <End Role="grad" EntitySet="grad" />
+            <End Role="Skladiste" EntitySet="Skladiste" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK" Association="Self.SkladisteniDokument_FK">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK1" Association="Self.SkladisteniDokument_FK1">
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladista" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK2" Association="Self.SkladisteniDokument_FK2">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartner" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK3" Association="Self.SkladisteniDokument_FK3">
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+            <End Role="SkladisteniDokument1" EntitySet="SkladisteniDokument" />
+          </AssociationSet>
+          <AssociationSet Name="SpoljniSklDokument_RedovnaFak_FK" Association="Self.SpoljniSklDokument_RedovnaFak_FK">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="SpoljniSklDokument_RedovnaFak" EntitySet="SpoljniSklDokument_RedovnaFak" />
+          </AssociationSet>
+          <AssociationSet Name="SpoljniSklDokument_RedovnaFak_FK1" Association="Self.SpoljniSklDokument_RedovnaFak_FK1">
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+            <End Role="SpoljniSklDokument_RedovnaFak" EntitySet="SpoljniSklDokument_RedovnaFak" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK" Association="Self.StavkaFakture_FK">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK1" Association="Self.StavkaFakture_FK1">
+            <End Role="StavkaProfakture" EntitySet="StavkaProfakture" />
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK2" Association="Self.StavkaFakture_FK2">
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumenta" />
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK3" Association="Self.StavkaFakture_FK3">
+            <End Role="Zalihe" EntitySet="Zalihe" />
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK" Association="Self.StavkaKompenzacije_FK">
+            <End Role="Kompenzacija" EntitySet="Kompenzacija" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacije" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK1" Association="Self.StavkaKompenzacije_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacije" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK" Association="Self.StavkaPopisa_FK">
+            <End Role="Popis" EntitySet="Popis" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisa" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK1" Association="Self.StavkaPopisa_FK1">
+            <End Role="Proizvod" EntitySet="Proizvod" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisa" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK2" Association="Self.StavkaPopisa_FK2">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisa" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK" Association="Self.StavkaProfakture_FK">
+            <End Role="Profaktura" EntitySet="Profaktura" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK1" Association="Self.StavkaProfakture_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK2" Association="Self.StavkaProfakture_FK2">
+            <End Role="Zalihe" EntitySet="Zalihe" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfakture" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK" Association="Self.StavkaSklDokumenta_FK">
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumenta" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK1" Association="Self.StavkaSklDokumenta_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumenta" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK2" Association="Self.StavkaSklDokumenta_FK2">
+            <End Role="Zalihe" EntitySet="Zalihe" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumenta" />
+          </AssociationSet>
+          <AssociationSet Name="StornoFaktura_RedovnaFaktura_FK" Association="Self.StornoFaktura_RedovnaFaktura_FK">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="StornoFaktura_RedovnaFaktura" EntitySet="StornoFaktura_RedovnaFaktura" />
+          </AssociationSet>
+          <AssociationSet Name="StornoFaktura_RedovnaFaktura_FK1" Association="Self.StornoFaktura_RedovnaFaktura_FK1">
+            <End Role="Faktura" EntitySet="Faktura" />
+            <End Role="StornoFaktura_RedovnaFaktura" EntitySet="StornoFaktura_RedovnaFaktura" />
+          </AssociationSet>
+          <AssociationSet Name="Zalihe_FK" Association="Self.Zalihe_FK">
+            <End Role="Proizvod" EntitySet="Proizvod" />
+            <End Role="Zalihe" EntitySet="Zalihe" />
+          </AssociationSet>
+          <AssociationSet Name="Zalihe_FK1" Association="Self.Zalihe_FK1">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="Zalihe" EntitySet="Zalihe" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_FK" Association="Self.Zaposleni_FK">
+            <End Role="grad" EntitySet="grad" />
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_FK2" Association="Self.Zaposleni_FK2">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Zaposleni1" EntitySet="Zaposleni" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_Uloge_FK" Association="Self.Zaposleni_Uloge_FK">
+            <End Role="Uloga" EntitySet="Uloga" />
+            <End Role="Zaposleni_Uloge" EntitySet="Zaposleni_Uloge" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_Uloge_FK1" Association="Self.Zaposleni_Uloge_FK1">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="Zaposleni_Uloge" EntitySet="Zaposleni_Uloge" />
+          </AssociationSet>
+          <AssociationSet Name="ZaposleniSkladista_FK" Association="Self.ZaposleniSkladista_FK">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladista" />
+          </AssociationSet>
+          <AssociationSet Name="ZaposleniSkladista_FK1" Association="Self.ZaposleniSkladista_FK1">
+            <End Role="Zaposleni" EntitySet="Zaposleni" />
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladista" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DeltaEximModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="korisnickoime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="akcija" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vreme" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datumfakturisanja" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="upripremi" Type="Boolean" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
+          <Property Name="datumprometadobara" Type="DateTime" Precision="0" />
+          <Property Name="redovna" Type="Boolean" Nullable="false" />
+          <Property Name="ulazna" Type="Boolean" />
+          <Property Name="placeno" Type="Double" Nullable="false" />
+          <Property Name="pdv" Type="Double" Nullable="false" />
+          <Property Name="otpremljena" Type="Boolean" Nullable="false" />
+          <Property Name="rokplacanja" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="avansnoplacanje" Type="Boolean" Nullable="false" />
+          <Property Name="avans" Type="Double" Nullable="false" />
+          <Property Name="profaktura_id" Type="Int32" Nullable="false" />
+          <Property Name="likvidirano" Type="Boolean" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
+          <Property Name="stornoceo" Type="Boolean" Nullable="false" />
+          <Property Name="oznaka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.Faktura_FK" FromRole="Faktura" ToRole="Zaposleni" />
+          <NavigationProperty Name="PoslovniPartner" Relationship="Self.Faktura_FK1" FromRole="Faktura" ToRole="PoslovniPartner" />
+          <NavigationProperty Name="Profaktura" Relationship="Self.Faktura_FK2" FromRole="Faktura" ToRole="Profaktura" />
+          <NavigationProperty Name="Opomenas" Relationship="Self.Opomena_FK" FromRole="Faktura" ToRole="Opomena" />
+          <NavigationProperty Name="Profakturas" Relationship="Self.Profaktura_FK1" FromRole="Faktura" ToRole="Profaktura" />
+          <NavigationProperty Name="StavkaFaktures" Relationship="Self.StavkaFakture_FK" FromRole="Faktura" ToRole="StavkaFakture" />
+          <NavigationProperty Name="SkladisteniDokuments" Relationship="Self.SpoljniSklDokument_RedovnaFak" FromRole="Faktura" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="Faktura1" Relationship="Self.StornoFaktura_RedovnaFaktura" FromRole="Faktura" ToRole="Faktura1" />
+          <NavigationProperty Name="Fakturas" Relationship="Self.StornoFaktura_RedovnaFaktura" FromRole="Faktura1" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="grad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="drzava" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postanskibroj" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PoslovniPartners" Relationship="Self.PoslovniPartner_FK" FromRole="grad" ToRole="PoslovniPartner" />
+          <NavigationProperty Name="Proizvodjacs" Relationship="Self.Proizvodjac_FK" FromRole="grad" ToRole="Proizvodjac" />
+          <NavigationProperty Name="Skladistes" Relationship="Self.Skladiste_FK" FromRole="grad" ToRole="Skladiste" />
+          <NavigationProperty Name="Zaposlenis" Relationship="Self.Zaposleni_FK" FromRole="grad" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="jedinicamere">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proizvods" Relationship="Self.Proizvod_FK" FromRole="jedinicamere" ToRole="Proizvod" />
+        </EntityType>
+        <EntityType Name="Karakteristika">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proizvods" Relationship="Self.ProizvodKarakteristika" FromRole="Karakteristika" ToRole="Proizvod" />
+        </EntityType>
+        <EntityType Name="Kompenzacija">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.Kompenzacija_FK" FromRole="Kompenzacija" ToRole="Zaposleni" />
+          <NavigationProperty Name="StavkaKompenzacijes" Relationship="Self.StavkaKompenzacije_FK" FromRole="Kompenzacija" ToRole="StavkaKompenzacije" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="zaposleni_id" />
+          </Key>
+          <Property Name="korisnickoime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lozinka" Type="String" MaxLength="65" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="ulogovan" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.Korisnik_FK" FromRole="Korisnik" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Opomena">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="redovnafaktura_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="Self.Opomena_FK" FromRole="Opomena" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ulogas" Relationship="Self.Permission_Uloga" FromRole="Permission" ToRole="Uloga" />
+        </EntityType>
+        <EntityType Name="Popi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="oznaka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Skladiste" Relationship="Self.Popis_FK" FromRole="Popis" ToRole="Skladiste" />
+          <NavigationProperty Name="StavkaPopisas" Relationship="Self.StavkaPopisa_FK" FromRole="Popis" ToRole="StavkaPopisa" />
+          <NavigationProperty Name="Zaposlenis" Relationship="Self.PopisnaKomisija" FromRole="Popis" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="PoslovniPartner">
+          <Key>
+            <PropertyRef Name="mbr" />
+          </Key>
+          <Property Name="mbr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pib" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dugovanja" Type="Double" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="brojtelefona" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tekuciracun" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grad_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fakturas" Relationship="Self.Faktura_FK1" FromRole="PoslovniPartner" ToRole="Faktura" />
+          <NavigationProperty Name="grad" Relationship="Self.PoslovniPartner_FK" FromRole="PoslovniPartner" ToRole="grad" />
+          <NavigationProperty Name="Profakturas" Relationship="Self.Profaktura_FK" FromRole="PoslovniPartner" ToRole="Profaktura" />
+          <NavigationProperty Name="SkladisteniDokuments" Relationship="Self.SkladisteniDokument_FK2" FromRole="PoslovniPartner" ToRole="SkladisteniDokument" />
+        </EntityType>
+        <EntityType Name="Profaktura">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="redovnafaktura_id" Type="Int32" Nullable="false" />
+          <Property Name="oznaka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fakturas" Relationship="Self.Faktura_FK2" FromRole="Profaktura" ToRole="Faktura" />
+          <NavigationProperty Name="Faktura" Relationship="Self.Profaktura_FK1" FromRole="Profaktura" ToRole="Faktura" />
+          <NavigationProperty Name="PoslovniPartner" Relationship="Self.Profaktura_FK" FromRole="Profaktura" ToRole="PoslovniPartner" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.Profaktura_FK2" FromRole="Profaktura" ToRole="Zaposleni" />
+          <NavigationProperty Name="StavkaProfaktures" Relationship="Self.StavkaProfakture_FK" FromRole="Profaktura" ToRole="StavkaProfakture" />
+        </EntityType>
+        <EntityType Name="Proizvod">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="minimumkolicine" Type="Double" Nullable="false" />
+          <Property Name="jedinicamere_id" Type="Int32" Nullable="false" />
+          <Property Name="sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="proizvodjac_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="jedinicamere" Relationship="Self.Proizvod_FK" FromRole="Proizvod" ToRole="jedinicamere" />
+          <NavigationProperty Name="Proizvodjac" Relationship="Self.Proizvod_FK1" FromRole="Proizvod" ToRole="Proizvodjac" />
+          <NavigationProperty Name="StavkaPopisas" Relationship="Self.StavkaPopisa_FK1" FromRole="Proizvod" ToRole="StavkaPopisa" />
+          <NavigationProperty Name="Zalihes" Relationship="Self.Zalihe_FK" FromRole="Proizvod" ToRole="Zalihe" />
+          <NavigationProperty Name="Karakteristikas" Relationship="Self.ProizvodKarakteristika" FromRole="Proizvod" ToRole="Karakteristika" />
+        </EntityType>
+        <EntityType Name="Proizvodjac">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grad_id" Type="Int32" />
+          <NavigationProperty Name="grad" Relationship="Self.Proizvodjac_FK" FromRole="Proizvodjac" ToRole="grad" />
+          <NavigationProperty Name="Proizvods" Relationship="Self.Proizvod_FK1" FromRole="Proizvodjac" ToRole="Proizvod" />
+        </EntityType>
+        <EntityType Name="Skladiste">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grad_id" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="grad" Relationship="Self.Skladiste_FK" FromRole="Skladiste" ToRole="grad" />
+          <NavigationProperty Name="Popis" Relationship="Self.Popis_FK" FromRole="Skladiste" ToRole="Popis" />
+          <NavigationProperty Name="SkladisteniDokuments" Relationship="Self.SkladisteniDokument_FK" FromRole="Skladiste" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="StavkaPopisas" Relationship="Self.StavkaPopisa_FK2" FromRole="Skladiste" ToRole="StavkaPopisa" />
+          <NavigationProperty Name="Zalihes" Relationship="Self.Zalihe_FK1" FromRole="Skladiste" ToRole="Zalihe" />
+          <NavigationProperty Name="ZaposleniSkladistas" Relationship="Self.ZaposleniSkladista_FK" FromRole="Skladiste" ToRole="ZaposleniSkladista" />
+        </EntityType>
+        <EntityType Name="SkladisteniDokument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="upripremi" Type="Boolean" Nullable="false" />
+          <Property Name="zaposleniskladista_zaposleni_id" Type="Int32" Nullable="false" />
+          <Property Name="zaposleniskladista_skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="redovni" Type="Boolean" Nullable="false" />
+          <Property Name="tipredovnog" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="redovniskldok_id" Type="Int32" Nullable="false" />
+          <Property Name="storniranceo" Type="Boolean" Nullable="false" />
+          <Property Name="vozac" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="regbr" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nacinotpreme" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="izdao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="primio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
+          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PoslovniPartner" Relationship="Self.SkladisteniDokument_FK2" FromRole="SkladisteniDokument" ToRole="PoslovniPartner" />
+          <NavigationProperty Name="Skladiste" Relationship="Self.SkladisteniDokument_FK" FromRole="SkladisteniDokument" ToRole="Skladiste" />
+          <NavigationProperty Name="ZaposleniSkladista" Relationship="Self.SkladisteniDokument_FK1" FromRole="SkladisteniDokument" ToRole="ZaposleniSkladista" />
+          <NavigationProperty Name="SkladisteniDokument1" Relationship="Self.SkladisteniDokument_FK3" FromRole="SkladisteniDokument" ToRole="SkladisteniDokument1" />
+          <NavigationProperty Name="SkladisteniDokument2" Relationship="Self.SkladisteniDokument_FK3" FromRole="SkladisteniDokument1" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="StavkaSklDokumentas" Relationship="Self.StavkaSklDokumenta_FK" FromRole="SkladisteniDokument" ToRole="StavkaSklDokumenta" />
+          <NavigationProperty Name="Fakturas" Relationship="Self.SpoljniSklDokument_RedovnaFak" FromRole="SkladisteniDokument" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="StavkaFakture">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="faktura_id" />
+          </Key>
+          <Property Name="rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="kolicina" Type="Double" Nullable="false" />
+          <Property Name="rabat" Type="Double" Nullable="false" />
+          <Property Name="cena" Type="Double" Nullable="false" />
+          <Property Name="izdatorobe" Type="Double" Nullable="false" />
+          <Property Name="faktura_id" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="stavkaprofakture_rednibroj" Type="Int32" />
+          <Property Name="stavkaprofakture_profaktura_id" Type="Int32" />
+          <Property Name="stavkaskldok_rednibroj" Type="Int32" />
+          <Property Name="stavkaskldok_skladistenidokument_id" Type="Int32" />
+          <Property Name="stavkaskldok_idproizvod" Type="Int32" />
+          <Property Name="stavkaskldok_idskladista" Type="Int32" />
+          <NavigationProperty Name="Faktura" Relationship="Self.StavkaFakture_FK" FromRole="StavkaFakture" ToRole="Faktura" />
+          <NavigationProperty Name="StavkaProfakture" Relationship="Self.StavkaFakture_FK1" FromRole="StavkaFakture" ToRole="StavkaProfakture" />
+          <NavigationProperty Name="StavkaSklDokumenta" Relationship="Self.StavkaFakture_FK2" FromRole="StavkaFakture" ToRole="StavkaSklDokumenta" />
+          <NavigationProperty Name="Zalihe" Relationship="Self.StavkaFakture_FK3" FromRole="StavkaFakture" ToRole="Zalihe" />
+          <NavigationProperty Name="StavkaKompenzacijes" Relationship="Self.StavkaKompenzacije_FK1" FromRole="StavkaFakture" ToRole="StavkaKompenzacije" />
+          <NavigationProperty Name="StavkaProfaktures" Relationship="Self.StavkaProfakture_FK1" FromRole="StavkaFakture" ToRole="StavkaProfakture" />
+          <NavigationProperty Name="StavkaSklDokumentas" Relationship="Self.StavkaSklDokumenta_FK1" FromRole="StavkaFakture" ToRole="StavkaSklDokumenta" />
+        </EntityType>
+        <EntityType Name="StavkaKompenzacije">
+          <Key>
+            <PropertyRef Name="stavkafakture_faktura_id" />
+            <PropertyRef Name="stavkafakture_rednibroj" />
+            <PropertyRef Name="kompenzacija_id" />
+          </Key>
+          <Property Name="stavkafakture_faktura_id" Type="Int32" Nullable="false" />
+          <Property Name="stavkafakture_rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="kompenzacija_id" Type="Int32" Nullable="false" />
+          <Property Name="kolicina" Type="Int32" Nullable="false" />
+          <Property Name="rednibroj" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kompenzacija" Relationship="Self.StavkaKompenzacije_FK" FromRole="StavkaKompenzacije" ToRole="Kompenzacija" />
+          <NavigationProperty Name="StavkaFakture" Relationship="Self.StavkaKompenzacije_FK1" FromRole="StavkaKompenzacije" ToRole="StavkaFakture" />
+        </EntityType>
+        <EntityType Name="StavkaPopisa">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="proizvod_id" />
+            <PropertyRef Name="popis_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="kolicina" Type="Double" Nullable="false" />
+          <Property Name="proizvod_id" Type="Int32" Nullable="false" />
+          <Property Name="popis_id" Type="Int32" Nullable="false" />
+          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="raf" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Popi" Relationship="Self.StavkaPopisa_FK" FromRole="StavkaPopisa" ToRole="Popis" />
+          <NavigationProperty Name="Proizvod" Relationship="Self.StavkaPopisa_FK1" FromRole="StavkaPopisa" ToRole="Proizvod" />
+          <NavigationProperty Name="Skladiste" Relationship="Self.StavkaPopisa_FK2" FromRole="StavkaPopisa" ToRole="Skladiste" />
+        </EntityType>
+        <EntityType Name="StavkaProfakture">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="profaktura_id" />
+          </Key>
+          <Property Name="kolicina" Type="Double" Nullable="false" />
+          <Property Name="rabat" Type="Double" Nullable="false" />
+          <Property Name="cena" Type="Double" Nullable="false" />
+          <Property Name="rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="profaktura_id" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id" Type="Int32" />
+          <Property Name="stavkafakture_rednibroj" Type="Int32" />
+          <NavigationProperty Name="Profaktura" Relationship="Self.StavkaProfakture_FK" FromRole="StavkaProfakture" ToRole="Profaktura" />
+          <NavigationProperty Name="StavkaFaktures" Relationship="Self.StavkaFakture_FK1" FromRole="StavkaProfakture" ToRole="StavkaFakture" />
+          <NavigationProperty Name="StavkaFakture" Relationship="Self.StavkaProfakture_FK1" FromRole="StavkaProfakture" ToRole="StavkaFakture" />
+          <NavigationProperty Name="Zalihe" Relationship="Self.StavkaProfakture_FK2" FromRole="StavkaProfakture" ToRole="Zalihe" />
+        </EntityType>
+        <EntityType Name="StavkaSklDokumenta">
+          <Key>
+            <PropertyRef Name="rednibroj" />
+            <PropertyRef Name="zalihe_proizvod_id" />
+            <PropertyRef Name="zalihe_idskladista" />
+            <PropertyRef Name="skladistenidokument_id" />
+          </Key>
+          <Property Name="storno" Type="Boolean" Nullable="false" />
+          <Property Name="kolicina" Type="Double" Nullable="false" />
+          <Property Name="rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
+          <Property Name="zalihe_idskladista" Type="Int32" Nullable="false" />
+          <Property Name="skladistenidokument_id" Type="Int32" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id" Type="Int32" />
+          <Property Name="stavkafakture_rednibroj" Type="Int32" />
+          <NavigationProperty Name="SkladisteniDokument" Relationship="Self.StavkaSklDokumenta_FK" FromRole="StavkaSklDokumenta" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="StavkaFaktures" Relationship="Self.StavkaFakture_FK2" FromRole="StavkaSklDokumenta" ToRole="StavkaFakture" />
+          <NavigationProperty Name="StavkaFakture" Relationship="Self.StavkaSklDokumenta_FK1" FromRole="StavkaSklDokumenta" ToRole="StavkaFakture" />
+          <NavigationProperty Name="Zalihe" Relationship="Self.StavkaSklDokumenta_FK2" FromRole="StavkaSklDokumenta" ToRole="Zalihe" />
+        </EntityType>
+        <EntityType Name="Uloga">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Permissions" Relationship="Self.Permission_Uloga" FromRole="Uloga" ToRole="Permission" />
+          <NavigationProperty Name="Zaposlenis" Relationship="Self.Zaposleni_Uloge" FromRole="Uloga" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Zalihe">
+          <Key>
+            <PropertyRef Name="proizvod_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="kolicina" Type="Double" Nullable="false" />
+          <Property Name="minimumkolicine" Type="Double" Nullable="false" />
+          <Property Name="proizvod_id" Type="Int32" Nullable="false" />
+          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="raf" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="rezervisano" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Proizvod" Relationship="Self.Zalihe_FK" FromRole="Zalihe" ToRole="Proizvod" />
+          <NavigationProperty Name="Skladiste" Relationship="Self.Zalihe_FK1" FromRole="Zalihe" ToRole="Skladiste" />
+          <NavigationProperty Name="StavkaFaktures" Relationship="Self.StavkaFakture_FK3" FromRole="Zalihe" ToRole="StavkaFakture" />
+          <NavigationProperty Name="StavkaProfaktures" Relationship="Self.StavkaProfakture_FK2" FromRole="Zalihe" ToRole="StavkaProfakture" />
+          <NavigationProperty Name="StavkaSklDokumentas" Relationship="Self.StavkaSklDokumenta_FK2" FromRole="Zalihe" ToRole="StavkaSklDokumenta" />
+        </EntityType>
+        <EntityType Name="Zaposleni">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jmbg" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="plata" Type="Double" Nullable="false" />
+          <Property Name="doprinosi" Type="Double" Nullable="false" />
+          <Property Name="bonus" Type="Double" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tekuciracun" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="brojtelefona" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sef_id" Type="Int32" />
+          <Property Name="grad_id" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Fakturas" Relationship="Self.Faktura_FK" FromRole="Zaposleni" ToRole="Faktura" />
+          <NavigationProperty Name="grad" Relationship="Self.Zaposleni_FK" FromRole="Zaposleni" ToRole="grad" />
+          <NavigationProperty Name="Kompenzacijas" Relationship="Self.Kompenzacija_FK" FromRole="Zaposleni" ToRole="Kompenzacija" />
+          <NavigationProperty Name="Korisniks" Relationship="Self.Korisnik_FK" FromRole="Zaposleni" ToRole="Korisnik" />
+          <NavigationProperty Name="Profakturas" Relationship="Self.Profaktura_FK2" FromRole="Zaposleni" ToRole="Profaktura" />
+          <NavigationProperty Name="Zaposleni1" Relationship="Self.Zaposleni_FK2" FromRole="Zaposleni" ToRole="Zaposleni1" />
+          <NavigationProperty Name="Zaposleni2" Relationship="Self.Zaposleni_FK2" FromRole="Zaposleni1" ToRole="Zaposleni" />
+          <NavigationProperty Name="ZaposleniSkladistas" Relationship="Self.ZaposleniSkladista_FK1" FromRole="Zaposleni" ToRole="ZaposleniSkladista" />
+          <NavigationProperty Name="Popis" Relationship="Self.PopisnaKomisija" FromRole="Zaposleni" ToRole="Popis" />
+          <NavigationProperty Name="Ulogas" Relationship="Self.Zaposleni_Uloge" FromRole="Zaposleni" ToRole="Uloga" />
+        </EntityType>
+        <EntityType Name="ZaposleniSkladista">
+          <Key>
+            <PropertyRef Name="zaposleni_id" />
+            <PropertyRef Name="skladiste_id" />
+          </Key>
+          <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
+          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Skladiste" Relationship="Self.ZaposleniSkladista_FK" FromRole="ZaposleniSkladista" ToRole="Skladiste" />
+          <NavigationProperty Name="SkladisteniDokuments" Relationship="Self.SkladisteniDokument_FK1" FromRole="ZaposleniSkladista" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="Zaposleni" Relationship="Self.ZaposleniSkladista_FK1" FromRole="ZaposleniSkladista" ToRole="Zaposleni" />
+        </EntityType>
+        <Association Name="Faktura_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Faktura_FK1">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Faktura_FK2">
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profaktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Opomena_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Opomena" Type="Self.Opomena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Opomena">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK1">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="redovnafaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PoslovniPartner_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PoslovniPartner">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvodjac_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="0..1" />
+          <End Role="Proizvodjac" Type="Self.Proizvodjac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvodjac">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Skladiste_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Skladiste">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_FK">
+          <End Role="grad" Type="Self.grad" Multiplicity="1" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni">
+              <PropertyRef Name="grad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvod_FK">
+          <End Role="jedinicamere" Type="Self.jedinicamere" Multiplicity="1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jedinicamere">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="jedinicamere_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Kompenzacija_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Kompenzacija" Type="Self.Kompenzacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Kompenzacija">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK">
+          <End Role="Kompenzacija" Type="Self.Kompenzacija" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompenzacija">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="kompenzacija_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Korisnik_FK">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Popis_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Popis" Type="Self.Popi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Popis">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK">
+          <End Role="Popis" Type="Self.Popi" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Popis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="popis_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK2">
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoslovniPartner">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="poslovnipartner_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Profaktura_FK2">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Profaktura">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK">
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profaktura">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Proizvod_FK1">
+          <End Role="Proizvodjac" Type="Self.Proizvodjac" Multiplicity="1" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvodjac">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Proizvod">
+              <PropertyRef Name="proizvodjac_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK1">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="proizvod_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zalihe_FK">
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proizvod">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaPopisa_FK2">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="StavkaPopisa" Type="Self.StavkaPopisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaPopisa">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zalihe_FK1">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zalihe">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZaposleniSkladista_FK">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZaposleniSkladista">
+              <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK1">
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ZaposleniSkladista">
+              <PropertyRef Name="zaposleni_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="zaposleniskladista_zaposleni_id" />
+              <PropertyRef Name="zaposleniskladista_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK3">
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="1" />
+          <End Role="SkladisteniDokument1" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladisteniDokument">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument1">
+              <PropertyRef Name="redovniskldok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK">
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkladisteniDokument">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="skladistenidokument_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK1">
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="0..1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaProfakture">
+              <PropertyRef Name="rednibroj" />
+              <PropertyRef Name="profaktura_id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="stavkaprofakture_rednibroj" />
+              <PropertyRef Name="stavkaprofakture_profaktura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK2">
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="0..1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaSklDokumenta">
+              <PropertyRef Name="rednibroj" />
+              <PropertyRef Name="skladistenidokument_id" />
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_idskladista" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="stavkaskldok_rednibroj" />
+              <PropertyRef Name="stavkaskldok_skladistenidokument_id" />
+              <PropertyRef Name="stavkaskldok_idproizvod" />
+              <PropertyRef Name="stavkaskldok_idskladista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaFakture_FK3">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaFakture">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="0..1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK1">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="0..1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="stavkafakture_faktura_id" />
+              <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaProfakture_FK2">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaProfakture" Type="Self.StavkaProfakture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaProfakture">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaSklDokumenta_FK2">
+          <End Role="Zalihe" Type="Self.Zalihe" Multiplicity="1" />
+          <End Role="StavkaSklDokumenta" Type="Self.StavkaSklDokumenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zalihe">
+              <PropertyRef Name="proizvod_id" />
+              <PropertyRef Name="skladiste_id" />
+            </Principal>
+            <Dependent Role="StavkaSklDokumenta">
+              <PropertyRef Name="zalihe_proizvod_id" />
+              <PropertyRef Name="zalihe_idskladista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Zaposleni_FK2">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="0..1" />
+          <End Role="Zaposleni1" Type="Self.Zaposleni" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Zaposleni1">
+              <PropertyRef Name="sef_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ZaposleniSkladista_FK1">
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="1" />
+          <End Role="ZaposleniSkladista" Type="Self.ZaposleniSkladista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zaposleni">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ZaposleniSkladista">
+              <PropertyRef Name="zaposleni_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Permission_Uloga">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="*" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+        </Association>
+        <Association Name="PopisnaKomisija">
+          <End Role="Popis" Type="Self.Popi" Multiplicity="*" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+        </Association>
+        <Association Name="ProizvodKarakteristika">
+          <End Role="Karakteristika" Type="Self.Karakteristika" Multiplicity="*" />
+          <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="*" />
+        </Association>
+        <Association Name="SpoljniSklDokument_RedovnaFak">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+        </Association>
+        <Association Name="StornoFaktura_RedovnaFaktura">
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <End Role="Faktura1" Type="Self.Faktura" Multiplicity="*" />
+        </Association>
+        <Association Name="Zaposleni_Uloge">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="*" />
+          <End Role="Zaposleni" Type="Self.Zaposleni" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DeltaEximEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Audits" EntityType="Self.Audit" />
+          <EntitySet Name="Fakturas" EntityType="Self.Faktura" />
+          <EntitySet Name="grads" EntityType="Self.grad" />
+          <EntitySet Name="jedinicameres" EntityType="Self.jedinicamere" />
+          <EntitySet Name="Karakteristikas" EntityType="Self.Karakteristika" />
+          <EntitySet Name="Kompenzacijas" EntityType="Self.Kompenzacija" />
+          <EntitySet Name="Korisniks" EntityType="Self.Korisnik" />
+          <EntitySet Name="Opomenas" EntityType="Self.Opomena" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Popis" EntityType="Self.Popi" />
+          <EntitySet Name="PoslovniPartners" EntityType="Self.PoslovniPartner" />
+          <EntitySet Name="Profakturas" EntityType="Self.Profaktura" />
+          <EntitySet Name="Proizvods" EntityType="Self.Proizvod" />
+          <EntitySet Name="Proizvodjacs" EntityType="Self.Proizvodjac" />
+          <EntitySet Name="Skladistes" EntityType="Self.Skladiste" />
+          <EntitySet Name="SkladisteniDokuments" EntityType="Self.SkladisteniDokument" />
+          <EntitySet Name="StavkaFaktures" EntityType="Self.StavkaFakture" />
+          <EntitySet Name="StavkaKompenzacijes" EntityType="Self.StavkaKompenzacije" />
+          <EntitySet Name="StavkaPopisas" EntityType="Self.StavkaPopisa" />
+          <EntitySet Name="StavkaProfaktures" EntityType="Self.StavkaProfakture" />
+          <EntitySet Name="StavkaSklDokumentas" EntityType="Self.StavkaSklDokumenta" />
+          <EntitySet Name="Ulogas" EntityType="Self.Uloga" />
+          <EntitySet Name="Zalihes" EntityType="Self.Zalihe" />
+          <EntitySet Name="Zaposlenis" EntityType="Self.Zaposleni" />
+          <EntitySet Name="ZaposleniSkladistas" EntityType="Self.ZaposleniSkladista" />
+          <AssociationSet Name="Faktura_FK" Association="Self.Faktura_FK">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="Faktura" EntitySet="Fakturas" />
+          </AssociationSet>
+          <AssociationSet Name="Faktura_FK1" Association="Self.Faktura_FK1">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartners" />
+            <End Role="Faktura" EntitySet="Fakturas" />
+          </AssociationSet>
+          <AssociationSet Name="Faktura_FK2" Association="Self.Faktura_FK2">
+            <End Role="Profaktura" EntitySet="Profakturas" />
+            <End Role="Faktura" EntitySet="Fakturas" />
+          </AssociationSet>
+          <AssociationSet Name="Opomena_FK" Association="Self.Opomena_FK">
+            <End Role="Faktura" EntitySet="Fakturas" />
+            <End Role="Opomena" EntitySet="Opomenas" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK1" Association="Self.Profaktura_FK1">
+            <End Role="Faktura" EntitySet="Fakturas" />
+            <End Role="Profaktura" EntitySet="Profakturas" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK" Association="Self.StavkaFakture_FK">
+            <End Role="Faktura" EntitySet="Fakturas" />
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+          </AssociationSet>
+          <AssociationSet Name="PoslovniPartner_FK" Association="Self.PoslovniPartner_FK">
+            <End Role="grad" EntitySet="grads" />
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartners" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvodjac_FK" Association="Self.Proizvodjac_FK">
+            <End Role="grad" EntitySet="grads" />
+            <End Role="Proizvodjac" EntitySet="Proizvodjacs" />
+          </AssociationSet>
+          <AssociationSet Name="Skladiste_FK" Association="Self.Skladiste_FK">
+            <End Role="grad" EntitySet="grads" />
+            <End Role="Skladiste" EntitySet="Skladistes" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_FK" Association="Self.Zaposleni_FK">
+            <End Role="grad" EntitySet="grads" />
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvod_FK" Association="Self.Proizvod_FK">
+            <End Role="jedinicamere" EntitySet="jedinicameres" />
+            <End Role="Proizvod" EntitySet="Proizvods" />
+          </AssociationSet>
+          <AssociationSet Name="Kompenzacija_FK" Association="Self.Kompenzacija_FK">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="Kompenzacija" EntitySet="Kompenzacijas" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK" Association="Self.StavkaKompenzacije_FK">
+            <End Role="Kompenzacija" EntitySet="Kompenzacijas" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacijes" />
+          </AssociationSet>
+          <AssociationSet Name="Korisnik_FK" Association="Self.Korisnik_FK">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="Korisnik" EntitySet="Korisniks" />
+          </AssociationSet>
+          <AssociationSet Name="Popis_FK" Association="Self.Popis_FK">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="Popis" EntitySet="Popis" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK" Association="Self.StavkaPopisa_FK">
+            <End Role="Popis" EntitySet="Popis" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisas" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK" Association="Self.Profaktura_FK">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartners" />
+            <End Role="Profaktura" EntitySet="Profakturas" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK2" Association="Self.SkladisteniDokument_FK2">
+            <End Role="PoslovniPartner" EntitySet="PoslovniPartners" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
+          <AssociationSet Name="Profaktura_FK2" Association="Self.Profaktura_FK2">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="Profaktura" EntitySet="Profakturas" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK" Association="Self.StavkaProfakture_FK">
+            <End Role="Profaktura" EntitySet="Profakturas" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfaktures" />
+          </AssociationSet>
+          <AssociationSet Name="Proizvod_FK1" Association="Self.Proizvod_FK1">
+            <End Role="Proizvodjac" EntitySet="Proizvodjacs" />
+            <End Role="Proizvod" EntitySet="Proizvods" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK1" Association="Self.StavkaPopisa_FK1">
+            <End Role="Proizvod" EntitySet="Proizvods" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisas" />
+          </AssociationSet>
+          <AssociationSet Name="Zalihe_FK" Association="Self.Zalihe_FK">
+            <End Role="Proizvod" EntitySet="Proizvods" />
+            <End Role="Zalihe" EntitySet="Zalihes" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK" Association="Self.SkladisteniDokument_FK">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaPopisa_FK2" Association="Self.StavkaPopisa_FK2">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="StavkaPopisa" EntitySet="StavkaPopisas" />
+          </AssociationSet>
+          <AssociationSet Name="Zalihe_FK1" Association="Self.Zalihe_FK1">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="Zalihe" EntitySet="Zalihes" />
+          </AssociationSet>
+          <AssociationSet Name="ZaposleniSkladista_FK" Association="Self.ZaposleniSkladista_FK">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladistas" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK1" Association="Self.SkladisteniDokument_FK1">
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladistas" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK3" Association="Self.SkladisteniDokument_FK3">
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+            <End Role="SkladisteniDokument1" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK" Association="Self.StavkaSklDokumenta_FK">
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumentas" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK1" Association="Self.StavkaFakture_FK1">
+            <End Role="StavkaProfakture" EntitySet="StavkaProfaktures" />
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK2" Association="Self.StavkaFakture_FK2">
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumentas" />
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaFakture_FK3" Association="Self.StavkaFakture_FK3">
+            <End Role="Zalihe" EntitySet="Zalihes" />
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK1" Association="Self.StavkaKompenzacije_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacijes" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK1" Association="Self.StavkaProfakture_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfaktures" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK1" Association="Self.StavkaSklDokumenta_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumentas" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaProfakture_FK2" Association="Self.StavkaProfakture_FK2">
+            <End Role="Zalihe" EntitySet="Zalihes" />
+            <End Role="StavkaProfakture" EntitySet="StavkaProfaktures" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaSklDokumenta_FK2" Association="Self.StavkaSklDokumenta_FK2">
+            <End Role="Zalihe" EntitySet="Zalihes" />
+            <End Role="StavkaSklDokumenta" EntitySet="StavkaSklDokumentas" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_FK2" Association="Self.Zaposleni_FK2">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="Zaposleni1" EntitySet="Zaposlenis" />
+          </AssociationSet>
+          <AssociationSet Name="ZaposleniSkladista_FK1" Association="Self.ZaposleniSkladista_FK1">
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+            <End Role="ZaposleniSkladista" EntitySet="ZaposleniSkladistas" />
+          </AssociationSet>
+          <AssociationSet Name="Permission_Uloga" Association="Self.Permission_Uloga">
+            <End Role="Uloga" EntitySet="Ulogas" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="PopisnaKomisija" Association="Self.PopisnaKomisija">
+            <End Role="Popis" EntitySet="Popis" />
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+          </AssociationSet>
+          <AssociationSet Name="ProizvodKarakteristika" Association="Self.ProizvodKarakteristika">
+            <End Role="Karakteristika" EntitySet="Karakteristikas" />
+            <End Role="Proizvod" EntitySet="Proizvods" />
+          </AssociationSet>
+          <AssociationSet Name="SpoljniSklDokument_RedovnaFak" Association="Self.SpoljniSklDokument_RedovnaFak">
+            <End Role="Faktura" EntitySet="Fakturas" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
+          <AssociationSet Name="StornoFaktura_RedovnaFaktura" Association="Self.StornoFaktura_RedovnaFaktura">
+            <End Role="Faktura" EntitySet="Fakturas" />
+            <End Role="Faktura1" EntitySet="Fakturas" />
+          </AssociationSet>
+          <AssociationSet Name="Zaposleni_Uloge" Association="Self.Zaposleni_Uloge">
+            <End Role="Uloga" EntitySet="Ulogas" />
+            <End Role="Zaposleni" EntitySet="Zaposlenis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DeltaEximModelStoreContainer" CdmEntityContainer="DeltaEximEntities1">
+          <EntitySetMapping Name="Audits">
+            <EntityTypeMapping TypeName="DeltaEximModel.Audit">
+              <MappingFragment StoreEntitySet="Audit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="korisnickoime" ColumnName="korisnickoime" />
+                <ScalarProperty Name="akcija" ColumnName="akcija" />
+                <ScalarProperty Name="vreme" ColumnName="vreme" />
+                <ScalarProperty Name="tip" ColumnName="tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fakturas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="datumfakturisanja" ColumnName="datumfakturisanja" />
+                <ScalarProperty Name="upripremi" ColumnName="upripremi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
+                <ScalarProperty Name="datumprometadobara" ColumnName="datumprometadobara" />
+                <ScalarProperty Name="redovna" ColumnName="redovna" />
+                <ScalarProperty Name="ulazna" ColumnName="ulazna" />
+                <ScalarProperty Name="placeno" ColumnName="placeno" />
+                <ScalarProperty Name="pdv" ColumnName="pdv" />
+                <ScalarProperty Name="otpremljena" ColumnName="otpremljena" />
+                <ScalarProperty Name="rokplacanja" ColumnName="rokplacanja" />
+                <ScalarProperty Name="avansnoplacanje" ColumnName="avansnoplacanje" />
+                <ScalarProperty Name="avans" ColumnName="avans" />
+                <ScalarProperty Name="profaktura_id" ColumnName="profaktura_id" />
+                <ScalarProperty Name="likvidirano" ColumnName="likvidirano" />
+                <ScalarProperty Name="poslovnipartner_mbr" ColumnName="poslovnipartner_mbr" />
+                <ScalarProperty Name="stornoceo" ColumnName="stornoceo" />
+                <ScalarProperty Name="oznaka" ColumnName="oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grads">
+            <EntityTypeMapping TypeName="DeltaEximModel.grad">
+              <MappingFragment StoreEntitySet="grad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="drzava" ColumnName="drzava" />
+                <ScalarProperty Name="postanskibroj" ColumnName="postanskibroj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jedinicameres">
+            <EntityTypeMapping TypeName="DeltaEximModel.jedinicamere">
+              <MappingFragment StoreEntitySet="jedinicamere">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Karakteristikas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Karakteristika">
+              <MappingFragment StoreEntitySet="Karakteristika">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kompenzacijas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Kompenzacija">
+              <MappingFragment StoreEntitySet="Kompenzacija">
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisniks">
+            <EntityTypeMapping TypeName="DeltaEximModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="korisnickoime" ColumnName="korisnickoime" />
+                <ScalarProperty Name="lozinka" ColumnName="lozinka" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="ulogovan" ColumnName="ulogovan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opomenas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Opomena">
+              <MappingFragment StoreEntitySet="Opomena">
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="redovnafaktura_id" ColumnName="redovnafaktura_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="DeltaEximModel.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Popis">
+            <EntityTypeMapping TypeName="DeltaEximModel.Popi">
+              <MappingFragment StoreEntitySet="Popis">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+                <ScalarProperty Name="oznaka" ColumnName="oznaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoslovniPartners">
+            <EntityTypeMapping TypeName="DeltaEximModel.PoslovniPartner">
+              <MappingFragment StoreEntitySet="PoslovniPartner">
+                <ScalarProperty Name="mbr" ColumnName="mbr" />
+                <ScalarProperty Name="pib" ColumnName="pib" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="dugovanja" ColumnName="dugovanja" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="brojtelefona" ColumnName="brojtelefona" />
+                <ScalarProperty Name="tekuciracun" ColumnName="tekuciracun" />
+                <ScalarProperty Name="grad_id" ColumnName="grad_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profakturas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Profaktura">
+              <MappingFragment StoreEntitySet="Profaktura">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="redovnafaktura_id" ColumnName="redovnafaktura_id" />
+                <ScalarProperty Name="oznaka" ColumnName="oznaka" />
+                <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
+                <ScalarProperty Name="poslovnipartner_mbr" ColumnName="poslovnipartner_mbr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proizvods">
+            <EntityTypeMapping TypeName="DeltaEximModel.Proizvod">
+              <MappingFragment StoreEntitySet="Proizvod">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="minimumkolicine" ColumnName="minimumkolicine" />
+                <ScalarProperty Name="jedinicamere_id" ColumnName="jedinicamere_id" />
+                <ScalarProperty Name="sifra" ColumnName="sifra" />
+                <ScalarProperty Name="proizvodjac_id" ColumnName="proizvodjac_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proizvodjacs">
+            <EntityTypeMapping TypeName="DeltaEximModel.Proizvodjac">
+              <MappingFragment StoreEntitySet="Proizvodjac">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="grad_id" ColumnName="grad_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skladistes">
+            <EntityTypeMapping TypeName="DeltaEximModel.Skladiste">
+              <MappingFragment StoreEntitySet="Skladiste">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="sifra" ColumnName="sifra" />
+                <ScalarProperty Name="grad_id" ColumnName="grad_id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkladisteniDokuments">
+            <EntityTypeMapping TypeName="DeltaEximModel.SkladisteniDokument">
+              <MappingFragment StoreEntitySet="SkladisteniDokument">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="upripremi" ColumnName="upripremi" />
+                <ScalarProperty Name="zaposleniskladista_zaposleni_id" ColumnName="zaposleniskladista_zaposleni_id" />
+                <ScalarProperty Name="zaposleniskladista_skladiste_id" ColumnName="zaposleniskladista_skladiste_id" />
+                <ScalarProperty Name="sifra" ColumnName="sifra" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="redovni" ColumnName="redovni" />
+                <ScalarProperty Name="tipredovnog" ColumnName="tipredovnog" />
+                <ScalarProperty Name="redovniskldok_id" ColumnName="redovniskldok_id" />
+                <ScalarProperty Name="storniranceo" ColumnName="storniranceo" />
+                <ScalarProperty Name="vozac" ColumnName="vozac" />
+                <ScalarProperty Name="regbr" ColumnName="regbr" />
+                <ScalarProperty Name="nacinotpreme" ColumnName="nacinotpreme" />
+                <ScalarProperty Name="izdao" ColumnName="izdao" />
+                <ScalarProperty Name="primio" ColumnName="primio" />
+                <ScalarProperty Name="poslovnipartner_mbr" ColumnName="poslovnipartner_mbr" />
+                <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StavkaFaktures">
+            <EntityTypeMapping TypeName="DeltaEximModel.StavkaFakture">
+              <MappingFragment StoreEntitySet="StavkaFakture">
+                <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="rabat" ColumnName="rabat" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="izdatorobe" ColumnName="izdatorobe" />
+                <ScalarProperty Name="faktura_id" ColumnName="faktura_id" />
+                <ScalarProperty Name="zalihe_proizvod_id" ColumnName="zalihe_proizvod_id" />
+                <ScalarProperty Name="zalihe_skladiste_id" ColumnName="zalihe_skladiste_id" />
+                <ScalarProperty Name="stavkaprofakture_rednibroj" ColumnName="stavkaprofakture_rednibroj" />
+                <ScalarProperty Name="stavkaprofakture_profaktura_id" ColumnName="stavkaprofakture_profaktura_id" />
+                <ScalarProperty Name="stavkaskldok_rednibroj" ColumnName="stavkaskldok_rednibroj" />
+                <ScalarProperty Name="stavkaskldok_skladistenidokument_id" ColumnName="stavkaskldok_skladistenidokument_id" />
+                <ScalarProperty Name="stavkaskldok_idproizvod" ColumnName="stavkaskldok_idproizvod" />
+                <ScalarProperty Name="stavkaskldok_idskladista" ColumnName="stavkaskldok_idskladista" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StavkaKompenzacijes">
+            <EntityTypeMapping TypeName="DeltaEximModel.StavkaKompenzacije">
+              <MappingFragment StoreEntitySet="StavkaKompenzacije">
+                <ScalarProperty Name="stavkafakture_faktura_id" ColumnName="stavkafakture_faktura_id" />
+                <ScalarProperty Name="stavkafakture_rednibroj" ColumnName="stavkafakture_rednibroj" />
+                <ScalarProperty Name="kompenzacija_id" ColumnName="kompenzacija_id" />
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StavkaPopisas">
+            <EntityTypeMapping TypeName="DeltaEximModel.StavkaPopisa">
+              <MappingFragment StoreEntitySet="StavkaPopisa">
+                <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="proizvod_id" ColumnName="proizvod_id" />
+                <ScalarProperty Name="popis_id" ColumnName="popis_id" />
+                <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+                <ScalarProperty Name="raf" ColumnName="raf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StavkaProfaktures">
+            <EntityTypeMapping TypeName="DeltaEximModel.StavkaProfakture">
+              <MappingFragment StoreEntitySet="StavkaProfakture">
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="rabat" ColumnName="rabat" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
+                <ScalarProperty Name="profaktura_id" ColumnName="profaktura_id" />
+                <ScalarProperty Name="zalihe_proizvod_id" ColumnName="zalihe_proizvod_id" />
+                <ScalarProperty Name="zalihe_skladiste_id" ColumnName="zalihe_skladiste_id" />
+                <ScalarProperty Name="stavkafakture_faktura_id" ColumnName="stavkafakture_faktura_id" />
+                <ScalarProperty Name="stavkafakture_rednibroj" ColumnName="stavkafakture_rednibroj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StavkaSklDokumentas">
+            <EntityTypeMapping TypeName="DeltaEximModel.StavkaSklDokumenta">
+              <MappingFragment StoreEntitySet="StavkaSklDokumenta">
+                <ScalarProperty Name="storno" ColumnName="storno" />
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
+                <ScalarProperty Name="zalihe_proizvod_id" ColumnName="zalihe_proizvod_id" />
+                <ScalarProperty Name="zalihe_idskladista" ColumnName="zalihe_idskladista" />
+                <ScalarProperty Name="skladistenidokument_id" ColumnName="skladistenidokument_id" />
+                <ScalarProperty Name="stavkafakture_faktura_id" ColumnName="stavkafakture_faktura_id" />
+                <ScalarProperty Name="stavkafakture_rednibroj" ColumnName="stavkafakture_rednibroj" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ulogas">
+            <EntityTypeMapping TypeName="DeltaEximModel.Uloga">
+              <MappingFragment StoreEntitySet="Uloga">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zalihes">
+            <EntityTypeMapping TypeName="DeltaEximModel.Zalihe">
+              <MappingFragment StoreEntitySet="Zalihe">
+                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
+                <ScalarProperty Name="minimumkolicine" ColumnName="minimumkolicine" />
+                <ScalarProperty Name="proizvod_id" ColumnName="proizvod_id" />
+                <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+                <ScalarProperty Name="raf" ColumnName="raf" />
+                <ScalarProperty Name="rezervisano" ColumnName="rezervisano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zaposlenis">
+            <EntityTypeMapping TypeName="DeltaEximModel.Zaposleni">
+              <MappingFragment StoreEntitySet="Zaposleni">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="jmbg" ColumnName="jmbg" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="plata" ColumnName="plata" />
+                <ScalarProperty Name="doprinosi" ColumnName="doprinosi" />
+                <ScalarProperty Name="bonus" ColumnName="bonus" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tekuciracun" ColumnName="tekuciracun" />
+                <ScalarProperty Name="brojtelefona" ColumnName="brojtelefona" />
+                <ScalarProperty Name="sef_id" ColumnName="sef_id" />
+                <ScalarProperty Name="grad_id" ColumnName="grad_id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZaposleniSkladistas">
+            <EntityTypeMapping TypeName="DeltaEximModel.ZaposleniSkladista">
+              <MappingFragment StoreEntitySet="ZaposleniSkladista">
+                <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
+                <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Permission_Uloga" TypeName="DeltaEximModel.Permission_Uloga" StoreEntitySet="Permission_Uloga">
+            <EndProperty Name="Uloga">
+              <ScalarProperty Name="id" ColumnName="uloga_id" />
+            </EndProperty>
+            <EndProperty Name="Permission">
+              <ScalarProperty Name="Id" ColumnName="permission_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PopisnaKomisija" TypeName="DeltaEximModel.PopisnaKomisija" StoreEntitySet="PopisnaKomisija">
+            <EndProperty Name="Popis">
+              <ScalarProperty Name="id" ColumnName="popis_id" />
+            </EndProperty>
+            <EndProperty Name="Zaposleni">
+              <ScalarProperty Name="id" ColumnName="zaposleni_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProizvodKarakteristika" TypeName="DeltaEximModel.ProizvodKarakteristika" StoreEntitySet="ProizvodKarakteristika">
+            <EndProperty Name="Karakteristika">
+              <ScalarProperty Name="id" ColumnName="karakteristika_id" />
+            </EndProperty>
+            <EndProperty Name="Proizvod">
+              <ScalarProperty Name="id" ColumnName="proizvod_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SpoljniSklDokument_RedovnaFak" TypeName="DeltaEximModel.SpoljniSklDokument_RedovnaFak" StoreEntitySet="SpoljniSklDokument_RedovnaFak">
+            <EndProperty Name="Faktura">
+              <ScalarProperty Name="id" ColumnName="redovnafaktura_id" />
+            </EndProperty>
+            <EndProperty Name="SkladisteniDokument">
+              <ScalarProperty Name="id" ColumnName="spoljniredovniskldok_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="StornoFaktura_RedovnaFaktura" TypeName="DeltaEximModel.StornoFaktura_RedovnaFaktura" StoreEntitySet="StornoFaktura_RedovnaFaktura">
+            <EndProperty Name="Faktura">
+              <ScalarProperty Name="id" ColumnName="redovnafaktura_id" />
+            </EndProperty>
+            <EndProperty Name="Faktura1">
+              <ScalarProperty Name="id" ColumnName="stornafaktura_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Zaposleni_Uloge" TypeName="DeltaEximModel.Zaposleni_Uloge" StoreEntitySet="Zaposleni_Uloge">
+            <EndProperty Name="Uloga">
+              <ScalarProperty Name="id" ColumnName="uloga_id" />
+            </EndProperty>
+            <EndProperty Name="Zaposleni">
+              <ScalarProperty Name="id" ColumnName="zaposleni_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

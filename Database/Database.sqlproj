@@ -188,7 +188,6 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Audit.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Korisnik_UQ.sql" />
-    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_FK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Audit_Delete.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Audit_Edit.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Korisnik_Delete.sql" />
@@ -210,5 +209,12 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Zaposleni_IDX_active.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Zaposleni_IDX_ime_prezime.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Korisnik_IDX_korisnickoIme.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Permission.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Permission_Uloga.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_FK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_FK1.sql" />
   </ItemGroup>
 </Project>
