@@ -189,5 +189,26 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Korisnik_UQ.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_FK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Audit_Delete.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Audit_Edit.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Korisnik_Delete.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Proizvod_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Audit_IDX_korisnickoIme.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Audit_IDX_tip.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Faktura_IDX_datumFakturisanja.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Audit_IDX_vreme.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Faktura_IDX_datuprometadobara.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Kompenzacija_IDX_Datum.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Korisnik_IDX_active.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Opomena_IDX_datum.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Popis_IDX_datum.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\PoslovniPartner_IDX_naziv.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Profaktura_IDX_active.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\SkladisteniDokument_IDX_datum.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\SkladisteniDokument_IDX_active.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Zalihe_IDX_raf.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Zaposleni_IDX_active.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Zaposleni_IDX_ime_prezime.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Indexes\Korisnik_IDX_korisnickoIme.sql" />
   </ItemGroup>
 </Project>
