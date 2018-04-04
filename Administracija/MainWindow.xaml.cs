@@ -44,5 +44,10 @@ namespace Administracija
         {
             ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("previewUsers");
         }
+
+        private void deselect(object sender, RoutedEventArgs e)
+        {
+            listView.SelectedIndex = -1;
+        }
     }
 }

@@ -121,7 +121,7 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Command="{Binding NavCommand}" CommandParameter="help" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Command="{Binding NavCommand}" CommandParameter="help" Click="deselect" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
                     <materialDesign:PackIcon Kind="HelpBox" Width="40" Height="40" />
                 </Button>
                 <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="80" Height="80" Margin="10" RenderTransformOrigin="0.5,0.5">
@@ -141,7 +141,7 @@
                     <materialDesign:PackIcon Kind="InformationOutline" Width="40" Height="40"/>
                 </Button>
             </StackPanel>
-            <ListView>
+            <ListView x:Name="listView">
                 <ListViewItem x:Name="listViewItem" Height="60" RenderTransformOrigin="0.5,0.5" Selected="pregledKorisnikaCall">
                     <ListViewItem.RenderTransform>
                         <TransformGroup>
