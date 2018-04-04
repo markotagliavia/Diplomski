@@ -137,5 +137,11 @@
     <Resource Include="Images\username1.png" />
     <Resource Include="Images\username2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Notifications\Notifications.csproj">
+      <Project>{1dfab1d0-9968-4e4d-aa27-c3ddcb2d12d2}</Project>
+      <Name>Notifications</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

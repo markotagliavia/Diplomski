@@ -185,5 +185,9 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Zaposleni_FK2.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\ZaposleniSkladista_FK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\ZaposleniSkladista_FK1.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Audit.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Korisnik_UQ.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Audit_FK.sql" />
   </ItemGroup>
 </Project>

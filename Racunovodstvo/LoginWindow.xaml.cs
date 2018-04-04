@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,6 +57,9 @@ namespace Racunovodstvo
             LabelColor = new SolidColorBrush(c1);
             InitializeComponent();
             this.DataContext = this;
+            Success s = new Success("HELLO");
+            s.Show();
+            
         }
 
         #region Constructors Block

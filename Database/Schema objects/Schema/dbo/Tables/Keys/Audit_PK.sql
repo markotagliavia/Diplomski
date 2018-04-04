@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Audit]
+	ADD CONSTRAINT [Audit_PK]
+	PRIMARY KEY (id)

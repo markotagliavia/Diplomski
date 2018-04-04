@@ -47,4 +47,30 @@ D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\Con
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.xml
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\App.baml
-
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.exe.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.exe
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\ControlzEx.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\EntityFramework.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\EntityFramework.SqlServer.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\MahApps.Metro.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\System.Windows.Interactivity.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\EntityFramework.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\EntityFramework.SqlServer.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\MahApps.Metro.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\LoginWindow.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\MainWindow.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\App.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija_MarkupCompile.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija_MarkupCompile.lref
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\App.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\LoginWindow.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\MainWindow.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.g.resources
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.Properties.Resources.resources
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csproj.GenerateResource.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csproj.CoreCompileInputs.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csproj.CopyComplete
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.exe
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csprojResolveAssemblyReference.cache

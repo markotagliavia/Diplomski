@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Racunovodstvo", "Racunovods
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{7FBDA094-C1D0-451F-828E-CB579E51A82D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityManager", "SecurityManager\SecurityManager.csproj", "{31FE88B6-FDB9-4662-AC27-225DE58A88DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notifications\Notifications.csproj", "{1DFAB1D0-9968-4E4D-AA27-C3DDCB2D12D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{7FBDA094-C1D0-451F-828E-CB579E51A82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FBDA094-C1D0-451F-828E-CB579E51A82D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FBDA094-C1D0-451F-828E-CB579E51A82D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{31FE88B6-FDB9-4662-AC27-225DE58A88DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31FE88B6-FDB9-4662-AC27-225DE58A88DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31FE88B6-FDB9-4662-AC27-225DE58A88DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31FE88B6-FDB9-4662-AC27-225DE58A88DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFAB1D0-9968-4E4D-AA27-C3DDCB2D12D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFAB1D0-9968-4E4D-AA27-C3DDCB2D12D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFAB1D0-9968-4E4D-AA27-C3DDCB2D12D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFAB1D0-9968-4E4D-AA27-C3DDCB2D12D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

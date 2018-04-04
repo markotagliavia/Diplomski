@@ -47,4 +47,33 @@ D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\Cont
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\bin\Debug\MahApps.Metro.xml
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Racunovodstvo\obj\Debug\App.baml
-
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Racunovodstvo.exe.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Racunovodstvo.exe
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Racunovodstvo.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\ControlzEx.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\EntityFramework.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\EntityFramework.SqlServer.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MahApps.Metro.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\System.Windows.Interactivity.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\EntityFramework.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\EntityFramework.SqlServer.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MahApps.Metro.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\LoginWindow.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\MainWindow.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\App.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo_MarkupCompile.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo_MarkupCompile.lref
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\App.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\LoginWindow.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\MainWindow.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.g.resources
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.Properties.Resources.resources
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.GenerateResource.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CoreCompileInputs.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.exe
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifications.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifications.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifications.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.csprojResolveAssemblyReference.cache
