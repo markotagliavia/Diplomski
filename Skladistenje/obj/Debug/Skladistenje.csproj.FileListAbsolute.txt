@@ -73,4 +73,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladiste
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje.exe
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje.pdb
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje.csprojResolveAssemblyReference.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialDesignColors.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.xml

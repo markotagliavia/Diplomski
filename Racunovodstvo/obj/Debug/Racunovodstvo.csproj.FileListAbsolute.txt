@@ -77,3 +77,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifica
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifications.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Notifications.dll.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo.csprojResolveAssemblyReference.cache
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignColors.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignThemes.Wpf.xml
