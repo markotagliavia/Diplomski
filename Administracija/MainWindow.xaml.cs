@@ -24,5 +24,30 @@ namespace Administracija
         {
             InitializeComponent();
         }
+
+        private void auditMethodCall(object sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("audit");
+        }
+
+        private void naprednaPretragaCall(object sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("advancedSearch");
+        }
+
+        private void pregledUlogaCall(object sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("previewRoles");
+        }
+
+        private void pregledKorisnikaCall(object sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("previewUsers");
+        }
+
+        private void deselect(object sender, RoutedEventArgs e)
+        {
+            listView.SelectedIndex = -1;
+        }
     }
 }
