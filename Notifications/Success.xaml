@@ -26,15 +26,15 @@
 
      <Grid Background="#FF317654">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="40"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Image Source="Images/success.png"></Image>
+            <Image Source="Images/success.png" Height="40"></Image>
         </Grid>
         <Grid Grid.Column="1">
-            <Label Content="{Binding Message}" Foreground="White" FontFamily="Comic Sans" FontSize="20" HorizontalAlignment="Center" Height="60" Width="Auto" Margin="0,0,-10,10"/>
+            <Label Content="{Binding Message}" Foreground="White" FontFamily="Comic Sans" FontSize="10" HorizontalAlignment="Center" Height="60" Width="Auto" Margin="0,0,-10,10"/>
         </Grid>
         <Grid Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right">
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="#FF317654" BorderBrush="#FF317654" Margin="0,0,0,0" Click="Exit" >

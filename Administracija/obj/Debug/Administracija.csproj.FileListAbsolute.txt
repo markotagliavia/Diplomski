@@ -152,3 +152,9 @@ D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.pdb
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll.config
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija_Content.g.cs

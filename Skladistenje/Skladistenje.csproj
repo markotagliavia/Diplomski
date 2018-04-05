@@ -55,8 +55,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +81,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MyICommand.cs" />
+    <Compile Include="ValidationBase.cs" />
+    <Compile Include="ValidationErrors.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
+    <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
+    <Compile Include="ViewModel\PopisViewModel.cs" />
+    <Compile Include="ViewModel\ProizvodiViewModel.cs" />
+    <Compile Include="ViewModel\SkladistaViewModel.cs" />
+    <Compile Include="ViewModel\SkladisteniDokumentiViewModel.cs" />
+    <Compile Include="ViewModel\ZaliheViewModel.cs" />
+    <Compile Include="ViewModel\ZaposleniViewModel.cs" />
+    <Compile Include="View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NaprednaPretraga.xaml.cs">
+      <DependentUpon>NaprednaPretraga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Obavestenja.xaml.cs">
+      <DependentUpon>Obavestenja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PopisView.xaml.cs">
+      <DependentUpon>PopisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProizvodiView.xaml.cs">
+      <DependentUpon>ProizvodiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Skladista.xaml.cs">
+      <DependentUpon>Skladista.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SkladisteniDokumenti.xaml.cs">
+      <DependentUpon>SkladisteniDokumenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZaliheView.xaml.cs">
+      <DependentUpon>ZaliheView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZaposleniView.xaml.cs">
+      <DependentUpon>ZaposleniView.xaml</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +133,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BindableBase.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -98,6 +141,42 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NaprednaPretraga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Obavestenja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProizvodiView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Skladista.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SkladisteniDokumenti.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZaliheView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZaposleniView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Audit.cs">
@@ -224,8 +303,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
+    <ProjectReference Include="..\Notifications\Notifications.csproj">
+      <Project>{1dfab1d0-9968-4e4d-aa27-c3ddcb2d12d2}</Project>
+      <Name>Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SecurityManager\SecurityManager.csproj">
+      <Project>{31fe88b6-fdb9-4662-ac27-225de58a88db}</Project>
+      <Name>SecurityManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\businessPhoto1.jpg" />
@@ -244,6 +329,7 @@
     <Resource Include="Images\username2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\back.jpg" />
     <Content Include="Model\BusinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusinessSystemModel.edmx</DependentUpon>

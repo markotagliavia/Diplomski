@@ -57,16 +57,6 @@ namespace Racunovodstvo
             LabelColor = new SolidColorBrush(c1);
             InitializeComponent();
             this.DataContext = this;
-            Success s = new Success("HELLO");
-            s.Show();
-            Error e = new Error("GRESSSSSKAAAA");
-            e.Show();
-            Warning w = new Warning("Paznja \n paznja");
-            w.Show();
-            Info i = new Info("Vazno saopstenje");
-            i.Show();
-            Notification n = new Notification("Cao");
-            n.Show();
             
         }
 

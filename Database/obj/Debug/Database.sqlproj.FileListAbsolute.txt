@@ -25,11 +25,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\bin\Debug\Database.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\bin\Debug\Database.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.pdb
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Model.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\refactor.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\postdeploy.sql
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\predeploy.sql
 D:\E3\DIplomskiKlon3april\Database\bin\Debug\Database.dacpac
 D:\E3\DIplomskiKlon3april\Database\bin\Debug\Database.dll
 D:\E3\DIplomskiKlon3april\Database\bin\Debug\Database.pdb
@@ -40,3 +35,4 @@ D:\E3\DIplomskiKlon3april\Database\obj\Debug\postdeploy.sql
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\predeploy.sql
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.dll
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
