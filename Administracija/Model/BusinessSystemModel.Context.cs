@@ -20,13 +20,12 @@ namespace Administracija.Model
         {
             this.Database.Connection.ConnectionString = SecurityManager.Encryption.secureConnectionString();
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Audit> Audits { get; set; }
         public virtual DbSet<Faktura> Fakturas { get; set; }
         public virtual DbSet<grad> grads { get; set; }
         public virtual DbSet<jedinicamere> jedinicameres { get; set; }

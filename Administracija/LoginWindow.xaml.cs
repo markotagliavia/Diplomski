@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -206,7 +207,6 @@ namespace Administracija
         private void prijaviSe(object sender, RoutedEventArgs e)
         {
             string inputUsername = usernameTextBox.Text;
-            //VALIDACIJA TO DO
 
             Korisnik k = new Korisnik();
             k.korisnickoime = "";
@@ -223,11 +223,13 @@ namespace Administracija
                     {
                         Error er = new Error("Korisnik je vec ulogovan!");
                         er.Show();
+                        SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Neuspesna autentifikacija. Korisnik je vec ulogovan.", "Upozorenje");
                     }
                     else
                     {
                         dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan = true;
                         dbContext.SaveChanges();
+                        SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Uspesna autentifikacija. Korisnik je uspesno ulogovan", "Info");
                         MainWindow mw = new MainWindow(k);
                         mw.Show();
                         this.Close();
@@ -237,18 +239,73 @@ namespace Administracija
                 {
                     Error er = new Error("Uneta lozinka je pogresna!");
                     er.Show();
+                    SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Pogresna lozinka.", "Upozorenje");
                 }
             }
             else
             {
                 Error er = new Error("Ne postoji uneto korisnicko ime!");
                 er.Show();
+                SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Nepostojece korisnicko ime.", "Upozorenje");
             }          
         }
 
         private void labelClick(object sender, MouseButtonEventArgs e)
         {
-            //TO DO: zaboravljena lozinka
+            string inputUsername = usernameTextBox.Text;
+
+            Korisnik k = new Korisnik();
+            k.korisnickoime = "";
+
+            if (dbContext.Korisniks.Any(p => p.korisnickoime.Equals(inputUsername)))
+            {
+                k = dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername));
+                if (dbContext.Zaposlenis.Any(p => p.id.Equals(k.id)))
+                {
+                    Zaposleni z = dbContext.Zaposlenis.First(p => p.id.Equals(k.zaposleni_id));
+                    string email_to = z.email;
+                    string email_from = "deltaexim021@gmail.com";
+                    string email_from_sifra = "slavija22";
+                    string new_pass = Guid.NewGuid().ToString().Substring(0, 10);
+                    try
+                    {
+                        SmtpClient client = new SmtpClient();
+                        client.Port = 587;
+                        client.Host = "smtp.gmail.com";
+                        client.EnableSsl = true;
+                        client.Timeout = 10000;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = new System.Net.NetworkCredential(email_from, email_from_sifra);
+
+                        MailMessage mm = new MailMessage(email_from, email_to);
+                        mm.BodyEncoding = UTF8Encoding.UTF8;
+                        mm.Subject = @"Resetovana lozinka [DELTAEXIM]";
+                        mm.Body = "Postovani,\nAko Vi niste inicirali reset lozinke, obratite se administratorima.\nVasa nova lozinka je : " + new_pass;
+                        mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                        client.Send(mm);
+                        string nova_lozinka_hash = SecurityManager.Encryption.sha256(new_pass);
+                        dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).lozinka = nova_lozinka_hash;
+                        dbContext.SaveChanges();
+                        Success sc = new Success("Lozinka je uspesno promenjena!");
+                        sc.Show();
+                        SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Uspesno resetovanje lozinke.", "Info");
+                    }
+                    catch (Exception ex)
+                    {
+                        Error er = new Error("Problemi sa konekcijom!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke. Email nije poslat.", "Greska");
+                    }
+                }
+            }
+            else
+            {
+                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke. Nepostojece korisnicko ime.", "Upozorenje");
+            }
         }
         #endregion EventsLogic
     }

@@ -4,9 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Administracija.View"
+             xmlns:viewmodels="clr-namespace:Administracija.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:AuditViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Logovi, Mode=Default}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vreme" Binding="{Binding vreme}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding korisnickoime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Akcija" Binding="{Binding akcija}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

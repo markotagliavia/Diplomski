@@ -79,9 +79,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Audit.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\BusinessSystemModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
