@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Administracija.View"
         xmlns:viewModel="clr-namespace:Administracija.ViewModel"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="600" Width="1024" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="700" Width="1124" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -110,7 +110,9 @@
             <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
-    <Grid Background="#FF3580BF">
+
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid Background="#FF3580BF">
         <StackPanel x:Name="StackPanelMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
@@ -201,7 +203,8 @@
                 
             </ListView>
         </StackPanel>
-        <Grid x:Name="GridMain" Background="{Binding BackgroundColor}" Width="1024" RenderTransformOrigin="0.5,0.5" Margin="0,0,-8,0">
+
+            <Grid x:Name="GridMain" Background="{Binding BackgroundColor}" Width="1124" RenderTransformOrigin="0.5,0.5" Margin="0,0,-8,0">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -212,11 +215,11 @@
             </Grid.RenderTransform>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1" Background="{Binding FirmColor}" HorizontalAlignment="Right" >
-                <Image Height="150" VerticalAlignment="Top" Source="/Images/back.jpg" Stretch="UniformToFill" HorizontalAlignment="Left" Width="200"/>
+                <Image Height="150" VerticalAlignment="Top" Source="/Images/back.jpg" Stretch="UniformToFill" HorizontalAlignment="Left" Width="230"/>
                 <Ellipse Height="68" Width="63" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,100,20,0" Stroke="White">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/Images/username1.png" Stretch="UniformToFill"/>
@@ -239,8 +242,7 @@
                         <TextBlock Text="Uloga" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="10,0,0,5" Grid.Column="1" Height="16"/>
                         <TextBlock Text="{Binding UlogaUser}" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Grid.Column="1" Height="16"/>
                     </Grid>
-
-                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="14" HorizontalAlignment="Right" Width="180" Text="{Binding InfoUser}"/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="14" HorizontalAlignment="Right" Width="210" Text="{Binding InfoUser}"/>
                 </StackPanel>
             </Grid>
             <Grid>
@@ -263,13 +265,16 @@
 
                 <TextBlock Text="{Binding ViewModelTitle}" Foreground="#FF3580BF" FontSize="30" FontWeight="Bold" Margin="5" Grid.Row="1"/>
 
-                <Grid Margin="5" Grid.Row="2" Grid.Column="0">
+                
+                    <Grid Grid.Row="2" Grid.Column="0">
                     <ContentControl Content="{Binding CurrentViewModel}"/>
-                </Grid>
- 
+                    </Grid>
+
+
             </Grid>
         </Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon Kind="Bell"/>
             </Button>
@@ -278,4 +283,5 @@
             </Button>
         </StackPanel>
     </Grid>
+    </ScrollViewer>
 </Window>

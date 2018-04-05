@@ -1,5 +1,4 @@
-﻿using Administracija.Model;
-using Administracija.ViewModel;
+﻿using Administracija.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +10,8 @@ using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Common;
+using Common.Model;
 
 namespace Administracija
 {
@@ -47,7 +48,7 @@ namespace Administracija
 
         private Korisnik userOnSession = new Korisnik();
 
-        private DeltaEximEntities1 dbContext = new DeltaEximEntities1();
+        private DeltaEximEntities dbContext = new DeltaEximEntities();
         #endregion Members
 
         #region Properties

@@ -18,7 +18,7 @@ namespace Common.Model
         public DeltaEximEntities()
             : base("name=DeltaEximEntities")
         {
-            this.Database.Connection.ConnectionString = SecurityManager.Encryption.secureConnectionString();
+            this.Database.Connection.ConnectionString = ConnectionString.secureConnectionString();
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

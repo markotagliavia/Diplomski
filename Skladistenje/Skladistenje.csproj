@@ -82,9 +82,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MyICommand.cs" />
-    <Compile Include="ValidationBase.cs" />
-    <Compile Include="ValidationErrors.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
@@ -133,7 +130,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BindableBase.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -179,96 +175,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Audit.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BusinessSystemModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BusinessSystemModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BusinessSystemModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BusinessSystemModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Faktura.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\grad.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\jedinicamere.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Karakteristika.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Kompenzacija.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Korisnik.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Opomena.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Permission.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Popi.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PoslovniPartner.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Profaktura.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Proizvod.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Proizvodjac.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Skladiste.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SkladisteniDokument.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StavkaFakture.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StavkaKompenzacije.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StavkaPopisa.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StavkaProfakture.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\StavkaSklDokumenta.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Uloga.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Zalihe.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Zaposleni.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ZaposleniSkladista.cs">
-      <DependentUpon>BusinessSystemModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -286,13 +192,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\BusinessSystemModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BusinessSystemModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Model\BusinessSystemModel.edmx.diagram">
-      <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -303,6 +202,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{CDE76199-E864-4A57-AD5A-301F2C18BA89}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Notifications\Notifications.csproj">
       <Project>{1dfab1d0-9968-4e4d-aa27-c3ddcb2d12d2}</Project>
       <Name>Notifications</Name>
@@ -330,16 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\back.jpg" />
-    <Content Include="Model\BusinessSystemModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
-      <LastGenOutput>BusinessSystemModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\BusinessSystemModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
-      <LastGenOutput>BusinessSystemModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,5 +1,5 @@
 ﻿using Notifications;
-using Racunovodstvo.Model;
+using Common.Model;
 using Racunovodstvo.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using Common;
 
 namespace Racunovodstvo
 {

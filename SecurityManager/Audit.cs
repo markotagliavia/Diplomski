@@ -1,4 +1,4 @@
-﻿using SecurityManager.Model;
+﻿using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace SecurityManager
         public static void AuditToDB(string user, string akcija, string tip)
         {
             DateTime dt = DateTime.Now;
-            dbContext.Audits.Add(new SecurityManager.Model.Audit { akcija = akcija, korisnickoime = user, tip = tip, vreme = dt});
+            dbContext.Audits.Add(new Common.Model.Audit { akcija = akcija, korisnickoime = user, tip = tip, vreme = dt});
             dbContext.SaveChanges();
         }
     }

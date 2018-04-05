@@ -1,4 +1,5 @@
-﻿using Administracija.Model;
+﻿using Common;
+using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,16 +11,16 @@ namespace Administracija.ViewModel
 {
     public class AuditViewModel : BindableBase
     {
-        private List<SecurityManager.Model.Audit> logovi;
-        private SecurityManager.Model.DeltaEximEntities dbContext = new SecurityManager.Model.DeltaEximEntities();
+        private List<Common.Model.Audit> logovi;
+        private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
 
         public AuditViewModel()
         {
-            logovi = new List<SecurityManager.Model.Audit>();
+            logovi = new List<Common.Model.Audit>();
             logovi = dbContext.Audits.ToList();
         }
 
-        public List<SecurityManager.Model.Audit> Logovi
+        public List<Common.Model.Audit> Logovi
         {
             get { return logovi; }
             set { logovi = value; }

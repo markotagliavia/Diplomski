@@ -146,7 +146,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Adminis
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csprojResolveAssemblyReference.cache
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija_Content.g.cs
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll
 D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.pdb
@@ -158,3 +157,7 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notific
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.dll.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija_Content.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll.config
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll.config

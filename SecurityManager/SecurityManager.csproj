@@ -50,54 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit.cs" />
+    <Compile Include="AuthorizationPolicy.cs" />
     <Compile Include="Encryption.cs" />
-    <Compile Include="Model\Audit.cs">
-      <DependentUpon>SecurityDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SecurityDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SecurityDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SecurityDBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SecurityDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SecurityDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SecurityDBModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model\SecurityDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SecurityDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Model\SecurityDBModel.edmx.diagram">
-      <DependentUpon>SecurityDBModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\SecurityDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SecurityDBModel.Context.cs</LastGenOutput>
-      <DependentUpon>SecurityDBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\SecurityDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SecurityDBModel.edmx</DependentUpon>
-      <LastGenOutput>SecurityDBModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{cde76199-e864-4a57-ad5a-301f2c18ba89}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindableBase.cs" />
+    <Compile Include="ConnectionString.cs" />
     <Compile Include="Model\Audit.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -172,12 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SecurityManager\SecurityManager.csproj">
-      <Project>{31fe88b6-fdb9-4662-ac27-225de58a88db}</Project>
-      <Name>SecurityManager</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Common
+{
+    public class ConnectionString
+    {
+        public static string secureConnectionString()
+        {
+            return @"Data source = www.deltaexim.net,1433; initial catalog = DeltaExim; user id = dev;Password=12345; MultipleActiveResultSets=True;App=EntityFramework";
+        }
+    }
+}
