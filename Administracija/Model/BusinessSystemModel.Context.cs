@@ -18,8 +18,9 @@ namespace Administracija.Model
         public DeltaEximEntities1()
             : base("name=DeltaEximEntities1")
         {
+            this.Database.Connection.ConnectionString = SecurityManager.Encryption.secureConnectionString();
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

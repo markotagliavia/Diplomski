@@ -1,4 +1,5 @@
-﻿using Administracija.ViewModel;
+﻿using Administracija.Model;
+using Administracija.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +44,10 @@ namespace Administracija
 
         private Visibility buttonOpenMenu;
         private Visibility buttonCloseMenu;
+
+        private Korisnik userOnSession = new Korisnik();
+
+        private DeltaEximEntities1 dbContext = new DeltaEximEntities1();
         #endregion Members
 
         #region Properties
@@ -136,6 +141,16 @@ namespace Administracija
             }
         }
 
+        public Korisnik UserOnSession
+        {
+            get { return userOnSession; }
+            set
+            {
+                userOnSession = value;
+                OnPropertyChanged("UserOnSession");
+            }
+        }
+
         public BindableBase CurrentViewModel
         {
             get { return currentViewModel; }
@@ -177,9 +192,11 @@ namespace Administracija
 
         private void Close(string obj)
         {
+            dbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
+            dbContext.SaveChanges();
             LoginWindow lw = new LoginWindow();
             lw.Show();
-            ((MainWindow)Application.Current.MainWindow).Close();
+            Application.Current.Shutdown();
         }
 
         public void OnNav(string destination)
