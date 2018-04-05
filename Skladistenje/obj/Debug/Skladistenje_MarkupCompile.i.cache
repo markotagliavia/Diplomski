@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\
 Skladistenje
 none
 false
 DEBUG;TRACE
-D:\E3\DIplomskiKlon3april\Skladistenje\App.xaml
-22037783069
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\App.xaml
+111308327667
 2-1885477078
-38-530280728
-23-406376841
-LoginWindow.xaml;MainWindow.xaml;
+611073715059
+27-1402298368
+LoginWindow.xaml;MainWindow.xaml;View\HelpView.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\PopisView.xaml;View\ProizvodiView.xaml;View\Skladista.xaml;View\SkladisteniDokumenti.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
-False
+True
 

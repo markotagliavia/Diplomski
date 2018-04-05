@@ -55,8 +55,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +81,58 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="MyICommand.cs" />
+    <Compile Include="ValidationBase.cs" />
+    <Compile Include="ValidationErrors.cs" />
+    <Compile Include="ViewModel\BilansiViewModel.cs" />
+    <Compile Include="ViewModel\FaktureViewModel.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\KompenzacijeViewModel.cs" />
+    <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
+    <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
+    <Compile Include="ViewModel\PoslovniPartneriViewModel.cs" />
+    <Compile Include="ViewModel\ProfaktureViewModel.cs" />
+    <Compile Include="ViewModel\ProizvodiViewModel.cs" />
+    <Compile Include="ViewModel\StatistikaViewModel.cs" />
+    <Compile Include="ViewModel\ZaliheViewModel.cs" />
+    <Compile Include="ViewModel\ZaposleniViewModel.cs" />
+    <Compile Include="View\Bilansi.xaml.cs">
+      <DependentUpon>Bilansi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fakture.xaml.cs">
+      <DependentUpon>Fakture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Kompenzacije.xaml.cs">
+      <DependentUpon>Kompenzacije.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NaprednaPretraga.xaml.cs">
+      <DependentUpon>NaprednaPretraga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Obavestenja.xaml.cs">
+      <DependentUpon>Obavestenja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PoslovniPartneri.xaml.cs">
+      <DependentUpon>PoslovniPartneri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profakture.xaml.cs">
+      <DependentUpon>Profakture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Proizvodi.xaml.cs">
+      <DependentUpon>Proizvodi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Statistika.xaml.cs">
+      <DependentUpon>Statistika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZaliheView.xaml.cs">
+      <DependentUpon>ZaliheView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZaposleniView.xaml.cs">
+      <DependentUpon>ZaposleniView.xaml</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,8 +152,57 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Bilansi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Fakture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Kompenzacije.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NaprednaPretraga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Obavestenja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PoslovniPartneri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Profakture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Proizvodi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Statistika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZaliheView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZaposleniView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Model\Audit.cs">
       <DependentUpon>BusinessSystemModel.tt</DependentUpon>
     </Compile>
@@ -223,10 +326,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\businessPhoto1.jpg" />
     <Resource Include="Images\businessPhoto2.jpg" />
@@ -248,6 +348,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\back.jpg" />
     <Content Include="Model\BusinessSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusinessSystemModel.edmx</DependentUpon>
