@@ -316,7 +316,16 @@
     <Resource Include="Images\username1.png" />
     <Resource Include="Images\username2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Notifications\Notifications.csproj">
+      <Project>{1dfab1d0-9968-4e4d-aa27-c3ddcb2d12d2}</Project>
+      <Name>Notifications</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SecurityManager\SecurityManager.csproj">
+      <Project>{31fe88b6-fdb9-4662-ac27-225de58a88db}</Project>
+      <Name>SecurityManager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\back.jpg" />
   </ItemGroup>

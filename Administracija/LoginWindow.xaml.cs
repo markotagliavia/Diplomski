@@ -1,4 +1,7 @@
-﻿using MahApps.Metro.Controls;
+﻿using Administracija.Model;
+using MahApps.Metro.Controls;
+using Notifications;
+using SecurityManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 
 namespace Administracija
 {
@@ -31,6 +35,7 @@ namespace Administracija
         private System.Windows.Media.Brush _backgroundColor;
         private System.Windows.Media.Brush _buttonColor;
         private System.Windows.Media.Brush _labelColor;
+        private DeltaEximEntities1 dbContext = new DeltaEximEntities1();
         #endregion
 
         #region INotifiedProperty Block
@@ -200,7 +205,45 @@ namespace Administracija
         #region EventsLogic
         private void prijaviSe(object sender, RoutedEventArgs e)
         {
-            //TO DO: prijava
+            string inputUsername = usernameTextBox.Text;
+            //VALIDACIJA TO DO
+
+            Korisnik k = new Korisnik();
+            k.korisnickoime = "";
+            
+            string inputPassword = Encryption.sha256(passBox.Password);
+
+            if (dbContext.Korisniks.Any(p => p.korisnickoime.Equals(inputUsername)))
+            {
+                k = dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername));
+                if (k.lozinka.Equals(inputPassword))
+                {
+
+                    if (dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan)
+                    {
+                        Error er = new Error("Korisnik je vec ulogovan!");
+                        er.Show();
+                    }
+                    else
+                    {
+                        dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan = true;
+                        dbContext.SaveChanges();
+                        MainWindow mw = new MainWindow(k);
+                        mw.Show();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    Error er = new Error("Uneta lozinka je pogresna!");
+                    er.Show();
+                }
+            }
+            else
+            {
+                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                er.Show();
+            }          
         }
 
         private void labelClick(object sender, MouseButtonEventArgs e)
