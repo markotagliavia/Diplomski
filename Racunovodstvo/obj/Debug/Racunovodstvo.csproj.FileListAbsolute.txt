@@ -168,3 +168,6 @@ D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\Common.dll
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\Common.pdb
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\Common.dll.config
+D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.dll
+D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.pdb
+D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.dll.config

@@ -11,15 +11,16 @@
         <viewmodels:AuditViewModel />
     </UserControl.DataContext>
 
-
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Logovi, Mode=Default}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Vreme" Binding="{Binding vreme}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding korisnickoime}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Akcija" Binding="{Binding akcija}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Logovi, Mode=Default}" Height="500" Width="830">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vreme" Binding="{Binding vreme}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding korisnickoime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Akcija" Binding="{Binding akcija}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </ScrollViewer>
 
 
 </UserControl>

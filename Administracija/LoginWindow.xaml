@@ -31,7 +31,7 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
+       
         <Image Grid.Column="0" Grid.Row="0" Source="Images\businessPhoto4.jpg" Stretch="Fill"/>
 
         <TextBox x:Name="usernameTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="25" Margin="54,63,0,0" MaxLength="30" Text="Korisnicko ime" VerticalAlignment="Top" Width="206" BorderBrush="White" GotFocus="usernameTextBoxFocus" LostFocus="usernameTextBoxUnFocus"/>

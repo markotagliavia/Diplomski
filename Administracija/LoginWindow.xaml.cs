@@ -290,7 +290,7 @@ namespace Administracija
                             MailMessage mm = new MailMessage(email_from, email_to);
                             mm.BodyEncoding = UTF8Encoding.UTF8;
                             mm.Subject = @"Resetovana lozinka [DELTAEXIM]";
-                            mm.Body = "Postovani,\nAko Vi niste inicirali reset lozinke, obratite se administratorima.\nVasa nova lozinka je : " + new_pass;
+                            mm.Body = "Postovani,\n\nAko Vi niste inicirali reset lozinke, hitno se obratite administratorima.\n\nVasa nova lozinka je : " + new_pass + "\n\nSrdacan pozdrav,\nDELTAEXIM Admin tim";
                             mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
                             client.Send(mm);
