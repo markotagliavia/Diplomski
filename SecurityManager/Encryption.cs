@@ -13,11 +13,6 @@ namespace SecurityManager
 
         }
 
-        public static string secureConnectionString()
-        {
-            return @"Data source = www.deltaexim.net,1433; initial catalog = DeltaExim; user id = marko;Password=12345; MultipleActiveResultSets=True;App=EntityFramework";
-        }
-
         public static string sha256(string randomString)
         {
             System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();

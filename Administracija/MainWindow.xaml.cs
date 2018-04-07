@@ -1,4 +1,4 @@
-﻿using Administracija.Model;
+﻿using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,22 +35,46 @@ namespace Administracija
 
         private void auditMethodCall(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("audit");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("audit");
+                }
+            }
         }
 
         private void naprednaPretragaCall(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("advancedSearch");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("advancedSearch");
+                }
+            }
         }
 
         private void pregledUlogaCall(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("previewRoles");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("previewRoles");
+                }
+            }
         }
 
         private void pregledKorisnikaCall(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("previewUsers");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("previewUsers");
+                }
+            }
         }
 
         private void deselect(object sender, RoutedEventArgs e)

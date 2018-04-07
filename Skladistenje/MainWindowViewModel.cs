@@ -1,5 +1,5 @@
 ﻿using Notifications;
-using Skladistenje.Model;
+using Common.Model;
 using Skladistenje.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using Common;
 
 namespace Skladistenje
 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,16 @@ namespace Skladistenje
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Korisnik k)
         {
             InitializeComponent();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
+                }
+            }
         }
         private void deselect(object sender, RoutedEventArgs e)
         {
@@ -31,42 +39,90 @@ namespace Skladistenje
 
         private void SkladistaSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("skladista");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("skladista");
+                }
+            }
         }
 
         private void ZaliheSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("zalihe");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("zalihe");
+                }
+            }
         }
 
         private void SkladisteniDokumentiSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("skladisteniDokumenti");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("skladisteniDokumenti");
+                }
+            }
         }
 
         private void ProizvodiSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("proizvodi");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodi");
+                }
+            }
         }
 
         private void PopisSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("popisi");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("popisi");
+                }
+            }
         }
 
         private void ZaposleniSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("zaposleni");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("zaposleni");
+                }
+            }
         }
 
         private void ObavestenjaSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("obavestenja");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("obavestenja");
+                }
+            }
         }
 
         private void NaprednaPretragaSelected(object sender, RoutedEventArgs e)
         {
-            ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).OnNav("naprednaPretraga");
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("naprednaPretraga");
+                }
+            }
         }
     }
 }
