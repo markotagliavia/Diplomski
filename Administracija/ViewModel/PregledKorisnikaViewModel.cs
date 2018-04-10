@@ -50,7 +50,7 @@ namespace Administracija.ViewModel
                     if (dbContext.Zaposlenis.Any(x => x.active == true && x.id == item.sef_id))
                     {
                         Zaposleni sef = dbContext.Zaposlenis.First(x => x.active == true && x.id == item.sef_id);
-                        sefStr = sef.ime + " " + sef.prezime;
+                        sefStr = sef.Korisniks.ElementAt(0).korisnickoime;
                     }
                     else
                     {
@@ -267,9 +267,9 @@ namespace Administracija.ViewModel
                 {
                     if (w.GetType().Equals(typeof(MainWindow)))
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).IzmeniKorisnikaViewModel.UserOnSession = this.UserOnSession;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).IzmeniKorisnikaViewModel.UserForEdit = SelectedValue;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("editUser");
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(1, selectedValue);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
                     }
                 }
             }
@@ -288,6 +288,7 @@ namespace Administracija.ViewModel
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(0,null);
                     ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
                     ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
                 }
@@ -299,6 +300,7 @@ namespace Administracija.ViewModel
     public class ZaposleniKorisnik : BindableBase
     {
         private string korisnickoIme;
+        private int idzaposlenog;
         private string ime;
         private string prezime;
         private string jmbg;
@@ -318,6 +320,7 @@ namespace Administracija.ViewModel
         public ZaposleniKorisnik(Zaposleni z, string sef)
         {
             korisnickoIme = z.Korisniks.ElementAt(0).korisnickoime;
+            idzaposlenog = z.id;
             Ime = z.ime;
             Prezime = z.prezime;
             JMBG = z.jmbg;
@@ -363,5 +366,7 @@ namespace Administracija.ViewModel
             }
         }
         public bool Active { get => active; set { active = value; OnPropertyChanged("Active"); } }
+
+        public int Idzaposlenog { get => idzaposlenog; set { idzaposlenog = value; OnPropertyChanged("Idzaposlenog"); } }
     }
 }

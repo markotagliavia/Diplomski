@@ -23,11 +23,11 @@ namespace Administracija
         public MyICommand<string> CloseMenuCommand { get; set; }
         public MyICommand<string> CloseCommand { get; set; }
         private PregledKorisnikaViewModel pregledKorisnikaViewModel = new PregledKorisnikaViewModel();
-        private DodajKorisnikaViewModel dodajKorisnikaViewModel = new DodajKorisnikaViewModel();
-        private IzmeniKorisnikaViewModel izmeniKorisnikaViewModel = new IzmeniKorisnikaViewModel();
+        public DodajKorisnikaViewModel dodajKorisnikaViewModel = new DodajKorisnikaViewModel(0,null);
+        
         public PregledUlogaViewModel pregledUlogaViewModel = new PregledUlogaViewModel();
         public DodajUloguViewModel dodajUloguViewModel = new DodajUloguViewModel();
-        private IzmeniUloguViewModel izmeniUloguViewModel = new IzmeniUloguViewModel();
+        
         private NaprednaPretragaViewModel naprednaPretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
         public AuditViewModel auditViewModel = new AuditViewModel();
@@ -161,12 +161,6 @@ namespace Administracija
             }
         }
 
-        public IzmeniKorisnikaViewModel IzmeniKorisnikaViewModel
-        {
-            get { return izmeniKorisnikaViewModel; }
-            set { izmeniKorisnikaViewModel = value; }
-        }
-
         public DodajKorisnikaViewModel DodajKorisnikaViewModel
         {
             get { return dodajKorisnikaViewModel; }
@@ -229,10 +223,6 @@ namespace Administracija
                     ViewModelTitle = "Novi korisnik";
                     CurrentViewModel = dodajKorisnikaViewModel;
                     break;
-                case "editUser":
-                    ViewModelTitle = "Izmena korisnika";
-                    CurrentViewModel = izmeniKorisnikaViewModel;
-                    break;
                 case "previewRoles":
                     ViewModelTitle = "Pregled uloga";
                     CurrentViewModel = pregledUlogaViewModel;
@@ -240,10 +230,6 @@ namespace Administracija
                 case "addRole":
                     ViewModelTitle = "Nova uloga";
                     CurrentViewModel = dodajUloguViewModel;
-                    break;
-                case "editRole":
-                    ViewModelTitle = "Izmena uloge";
-                    CurrentViewModel = izmeniUloguViewModel;
                     break;
                 case "advancedSearch":
                     ViewModelTitle = "Napredna pretraga";
