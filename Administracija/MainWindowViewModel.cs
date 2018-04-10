@@ -15,7 +15,7 @@ using Common.Model;
 
 namespace Administracija
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel:BindableBase
     {
         #region Members
         public MyICommand<string> NavCommand { get; set; }
@@ -215,15 +215,15 @@ namespace Administracija
         {
             switch (destination)
             {
-                /*
-                 ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangeUser(CurrentUser.Username);
-                ((MainWindow)Application.Current.MainWindow).MenuTop.Visibility = Visibility.Visible;
-                ((MainWindow)Application.Current.MainWindow).MenuItemAccountDetails.Command.Execute("previewPictures");
-                 */
+                    /*
+                     ((MainWindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).ChangeUser(CurrentUser.Username);
+                    ((MainWindow)Application.Current.MainWindow).MenuTop.Visibility = Visibility.Visible;
+                    ((MainWindow)Application.Current.MainWindow).MenuItemAccountDetails.Command.Execute("previewPictures");
+                     */                   
                 case "previewUsers":
                     ViewModelTitle = "Pregled korisnika";
                     pregledKorisnikaViewModel.UserOnSession = userOnSession;
-                    CurrentViewModel = pregledKorisnikaViewModel;
+                    CurrentViewModel = pregledKorisnikaViewModel;                   
                     break;
                 case "addUser":
                     ViewModelTitle = "Novi korisnik";

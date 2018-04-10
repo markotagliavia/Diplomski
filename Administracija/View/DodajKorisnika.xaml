@@ -4,9 +4,140 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Administracija.View"
+             xmlns:viewmodels="clr-namespace:Administracija.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:DodajKorisnikaViewModel />
+    </UserControl.DataContext>
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Ime : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="imeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Ime}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Prezime : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="prezimeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Prezime}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="JMBG : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="JMBGTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.JMBG}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Broj telefona : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="telefonTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Telefon}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="E-mail : " Height="30" Width="100"/>
+                <TextBox x:Name="emailTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Email}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Adresa : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="adresaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Adresa}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Grad : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="gradTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Grad}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Plata : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="plataTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Plata}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Doprinosi : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="doprinosiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Doprinosi}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Bonusi : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="bonusiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Bonusi}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Tekući račun : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="racunTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Racun}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Šef : " Height="30" Width="100" FontSize="14"/>
+                <ComboBox x:Name="sefComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Korisnici}"
+                    DisplayMemberPath="korisnickoime" 
+                    SelectedValuePath="korisnickoime"
+                    SelectedValue="{Binding SefForBind}">
+                </ComboBox>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <Label Content="Korisničko ime : " Height="30" Width="105" FontSize="14"/>
+                <TextBox x:Name="usernameTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding UserForBind.KorisnickoIme}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <Label Content="Lozinka : " Height="30" Width="100" FontSize="14"/>
+                <PasswordBox x:Name="lozinkaPassBox" MaxLength="30" Width="170" Margin="30,0,0,0"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                <Label Content="Ponuđene uloge" Height="30" Width="150" FontSize="14"/>
+                <Label Content="Dodeljene uloge" Height="30" Width="150" FontSize="14" Margin="100,0,0,0"/>
+            </StackPanel>
+
+            <Grid Margin="-40,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="230" Width="200">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Vertical" Margin="10,50,10,50" Grid.Column="1" Grid.Row="0" >
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}">
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogaKorisnikGrid,Path=SelectedIndex}">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
+                    </Button>
+                </StackPanel>
+
+                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogaKorisnikGrid" ItemsSource="{Binding UlogaKorisnik, Mode=OneWay}" Height="230" Width="200">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Margin="0,35,0,0">
+                <Button x:Name="dodajButton" Content="Dodaj" Height="25" Margin="100,30,20,0" Command="{Binding DodajKorisnikaCommand}" CommandParameter="{Binding ElementName=lozinkaPassBox}"/>
+                <Button x:Name="otkaziButton" Content="Otkaži" Height="25" Margin="0,30,0,0" Command="{Binding OtkaziCommand}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
