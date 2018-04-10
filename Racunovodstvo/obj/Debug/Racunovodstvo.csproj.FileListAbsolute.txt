@@ -80,7 +80,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovo
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignColors.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignThemes.Wpf.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\MaterialDesignThemes.Wpf.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\Racunovodstvo_Content.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\Bilansi.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\Fakture.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\Kompenzacije.g.cs
@@ -171,3 +170,9 @@ D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\Common.dll.config
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.dll
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.pdb
 D:\E3\DIplomskiKlon3april\Racunovodstvo\bin\Debug\SecurityManager.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Common.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\SecurityManager.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Common.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\Common.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\SecurityManager.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\bin\Debug\SecurityManager.dll.config

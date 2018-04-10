@@ -21,9 +21,26 @@ namespace SecurityManager
 
         public static bool HavePermission(int korisnik_id, Permission p)
         {
+            
             string permission = convertToString(p);
             if (dbContext.Korisniks.Any(x => x.id == korisnik_id && x.active == true))
             {
+                if (p.Equals(Permission.LoginAdministracija) || p.Equals(Permission.LoginRacunovodstvo) || p.Equals(Permission.LoginSkladistenje) || p.Equals(Permission.ResetPassword))
+                {
+                    if (dbContext.Korisniks.Any(x => x.id == korisnik_id && x.ulogovan == true))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (dbContext.Korisniks.Any(x => x.id == korisnik_id && x.ulogovan == false))
+                    {
+                        return false;
+                    }
+                }
+
+
                 if (dbContext.Permissions.Any(x => x.naziv.Equals(permission)))
                 {
                     int id_zaposleni = dbContext.Korisniks.First(x => x.id == korisnik_id && x.active == true).zaposleni_id;

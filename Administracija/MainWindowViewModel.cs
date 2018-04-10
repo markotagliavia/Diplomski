@@ -30,7 +30,7 @@ namespace Administracija
         private IzmeniUloguViewModel izmeniUloguViewModel = new IzmeniUloguViewModel();
         private NaprednaPretragaViewModel naprednaPretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
-        private AuditViewModel auditViewModel = new AuditViewModel();
+        public AuditViewModel auditViewModel = new AuditViewModel();
         private BindableBase currentViewModel;
 
         private string _imeUser = "Marko";

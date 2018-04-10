@@ -5,22 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Administracija.View"
              xmlns:viewmodels="clr-namespace:Administracija.ViewModel"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <UserControl.DataContext>
         <viewmodels:AuditViewModel />
     </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Logovi, Mode=Default}" Height="500" Width="830">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Vreme" Binding="{Binding vreme}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding korisnickoime}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Akcija" Binding="{Binding akcija}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-    </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Label Content="Pretraga po : " Margin="0,10,0,0" Width="76" />
+            <ComboBox x:Name="comboBoxSearch" Margin="10" Height="25" Width="120" >
+                <ComboBoxItem  IsSelected="True" Content="/"/>
+                <ComboBoxItem  Content="Korisničkom imenu"/>
+                <ComboBoxItem Content="Akciji"/>
+                <ComboBoxItem Content="Tipu"/>
+            </ComboBox>
 
+            
+            <TextBox x:Name="textBoxSearch" Margin="10" MaxLength="30" Height="25" Width="100" Text="{Binding TextSearch}"/>
+
+            <Button Content="Pretraži" Command="{Binding findCommand}" CommandParameter="{Binding ElementName=comboBoxSearch,Path=Text}" Margin="10" />
+        </StackPanel>
+
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" x:Name="auditGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="500" Width="830">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vreme" Binding="{Binding vreme}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding korisnickoime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Akcija" Binding="{Binding akcija}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip" Binding="{Binding tip}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
 
 </UserControl>

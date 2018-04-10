@@ -77,7 +77,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialD
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje.csprojResolveAssemblyReference.cache
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladistenje_Content.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\HelpView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\NaprednaPretraga.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Obavestenja.g.cs
@@ -161,3 +160,7 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.pdb
 D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll
 D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.pdb
 D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\SecurityManager.dll.config
