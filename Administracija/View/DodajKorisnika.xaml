@@ -8,9 +8,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewmodels:DodajKorisnikaViewModel />
-    </UserControl.DataContext>
+    
 
     <Grid>
         <Grid.ColumnDefinitions>

@@ -32,16 +32,20 @@ namespace Administracija.ViewModel
         private ObservableCollection<Uloga> uloge;
         private ObservableCollection<Uloga> ulogaKorisnik;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
+        private int context;
+        private ZaposleniKorisnik zaposleni;
         #endregion
 
-        public DodajKorisnikaViewModel()
+        public DodajKorisnikaViewModel(int i,ZaposleniKorisnik zk)
         {
+            context = i;
+            zaposleni = zk;
             DodajKorisnikaCommand = new MyICommand<object>(DodajKorisnika);
             OtkaziCommand = new MyICommand<string>(Otkazi);
             AddNavCommand = new MyICommand<int>(Add);
             RemoveNavCommand = new MyICommand<int>(Remove);
             Korisnici = new ObservableCollection<Korisnik>();
-            userForBind = new ZaposleniKorisnik();
+            
             Korisnik k = new Korisnik();
             k.id = -1;
             k.korisnickoime = "Nema šefa";
@@ -54,9 +58,37 @@ namespace Administracija.ViewModel
             uloge = new ObservableCollection<Uloga>();
             ulogaKorisnik = new ObservableCollection<Uloga>();
 
+            if (context == 1)
+            {
+                userForBind = zk;
+
+                foreach (var item in dbContext.Zaposlenis.FirstOrDefault(x => x.id == zk.Idzaposlenog).Ulogas)
+                {
+                    ulogaKorisnik.Add(item);
+                }
+
+                if (zk.Sef.Equals("Nema"))
+                {
+                    sefForBind = "Nema šefa";
+                }
+                else
+                {
+                    sefForBind = zk.Sef;
+                }
+
+            }
+            else
+            {
+                userForBind = new ZaposleniKorisnik();
+                sefForBind = "Nema šefa";
+            }
             foreach (var item in dbContext.Ulogas)
             {
-                uloge.Add(item);
+                if (!ulogaKorisnik.Any(x => x.naziv.Equals(item.naziv)))
+                {
+                    uloge.Add(item);
+                }
+                
                
             }
         }

@@ -47,56 +47,6 @@ D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\Con
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.pdb
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\bin\Debug\MahApps.Metro.xml
 D:\E3\DiplomskiIzrada\BusinessSystem\BusinessSystem\Administracija\obj\Debug\App.baml
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.exe.config
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.exe
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\ControlzEx.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.SqlServer.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MahApps.Metro.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\System.Windows.Interactivity.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.xml
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.SqlServer.xml
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MahApps.Metro.xml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csprojResolveAssemblyReference.cache
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\LoginWindow.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\MainWindow.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\App.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija_MarkupCompile.cache
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija_MarkupCompile.lref
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\App.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\LoginWindow.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\MainWindow.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.g.resources
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.Properties.Resources.resources
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.GenerateResource.cache
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CoreCompileInputs.cache
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CopyComplete
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.exe
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignColors.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.xml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajKorisnika.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajUlogu.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\IzmeniKorisnika.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\IzmeniUlogu.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\NaprednaPretraga.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledKorisnika.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledUloga.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajKorisnika.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajUlogu.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\IzmeniKorisnika.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\IzmeniUlogu.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\NaprednaPretraga.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledKorisnika.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledUloga.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Audit.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Audit.baml
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Help.g.cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Help.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.exe.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Administracija.pdb
@@ -146,21 +96,68 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Adminis
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.exe
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\Administracija.csprojResolveAssemblyReference.cache
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll.config
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Notifications.dll.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll.config
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.pdb
-D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Common.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Common.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\Common.dll.config
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\SecurityManager.dll.config
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csprojResolveAssemblyReference.cache
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\LoginWindow.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\MainWindow.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Audit.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajKorisnika.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajUlogu.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Help.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\NaprednaPretraga.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledKorisnika.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledUloga.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\App.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija_MarkupCompile.cache
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija_MarkupCompile.lref
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.exe.config
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.exe
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Administracija.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\ControlzEx.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.SqlServer.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MahApps.Metro.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignColors.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Common.dll.config
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\Notifications.dll.config
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\SecurityManager.dll.config
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.xml
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\EntityFramework.SqlServer.xml
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MahApps.Metro.xml
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignColors.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\E3\DIplomskiKlon3april\Administracija\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\App.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\LoginWindow.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\MainWindow.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Audit.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajKorisnika.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajUlogu.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\Help.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\NaprednaPretraga.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledKorisnika.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\PregledUloga.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.g.resources
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.Properties.Resources.resources
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.GenerateResource.cache
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CoreCompileInputs.cache
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CopyComplete
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.exe
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.pdb

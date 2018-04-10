@@ -101,27 +101,10 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Skla
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\SkladisteniDokumenti.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\ZaliheView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\ZaposleniView.baml
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.exe.config
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.exe
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\ControlzEx.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.SqlServer.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MahApps.Metro.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignColors.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\System.Windows.Interactivity.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.dll.config
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.dll.config
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.xml
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.SqlServer.xml
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MahApps.Metro.xml
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll.config
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\SecurityManager.dll.config
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.csprojResolveAssemblyReference.cache
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\LoginWindow.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\MainWindow.g.cs
@@ -138,6 +121,31 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\App.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje_MarkupCompile.cache
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje_MarkupCompile.lref
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.exe.config
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.exe
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Skladistenje.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\ControlzEx.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.SqlServer.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MahApps.Metro.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignColors.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\System.Windows.Interactivity.dll
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll.config
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Notifications.dll.config
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\SecurityManager.dll.config
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.xml
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\EntityFramework.SqlServer.xml
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MahApps.Metro.xml
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignColors.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\App.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\LoginWindow.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\MainWindow.baml
@@ -157,10 +165,3 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.csproj.CoreCompile
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.csproj.CopyComplete
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.exe
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.pdb
-D:\E3\DIplomskiKlon3april\Skladistenje\bin\Debug\Common.dll.config
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.pdb
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\Common.dll.config
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\SecurityManager.dll.config
