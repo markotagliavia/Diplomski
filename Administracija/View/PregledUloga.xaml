@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Administracija.ViewModel"
              xmlns:local="clr-namespace:Administracija.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.DataContext>
+        <viewmodels:PregledUlogaViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <StackPanel Orientation="Vertical">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10">
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" SelectionUnit="FullRow" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="350" Width="Auto" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Naziv uloge" Binding="{Binding naziv}"></DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Button Content="Novo" Command="{Binding DodajUloguNavCommand}" Margin="10" />
+            <Button Content="Izmena" Command="{Binding IzmeniUloguNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="10" />
+            <Button Content="Obriši" Command="{Binding IzbrisiUloguCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="10" />
+        </StackPanel>
+        </StackPanel>
     </Grid>
+
 </UserControl>
+
