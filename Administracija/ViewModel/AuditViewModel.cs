@@ -14,12 +14,14 @@ namespace Administracija.ViewModel
 {
     public class AuditViewModel : BindableBase
     {
+        #region Members
         private ObservableCollection<Common.Model.Audit> logovi;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         
         private string textSearch;
         private ICollectionView defaultView;
         public MyICommand<string> findCommand { get; private set; }
+        #endregion
 
         public AuditViewModel()
         {
@@ -33,9 +35,9 @@ namespace Administracija.ViewModel
             }
 
             DefaultView = CollectionViewSource.GetDefaultView(Logovi);
-
         }
 
+        #region CommandsImplementation
         private void OnFind(string type)
         {
             if (!type.Equals("/"))
@@ -46,21 +48,19 @@ namespace Administracija.ViewModel
                     if (type.Equals("Korisničkom imenu"))
                     {
                         DefaultView.Filter =
-                        w => ((Audit)w).korisnickoime.Contains(TextSearch);
+                        w => ((Audit)w).korisnickoime.ToUpper().Contains(TextSearch.ToUpper());
                     }
                     else if (type.Equals("Akciji"))
                     {
                         DefaultView.Filter =
-                        w => ((Audit)w).akcija.Contains(TextSearch);
+                        w => ((Audit)w).akcija.ToUpper().Contains(TextSearch.ToUpper());
                     }
                     else
                     {
                         DefaultView.Filter =
-                        w => ((Audit)w).tip.Contains(TextSearch);
+                        w => ((Audit)w).tip.ToUpper().Contains(TextSearch.ToUpper());
                     }
 
-
-                    //pretragaEtiketa.ItemsSource = defaultView;
                     DefaultView.Refresh();
                 }
                 else
@@ -79,14 +79,9 @@ namespace Administracija.ViewModel
             
 
         }
+        #endregion
 
-        public ObservableCollection<Common.Model.Audit> Logovi
-        {
-            get { return logovi; }
-            set { logovi = value; }
-        }
-
-        
+        #region Constructors
         public string TextSearch
         {
             get { return textSearch; }
@@ -98,5 +93,12 @@ namespace Administracija.ViewModel
         }
 
         public ICollectionView DefaultView { get => defaultView; set => defaultView = value; }
+
+        public ObservableCollection<Common.Model.Audit> Logovi
+        {
+            get { return logovi; }
+            set { logovi = value; }
+        }
+        #endregion
     }
 }

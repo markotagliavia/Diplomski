@@ -25,18 +25,18 @@ namespace Administracija
         private PregledKorisnikaViewModel pregledKorisnikaViewModel = new PregledKorisnikaViewModel();
         private DodajKorisnikaViewModel dodajKorisnikaViewModel = new DodajKorisnikaViewModel();
         private IzmeniKorisnikaViewModel izmeniKorisnikaViewModel = new IzmeniKorisnikaViewModel();
-        private PregledUlogaViewModel pregledUlogaViewModel = new PregledUlogaViewModel();
-        private DodajUloguViewModel dodajUloguViewModel = new DodajUloguViewModel();
+        public PregledUlogaViewModel pregledUlogaViewModel = new PregledUlogaViewModel();
+        public DodajUloguViewModel dodajUloguViewModel = new DodajUloguViewModel();
         private IzmeniUloguViewModel izmeniUloguViewModel = new IzmeniUloguViewModel();
         private NaprednaPretragaViewModel naprednaPretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
         public AuditViewModel auditViewModel = new AuditViewModel();
         private BindableBase currentViewModel;
 
-        private string _imeUser = "Marko";
-        private string _usernameUser = "max151";
-        private string _ulogaUser = "Admin";
-        private string _infoUser = "Marko je svecki mega car";
+        private string _imeUser;
+        private string _usernameUser;
+        private string _ulogaUser;
+        private string _infoUser;
         private string _viewModelTitle = "Pregled korisnika";
         private System.Windows.Media.Color c1;
         private System.Windows.Media.Brush _firmColor;
@@ -88,7 +88,7 @@ namespace Administracija
             set
             {
                 _infoUser = value;
-                OnPropertyChanged("InforUser");
+                OnPropertyChanged("InfoUser");
             }
         }
 
@@ -161,6 +161,17 @@ namespace Administracija
             }
         }
 
+        public IzmeniKorisnikaViewModel IzmeniKorisnikaViewModel
+        {
+            get { return izmeniKorisnikaViewModel; }
+            set { izmeniKorisnikaViewModel = value; }
+        }
+
+        public DodajKorisnikaViewModel DodajKorisnikaViewModel
+        {
+            get { return dodajKorisnikaViewModel; }
+            set { dodajKorisnikaViewModel = value; }
+        }
         #endregion Properties
 
         public MainWindowViewModel()
@@ -211,6 +222,7 @@ namespace Administracija
                      */                   
                 case "previewUsers":
                     ViewModelTitle = "Pregled korisnika";
+                    pregledKorisnikaViewModel.UserOnSession = userOnSession;
                     CurrentViewModel = pregledKorisnikaViewModel;                   
                     break;
                 case "addUser":
@@ -248,6 +260,30 @@ namespace Administracija
                 case "info":
                     //TO DO: Tijana ubaci prozor o info
                     break;
+            }
+        }
+        #endregion
+
+        #region HelperMethods
+        public void setUserInformations()
+        {
+            UsernameUser = userOnSession.korisnickoime;
+            try
+            {
+                Zaposleni z = dbContext.Zaposlenis.First(x => x.active == true && x.id == userOnSession.zaposleni_id);
+                if (z.Ulogas.Count > 0)
+                {
+                    ImeUser = z.ime;
+                    Uloga u = z.Ulogas.ElementAt(0);
+                    UlogaUser = u.naziv;
+                    InfoUser = $"Ime : {z.ime}{Environment.NewLine}Prezime : {z.prezime}{Environment.NewLine}JMBG : {z.jmbg}{Environment.NewLine}" +
+                        $"Adresa : {z.adresa}{Environment.NewLine}Grad : {z.grad.naziv}{Environment.NewLine}E-mail : {z.email}";
+                }
+            }
+            catch (Exception ex)
+            {
+                Notifications.Error e = new Notifications.Error("Problemi sa konekcijom!");
+                e.Show();
             }
         }
         #endregion

@@ -230,20 +230,20 @@
                 <StackPanel Margin="0 150">
                     <Grid Height="60" Margin="20 50 20 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="93*"/>
-                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="92*"/>
+                            <ColumnDefinition Width="75*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Korisniko ime" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Height="16"/>
+                        <TextBlock Text="Korisničko ime" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Height="16"/>
                         <TextBlock Text="{Binding UsernameUser}" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Height="16"/>
 
                         <TextBlock Text="Uloga" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="10,0,0,5" Grid.Column="1" Height="16"/>
                         <TextBlock Text="{Binding UlogaUser}" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Grid.Column="1" Height="16"/>
                     </Grid>
-                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="14" HorizontalAlignment="Right" Width="210" Text="{Binding InfoUser}"/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="12" HorizontalAlignment="Right" Width="210" Text="{Binding InfoUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="252"/>
                 </StackPanel>
             </Grid>
 
