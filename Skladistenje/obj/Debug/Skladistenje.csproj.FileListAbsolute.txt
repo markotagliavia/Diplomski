@@ -165,3 +165,5 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.csproj.CoreCompile
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.csproj.CopyComplete
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.exe
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.pdb
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.g.cs
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.baml

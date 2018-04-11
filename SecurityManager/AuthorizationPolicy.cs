@@ -18,7 +18,10 @@ namespace SecurityManager
             DeleteRoll,
             AddUser,
             EditUser,
-            DeleteUser
+            DeleteUser,
+            AddSkladiste,
+            DeleteSkladiste,
+            EditSkladiste
     }
 
     public class AuthorizationPolicy

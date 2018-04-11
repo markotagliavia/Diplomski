@@ -29,6 +29,7 @@ namespace Skladistenje
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
                 }
             }
         }
