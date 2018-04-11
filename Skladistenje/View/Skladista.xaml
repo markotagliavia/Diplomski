@@ -33,25 +33,25 @@
 
                 <TextBox x:Name="textBoxSearch" Margin="10" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
 
-                <Button Content="Pretraži" Command="{Binding PretraziKorisnikaCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="10" Height="25"/>
+                <Button Content="Pretraži" Command="{Binding PretraziSkladisteCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="10" Height="25"/>
             </StackPanel>
 
             <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
                 <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="zaposleniGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Adresa" Binding="{Binding Adresa}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Grad" Binding="{Binding Grad}"></DataGridTextColumn>
-                        <DataGridCheckBoxColumn Header="Aktivno" Width="Auto" Binding="{Binding Active}"></DataGridCheckBoxColumn>
+                        <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Adresa" Binding="{Binding adresa}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Grad" Binding="{Binding grad.naziv}"></DataGridTextColumn>
+                        <DataGridCheckBoxColumn Header="Aktivno" Width="Auto" Binding="{Binding active}"></DataGridCheckBoxColumn>
                 </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
 
             <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-                <Button Content="Novo skladište" Command="{Binding DodajKorisnikaNavCommand}" CommandParameter="addUser" Margin="20,0,460,0"  Height="25"/>
-                <Button Content="Izbriši" Command="{Binding IzbrisiKorisnikaCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
-                <Button Content="Izmeni" Command="{Binding IzmeniKorisnikaNavCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}"/>
+                <Button Content="Novo skladište" Command="{Binding DodajSkladisteNavCommand}" CommandParameter="dodajSkladiste" Margin="20,0,460,0"  Height="25"/>
+                <Button Content="Izbriši" Command="{Binding IzbrisiSkladisteCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+                <Button Content="Izmeni" Command="{Binding IzmeniSkladisteNavCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}"/>
             </StackPanel>
         </Grid>
 </UserControl>

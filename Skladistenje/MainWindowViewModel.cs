@@ -21,6 +21,7 @@ namespace Skladistenje
         public MyICommand<string> CloseCommand { get; set; }
 
         private SkladistaViewModel skladistaViewModel = new SkladistaViewModel();
+        public DodajSkladisteViewModel dodajSkladisteViewModel = new DodajSkladisteViewModel(0, null);
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel();
         private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
@@ -159,6 +160,12 @@ namespace Skladistenje
             }
         }
 
+        public DodajSkladisteViewModel DodajSkladisteViewModel
+        {
+            get { return dodajSkladisteViewModel; }
+            set { dodajSkladisteViewModel = value; }
+        }
+
         #endregion Properties
 
         public MainWindowViewModel()
@@ -206,6 +213,10 @@ namespace Skladistenje
                 case "skladista":
                     ViewModelTitle = "Skladišta";
                     CurrentViewModel = skladistaViewModel;
+                    break;
+                case "dodajSkladiste":
+                    ViewModelTitle = "Novo Skladište";
+                    CurrentViewModel = dodajSkladisteViewModel;
                     break;
                 case "zalihe":
                     ViewModelTitle = "Zalihe";

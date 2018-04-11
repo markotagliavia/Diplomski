@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Skladistenje.ViewModel
@@ -121,24 +123,161 @@ namespace Skladistenje.ViewModel
         #endregion
 
         #region CommandsImplementation
-        private void PretraziSkladiste(string obj)
+        private void PretraziSkladiste(string type)
         {
-            throw new NotImplementedException();
+            if (!type.Equals("/"))
+            {
+                if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(DefaultView);
+                    if (type.Equals("Šifri"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Skladiste)w).sifra.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Nazivu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Skladiste)w).naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Gradu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Skladiste)w).grad.naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Adresi"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Skladiste)w).adresa.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+
+                    DefaultView.Refresh();
+                }
+                else
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(Skladista);
+                    DefaultView.Filter = null;
+                    DefaultView.Refresh();
+                }
+            }
+            else
+            {
+                DefaultView = CollectionViewSource.GetDefaultView(Skladista);
+                DefaultView.Filter = null;
+                DefaultView.Refresh();
+            }
         }
 
         private void IzbrisiSkladiste(string obj)
         {
-            throw new NotImplementedException();
+            /*TO DO 
+             * foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+                }
+            }
+
+            if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteUser))
+            {
+                string korisnickoImeBrisanog = "";
+                foreach (Window w in Application.Current.Windows)
+                {
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
+                    }
+                }
+
+                if (SelectedIndex > -1)
+                {
+                    korisnickoImeBrisanog = SelectedValue.KorisnickoIme;
+                    if (dbContext.Korisniks.Any(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)))
+                    {
+                        dbContext.Korisniks.Remove(dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)));
+                        dbContext.SaveChanges();
+                        Success suc = new Success("Uspešno ste obrisali korisnika.");
+                        suc.Show();
+
+                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje korisnika {korisnickoImeBrisanog}.", "Info");
+                    }
+                    else
+                    {
+                        Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
+                    }
+                }
+
+
+
+            }
+            else
+            {
+
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj brisnja korisnika", "Upozorenje");
+
+            }*/
         }
 
         private void IzmeniSkladisteNav(string obj)
         {
-            throw new NotImplementedException();
+            if (SelectedValue != null)
+            {
+                foreach (Window w in Application.Current.Windows)
+                {
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditSkladiste))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel = new DodajSkladisteViewModel(1, selectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajSkladiste");
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspšan pokušaj izmene skladišta.", "Upozorenje");
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+                Error er = new Error("Greška pri selekciji.\nZa više informacija obratite se administratorima.");
+                er.Show();
+                //SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspesna izmena korisnika.", "Upozorenje");
+            }
         }
 
         private void DodajSkladisteNav(string obj)
         {
-            throw new NotImplementedException();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddSkladiste))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel = new DodajSkladisteViewModel(0, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajSkladiste");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog skladišta", "Upozorenje");
+                    }
+                }
+            }
         }
 
         #endregion

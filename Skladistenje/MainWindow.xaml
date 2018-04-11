@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type viewModel:SkladistaViewModel}">
             <views:Skladista/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajSkladisteViewModel}">
+            <views:DodajSkladisteView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaliheViewModel}">
             <views:ZaliheView/>
         </DataTemplate>
