@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,8 +19,14 @@ namespace Administracija.ViewModel
         public MyICommand<string> DodajUloguNavCommand { get; private set; }
         public MyICommand<int> IzmeniUloguNavCommand { get; private set; }
         public MyICommand<int> IzbrisiUloguCommand { get; private set; }
-        
 
+
+        #endregion
+
+        #region Members
+        private int _selectedIndex = -1;
+        private bool buttonsEnabled;
+        private Korisnik UserOnSession;
         #endregion
 
         public PregledUlogaViewModel()
@@ -43,39 +50,59 @@ namespace Administracija.ViewModel
         {
             if (index != -1)
             {
-                string naziv = uloge.ElementAt(index).naziv;
-                var itemToRemove = dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv)); 
-
-                if (itemToRemove != null)
-                {
-                    foreach (var zaposleni in dbContext.Zaposlenis)
-                    {
-                        if (zaposleni.Ulogas.Any(x => x.naziv.Equals(naziv)))
-                        {
-                            
-                            zaposleni.Ulogas.Remove(itemToRemove);
-                        }
-                    }
-                    dbContext.Ulogas.Remove(itemToRemove);
-                    dbContext.SaveChanges();
-                }
-                Notifications.Success s = new Notifications.Success("Uspešno ste obrisali " + itemToRemove.naziv);
-                s.Show();
                 foreach (Window w in Application.Current.Windows)
                 {
                     if (w.GetType().Equals(typeof(MainWindow)))
                     {
-                        SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je obrisana uloga " + itemToRemove.naziv, "Info");
-                        
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
                     }
                 }
-                
-                uloge.Clear();
-                foreach (var item in dbContext.Ulogas.ToList())
+                if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.DeleteRoll))
                 {
-                    Uloge.Add(item);
+                    string naziv = uloge.ElementAt(index).naziv;
+                    var itemToRemove = dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv));
 
+                    if (itemToRemove != null)
+                    {
+                        foreach (var zaposleni in dbContext.Zaposlenis)
+                        {
+                            if (zaposleni.Ulogas.Any(x => x.naziv.Equals(naziv)))
+                            {
+
+                                zaposleni.Ulogas.Remove(itemToRemove);
+                            }
+                        }
+                        dbContext.Ulogas.Remove(itemToRemove);
+                        dbContext.SaveChanges();
+                    }
+                    Notifications.Success s = new Notifications.Success("Uspešno ste obrisali " + itemToRemove.naziv);
+                    s.Show();
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je obrisana uloga " + itemToRemove.naziv, "Info");
+
+                        }
+                    }
+
+                    uloge.Clear();
+                    foreach (var item in dbContext.Ulogas.ToList())
+                    {
+                        Uloge.Add(item);
+
+                    }
                 }
+                else
+                {
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                    er.Show();
+                    SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj brisanja uloge", "Upozorenje");
+                }
+
+
+                
               
             }
             else
@@ -91,11 +118,23 @@ namespace Administracija.ViewModel
             {
                 foreach (Window w in Application.Current.Windows)
                 {
+                    
                     if (w.GetType().Equals(typeof(MainWindow)))
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(1,uloge.ElementAt(index).naziv);
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmeni ulogu";
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditRoll))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(1, uloge.ElementAt(index).naziv);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmeni ulogu";
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj izmene uloge", "Upozorenje");
+                        }
+                        
                     }
                 }
             }
@@ -113,15 +152,60 @@ namespace Administracija.ViewModel
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(0, null);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj ulogu";
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddRoll))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(0, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj ulogu";
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj dodavanja uloge", "Upozorenje");
+                    }
                 }
             }
         }
         #endregion
 
         #region Properties
+        public bool ButtonsEnabled
+        {
+            get { return buttonsEnabled; }
+            set
+            {
+                buttonsEnabled = value;
+                OnPropertyChanged("ButtonsEnabled");
+            }
+        }
+
+        public int SelectedIndex
+        {
+            get
+            {
+                return _selectedIndex;
+            }
+
+            set
+            {
+                if (_selectedIndex == value)
+                {
+                    if (_selectedIndex > -1)
+                    {
+                        ButtonsEnabled = true;
+                    }
+                    return;
+                }
+                _selectedIndex = value;
+                if (_selectedIndex > -1)
+                {
+                    ButtonsEnabled = true;
+                }
+            }
+        }
+
         public ObservableCollection<Uloga> Uloge
         {
             get { return uloge; }

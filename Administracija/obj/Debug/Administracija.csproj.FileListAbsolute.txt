@@ -67,8 +67,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\Au
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajKorisnika.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajUlogu.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\Help.g.cs
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\IzmeniKorisnika.g.cs
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\IzmeniUlogu.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\NaprednaPretraga.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\PregledKorisnika.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\PregledUloga.g.cs
@@ -83,8 +81,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\Au
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajKorisnika.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajUlogu.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\Help.baml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\IzmeniKorisnika.baml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\IzmeniUlogu.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\NaprednaPretraga.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\PregledKorisnika.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\PregledUloga.baml

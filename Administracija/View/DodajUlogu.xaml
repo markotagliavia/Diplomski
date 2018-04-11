@@ -38,22 +38,22 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="permissionsGrid" ItemsSource="{Binding Permissions, Mode=OneWay}" Height="230" Width="200">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedPermission}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="permissionsGrid" ItemsSource="{Binding Permissions, Mode=OneWay}" Height="230" Width="200">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                         </DataGrid.Columns>
                 </DataGrid>
                 
-                <StackPanel Orientation="Vertical" Margin="30,50,30,50" Grid.Column="1" Grid.Row="0" >
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=permissionsGrid,Path=SelectedIndex}">
+                <StackPanel Orientation="Vertical" Margin="20,50,10,50" Grid.Column="1" Grid.Row="0" >
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=permissionsGrid,Path=SelectedIndex}" IsEnabled="{Binding AddPermissionEnabled}">
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                     </Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogapermisijeGrid,Path=SelectedIndex}">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogapermisijeGrid,Path=SelectedIndex}" IsEnabled="{Binding RemovePermissionEnabled}">
                         <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                     </Button>
                 </StackPanel>
 
-                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogapermisijeGrid" ItemsSource="{Binding PermissionsUloga, Mode=OneWay}" Height="230" Width="200">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedUserPermission}" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogapermisijeGrid" ItemsSource="{Binding PermissionsUloga, Mode=OneWay}" Height="230" Width="200">
                         
                     <DataGrid.Columns>
                             <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>

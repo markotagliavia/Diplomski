@@ -18,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
+        
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Ime : " Height="30" Width="100" FontSize="14"/>
@@ -109,22 +109,22 @@
                     <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="230" Width="200">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedRoll}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="230" Width="200">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <StackPanel Orientation="Vertical" Margin="10,50,10,50" Grid.Column="1" Grid.Row="0" >
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}">
+                <StackPanel Orientation="Vertical" Margin="0,50,0,50" Grid.Column="1" Grid.Row="0" >
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                     </Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogaKorisnikGrid,Path=SelectedIndex}">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogaKorisnikGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
                         <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                     </Button>
                 </StackPanel>
 
-                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogaKorisnikGrid" ItemsSource="{Binding UlogaKorisnik, Mode=OneWay}" Height="230" Width="200">
+                <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedUserRoll}" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogaKorisnikGrid" ItemsSource="{Binding UlogaKorisnik, Mode=OneWay}" Height="230" Width="200">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>

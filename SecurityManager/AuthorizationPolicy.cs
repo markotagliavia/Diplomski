@@ -12,7 +12,13 @@ namespace SecurityManager
             LoginAdministracija,
             LoginSkladistenje,
             LoginRacunovodstvo,
-            ResetPassword
+            ResetPassword,
+            AddRoll,
+            EditRoll,
+            DeleteRoll,
+            AddUser,
+            EditUser,
+            DeleteUser
     }
 
     public class AuthorizationPolicy

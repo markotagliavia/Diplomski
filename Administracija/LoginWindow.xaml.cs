@@ -221,15 +221,15 @@ namespace Administracija
 
                         if (dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan)
                         {
-                            Error er = new Error("Korisnik je vec ulogovan!");
+                            Error er = new Error("Korisnik je već ulogovan!");
                             er.Show();
-                            SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Neuspesna autentifikacija. Korisnik je vec ulogovan.", "Upozorenje");
+                            SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Neuspešna autentifikacija. Korisnik je već ulogovan.", "Upozorenje");
                         }
                         else
                         {
                             dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan = true;
                             dbContext.SaveChanges();
-                            SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Uspesna autentifikacija. Korisnik je uspesno ulogovan", "Info");
+                            SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Uspešna autentifikacija. Korisnik je uspešno ulogovan", "Info");
                             MainWindow mw = new MainWindow(k);
                             mw.Show();
                             this.Close();
@@ -237,23 +237,23 @@ namespace Administracija
                     }
                     else
                     {
-                        Error er = new Error("Uneta lozinka je pogresna!");
+                        Error er = new Error("Uneta lozinka je pogrešna!");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Pogresna lozinka.", "Upozorenje");
+                        SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspečna autentifikacija. Pogrešna lozinka.", "Upozorenje");
                     }
                 }
                 else
                 {
-                    Error er = new Error("Nemate ovlascenja za izvrsenje ove akcije!");
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
-                    SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autorizacija. Nedozvoljena autentifikacija.", "Upozorenje");
+                    SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspešna autorizacija. Nedozvoljena autentifikacija.", "Upozorenje");
                 }
             }
             else
             {
-                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                Error er = new Error("Ne postoji uneto korisničko ime!");
                 er.Show();
-                SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Nepostojece korisnicko ime.", "Upozorenje");
+                SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspešna autentifikacija. Nepostojeće korisničko ime.", "Upozorenje");
             }          
         }
 

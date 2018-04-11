@@ -13,17 +13,18 @@
     <Grid>
         <StackPanel Orientation="Vertical">
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10">
-                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" SelectionUnit="FullRow" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="350" Width="Auto" Margin="10">
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" SelectedIndex="{Binding SelectedIndex}" CanUserAddRows="False" SelectionMode="Single" SelectionUnit="FullRow" x:Name="ulogeGrid" ItemsSource="{Binding Uloge, Mode=OneWay}" Height="350" Width="Auto" Margin="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Naziv uloge" Binding="{Binding naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Naziv uloge" Binding="{Binding naziv}"></DataGridTextColumn>
                     
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
         <StackPanel Orientation="Horizontal" Margin="10">
-            <Button Content="Novo" Command="{Binding DodajUloguNavCommand}" Margin="10" />
-            <Button Content="Izmena" Command="{Binding IzmeniUloguNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="10" />
-            <Button Content="Obriši" Command="{Binding IzbrisiUloguCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="10" />
+            <Button Content="Nova uloga" Command="{Binding DodajUloguNavCommand}" Margin="10" />
+                <Button Content="Izbriši" Command="{Binding IzbrisiUloguCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="370,0,10,0" IsEnabled="{Binding ButtonsEnabled}" />
+                <Button Content="Izmeni" Command="{Binding IzmeniUloguNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" Margin="10" IsEnabled="{Binding ButtonsEnabled}"/>
+
         </StackPanel>
         </StackPanel>
     </Grid>
