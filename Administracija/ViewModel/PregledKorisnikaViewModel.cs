@@ -220,56 +220,82 @@ namespace Administracija.ViewModel
 
         private void IzbrisiKorisnika(string obj)
         {
-            //TO DO : autorizacija
-            string korisnickoImeBrisanog = "";
             foreach (Window w in Application.Current.Windows)
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
-                   UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
                 }
             }
 
-            if (SelectedIndex > -1)
+            if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteUser))
             {
-                korisnickoImeBrisanog = SelectedValue.KorisnickoIme;
-                if (dbContext.Korisniks.Any(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)))
+                string korisnickoImeBrisanog = "";
+                foreach (Window w in Application.Current.Windows)
                 {
-                    dbContext.Korisniks.Remove(dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)));
-                    dbContext.SaveChanges();
-                    Success suc = new Success("Uspešno ste obrisali korisnika.");
-                    suc.Show();
-                    
-                    SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje korisnika {korisnickoImeBrisanog}.", "Info");
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
+                    }
                 }
-                else
+
+                if (SelectedIndex > -1)
                 {
-                    Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
-                    er.Show();
-                    SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
+                    korisnickoImeBrisanog = SelectedValue.KorisnickoIme;
+                    if (dbContext.Korisniks.Any(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)))
+                    {
+                        dbContext.Korisniks.Remove(dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)));
+                        dbContext.SaveChanges();
+                        Success suc = new Success("Uspešno ste obrisali korisnika.");
+                        suc.Show();
+
+                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje korisnika {korisnickoImeBrisanog}.", "Info");
+                    }
+                    else
+                    {
+                        Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
+                    }
                 }
+                
+
+            
             }
             else
             {
-                Error er = new Error("Greška pri selekciji.\nZa više informacija obratite se administratorima.");
+
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                 er.Show();
-                SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspesno brisanje korisnika.", "Upozorenje");
+                SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj brisnja korisnika", "Upozorenje");
+                
             }
 
         }
 
         private void IzmeniKorisnikaNav(string obj)
         {
-            //TO DO autorizacija
             if (SelectedValue != null)
             {
                 foreach (Window w in Application.Current.Windows)
                 {
                     if (w.GetType().Equals(typeof(MainWindow)))
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(1, selectedValue);
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id,SecurityManager.Permission.EditUser))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(1, selectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj izmene korisnika", "Upozorenje");
+                        }
+                        
                     }
                 }
             }
@@ -277,7 +303,7 @@ namespace Administracija.ViewModel
             {
                 Error er = new Error("Greška pri selekciji.\nZa više informacija obratite se administratorima.");
                 er.Show();
-                SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspesna izmena korisnika.", "Upozorenje");
+                //SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspesna izmena korisnika.", "Upozorenje");
             }
         }
 
@@ -288,9 +314,19 @@ namespace Administracija.ViewModel
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(0,null);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddUser))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(0, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj dodavanja korisnika", "Upozorenje");
+                    }
                 }
             }
         }

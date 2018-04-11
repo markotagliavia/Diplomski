@@ -20,15 +20,23 @@ namespace Administracija.ViewModel
         public MyICommand<string> BackNavCommand { get; private set; }
         public MyICommand<int> AddNavCommand { get; private set; }
         public MyICommand<int> RemoveNavCommand { get; private set; }
+
+        #endregion
+
+        #region Members
+
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private int context;
+        private int _selectedPermission = -1;
+        private int _selectedUserPermission = -1;
+        private bool addPermissionEnabled;
+        private bool removePermissionEnabled;
         private string stariNaziv;
-       
-        
-
         private Common.Model.Uloga uloga;
         private ObservableCollection<Common.Model.Permission> permissions;
         private ObservableCollection<Common.Model.Permission> permissionsUloga;
+        
+        
         #endregion
 
         public DodajUloguViewModel()
@@ -131,7 +139,7 @@ namespace Administracija.ViewModel
         private void DodajUlogu(string obj)
         {
 
-            if (uloga.naziv != null && !String.IsNullOrWhiteSpace(uloga.naziv) && (uloga.naziv != ""))
+            if (uloga.naziv != null && !String.IsNullOrWhiteSpace(uloga.naziv) && (uloga.naziv != "")) //e sad ovo ce se prebaciti u model 
             {
                 if (uloga.naziv.Length < 30)
                 {
@@ -238,6 +246,86 @@ namespace Administracija.ViewModel
             {
                 permissionsUloga = value;
                 OnPropertyChanged("PermissionsUloga");
+            }
+        }
+
+        public int SelectedPermission
+        {
+            get => _selectedPermission;
+            set
+            {
+
+                if (_selectedPermission == value)
+                {
+                    if (_selectedPermission > -1)
+                    {
+                        AddPermissionEnabled = true;
+                    }
+                    else
+                    {
+                        AddPermissionEnabled = false;
+                    }
+                    return;
+                }
+                _selectedPermission = value;
+                if (_selectedPermission > -1)
+                {
+                    AddPermissionEnabled = true;
+                }
+                else
+                {
+                    AddPermissionEnabled = false;
+                }
+                return;
+            }
+        }
+        public bool AddPermissionEnabled
+        {
+            get => addPermissionEnabled;
+            set
+            {
+                addPermissionEnabled = value;
+                OnPropertyChanged("AddPermissionEnabled");
+            }
+        }
+
+        public int SelectedUserPermission
+        {
+            get => _selectedUserPermission;
+            set
+            {
+
+                if (_selectedUserPermission == value)
+                {
+                    if (_selectedUserPermission > -1)
+                    {
+                        RemovePermissionEnabled = true;
+                    }
+                    else
+                    {
+                        RemovePermissionEnabled = false;
+                    }
+                    return;
+                }
+                _selectedUserPermission = value;
+                if (_selectedUserPermission > -1)
+                {
+                    RemovePermissionEnabled = true;
+                }
+                else
+                {
+                    RemovePermissionEnabled = false;
+                }
+                return;
+            }
+        }
+        public bool RemovePermissionEnabled
+        {
+            get => removePermissionEnabled;
+            set
+            {
+                removePermissionEnabled = value;
+                OnPropertyChanged("RemovePermissionEnabled");
             }
         }
 
