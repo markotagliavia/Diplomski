@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Skladistenje.View"
         xmlns:viewModel="clr-namespace:Skladistenje.ViewModel"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="600" Width="1024" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="700" Width="1124" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -79,32 +79,32 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem4">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem5">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem6">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem7">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="CloseMenu">
@@ -277,7 +277,7 @@
                 </ListViewItem>
             </ListView>
         </StackPanel>
-        <Grid x:Name="GridMain" Background="{Binding BackgroundColor}" Width="1024" RenderTransformOrigin="0.5,0.5" Margin="0,0,-8,0">
+        <Grid x:Name="GridMain" Background="{Binding BackgroundColor}" Width="1124" RenderTransformOrigin="0.5,0.5" Margin="0,0,-8,0">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -288,11 +288,11 @@
             </Grid.RenderTransform>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1" Background="{Binding FirmColor}" HorizontalAlignment="Right" >
-                <Image Height="150" VerticalAlignment="Top" Source="/Images/back.jpg" Stretch="UniformToFill" HorizontalAlignment="Left" Width="200"/>
+                <Image Height="150" VerticalAlignment="Top" Source="/Images/back.jpg" Stretch="UniformToFill" HorizontalAlignment="Left" Width="230"/>
                 <Ellipse Height="68" Width="63" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,100,20,0" Stroke="White">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/Images/username1.png" Stretch="UniformToFill"/>
@@ -302,23 +302,23 @@
                 <StackPanel Margin="0 150">
                     <Grid Height="60" Margin="20 50 20 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="93*"/>
-                            <ColumnDefinition Width="67*"/>
+                            <ColumnDefinition Width="92*"/>
+                            <ColumnDefinition Width="75*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Korisniko ime" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Height="16"/>
+                        <TextBlock Text="Korisničko ime" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Height="16"/>
                         <TextBlock Text="{Binding UsernameUser}" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Height="16"/>
 
                         <TextBlock Text="Uloga" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="10,0,0,5" Grid.Column="1" Height="16"/>
                         <TextBlock Text="{Binding UlogaUser}" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Grid.Column="1" Height="16"/>
                     </Grid>
-
-                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="14" HorizontalAlignment="Right" Width="180" Text="{Binding InfoUser}"/>
+                    <TextBlock TextWrapping="Wrap" Margin="0,10,10,10" Foreground="#FFFBFBFB" FontSize="12" HorizontalAlignment="Right" Width="210" Text="{Binding InfoUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="252"/>
                 </StackPanel>
             </Grid>
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
@@ -339,12 +339,15 @@
 
                 <TextBlock Text="{Binding ViewModelTitle}" Foreground="#FF3580BF" FontSize="30" FontWeight="Bold" Margin="5" Grid.Row="1"/>
 
-                <Grid Margin="5" Grid.Row="2" Grid.Column="0">
+
+                <Grid Grid.Row="2" Grid.Column="0">
                     <ContentControl Content="{Binding CurrentViewModel}"/>
                 </Grid>
 
+
             </Grid>
         </Grid>
+
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
                 <materialDesign:PackIcon Kind="Bell"/>

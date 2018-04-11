@@ -29,16 +29,14 @@ namespace Skladistenje
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
         private NaprednaPretragaViewModel naprednapretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
-        
-       
-        
+            
         private BindableBase currentViewModel;
 
-        private string _imeUser = "Marko";
-        private string _usernameUser = "max151";
-        private string _ulogaUser = "Admin";
-        private string _infoUser = "Marko je svecki mega car";
-        private string _viewModelTitle = "Pregled korisnika";
+        private string _imeUser;
+        private string _usernameUser;
+        private string _ulogaUser;
+        private string _infoUser;
+        private string _viewModelTitle = "Skladišta";
         private System.Windows.Media.Color c1;
         private System.Windows.Media.Brush _firmColor;
         private System.Windows.Media.Color c2;
@@ -48,8 +46,7 @@ namespace Skladistenje
         private Visibility buttonCloseMenu;
 
         private Korisnik userOnSession = new Korisnik();
-
-        
+        private DeltaEximEntities dbContext = new DeltaEximEntities();
         #endregion Members
 
         #region Properties
@@ -89,7 +86,7 @@ namespace Skladistenje
             set
             {
                 _infoUser = value;
-                OnPropertyChanged("InforUser");
+                OnPropertyChanged("InfoUser");
             }
         }
 
@@ -194,8 +191,8 @@ namespace Skladistenje
 
         private void Close(string obj)
         {
-            //dbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
-            //dbContext.SaveChanges();
+            dbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
+            dbContext.SaveChanges();
             LoginWindow lw = new LoginWindow();
             lw.Show();
             Application.Current.Shutdown();
@@ -222,7 +219,7 @@ namespace Skladistenje
                     ViewModelTitle = "Proizvodi";
                     CurrentViewModel = proizvodiViewModel;
                     break;
-                case "popis":
+                case "popisi":
                     ViewModelTitle = "Popis";
                     CurrentViewModel = popisViewModel;
                     break;
@@ -246,6 +243,30 @@ namespace Skladistenje
                     Info i = new Info("Vlasnici ovog softvera su \n Marko Tagliavia i Tijana Lalošević");
                     i.Show();
                     break;
+            }
+        }
+        #endregion
+
+        #region HelperMethods
+        public void setUserInformations()
+        {
+            UsernameUser = userOnSession.korisnickoime;
+            try
+            {
+                Zaposleni z = dbContext.Zaposlenis.First(x => x.active == true && x.id == userOnSession.zaposleni_id);
+                if (z.Ulogas.Count > 0)
+                {
+                    ImeUser = z.ime;
+                    Uloga u = z.Ulogas.ElementAt(0);
+                    UlogaUser = u.naziv;
+                    InfoUser = $"Ime : {z.ime}{Environment.NewLine}Prezime : {z.prezime}{Environment.NewLine}JMBG : {z.jmbg}{Environment.NewLine}" +
+                        $"Adresa : {z.adresa}{Environment.NewLine}Grad : {z.grad.naziv}{Environment.NewLine}E-mail : {z.email}";
+                }
+            }
+            catch (Exception ex)
+            {
+                Notifications.Error e = new Notifications.Error("Problemi sa konekcijom!");
+                e.Show();
             }
         }
         #endregion
