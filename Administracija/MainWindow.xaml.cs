@@ -82,5 +82,16 @@ namespace Administracija
         {
             listView.SelectedIndex = -1;
         }
+
+        private void gradMethodCall(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("grad");
+                }
+            }
+        }
     }
 }

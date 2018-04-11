@@ -60,45 +60,54 @@ namespace Administracija.ViewModel
                 }
                 if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.DeleteRoll))
                 {
-                    string naziv = uloge.ElementAt(index).naziv;
-                    var itemToRemove = dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv));
-
-                    if (itemToRemove != null)
+                    try
                     {
-                        foreach (var zaposleni in dbContext.Zaposlenis)
-                        {
-                            if (zaposleni.Ulogas.Any(x => x.naziv.Equals(naziv)))
-                            {
+                        string naziv = uloge.ElementAt(index).naziv;
+                        var itemToRemove = dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv));
 
-                                zaposleni.Ulogas.Remove(itemToRemove);
+                        if (itemToRemove != null)
+                        {
+                            foreach (var zaposleni in dbContext.Zaposlenis)
+                            {
+                                if (zaposleni.Ulogas.Any(x => x.naziv.Equals(naziv)))
+                                {
+
+                                    zaposleni.Ulogas.Remove(itemToRemove);
+                                }
+                            }
+                            dbContext.Ulogas.Remove(itemToRemove);
+                            dbContext.SaveChanges();
+                        }
+                        Notifications.Success s = new Notifications.Success("Uspešno ste obrisali " + itemToRemove.naziv);
+                        s.Show();
+                        foreach (Window w in Application.Current.Windows)
+                        {
+                            if (w.GetType().Equals(typeof(MainWindow)))
+                            {
+                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je obrisana uloga " + itemToRemove.naziv, "Info");
+
                             }
                         }
-                        dbContext.Ulogas.Remove(itemToRemove);
-                        dbContext.SaveChanges();
-                    }
-                    Notifications.Success s = new Notifications.Success("Uspešno ste obrisali " + itemToRemove.naziv);
-                    s.Show();
-                    foreach (Window w in Application.Current.Windows)
-                    {
-                        if (w.GetType().Equals(typeof(MainWindow)))
+
+                        uloge.Clear();
+                        foreach (var item in dbContext.Ulogas.ToList())
                         {
-                            SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je obrisana uloga " + itemToRemove.naziv, "Info");
+                            Uloge.Add(item);
 
                         }
                     }
-
-                    uloge.Clear();
-                    foreach (var item in dbContext.Ulogas.ToList())
+                    catch (Exception ex)
                     {
-                        Uloge.Add(item);
-
+                        Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
+                        er.Show();
                     }
+                    
                 }
                 else
                 {
                     Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
-                    SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj brisanja uloge", "Upozorenje");
+                    SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj brisanja uloge", "Upozorenje");
                 }
 
 
@@ -132,7 +141,7 @@ namespace Administracija.ViewModel
                         {
                             Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                             er.Show();
-                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj izmene uloge", "Upozorenje");
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj izmene uloge", "Upozorenje");
                         }
                         
                     }
@@ -163,7 +172,7 @@ namespace Administracija.ViewModel
                     {
                         Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj dodavanja uloge", "Upozorenje");
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj dodavanja uloge", "Upozorenje");
                     }
                 }
             }

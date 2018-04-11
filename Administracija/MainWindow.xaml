@@ -32,7 +32,13 @@
             <DataTemplate DataType="{x:Type viewModel:PregledUlogaViewModel}">
                 <views:PregledUloga/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:GradViewModel}">
+            <views:GradView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajGradViewModel}">
+            <views:DodajGrad/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
                 <views:Help/>
             </DataTemplate>
 
@@ -66,6 +72,11 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem4">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
@@ -194,7 +205,20 @@
                         <TextBlock Text="Pregled akcija" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
-
+                <ListViewItem x:Name="listViewItem4" Height="60" RenderTransformOrigin="0.5,0.5" Selected="gradMethodCall">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Margin="10 0" >
+                        <materialDesign:PackIcon Kind="City" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Pregled gradova" Margin="10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListViewItem>
             </ListView>
         </StackPanel>
 

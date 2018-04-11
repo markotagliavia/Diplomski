@@ -37,6 +37,8 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v17.2, Version=17.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,8 +57,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -80,8 +84,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\AuditViewModel.cs" />
+    <Compile Include="ViewModel\DodajGradViewModel.cs" />
     <Compile Include="ViewModel\DodajKorisnikaViewModel.cs" />
     <Compile Include="ViewModel\DodajUloguViewModel.cs" />
+    <Compile Include="ViewModel\GradViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\PregledKorisnikaViewModel.cs" />
@@ -89,11 +95,17 @@
     <Compile Include="View\Audit.xaml.cs">
       <DependentUpon>Audit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DodajGrad.xaml.cs">
+      <DependentUpon>DodajGrad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DodajKorisnika.xaml.cs">
       <DependentUpon>DodajKorisnika.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DodajUlogu.xaml.cs">
       <DependentUpon>DodajUlogu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\GradView.xaml.cs">
+      <DependentUpon>GradView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
@@ -130,11 +142,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DodajGrad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DodajKorisnika.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DodajUlogu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GradView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

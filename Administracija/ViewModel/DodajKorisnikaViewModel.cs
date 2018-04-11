@@ -26,11 +26,13 @@ namespace Administracija.ViewModel
 
         #region Members
         private string sefForBind;
+        private string gradForBind;
         private ZaposleniKorisnik userForBind;
         private Korisnik userOnSession;
         private ObservableCollection<Korisnik> korisnici;
         private ObservableCollection<Uloga> uloge;
         private ObservableCollection<Uloga> ulogaKorisnik;
+        private ObservableCollection<grad> gradovi;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private int context;
         private int _selectedRoll = -1;
@@ -83,6 +85,8 @@ namespace Administracija.ViewModel
                     sefForBind = zk.Sef;
                 }
 
+                GradForBind = zk.Grad;
+
             }
             else
             {
@@ -98,6 +102,12 @@ namespace Administracija.ViewModel
                 
                
             }
+            gradovi = new ObservableCollection<grad>();
+            foreach (var item in dbContext.grads)
+            {
+                Gradovi.Add(item);
+            }
+
         }
 
 
@@ -154,6 +164,25 @@ namespace Administracija.ViewModel
                 OnPropertyChanged("SefForBind");
             }
         }
+        public ObservableCollection<grad> Gradovi
+        {
+            get => gradovi;
+            set
+            {
+                gradovi = value;
+                OnPropertyChanged("Gradovi");
+            }
+        }
+
+        public string GradForBind
+        {
+            get => gradForBind;
+            set
+            {
+                gradForBind = value;
+                OnPropertyChanged(GradForBind);
+            }
+        }
         #endregion
 
         #region CommandsImplementation
@@ -170,7 +199,7 @@ namespace Administracija.ViewModel
 
         private void DodajKorisnika(object obj)
         {
-            //TO DO : autorizacija
+            
             try
             {
                 foreach (Window w in Application.Current.Windows)
@@ -194,7 +223,7 @@ namespace Administracija.ViewModel
                         z.brojtelefona = UserForBind.Telefon;
                         z.doprinosi = Double.Parse(UserForBind.Doprinosi);
                         z.email = UserForBind.Email;
-                        z.grad_id = dbContext.grads.First(x => x.naziv.Equals(UserForBind.Grad)).id;
+                        z.grad_id = dbContext.grads.First(x => x.naziv.Equals(GradForBind)).id;
                         z.ime = UserForBind.Ime;
                         z.jmbg = UserForBind.JMBG;
                         z.plata = Double.Parse(UserForBind.Plata);
@@ -236,7 +265,7 @@ namespace Administracija.ViewModel
                     {
                         Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj dodavanja korisnika", "Upozorenje");
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj dodavanja korisnika", "Upozorenje");
                         Otkazi("");
                     }
                     
@@ -260,7 +289,7 @@ namespace Administracija.ViewModel
                                 original.brojtelefona = UserForBind.Telefon;
                                 original.doprinosi = Double.Parse(UserForBind.Doprinosi);
                                 original.email = UserForBind.Email;
-                                original.grad_id = dbContext.grads.First(x => x.naziv.Equals(UserForBind.Grad)).id;
+                                original.grad_id = dbContext.grads.First(x => x.naziv.Equals(GradForBind)).id;
                                 original.ime = UserForBind.Ime;
                                 original.jmbg = UserForBind.JMBG;
                                 original.plata = Double.Parse(UserForBind.Plata);
@@ -315,7 +344,7 @@ namespace Administracija.ViewModel
                         {
                             Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                             er.Show();
-                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj izmene korisnika", "Upozorenje");
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj izmene korisnika", "Upozorenje");
                             Otkazi("");
                         }
 
@@ -448,6 +477,9 @@ namespace Administracija.ViewModel
                 OnPropertyChanged("RemoveEnabled");
             }
         }
+
+        
+        
         #endregion
     }
 }

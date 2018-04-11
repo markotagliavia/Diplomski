@@ -31,6 +31,8 @@ namespace Administracija
         private NaprednaPretragaViewModel naprednaPretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
         public AuditViewModel auditViewModel = new AuditViewModel();
+        public DodajGradViewModel dodajGradViewModel = new DodajGradViewModel(0,null);
+        private GradViewModel gradViewModel = new GradViewModel();
         private BindableBase currentViewModel;
 
         private string _imeUser;
@@ -166,6 +168,8 @@ namespace Administracija
             get { return dodajKorisnikaViewModel; }
             set { dodajKorisnikaViewModel = value; }
         }
+
+        public GradViewModel GradViewModel { get => gradViewModel; set => gradViewModel = value; }
         #endregion Properties
 
         public MainWindowViewModel()
@@ -242,6 +246,10 @@ namespace Administracija
                 case "help":
                     ViewModelTitle = "Pomoć";
                     CurrentViewModel = helpViewModel;
+                    break;
+                case "grad":
+                    ViewModelTitle = "Pregled gradova";
+                    CurrentViewModel = GradViewModel;
                     break;
                 case "info":
                     //TO DO: Tijana ubaci prozor o info
