@@ -106,7 +106,7 @@ namespace Administracija.ViewModel
                         original.drzava = grad.drzava;
                         dbContext.SaveChanges();
                     }
-                    Notifications.Success s = new Notifications.Success("Uspešno ste izmenili " + stariNaziv);
+                    Notifications.Success s = new Notifications.Success("Uspešno ste izmenili grad " + stariNaziv);
                     s.Show();
                     foreach (Window w in Application.Current.Windows)
                     {
@@ -121,7 +121,7 @@ namespace Administracija.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    Notifications.Error e = new Notifications.Error("Greška pri unosu uloge");
+                    Notifications.Error e = new Notifications.Error("Greška pri izmeni grada");
                     e.Show();
                 }
             }

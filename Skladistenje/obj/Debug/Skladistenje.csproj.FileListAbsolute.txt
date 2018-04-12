@@ -175,3 +175,9 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledProizvodjacaView.g.
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodjacaView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledProizvodjacaView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodjacaView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledProizvodjacaView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodjacaView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledProizvodjacaView.baml

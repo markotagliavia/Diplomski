@@ -18,12 +18,16 @@ namespace Skladistenje.ViewModel
         private ObservableCollection<string> jedinicamere;
         private ObservableCollection<Karakteristika> karakteristike;
         private ObservableCollection<Karakteristika> karakteristikaProizvod;
+        private ObservableCollection<Proizvodjac> proizvodjaci;
         private string mereForBind;
         private string textBox;
+        private string proizvodjacForBind;
+        string stariNaziv;
         private int _selectedKarakteristika = -1;
         private int _selectedKarakteristikaProizvod = -1;
         private Proizvod proizvodForBind = new Proizvod();
         private Korisnik userOnSession = new Korisnik();
+        
         private bool addEnabled;
         private bool removeEnabled;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
@@ -35,7 +39,7 @@ namespace Skladistenje.ViewModel
         public MyICommand<int> AddCommand { get; private set; }
         public MyICommand<int> RemoveCommand { get; private set; }
         public MyICommand<string> BackNavCommand { get; private set; }
-        public MyICommand<int> AddProizvodjacCommand { get; private set; }
+        public MyICommand<string> AddProizvodjacCommand { get; private set; }
         public MyICommand<string> DodajKarakteristikuCommand { get; private set; }
         public MyICommand<string> IzmeniKarakteristikuCommand { get; private set; }
         public MyICommand<string> ObrisiKarakteristikuCommand { get; private set; }
@@ -50,25 +54,33 @@ namespace Skladistenje.ViewModel
             AddCommand = new MyICommand<int>(Add);
             RemoveCommand = new MyICommand<int>(Remove);
             BackNavCommand = new MyICommand<string>(Back);
-            AddProizvodjacCommand = new MyICommand<int>(AddProizvodjac);
+            AddProizvodjacCommand = new MyICommand<string>(AddProizvodjac);
             DodajKarakteristikuCommand = new MyICommand<string>(DodajKarakteristiku);
             IzmeniKarakteristikuCommand = new MyICommand<string>(IzmeniKarakteristiku);
             ObrisiKarakteristikuCommand = new MyICommand<string>(ObrisiKarakteristiku);
             jedinicamere = new ObservableCollection<string>();
             Karakteristike = new ObservableCollection<Karakteristika>();
             KarakteristikaProizvod = new ObservableCollection<Karakteristika>();
+            Proizvodjaci = new ObservableCollection<Proizvodjac>();
+            foreach (var item in dbContext.Proizvodjacs)
+            {
+                Proizvodjaci.Add(item);
+            }
             foreach (var item in dbContext.jedinicameres)
             {
                 jedinicamere.Add(item.naziv);
             }
             if (context == 1)
             {
-                ProizvodForBind = p;
+               
+                ProizvodForBind = dbContext.Proizvods.FirstOrDefault(x => x.id == p.id); 
+                stariNaziv = p.naziv;
                 MereForBind = p.jedinicamere.naziv;
                 foreach (var item in ProizvodForBind.Karakteristikas)
                 {
                     KarakteristikaProizvod.Add(item);
                 }
+                ProizvodjacForBind = p.Proizvodjac.naziv;
             }
             else
             {
@@ -228,9 +240,21 @@ namespace Skladistenje.ViewModel
                 e.Show();
             }
         }
-        private void AddProizvodjac(int obj)
+        private void AddProizvodjac(string obj)
         {
-            throw new NotImplementedException();
+            //to do autorizacija
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null);
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
+
+                }
+            }
         }
         private void Back(string obj)
         {
@@ -307,9 +331,55 @@ namespace Skladistenje.ViewModel
                     {
                         if (context == 0)
                         {
+                            try
+                            {
+                                ProizvodForBind.jedinicamere_id = dbContext.jedinicameres.FirstOrDefault(x => x.naziv.Equals(MereForBind)).id;
+                                ProizvodForBind.proizvodjac_id = dbContext.Proizvodjacs.FirstOrDefault(x => x.naziv.Equals(ProizvodjacForBind)).id;
+                                dbContext.Proizvods.Add(ProizvodForBind);
+                                dbContext.SaveChanges();
+                                Jedinicamere.Clear();
+                                foreach (var item in dbContext.jedinicameres)
+                                {
+                                    Jedinicamere.Add(item.naziv);
+                                }
+                                
+                                Notifications.Success e = new Notifications.Success($"Uspešno dodavanje proizvoda {ProizvodForBind.naziv}");
+                                e.Show();
+                                Back("");
+                            }
+                            catch (Exception exc)
+                            {
+                                Notifications.Error e = new Notifications.Error("Greška pri dodavanju proizvoda");
+                                e.Show();
+                                
+                            }
+
                         }
                         else
                         {
+                            try
+                            {
+                                ProizvodForBind.jedinicamere_id = dbContext.jedinicameres.FirstOrDefault(x => x.naziv.Equals(MereForBind)).id;
+                                ProizvodForBind.proizvodjac_id = dbContext.Proizvodjacs.FirstOrDefault(x => x.naziv.Equals(ProizvodjacForBind)).id;
+                                dbContext.SaveChanges(); 
+                                        Notifications.Success s = new Notifications.Success("Uspešno ste izmenili proizvod " + stariNaziv);
+                                        s.Show();
+                                        foreach (Window w in Application.Current.Windows)
+                                        {
+                                            if (w.GetType().Equals(typeof(MainWindow)))
+                                            {
+                                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, $"Uspesno je izmenjen proizvod {stariNaziv}", "Info");
+
+                                            }
+                                        }
+                                        Back("");
+                                    
+                            }
+                            catch (Exception ex)
+                            {
+                                Notifications.Error e = new Notifications.Error("Greška pri izmeni proizvoda");
+                                e.Show();
+                            }
                         }
                     }
                 }
@@ -470,6 +540,28 @@ namespace Skladistenje.ViewModel
                 OnPropertyChanged("TextBox");
             }
         }
+
+        public string ProizvodjacForBind
+        {
+            get => proizvodjacForBind;
+            set
+            {
+                proizvodjacForBind = value;
+                OnPropertyChanged("ProizvodjacForBind");
+            }
+        }
+
+        public ObservableCollection<Proizvodjac> Proizvodjaci
+        {
+            get => proizvodjaci;
+            set
+            {
+                proizvodjaci = value;
+                OnPropertyChanged("Proizvodjaci");
+            }
+        }
+
+
 
         #endregion
     }

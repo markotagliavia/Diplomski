@@ -42,8 +42,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Jedinica mere" Binding="{Binding jedinica_mere.naziv}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Proizvođač" Binding="{Binding proizvodjac.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Jedinica mere" Binding="{Binding jedinicamere.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Proizvođač" Binding="{Binding Proizvodjac.naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Minimum količine" Binding="{Binding minimumkolicine}"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>

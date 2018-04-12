@@ -23,7 +23,7 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
                 <Label Content="Naziv : " Height="30" Width="130" FontSize="14"/>
-                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProductForBind.naziv}"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.naziv}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
@@ -32,7 +32,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Minimum količine : " Height="30" Width="130" FontSize="14"/>
-                <TextBox x:Name="minimumKolicineTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.sifra}"/>
+                <TextBox x:Name="minimumKolicineTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.minimumkolicine}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Jedinica mere : " Height="30" Width="130" FontSize="14"/>
@@ -90,7 +90,7 @@
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding ProizvodjacForBind}">
                 </ComboBox>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"  Margin="5" Command="{Binding AddProizvodjacCommand}">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Command="{Binding AddProizvodjacCommand}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"  Margin="5" >
                     <materialDesign:PackIcon Kind="Plus" Foreground="White"/>
                 </Button>
             </StackPanel>

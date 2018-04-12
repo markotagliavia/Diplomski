@@ -232,6 +232,7 @@ namespace Skladistenje.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(1, selectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Proizvođača";
                         }
                         else
                         {
