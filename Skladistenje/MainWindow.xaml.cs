@@ -125,5 +125,16 @@ namespace Skladistenje
                 }
             }
         }
+
+        private void ProizvodjaciSelected(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodjaci");
+                }
+            }
+        }
     }
 }

@@ -24,7 +24,13 @@ namespace SecurityManager
             EditSkladiste,
             AddProizvod,
             DeleteProizvod,
-            EditProizvod
+            EditProizvod,
+            AddProizvodjac,
+            DeleteProizvodjac,
+            EditProizvodjac,
+            AddGrad,
+            DeleteGrad,
+            EditGrad
     }
 
     public class AuthorizationPolicy

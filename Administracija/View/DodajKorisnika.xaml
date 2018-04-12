@@ -119,10 +119,10 @@
 
                 <StackPanel Orientation="Vertical" Margin="0,50,0,50" Grid.Column="1" Grid.Row="0" >
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=ulogeGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
                     </Button>
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogaKorisnikGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
                     </Button>
                 </StackPanel>
 

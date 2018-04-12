@@ -8,17 +8,17 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    
+
     <Grid>
         <StackPanel Orientation="Vertical">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackNavCommand}">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
             </Button>
             <StackPanel Orientation="Horizontal" Height="30" Margin="10">
-                <Label Content="Naziv uloge: "></Label>
+                <Label Content="Naziv uloge: " FontSize="14"></Label>
                 <TextBox Text="{Binding Uloga.naziv}" Width="120"></TextBox>
             </StackPanel>
-            <Label Content="Permisije" Margin="10"></Label>
+            <Label Content="Permisije" Margin="10" FontSize="14"></Label>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,40 +28,40 @@
                 <Label Grid.Column="1" Content="Dodeljene permisije" Height="30" Width="200" FontSize="14" Margin="120,0,0,0"/>
             </Grid>
 
-            
-               
-            
-            <Grid Height="210" Margin="10">
+
+
+
+            <Grid Height="293" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedPermission}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="permissionsGrid" ItemsSource="{Binding Permissions, Mode=OneWay}" Height="230" Width="200">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
-                        </DataGrid.Columns>
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedPermission}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="20,10,20,0" x:Name="permissionsGrid" ItemsSource="{Binding Permissions, Mode=OneWay}" Width="200">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
-                
+
                 <StackPanel Orientation="Vertical" Margin="20,50,10,50" Grid.Column="1" Grid.Row="0" >
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=permissionsGrid,Path=SelectedIndex}" IsEnabled="{Binding AddPermissionEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
                     </Button>
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogapermisijeGrid,Path=SelectedIndex}" IsEnabled="{Binding RemovePermissionEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
                     </Button>
                 </StackPanel>
 
-                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedUserPermission}" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="ulogapermisijeGrid" ItemsSource="{Binding PermissionsUloga, Mode=OneWay}" Height="230" Width="200">
-                        
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedUserPermission}" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="20,10,20,0" x:Name="ulogapermisijeGrid" ItemsSource="{Binding PermissionsUloga, Mode=OneWay}" Width="200">
+
                     <DataGrid.Columns>
-                            <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
             </Grid>
-            <StackPanel Orientation="Horizontal" Height="60" Margin="10">
+            <StackPanel Orientation="Horizontal" Height="60" Margin="30">
                 <Button Content="Dodaj" Command="{Binding DodajUloguCommand}" Margin="10" />
                 <Button Content="Otkaži" Command="{Binding OtkaziCommand}" Margin="10" />
             </StackPanel>

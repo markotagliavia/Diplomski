@@ -42,25 +42,7 @@ namespace Administracija.ViewModel
             PretraziKorisnikaCommand = new MyICommand<string>(PretraziKorisnika);
             textSearch = "";
             korisnici = new ObservableCollection<ZaposleniKorisnik>();
-            foreach (var item in dbContext.Zaposlenis.ToList())
-            {
-                string sefStr = "Nema";
-                if (item.sef_id != null)
-                {
-                    if (dbContext.Zaposlenis.Any(x => x.active == true && x.id == item.sef_id))
-                    {
-                        Zaposleni sef = dbContext.Zaposlenis.First(x => x.active == true && x.id == item.sef_id);
-                        sefStr = sef.Korisniks.ElementAt(0).korisnickoime;
-                    }
-                    else
-                    {
-                        sefStr = "Nema";
-                    }
-                }
-                ZaposleniKorisnik zk = new ZaposleniKorisnik(item, sefStr);
-                korisnici.Add(zk);
-            }
-
+            populateKorisniks();
             DefaultView = CollectionViewSource.GetDefaultView(Korisnici);
         }
 
@@ -139,7 +121,6 @@ namespace Administracija.ViewModel
         #region CommandsImplementation
         private void PretraziKorisnika(string type)
         {
-            //TO DO autorizacija
             if (!type.Equals("/"))
             {
                 if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
@@ -251,8 +232,9 @@ namespace Administracija.ViewModel
                             dbContext.SaveChanges();
                             Success suc = new Success("Uspešno ste obrisali korisnika.");
                             suc.Show();
-
                             SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje korisnika {korisnickoImeBrisanog}.", "Info");
+                            Korisnici.Clear();
+                            populateKorisniks();
                         }
                         else
                         {
@@ -261,17 +243,12 @@ namespace Administracija.ViewModel
                             SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
                         }
                     }
-
-
-
                 }
                 else
                 {
-
                     Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
                     SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj brisnja korisnika", "Upozorenje");
-
                 }
 
             }
@@ -338,6 +315,30 @@ namespace Administracija.ViewModel
                         SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj dodavanja korisnika", "Upozorenje");
                     }
                 }
+            }
+        }
+        #endregion
+
+        #region HelperMethods
+        private void populateKorisniks()
+        {
+            foreach (var item in dbContext.Zaposlenis.ToList())
+            {
+                string sefStr = "Nema";
+                if (item.sef_id != null)
+                {
+                    if (dbContext.Zaposlenis.Any(x => x.active == true && x.id == item.sef_id))
+                    {
+                        Zaposleni sef = dbContext.Zaposlenis.First(x => x.active == true && x.id == item.sef_id);
+                        sefStr = sef.Korisniks.ElementAt(0).korisnickoime;
+                    }
+                    else
+                    {
+                        sefStr = "Nema";
+                    }
+                }
+                ZaposleniKorisnik zk = new ZaposleniKorisnik(item, sefStr);
+                korisnici.Add(zk);
             }
         }
         #endregion

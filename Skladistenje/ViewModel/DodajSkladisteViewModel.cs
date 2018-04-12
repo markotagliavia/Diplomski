@@ -40,6 +40,16 @@ namespace Skladistenje.ViewModel
                 Gradovi.Add(item);
             }
 
+            if (v == 0)
+            {
+                SkladisteForEdit = new Skladiste();
+            }
+            else
+            {
+                GradForBind = s.grad.naziv;
+                SkladisteForEdit = s;
+            }
+
         }
 
         #region CommandsImplementation

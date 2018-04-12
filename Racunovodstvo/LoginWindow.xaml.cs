@@ -119,7 +119,7 @@ namespace Racunovodstvo
         #region EventsColors
         private void usernameTextBoxFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Korisnicko ime")) usernameTextBox.Text = "";
+            if (usernameTextBox.Text.Equals("Korisničko ime")) usernameTextBox.Text = "";
             Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
@@ -221,7 +221,7 @@ namespace Racunovodstvo
 
                         if (dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).ulogovan)
                         {
-                            Error er = new Error("Korisnik je vec ulogovan!");
+                            Error er = new Error("Korisnik je već ulogovan!");
                             er.Show();
                             SecurityManager.AuditManager.AuditToDB(k.korisnickoime, "Neuspesna autentifikacija. Korisnik je vec ulogovan.", "Upozorenje");
                         }
@@ -237,21 +237,21 @@ namespace Racunovodstvo
                     }
                     else
                     {
-                        Error er = new Error("Uneta lozinka je pogresna!");
+                        Error er = new Error("Uneta lozinka je pogrešna!");
                         er.Show();
                         SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Pogresna lozinka.", "Upozorenje");
                     }
                 }
                 else
                 {
-                    Error er = new Error("Nemate ovlascenja za izvrsenje ove akcije!");
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
                     SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autorizacija. Nedozvoljena autentifikacija.", "Upozorenje");
                 }
             }
             else
             {
-                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                Error er = new Error("Ne postoji uneto korisničko ime!");
                 er.Show();
                 SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesna autentifikacija. Nepostojece korisnicko ime.", "Upozorenje");
             }
@@ -297,7 +297,7 @@ namespace Racunovodstvo
                             string nova_lozinka_hash = SecurityManager.Encryption.sha256(new_pass);
                             dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).lozinka = nova_lozinka_hash;
                             dbContext.SaveChanges();
-                            Success sc = new Success("Lozinka je uspesno promenjena!");
+                            Success sc = new Success("Lozinka je uspešno promenjena!");
                             sc.Show();
                             SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Uspesno resetovanje lozinke.", "Info");
                         }
@@ -311,14 +311,14 @@ namespace Racunovodstvo
                 }
                 else
                 {
-                    Error er = new Error("Nemate ovlascenja za izvrsenje ove akcije!");
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
                     SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke.", "Upozorenje");
                 }
             }
             else
             {
-                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                Error er = new Error("Ne postoji uneto korisničko ime!");
                 er.Show();
                 SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke. Nepostojece korisnicko ime.", "Upozorenje");
             }
