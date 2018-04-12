@@ -23,6 +23,12 @@
         <DataTemplate DataType="{x:Type viewModel:DodajProizvodViewModel}">
             <views:DodajProizvodView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProizvodjacaViewModel}">
+            <views:DodajProizvodjacaView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PregledProizvodjacaViewModel}">
+            <views:PregledProizvodjacaView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaliheViewModel}">
             <views:ZaliheView/>
         </DataTemplate>
@@ -87,25 +93,30 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem5">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem4ipo">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.7" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem6">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem5">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.9" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem7">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem6">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:2.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="listViewItem7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:2.3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="button">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
@@ -223,6 +234,20 @@
                     <StackPanel Orientation="Horizontal" Margin="10 0" >
                         <materialDesign:PackIcon Kind="Cart" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Proizvodi" Margin="10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem x:Name="listViewItem4ipo" Height="60" RenderTransformOrigin="0.5,0.5" Selected="ProizvodjaciSelected">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Margin="10 0" >
+                        <materialDesign:PackIcon Kind="Creation" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Proizvođači" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem4" Height="60" RenderTransformOrigin="0.5,0.5" Selected="PopisSelected">

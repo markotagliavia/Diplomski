@@ -22,6 +22,13 @@ namespace Skladistenje.View
         public DodajSkladisteView()
         {
             InitializeComponent();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    this.DataContext = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel;
+                }
+            }
         }
     }
 }

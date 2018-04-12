@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\E3\DIplomskiKlon3april\Skladistenje\App.xaml
-131829273538
+15416011988
 
-33-543833714
+371428853588
 28270425731
-LoginWindow.xaml;MainWindow.xaml;View\DodajProizvodView.xaml;View\DodajSkladisteView.xaml;View\HelpView.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\PopisView.xaml;View\ProizvodiView.xaml;View\Skladista.xaml;View\SkladisteniDokumenti.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
+LoginWindow.xaml;MainWindow.xaml;View\DodajProizvodjacaView.xaml;View\DodajProizvodView.xaml;View\DodajSkladisteView.xaml;View\HelpView.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\PopisView.xaml;View\PregledProizvodjacaView.xaml;View\ProizvodiView.xaml;View\Skladista.xaml;View\SkladisteniDokumenti.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
 False
 
