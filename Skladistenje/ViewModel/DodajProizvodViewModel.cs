@@ -27,7 +27,7 @@ namespace Skladistenje.ViewModel
         private int _selectedKarakteristikaProizvod = -1;
         private Proizvod proizvodForBind = new Proizvod();
         private Korisnik userOnSession = new Korisnik();
-        
+        private string submitButtonText;
         private bool addEnabled;
         private bool removeEnabled;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
@@ -72,7 +72,7 @@ namespace Skladistenje.ViewModel
             }
             if (context == 1)
             {
-               
+                SubmitButtonText = "Potvrdi izmenu";
                 ProizvodForBind = dbContext.Proizvods.FirstOrDefault(x => x.id == p.id); 
                 stariNaziv = p.naziv;
                 MereForBind = p.jedinicamere.naziv;
@@ -85,6 +85,7 @@ namespace Skladistenje.ViewModel
             else
             {
                 ProizvodForBind = new Proizvod();
+                SubmitButtonText = "Dodaj";
             }
 
             foreach (var item in dbContext.Karakteristikas)
@@ -402,6 +403,7 @@ namespace Skladistenje.ViewModel
             Back("");
         }
         #endregion
+
         #region Constructors
         public Proizvod ProizvodForBind
         {
@@ -560,6 +562,8 @@ namespace Skladistenje.ViewModel
                 OnPropertyChanged("Proizvodjaci");
             }
         }
+
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
 
 
 
