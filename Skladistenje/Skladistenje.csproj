@@ -82,6 +82,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\DodajProizvodViewModel.cs" />
     <Compile Include="ViewModel\DodajSkladisteViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="ViewModel\SkladisteniDokumentiViewModel.cs" />
     <Compile Include="ViewModel\ZaliheViewModel.cs" />
     <Compile Include="ViewModel\ZaposleniViewModel.cs" />
+    <Compile Include="View\DodajProizvodView.xaml.cs">
+      <DependentUpon>DodajProizvodView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DodajSkladisteView.xaml.cs">
       <DependentUpon>DodajSkladisteView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +145,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\DodajProizvodView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DodajSkladisteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -22,6 +22,7 @@ namespace Skladistenje
 
         private SkladistaViewModel skladistaViewModel = new SkladistaViewModel();
         public DodajSkladisteViewModel dodajSkladisteViewModel = new DodajSkladisteViewModel(0, null);
+        public DodajProizvodViewModel dodajProizvodViewModel = new DodajProizvodViewModel(0, null);
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel();
         private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
@@ -166,6 +167,12 @@ namespace Skladistenje
             set { dodajSkladisteViewModel = value; }
         }
 
+        public DodajProizvodViewModel DodajProizvodViewModel
+        {
+            get { return dodajProizvodViewModel; }
+            set { dodajProizvodViewModel = value; }
+        }
+
         #endregion Properties
 
         public MainWindowViewModel()
@@ -229,6 +236,10 @@ namespace Skladistenje
                 case "proizvodi":
                     ViewModelTitle = "Proizvodi";
                     CurrentViewModel = proizvodiViewModel;
+                    break;
+                case "dodajProizvod":
+                    ViewModelTitle = "Novi Proizvod";
+                    CurrentViewModel = dodajProizvodViewModel;
                     break;
                 case "popisi":
                     ViewModelTitle = "Popis";

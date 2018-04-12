@@ -173,3 +173,7 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\Do
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\GradView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajGrad.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\GradView.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajGrad.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\GradView.g.cs
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\DodajGrad.baml
+D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\View\GradView.baml

@@ -17,7 +17,7 @@ namespace Skladistenje.View
     /// <summary>
     /// Interaction logic for DodajSkladisteView.xaml
     /// </summary>
-    public partial class DodajSkladisteView : Window
+    public partial class DodajSkladisteView : UserControl
     {
         public DodajSkladisteView()
         {
