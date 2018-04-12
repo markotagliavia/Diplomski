@@ -279,7 +279,7 @@ namespace Skladistenje.ViewModel
                     {
                         Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog skladišta", "Upozorenje");
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog proizvoda", "Upozorenje");
                     }
                 }
             }

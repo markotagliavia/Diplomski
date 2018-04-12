@@ -23,6 +23,13 @@ namespace Skladistenje.View
         public DodajProizvodView()
         {
             InitializeComponent();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    this.DataContext = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel;
+                }
+            }
         }
     }
 }

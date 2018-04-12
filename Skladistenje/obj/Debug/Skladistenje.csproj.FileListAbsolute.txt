@@ -169,3 +169,5 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajSkladisteView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajSkladisteView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodView.baml

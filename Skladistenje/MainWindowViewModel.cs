@@ -234,7 +234,7 @@ namespace Skladistenje
                     CurrentViewModel = skladisteniDokumentiViewModel;
                     break;
                 case "proizvodi":
-                    ViewModelTitle = "Proizvodi";
+                    ViewModelTitle = "Pregled proizvoda";
                     CurrentViewModel = proizvodiViewModel;
                     break;
                 case "dodajProizvod":
