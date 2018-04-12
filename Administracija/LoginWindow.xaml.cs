@@ -119,7 +119,7 @@ namespace Administracija
         #region EventsColors
         private void usernameTextBoxFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Korisnicko ime")) usernameTextBox.Text = "";
+            if (usernameTextBox.Text.Equals("Korisničko ime")) usernameTextBox.Text = "";
             Storyboard sb = new Storyboard() { Duration = TimeSpan.FromSeconds(0.7), BeginTime = TimeSpan.Zero };
 
             ColorAnimation colAnim = new ColorAnimation();
@@ -297,7 +297,7 @@ namespace Administracija
                             string nova_lozinka_hash = SecurityManager.Encryption.sha256(new_pass);
                             dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername)).lozinka = nova_lozinka_hash;
                             dbContext.SaveChanges();
-                            Success sc = new Success("Lozinka je uspesno promenjena!");
+                            Success sc = new Success("Lozinka je uspešno promenjena!");
                             sc.Show();
                             SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Uspesno resetovanje lozinke.", "Info");
                         }
@@ -311,14 +311,14 @@ namespace Administracija
                 }
                 else
                 {
-                    Error er = new Error("Nemate ovlascenja za izvrsenje ove akcije!");
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                     er.Show();
                     SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke.", "Upozorenje");
                 }
             }
             else
             {
-                Error er = new Error("Ne postoji uneto korisnicko ime!");
+                Error er = new Error("Ne postoji uneto korisničko ime!");
                 er.Show();
                 SecurityManager.AuditManager.AuditToDB(usernameTextBox.Text, "Neuspesno resetovanje lozinke. Nepostojece korisnicko ime.", "Upozorenje");
             }
