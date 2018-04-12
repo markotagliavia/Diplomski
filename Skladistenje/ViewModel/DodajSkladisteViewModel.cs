@@ -2,6 +2,7 @@
 using Common.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace Skladistenje.ViewModel
         private int context;
         private Korisnik userOnSession;
         private Skladiste skladisteForEdit;
+        private ObservableCollection<grad> gradovi;
+        private string gradForBind;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         #endregion
 
@@ -31,6 +34,12 @@ namespace Skladistenje.ViewModel
             userOnSession = new Korisnik();
             skladisteForEdit = new Skladiste();
             this.SkladisteForEdit = s;
+            gradovi = new ObservableCollection<grad>();
+            foreach (var item in dbContext.grads)
+            {
+                Gradovi.Add(item);
+            }
+
         }
 
         #region CommandsImplementation
@@ -217,6 +226,25 @@ namespace Skladistenje.ViewModel
         #region Properties
         public Korisnik UserOnSession { get => userOnSession; set => userOnSession = value; }
         public Skladiste SkladisteForEdit { get => skladisteForEdit; set { skladisteForEdit = value; OnPropertyChanged("SkladisteForEdit"); } }
+        public ObservableCollection<grad> Gradovi
+        {
+            get => gradovi;
+            set
+            {
+                gradovi = value;
+                OnPropertyChanged("Gradovi");
+            }
+        }
+
+        public string GradForBind
+        {
+            get => gradForBind;
+            set
+            {
+                gradForBind = value;
+                OnPropertyChanged(GradForBind);
+            }
+        }
         #endregion
     }
 }

@@ -37,7 +37,7 @@
             </StackPanel>
 
             <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
-                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="zaposleniGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="skladistaGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>

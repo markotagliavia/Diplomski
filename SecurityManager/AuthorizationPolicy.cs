@@ -21,7 +21,10 @@ namespace SecurityManager
             DeleteUser,
             AddSkladiste,
             DeleteSkladiste,
-            EditSkladiste
+            EditSkladiste,
+            AddProizvod,
+            DeleteProizvod,
+            EditProizvod
     }
 
     public class AuthorizationPolicy
