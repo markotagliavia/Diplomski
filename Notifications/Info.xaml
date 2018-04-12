@@ -32,7 +32,7 @@
         <Grid Grid.Column="0">
             <Image Source="Images/info.png" Height="40" HorizontalAlignment="Center"></Image>
         </Grid>
-        <Label Grid.Column="1">
+        <Grid Grid.Column="1">
             <Label Foreground="White" FontFamily="Comic Sans" FontSize="12" HorizontalAlignment="Center" Height="60" Width="Auto" Margin="0,10,0,10">
                 <Label.Content>
                     <AccessText TextWrapping="Wrap" Text="{Binding Message}"/>

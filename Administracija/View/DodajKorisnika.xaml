@@ -135,8 +135,8 @@
             </Grid>
 
             <StackPanel Orientation="Horizontal" Margin="0,35,0,0">
-                <Button x:Name="dodajButton" Content="Dodaj" Height="25" Margin="100,30,20,0" Command="{Binding DodajKorisnikaCommand}" CommandParameter="{Binding ElementName=lozinkaPassBox}"/>
-                <Button x:Name="otkaziButton" Content="Otkaži" Height="25" Margin="0,30,0,0" Command="{Binding OtkaziCommand}"/>
+                <Button x:Name="dodajButton" Content="{Binding SubmitButtonText}" Margin="100,30,20,0" Command="{Binding DodajKorisnikaCommand}" CommandParameter="{Binding ElementName=lozinkaPassBox}"/>
+                <Button x:Name="otkaziButton" Content="Otkaži" Margin="0,30,0,0" Command="{Binding OtkaziCommand}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -19,6 +19,7 @@ namespace Skladistenje.ViewModel
         private Korisnik userOnSession = new Korisnik();
         private ObservableCollection<grad> gradovi;
         private string gradForBind;
+        private string submitButtonText;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         #endregion
 
@@ -41,10 +42,12 @@ namespace Skladistenje.ViewModel
 
             if (v == 0)
             {
+                SubmitButtonText = "Dodaj";
                 ProizvodjacForEdit = new Proizvodjac();
             }
             else
             {
+                SubmitButtonText = "Potvrdi izmenu";
                 GradForBind = p.grad.naziv;
                 ProizvodjacForEdit = p;
             }
@@ -149,6 +152,7 @@ namespace Skladistenje.ViewModel
         #endregion
 
         #region Constructors
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
         public Korisnik UserOnSession { get { return userOnSession; } set { userOnSession = value; } }
         public Proizvodjac ProizvodjacForEdit { get => proizvodjacForEdit; set { proizvodjacForEdit = value; OnPropertyChanged("ProizvodjacForEdit"); } }
         public ObservableCollection<grad> Gradovi

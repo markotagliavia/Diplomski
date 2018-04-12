@@ -96,7 +96,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">
-            <Button Content="Dodaj" Command="{Binding DodajCommand}" Margin="10" />
+            <Button Content="{Binding SubmitButtonText}" Command="{Binding DodajCommand}" Margin="10" />
             <Button Content="Otkaži" Command="{Binding OtkaziCommand}" Margin="10" />
         </StackPanel>
 

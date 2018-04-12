@@ -39,7 +39,7 @@ namespace Administracija
         private string _usernameUser;
         private string _ulogaUser;
         private string _infoUser;
-        private string _viewModelTitle = "Pregled korisnika";
+        private string _viewModelTitle = "Pregled Korisnika";
         private System.Windows.Media.Color c1;
         private System.Windows.Media.Brush _firmColor;
         private System.Windows.Media.Color c2;
@@ -219,28 +219,28 @@ namespace Administracija
                     ((MainWindow)Application.Current.MainWindow).MenuItemAccountDetails.Command.Execute("previewPictures");
                      */                   
                 case "previewUsers":
-                    ViewModelTitle = "Pregled korisnika";
+                    ViewModelTitle = "Pregled Korisnika";
                     pregledKorisnikaViewModel.UserOnSession = userOnSession;
                     CurrentViewModel = pregledKorisnikaViewModel;                   
                     break;
                 case "addUser":
-                    ViewModelTitle = "Novi korisnik";
+                    ViewModelTitle = "Novi Korisnik";
                     CurrentViewModel = dodajKorisnikaViewModel;
                     break;
                 case "previewRoles":
-                    ViewModelTitle = "Pregled uloga";
+                    ViewModelTitle = "Pregled Uloga";
                     CurrentViewModel = pregledUlogaViewModel;
                     break;
                 case "addRole":
-                    ViewModelTitle = "Nova uloga";
+                    ViewModelTitle = "Nova Uloga";
                     CurrentViewModel = dodajUloguViewModel;
                     break;
                 case "advancedSearch":
-                    ViewModelTitle = "Napredna pretraga";
+                    ViewModelTitle = "Napredna Pretraga";
                     CurrentViewModel = naprednaPretragaViewModel;
                     break;
                 case "audit":
-                    ViewModelTitle = "Pregled akcija";
+                    ViewModelTitle = "Pregled Akcija";
                     CurrentViewModel = auditViewModel;
                     break;
                 case "help":
@@ -248,7 +248,7 @@ namespace Administracija
                     CurrentViewModel = helpViewModel;
                     break;
                 case "grad":
-                    ViewModelTitle = "Pregled gradova";
+                    ViewModelTitle = "Pregled Gradova";
                     CurrentViewModel = GradViewModel;
                     break;
                 case "info":

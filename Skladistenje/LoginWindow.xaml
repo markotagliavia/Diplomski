@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Skladistenje"
         mc:Ignorable="d"
-        Title="Skladištenje" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}" >
+        Title="Skladištenje" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}" Focusable="True" KeyDown="MetroWindow_KeyDown" >
 
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">
