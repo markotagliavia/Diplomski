@@ -167,9 +167,5 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.exe
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\Skladistenje.pdb
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajSkladisteView.baml
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodjacaView.g.cs
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodView.g.cs
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodjacaView.baml
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajProizvodView.baml
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledProizvodjacaView.g.cs
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledProizvodjacaView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajSkladisteView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajSkladisteView.baml
