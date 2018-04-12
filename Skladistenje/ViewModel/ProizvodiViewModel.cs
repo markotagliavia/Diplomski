@@ -175,8 +175,8 @@ namespace Skladistenje.ViewModel
 
         private void IzbrisiProizvod(string obj)
         {
-            /*TO DO 
-             * foreach (Window w in Application.Current.Windows)
+            //TO DO autorizacija
+            foreach (Window w in Application.Current.Windows)
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
@@ -185,40 +185,49 @@ namespace Skladistenje.ViewModel
                 }
             }
 
-            if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteUser))
-            {
-                string korisnickoImeBrisanog = "";
-                foreach (Window w in Application.Current.Windows)
-                {
-                    if (w.GetType().Equals(typeof(MainWindow)))
-                    {
-                        UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
-                    }
-                }
+            //if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteUser))
+            //{
+                string nazivBrisanog = "";
 
+            try
+            {
                 if (SelectedIndex > -1)
                 {
-                    korisnickoImeBrisanog = SelectedValue.KorisnickoIme;
-                    if (dbContext.Korisniks.Any(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)))
+                    nazivBrisanog = SelectedValue.naziv;
+                    if (dbContext.Proizvods.Any(x => x.id == SelectedValue.id))
                     {
-                        dbContext.Korisniks.Remove(dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)));
+                        dbContext.Proizvods.FirstOrDefault(x => x.id == SelectedValue.id).Karakteristikas.Clear();
                         dbContext.SaveChanges();
-                        Success suc = new Success("Uspešno ste obrisali korisnika.");
+                        dbContext.Proizvods.Remove(dbContext.Proizvods.FirstOrDefault(x => x.id == SelectedValue.id));
+                        dbContext.SaveChanges();
+                        Success suc = new Success("Uspešno ste obrisali proizvod.");
                         suc.Show();
 
-                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje korisnika {korisnickoImeBrisanog}.", "Info");
+                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje proizvoda {nazivBrisanog}.", "Info");
+                        Proizvodi.Clear();
+                        foreach (var item in dbContext.Proizvods)
+                        {
+                            Proizvodi.Add(item);
+                        }
                     }
                     else
                     {
                         Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
+                        //SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje korisnika {korisnickoImeBrisanog}.", "Upozorenje");
                     }
                 }
-
-
-
             }
+            catch (Exception ex)
+            {
+                Error er = new Error("Greška pri brisanju proizvoda.");
+                er.Show();
+            }
+                
+
+
+
+            /*}
             else
             {
 

@@ -202,7 +202,7 @@ namespace Administracija.ViewModel
                     {
                         ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj ulogu";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Uloga";
                     }
                     else
                     {

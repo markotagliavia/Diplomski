@@ -39,6 +39,7 @@
                 </Label.Content>
             </Label>
         </Grid>
+    
         <Grid Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right">
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="#FF3A3AC1" BorderBrush="#FF3A3AC1" Margin="0,0,0,0" Click="Exit" >
                 <materialDesign:PackIcon Kind="Power"/>
