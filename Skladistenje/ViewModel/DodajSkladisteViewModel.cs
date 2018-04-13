@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,26 +17,39 @@ namespace Skladistenje.ViewModel
         private int context;
         private Korisnik userOnSession;
         private Skladiste skladisteForEdit;
+        private string staroImeSkladiste = "";
         private ObservableCollection<grad> gradovi;
         private string gradForBind;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private string submitButtonText;
+        private string kolicinaText;
+        private string rafText;
+        private bool addEnabled;
+        private bool removeEnabled;
+        private int _selectedProizvod = -1;
+        private int _selectedProizvodSaKolicinom = -1;
+        private ObservableCollection<Proizvod> proizvodi;
+        private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinom;
         #endregion
 
         #region Commands
         public MyICommand<object> DodajSkladisteCommand { get; private set; }
         public MyICommand<string> OtkaziCommand { get; private set; }
+        public MyICommand<int> AddCommand { get; private set; }
+        public MyICommand<int> RemoveCommand { get; private set; }
         #endregion
 
         public DodajSkladisteViewModel(int v, Skladiste s)
         {
             DodajSkladisteCommand = new MyICommand<object>(DodajSkladiste);
             OtkaziCommand = new MyICommand<string>(Otkazi);
+            AddCommand = new MyICommand<int>(Add);
+            RemoveCommand = new MyICommand<int>(Remove);
             context = v;
             userOnSession = new Korisnik();
-            skladisteForEdit = new Skladiste();
-            this.SkladisteForEdit = s;
             gradovi = new ObservableCollection<grad>();
+            proizvodi = new ObservableCollection<Proizvod>();
+            proizvodiSaKolicinom = new ObservableCollection<ProizvodKolicina>();
             foreach (var item in dbContext.grads)
             {
                 Gradovi.Add(item);
@@ -45,14 +59,19 @@ namespace Skladistenje.ViewModel
             {
                 SkladisteForEdit = new Skladiste();
                 SubmitButtonText = "Dodaj";
+                populateProizvodiGrid();
             }
             else
             {
                 GradForBind = s.grad.naziv;
                 SkladisteForEdit = s;
                 SubmitButtonText = "Potvrdi izmenu";
+                staroImeSkladiste = s.naziv;
+                //TO DO : pokazati stanje sa zaliha u proizvodSaKolicinom
+                populateProizvodiGrid();
             }
 
+            KolicinaText = "";
         }
 
         #region CommandsImplementation
@@ -71,7 +90,7 @@ namespace Skladistenje.ViewModel
         private void DodajSkladiste(object obj)
         {
             //TO DO
-            /*try
+            try
             {
                 foreach (Window w in Application.Current.Windows)
                 {
@@ -83,52 +102,37 @@ namespace Skladistenje.ViewModel
                 }
                 if (context == 0)
                 {
-                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddUser))
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddSkladiste))
                     {
-                        string pass = ((System.Windows.Controls.PasswordBox)obj).Password;
-                        string hashedPass = SecurityManager.Encryption.sha256(pass);
-                        Zaposleni z = new Zaposleni();
-                        z.active = true;
-                        z.adresa = UserForBind.Adresa;
-                        z.bonus = Double.Parse(UserForBind.Bonusi);
-                        z.brojtelefona = UserForBind.Telefon;
-                        z.doprinosi = Double.Parse(UserForBind.Doprinosi);
-                        z.email = UserForBind.Email;
-                        z.grad_id = dbContext.grads.First(x => x.naziv.Equals(UserForBind.Grad)).id;
-                        z.ime = UserForBind.Ime;
-                        z.jmbg = UserForBind.JMBG;
-                        z.plata = Double.Parse(UserForBind.Plata);
-                        z.prezime = UserForBind.Prezime;
-                        if (sefForBind.Equals("Nema šefa"))
+                        Skladiste novoSkl = new Skladiste();
+                        novoSkl.active = true;
+                        novoSkl.adresa = SkladisteForEdit.adresa;
+                        novoSkl.naziv = SkladisteForEdit.naziv;
+                        novoSkl.sifra = SkladisteForEdit.sifra;
+                        novoSkl.grad_id = dbContext.grads.FirstOrDefault(x => x.naziv.Equals(GradForBind)).id;
+                        dbContext.Skladistes.Add(novoSkl);
+
+                        foreach (var item in ProizvodiSaKolicinom)
                         {
-                            z.sef_id = null;
-                        }
-                        else
-                        {
-                            foreach (var item in dbContext.Zaposlenis)
+                            if (dbContext.Zalihes.Any(x => x.Skladiste.naziv.Equals(SkladisteForEdit.naziv) && x.Proizvod.sifra.Equals(item.Sifra)))
                             {
-                                if (item.Korisniks.Any(x => x.korisnickoime.Equals(sefForBind)))
-                                {
-                                    z.sef_id = item.id;
-                                }
+                                dbContext.Zalihes.FirstOrDefault(x => x.Skladiste.naziv.Equals(SkladisteForEdit.naziv) && x.Proizvod.sifra.Equals(item.Sifra) && x.raf.Equals(item.Raf)).kolicina += float.Parse(item.Kolicina);
+                            }
+                            else
+                            {
+                                Zalihe z = new Zalihe();
+                                z.kolicina = float.Parse(item.Kolicina);
+                                z.proizvod_id = dbContext.Proizvods.FirstOrDefault(x => x.sifra.Equals(item.Sifra)).id;
+                                z.minimumkolicine = dbContext.Proizvods.FirstOrDefault(x => x.sifra.Equals(item.Sifra)).minimumkolicine;
+                                z.raf = item.Raf;
+                                z.rezervisano = 0;
+                                z.skladiste_id = SkladisteForEdit.id;
+                                dbContext.Zalihes.Add(z);
                             }
                         }
-                        z.tekuciracun = UserForBind.Racun;
-                        z.Ulogas = UlogaKorisnik;
-
-                        dbContext.Zaposlenis.Add(z);
                         dbContext.SaveChanges();
-
-                        Korisnik k = new Korisnik();
-                        k.korisnickoime = UserForBind.KorisnickoIme;
-                        k.lozinka = hashedPass;
-                        k.active = true;
-                        k.zaposleni_id = dbContext.Zaposlenis.First(x => x.active == true && x.jmbg.Equals(UserForBind.JMBG)).id;
-                        k.ulogovan = false;
-
-                        dbContext.Korisniks.Add(k);
-                        dbContext.SaveChanges();
-                        Success suc = new Success("Uspešno ste dodali novog korisnika!");
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno dodavanje skladista {SkladisteForEdit.naziv}", "Info");
+                        Success suc = new Success("Uspešno ste dodali novo skladište!");
                         suc.Show();
                         Otkazi("");
                     }
@@ -136,7 +140,7 @@ namespace Skladistenje.ViewModel
                     {
                         Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                         er.Show();
-                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj dodavanja korisnika", "Upozorenje");
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesno dodavanje skladista. Autorizacija.", "Upozorenje");
                         Otkazi("");
                     }
 
@@ -145,77 +149,34 @@ namespace Skladistenje.ViewModel
                 {
                     try
                     {
-                        if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditUser))
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditSkladiste))
                         {
-                            var original = dbContext.Zaposlenis.FirstOrDefault(x => x.id == UserForBind.Idzaposlenog);
-
-                            if (original != null)
+                            Skladiste sklStaro = dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(staroImeSkladiste));
+                            if (!sklStaro.adresa.Equals(SkladisteForEdit.adresa)) dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(staroImeSkladiste)).adresa = SkladisteForEdit.adresa;
+                            if (!sklStaro.sifra.Equals(SkladisteForEdit.sifra)) dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(staroImeSkladiste)).sifra = SkladisteForEdit.sifra;
+                            if (!sklStaro.grad.naziv.Equals(GradForBind))
                             {
-                                string staroKorisnicko = original.Korisniks.ElementAt(0).korisnickoime;
-                                string pass = ((System.Windows.Controls.PasswordBox)obj).Password;
-                                string hashedPass = SecurityManager.Encryption.sha256(pass);
-                                original.active = true;
-                                original.adresa = UserForBind.Adresa;
-                                original.bonus = Double.Parse(UserForBind.Bonusi);
-                                original.brojtelefona = UserForBind.Telefon;
-                                original.doprinosi = Double.Parse(UserForBind.Doprinosi);
-                                original.email = UserForBind.Email;
-                                original.grad_id = dbContext.grads.First(x => x.naziv.Equals(UserForBind.Grad)).id;
-                                original.ime = UserForBind.Ime;
-                                original.jmbg = UserForBind.JMBG;
-                                original.plata = Double.Parse(UserForBind.Plata);
-                                original.prezime = UserForBind.Prezime;
-                                if (sefForBind.Equals("Nema šefa"))
-                                {
-                                    original.sef_id = null;
-                                }
-                                else
-                                {
-                                    foreach (var item in dbContext.Zaposlenis)
-                                    {
-                                        if (item.Korisniks.Any(x => x.korisnickoime.Equals(sefForBind)))
-                                        {
-                                            original.sef_id = item.id;
-                                        }
-                                    }
-                                }
-                                original.tekuciracun = UserForBind.Racun;
-                                original.Ulogas = UlogaKorisnik;
-
-                                dbContext.SaveChanges();
-
-
-                                var korisnik = dbContext.Korisniks.FirstOrDefault(x => x.korisnickoime.Equals(staroKorisnicko));
-
-                                if (korisnik != null)
-                                {
-                                    korisnik.korisnickoime = userForBind.KorisnickoIme;
-                                    korisnik.lozinka = hashedPass;
-                                    korisnik.active = true;
-
-                                    dbContext.SaveChanges();
-                                }
-
-                                Notifications.Success s = new Notifications.Success("Uspešno ste izmenili " + staroKorisnicko);
-                                s.Show();
-                                foreach (Window w in Application.Current.Windows)
-                                {
-                                    if (w.GetType().Equals(typeof(MainWindow)))
-                                    {
-                                        SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena uloga " + staroKorisnicko, "Info");
-
-                                    }
-                                }
-
+                                int grad_idNovi = dbContext.grads.FirstOrDefault(x => x.naziv.Equals(SkladisteForEdit.grad.naziv)).id;
+                                dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(staroImeSkladiste)).grad_id = grad_idNovi;
                             }
-
+                            if (!sklStaro.naziv.Equals(SkladisteForEdit.naziv)) dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(staroImeSkladiste)).naziv = SkladisteForEdit.naziv;
+                            dbContext.SaveChanges();
+                            Notifications.Success s = new Notifications.Success($"Uspešno ste izmenili skladište {staroImeSkladiste}");
+                            s.Show();
+                            foreach (Window w in Application.Current.Windows)
+                            {
+                                if (w.GetType().Equals(typeof(MainWindow)))
+                                {
+                                    SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjeno skladiste", "Info");
+                                }
+                            }
                             Otkazi("");
                         }
                         else
                         {
                             Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                             er.Show();
-                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Pokusaj izmene korisnika", "Upozorenje");
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesna izmena skladista. Autorizacija.", "Upozorenje");
                             Otkazi("");
                         }
 
@@ -223,7 +184,7 @@ namespace Skladistenje.ViewModel
                     }
                     catch (Exception ex)
                     {
-                        Notifications.Error e = new Notifications.Error("Greška pri unosu uloge");
+                        Notifications.Error e = new Notifications.Error("Greška pri unosu podataka o skladištu");
                         e.Show();
                     }
                 }
@@ -232,11 +193,42 @@ namespace Skladistenje.ViewModel
             {
                 Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
                 er.Show();
-            }*/
+            }
+        }
+
+        private void Remove(int obj)
+        {
+            if (SelectedProizvodSaKolicinom != -1)
+            {
+                ProizvodKolicina p = ProizvodiSaKolicinom.ElementAt(SelectedProizvodSaKolicinom);
+                ProizvodiSaKolicinom.RemoveAt(SelectedProizvodSaKolicinom);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
+        }
+
+        private void Add(int index)
+        {
+            if (SelectedProizvod != -1)
+            {
+                Proizvod p = Proizvodi.ElementAt(SelectedProizvod);
+                //TO DO validacija za kolicinu
+                ProizvodKolicina pk = new ProizvodKolicina(p, KolicinaText, RafText);
+                ProizvodiSaKolicinom.Add(pk);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
         #endregion
 
         #region Properties
+
         public Korisnik UserOnSession { get => userOnSession; set => userOnSession = value; }
         public Skladiste SkladisteForEdit { get => skladisteForEdit; set { skladisteForEdit = value; OnPropertyChanged("SkladisteForEdit"); } }
         public ObservableCollection<grad> Gradovi
@@ -260,6 +252,134 @@ namespace Skladistenje.ViewModel
         }
 
         public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
+
+        public string KolicinaText { get => kolicinaText; set { kolicinaText = value; OnPropertyChanged("KolicinaText"); } }
+
+        public string RafText { get => rafText; set { rafText = value; OnPropertyChanged("RafText"); } }
+
+        public bool RemoveEnabled
+        {
+            get => removeEnabled;
+            set
+            {
+                if (context == 0) removeEnabled = value;
+                else removeEnabled = false;
+                OnPropertyChanged("RemoveEnabled");
+            }
+        }
+
+        public bool AddEnabled
+        {
+            get => addEnabled;
+            set
+            {
+                if (context == 0) addEnabled = value;
+                else addEnabled = false;
+                OnPropertyChanged("AddEnabled");
+            }
+        }
+
+        public ObservableCollection<Proizvod> Proizvodi
+        {
+            get => proizvodi;
+            set
+            {
+                proizvodi = value;
+                OnPropertyChanged("Proizvodi");
+            }
+        }
+
+        public ObservableCollection<ProizvodKolicina> ProizvodiSaKolicinom
+        {
+            get => proizvodiSaKolicinom;
+            set
+            {
+                proizvodiSaKolicinom = value;
+                OnPropertyChanged("ProizvodiSaKolicinom");
+            }
+        }
+
+        public int SelectedProizvod
+        {
+            get => _selectedProizvod;
+            set
+            {
+                if (_selectedProizvod == value)
+                {
+                    if (context == 0)
+                    {
+                        if (_selectedProizvod > -1)
+                        {
+                            AddEnabled = true;
+                        }
+                        else
+                        {
+                            AddEnabled = false;
+                        }
+                    }
+                    return;
+                }
+                _selectedProizvod = value;
+                if (context == 0)
+                {
+                    if (_selectedProizvod > -1)
+                    {
+                        AddEnabled = true;
+                    }
+                    else
+                    {
+                        AddEnabled = false;
+                    }
+                }
+                return;
+            }
+        }
+
+        public int SelectedProizvodSaKolicinom
+        {
+            get => _selectedProizvodSaKolicinom;
+            set
+            {
+                if (_selectedProizvodSaKolicinom == value)
+                {
+                    if (context == 0)
+                    {
+                        if (_selectedProizvodSaKolicinom > -1)
+                        {
+                            RemoveEnabled = true;
+                        }
+                        else
+                        {
+                            RemoveEnabled = false;
+                        }
+                    }
+                    return;
+                }
+                _selectedProizvodSaKolicinom = value;
+                if (context == 0)
+                {
+                    if (_selectedProizvodSaKolicinom > -1)
+                    {
+                        RemoveEnabled = true;
+                    }
+                    else
+                    {
+                        RemoveEnabled = false;
+                    }
+                }
+                return;
+            }
+        }
+        #endregion
+
+        #region HelperMethods
+        private void populateProizvodiGrid()
+        {
+            foreach (var item in dbContext.Proizvods.ToList())
+            {
+                proizvodi.Add(item);
+            }
+        }
         #endregion
     }
 
@@ -269,21 +389,24 @@ namespace Skladistenje.ViewModel
         private string sifra;
         private string jedinicaMere;
         private string proizvodjac;
-        private float kolicina;
+        private string kolicina;
+        private string raf;
 
-        public ProizvodKolicina(Proizvod p, float kolicina)
+        public ProizvodKolicina(Proizvod p, string kolicina, string raf)
         {
             this.JedinicaMere = p.jedinicamere.naziv;
             this.Sifra = p.sifra;
             this.Naziv = p.naziv;
             this.Proizvodjac = p.Proizvodjac.naziv;
             this.Kolicina = kolicina;
+            this.raf = raf;
         }
 
         public string Naziv { get => naziv; set { naziv = value; OnPropertyChanged("Naziv"); } }
         public string Sifra { get => sifra; set { sifra = value; OnPropertyChanged("Sifra"); } }
         public string JedinicaMere { get => jedinicaMere; set { jedinicaMere = value; OnPropertyChanged("JedinicaMere"); } }
         public string Proizvodjac { get => proizvodjac; set { proizvodjac = value; OnPropertyChanged("Proizvodjac"); } }
-        public float Kolicina { get => kolicina; set { kolicina = value; OnPropertyChanged("Kolicina"); } }
+        public string Kolicina { get => kolicina; set { kolicina = value; OnPropertyChanged("Kolicina"); } }
+        public string Raf { get => raf; set { raf = value; OnPropertyChanged("Raf"); } }
     }
 }
