@@ -21,10 +21,12 @@ namespace Racunovodstvo
         public MyICommand<string> CloseCommand { get; set; }
 
         private ProfaktureViewModel profaktureViewModel = new ProfaktureViewModel();
-        private FaktureViewModel faktureViewModel = new FaktureViewModel();
+        private FaktureViewModel faktureViewModel = new FaktureViewModel(0);
+        private DodajFakturuViewModel dodajFakturu = new DodajFakturuViewModel(0,null);
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
         private KompenzacijeViewModel kompenzacijeViewModel = new KompenzacijeViewModel();
         private PoslovniPartneriViewModel poslovniPartnerViewModel = new PoslovniPartneriViewModel();
+        private DodajPoslovnogPartneraViewModel dodajPoslovnogPartnera = new DodajPoslovnogPartneraViewModel(0,null);
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel();
         private NaprednaPretragaViewModel naprednaPretragaViewModel = new NaprednaPretragaViewModel();
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
@@ -162,6 +164,21 @@ namespace Racunovodstvo
             }
         }
 
+        public ProfaktureViewModel ProfaktureViewModel { get => profaktureViewModel; set => profaktureViewModel = value; }
+        public FaktureViewModel FaktureViewModel { get => faktureViewModel; set => faktureViewModel = value; }
+        public ProizvodiViewModel ProizvodiViewModel { get => proizvodiViewModel; set => proizvodiViewModel = value; }
+        public KompenzacijeViewModel KompenzacijeViewModel { get => kompenzacijeViewModel; set => kompenzacijeViewModel = value; }
+        public PoslovniPartneriViewModel PoslovniPartnerViewModel { get => poslovniPartnerViewModel; set => poslovniPartnerViewModel = value; }
+        public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
+        public NaprednaPretragaViewModel NaprednaPretragaViewModel { get => naprednaPretragaViewModel; set => naprednaPretragaViewModel = value; }
+        public ObavestenjaViewModel ObavestenjaViewModel { get => obavestenjaViewModel; set => obavestenjaViewModel = value; }
+        public StatistikaViewModel StatistikaViewModel { get => statistikaViewModel; set => statistikaViewModel = value; }
+        public BilansiViewModel BilansiViewModel { get => bilansiViewModel; set => bilansiViewModel = value; }
+        public HelpViewModel HelpViewModel { get => helpViewModel; set => helpViewModel = value; }
+        public ZaposleniViewModel ZaposleniViewModel { get => zaposleniViewModel; set => zaposleniViewModel = value; }
+        public DodajFakturuViewModel DodajFakturu { get => dodajFakturu; set => dodajFakturu = value; }
+        public DodajPoslovnogPartneraViewModel DodajPoslovnogPartnera { get => dodajPoslovnogPartnera; set => dodajPoslovnogPartnera = value; }
+
         #endregion Properties
 
         public MainWindowViewModel()
@@ -209,8 +226,19 @@ namespace Racunovodstvo
                     ViewModelTitle = "Profakture";
                     CurrentViewModel = profaktureViewModel;
                     break;
-                case "fakture":
-                    ViewModelTitle = "Fakture";
+                case "izlazna":
+                    ViewModelTitle = "Pregled izlaznih faktura";
+                    faktureViewModel = new FaktureViewModel(0);
+                    CurrentViewModel = faktureViewModel;
+                    break;
+                case "ulazna":
+                    ViewModelTitle = "Pregled ulaznih faktura";
+                    faktureViewModel = new FaktureViewModel(1);
+                    CurrentViewModel = faktureViewModel;
+                    break;
+                case "storno":
+                    ViewModelTitle = "Pregled storno faktura";
+                    faktureViewModel = new FaktureViewModel(2);
                     CurrentViewModel = faktureViewModel;
                     break;
                 case "proizvodi":

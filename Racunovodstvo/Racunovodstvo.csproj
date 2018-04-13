@@ -82,12 +82,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\BilansiViewModel.cs" />
+    <Compile Include="ViewModel\DodajFakturuViewModel.cs" />
+    <Compile Include="ViewModel\DodajPoslovnogPartneraViewModel.cs" />
+    <Compile Include="ViewModel\DodajStornoViewModel.cs" />
     <Compile Include="ViewModel\FaktureViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\KompenzacijeViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
     <Compile Include="ViewModel\PoslovniPartneriViewModel.cs" />
+    <Compile Include="ViewModel\PretraziStornoViewModel.cs" />
     <Compile Include="ViewModel\ProfaktureViewModel.cs" />
     <Compile Include="ViewModel\ProizvodiViewModel.cs" />
     <Compile Include="ViewModel\StatistikaViewModel.cs" />
@@ -95,6 +99,15 @@
     <Compile Include="ViewModel\ZaposleniViewModel.cs" />
     <Compile Include="View\Bilansi.xaml.cs">
       <DependentUpon>Bilansi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajFakturu.xaml.cs">
+      <DependentUpon>DodajFakturu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajPoslovnogPartnera.xaml.cs">
+      <DependentUpon>DodajPoslovnogPartnera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajStorno.xaml.cs">
+      <DependentUpon>DodajStorno.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Fakture.xaml.cs">
       <DependentUpon>Fakture.xaml</DependentUpon>
@@ -113,6 +126,9 @@
     </Compile>
     <Compile Include="View\PoslovniPartneri.xaml.cs">
       <DependentUpon>PoslovniPartneri.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PretraziStorno.xaml.cs">
+      <DependentUpon>PretraziStorno.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Profakture.xaml.cs">
       <DependentUpon>Profakture.xaml</DependentUpon>
@@ -152,6 +168,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DodajFakturu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajPoslovnogPartnera.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajStorno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Fakture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PoslovniPartneri.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PretraziStorno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

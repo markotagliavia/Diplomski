@@ -18,6 +18,9 @@
         <DataTemplate DataType="{x:Type viewModel:FaktureViewModel}">
             <views:Fakture/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajFakturuViewModel}">
+            <views:DodajFakturu/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:Proizvodi/>
         </DataTemplate>
@@ -26,6 +29,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:PoslovniPartneriViewModel}">
             <views:PoslovniPartneri/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajPoslovnogPartneraViewModel}">
+            <views:DodajPoslovnogPartnera/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaliheViewModel}">
             <views:ZaliheView/>
@@ -207,9 +213,55 @@
                         </TransformGroup>
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
-                        <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
                         <TextBlock Text="Fakture" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
+                    <ListViewItem.Style>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Selected">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Redovna faktura">
+                                            <MenuItem Header="Izlazna" >
+                                                <MenuItem.Style>
+                                                    <Style TargetType="MenuItem">
+                                                        <EventSetter Event="Click" Handler="MenuItem_Click"/>
+                                                    </Style>
+                                                </MenuItem.Style>
+                                            </MenuItem>
+                                            <MenuItem Header="Ulazna">
+                                                <MenuItem.Style>
+                                                    <Style TargetType="MenuItem">
+                                                        <EventSetter Event="Click" Handler="MenuItem1_Click"/>
+                                                    </Style>
+                                                </MenuItem.Style>
+                                            </MenuItem>
+                                        </MenuItem>
+                                        <MenuItem Header="Storno faktura">
+                                            <MenuItem.Style>
+                                                <Style TargetType="MenuItem">
+                                                    <EventSetter Event="Click" Handler="MenuItem2_Click"/>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListViewItem.Style>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="ProizvodiCall">
                     <ListViewItem.RenderTransform>
