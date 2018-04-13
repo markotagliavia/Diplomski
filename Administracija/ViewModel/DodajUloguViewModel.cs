@@ -35,7 +35,7 @@ namespace Administracija.ViewModel
         private Common.Model.Uloga uloga;
         private ObservableCollection<Common.Model.Permission> permissions;
         private ObservableCollection<Common.Model.Permission> permissionsUloga;
-        
+        private string submitButtonText;
         
         #endregion
 
@@ -54,11 +54,12 @@ namespace Administracija.ViewModel
             if (naziv != null)
             {
                 uloga = dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv));
-                
+                SubmitButtonText = "Potvrdi izmenu";
             }
             else
             {
                 uloga = new Uloga();
+                SubmitButtonText = "Dodaj";
             }
             Permissions = new ObservableCollection<Permission>();
             
@@ -329,7 +330,7 @@ namespace Administracija.ViewModel
             }
         }
 
-
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
         #endregion
     }
 }

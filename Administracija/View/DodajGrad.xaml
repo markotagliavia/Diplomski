@@ -26,7 +26,7 @@
                 <TextBox x:Name="postanskibrojTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.postanskibroj}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="60" Margin="20,220,0,0">
-                <Button Content="Dodaj" Command="{Binding DodajCommand}" Margin="10" />
+                <Button Content="{Binding SubmitButtonText}" Command="{Binding DodajCommand}" Margin="10" />
                 <Button Content="Otkaži" Command="{Binding OtkaziCommand}" Margin="10" />
             </StackPanel>
         </StackPanel>

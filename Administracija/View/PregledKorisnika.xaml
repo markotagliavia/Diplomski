@@ -21,8 +21,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
-            <Label Content="Pretraga po : " Margin="0,10" Width="100" FontSize="14"/>
-            <ComboBox x:Name="comboBoxSearch" Margin="10" Height="25" Width="120" >
+            <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
+            <ComboBox x:Name="comboBoxSearch" Margin="10,0,0,0" Height="25" Width="120" >
                 <ComboBoxItem  IsSelected="True" Content="/"/>
                 <ComboBoxItem  Content="Korisničkom imenu"/>
                 <ComboBoxItem Content="Imenu"/>
@@ -38,9 +38,9 @@
             </ComboBox>
 
 
-            <TextBox x:Name="textBoxSearch" Margin="10" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
+            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
 
-            <Button Content="Pretraži" Command="{Binding PretraziKorisnikaCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="10" Height="25"/>
+            <Button Content="Pretraži" Command="{Binding PretraziKorisnikaCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="0,0,0,0" />
         </StackPanel>
 
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
@@ -66,9 +66,9 @@
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Novi korisnik" Command="{Binding DodajKorisnikaNavCommand}" CommandParameter="addUser" Margin="20,0,460,0"  Height="25"/>
-            <Button Content="Izbriši" Command="{Binding IzbrisiKorisnikaCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
-            <Button Content="Izmeni" Command="{Binding IzmeniKorisnikaNavCommand}"  HorizontalAlignment="Right" Height="25" IsEnabled="{Binding SelectedInGrid}"/>
+            <Button Content="Novi korisnik" Command="{Binding DodajKorisnikaNavCommand}" CommandParameter="addUser" Margin="20,0,460,0"  />
+            <Button Content="Izbriši" Command="{Binding IzbrisiKorisnikaCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+            <Button Content="Izmeni" Command="{Binding IzmeniKorisnikaNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
 </UserControl>

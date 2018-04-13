@@ -32,7 +32,7 @@
 
             <TextBox x:Name="textBoxSearch" Margin="10" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
 
-            <Button Content="Pretraži" Command="{Binding findCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="10" Height="25"/>
+            <Button Content="Pretraži" Command="{Binding findCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="10" />
         </StackPanel>
 
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">

@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Administracija"
         mc:Ignorable="d"
-        Title="Administracija" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}">
+        Title="Administracija" Height="300" Width="650" WindowStartupLocation="CenterScreen" Icon="Images/username1.png" Background="{Binding BackgroundColor}" KeyDown="MetroWindow_KeyDown" Focusable="True">
 
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="{x:Type Button}">

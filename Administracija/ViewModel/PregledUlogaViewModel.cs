@@ -4,10 +4,12 @@ using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Administracija.ViewModel
 {
@@ -19,7 +21,7 @@ namespace Administracija.ViewModel
         public MyICommand<string> DodajUloguNavCommand { get; private set; }
         public MyICommand<int> IzmeniUloguNavCommand { get; private set; }
         public MyICommand<int> IzbrisiUloguCommand { get; private set; }
-
+        public MyICommand<int> PretraziUlogeCommand { get; private set; }
 
         #endregion
 
@@ -27,6 +29,8 @@ namespace Administracija.ViewModel
         private int _selectedIndex = -1;
         private bool buttonsEnabled;
         private Korisnik UserOnSession;
+        private string textSearch;
+        private ICollectionView defaultView;
         #endregion
 
         public PregledUlogaViewModel()
@@ -34,17 +38,49 @@ namespace Administracija.ViewModel
             DodajUloguNavCommand = new MyICommand<string>(DodajUloguNav);
             IzmeniUloguNavCommand = new MyICommand<int>(IzmeniUloguNav);
             IzbrisiUloguCommand = new MyICommand<int>(IzbrisiUlogu);
+            PretraziUlogeCommand = new MyICommand<int>(PretraziUloge);
             Uloge = new ObservableCollection<Common.Model.Uloga>();
             foreach (var item in dbContext.Ulogas.ToList())
             {
                 Uloge.Add(item);
                 
             }
-
+            textSearch = "";
+            DefaultView = CollectionViewSource.GetDefaultView(Uloge);
         }
 
+
+
         #region CommandImplementation
-        
+        private void PretraziUloge(int type)
+        {
+            if (!type.Equals("/"))
+            {
+                if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(DefaultView);
+                    if (type.Equals("Nazivu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Uloga)w).naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+
+                    DefaultView.Refresh();
+                }
+                else
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(Uloge);
+                    DefaultView.Filter = null;
+                    DefaultView.Refresh();
+                }
+            }
+            else
+            {
+                DefaultView = CollectionViewSource.GetDefaultView(Uloge);
+                DefaultView.Filter = null;
+                DefaultView.Refresh();
+            }
+        }
 
         private void IzbrisiUlogu(int index)
         {
@@ -180,6 +216,26 @@ namespace Administracija.ViewModel
         #endregion
 
         #region Properties
+        public ICollectionView DefaultView
+        {
+            get => defaultView;
+            set
+            {
+                defaultView = value;
+                OnPropertyChanged("DefaultView");
+            }
+        }
+
+        public string TextSearch
+        {
+            get { return textSearch; }
+            set
+            {
+                textSearch = value;
+                OnPropertyChanged("TextSearch");
+            }
+        }
+
         public bool ButtonsEnabled
         {
             get { return buttonsEnabled; }

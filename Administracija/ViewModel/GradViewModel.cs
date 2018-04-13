@@ -62,8 +62,7 @@ namespace Administracija.ViewModel
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(0,null);
                     ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Grad";
-                    
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj grad";
                 }
             }
         }
@@ -77,7 +76,7 @@ namespace Administracija.ViewModel
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(1, selectedValue);
                     ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Grada";
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmeni grad";
                 }
             }
         }

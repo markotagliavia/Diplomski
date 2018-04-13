@@ -19,6 +19,7 @@ namespace Skladistenje.ViewModel
         private ObservableCollection<grad> gradovi;
         private string gradForBind;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
+        private string submitButtonText;
         #endregion
 
         #region Commands
@@ -43,11 +44,13 @@ namespace Skladistenje.ViewModel
             if (v == 0)
             {
                 SkladisteForEdit = new Skladiste();
+                SubmitButtonText = "Dodaj";
             }
             else
             {
                 GradForBind = s.grad.naziv;
                 SkladisteForEdit = s;
+                SubmitButtonText = "Potvrdi izmenu";
             }
 
         }
@@ -255,6 +258,32 @@ namespace Skladistenje.ViewModel
                 OnPropertyChanged(GradForBind);
             }
         }
+
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
         #endregion
+    }
+
+    public class ProizvodKolicina : BindableBase
+    {
+        private string naziv;
+        private string sifra;
+        private string jedinicaMere;
+        private string proizvodjac;
+        private float kolicina;
+
+        public ProizvodKolicina(Proizvod p, float kolicina)
+        {
+            this.JedinicaMere = p.jedinicamere.naziv;
+            this.Sifra = p.sifra;
+            this.Naziv = p.naziv;
+            this.Proizvodjac = p.Proizvodjac.naziv;
+            this.Kolicina = kolicina;
+        }
+
+        public string Naziv { get => naziv; set { naziv = value; OnPropertyChanged("Naziv"); } }
+        public string Sifra { get => sifra; set { sifra = value; OnPropertyChanged("Sifra"); } }
+        public string JedinicaMere { get => jedinicaMere; set { jedinicaMere = value; OnPropertyChanged("JedinicaMere"); } }
+        public string Proizvodjac { get => proizvodjac; set { proizvodjac = value; OnPropertyChanged("Proizvodjac"); } }
+        public float Kolicina { get => kolicina; set { kolicina = value; OnPropertyChanged("Kolicina"); } }
     }
 }

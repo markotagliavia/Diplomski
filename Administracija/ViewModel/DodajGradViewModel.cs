@@ -16,6 +16,7 @@ namespace Administracija.ViewModel
         private int context;
         private string stariNaziv;
         private grad grad;
+        private string submitButtonText;
         #endregion
 
         #region Commands
@@ -39,11 +40,13 @@ namespace Administracija.ViewModel
             if (i == 0)
             {
                 Grad = new grad();
+                SubmitButtonText = "Dodaj";
             }
             else
             {
                 Grad = grad;
                 stariNaziv = grad.naziv;
+                SubmitButtonText = "Potvrdi izmenu";
             }
 
         }
@@ -138,6 +141,8 @@ namespace Administracija.ViewModel
                 OnPropertyChanged("Grad");
             }
         }
+
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
         #endregion
     }
 }

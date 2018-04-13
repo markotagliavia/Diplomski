@@ -204,6 +204,14 @@ namespace Administracija
         #endregion
 
         #region EventsLogic
+        private void MetroWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Enter))
+            {
+                prijaviSeButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+        }
+
         private void prijaviSe(object sender, RoutedEventArgs e)
         {
             string inputUsername = usernameTextBox.Text;
@@ -324,5 +332,7 @@ namespace Administracija
             }
         }
         #endregion EventsLogic
+
+
     }
 }

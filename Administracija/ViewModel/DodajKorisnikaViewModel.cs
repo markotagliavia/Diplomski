@@ -40,6 +40,7 @@ namespace Administracija.ViewModel
         private bool addEnabled;
         private bool removeEnabled;
         private ZaposleniKorisnik zaposleni;
+        private string submitButtonText;
         #endregion
 
         public DodajKorisnikaViewModel(int i,ZaposleniKorisnik zk)
@@ -86,12 +87,13 @@ namespace Administracija.ViewModel
                 }
 
                 GradForBind = zk.Grad;
-
+                SubmitButtonText = "Potvrdi izmenu";
             }
             else
             {
                 userForBind = new ZaposleniKorisnik();
                 sefForBind = "Nema šefa";
+                SubmitButtonText = "Dodaj";
             }
             foreach (var item in dbContext.Ulogas)
             {
@@ -478,8 +480,8 @@ namespace Administracija.ViewModel
             }
         }
 
-        
-        
+
+        public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
         #endregion
     }
 }

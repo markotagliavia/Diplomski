@@ -284,6 +284,7 @@ namespace Skladistenje.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
                     }
                     else
                     {

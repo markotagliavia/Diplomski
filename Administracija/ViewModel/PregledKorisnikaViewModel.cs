@@ -308,6 +308,7 @@ namespace Administracija.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Korisnik";
                     }
                     else
                     {
