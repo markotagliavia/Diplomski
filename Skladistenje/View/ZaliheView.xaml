@@ -1,12 +1,53 @@
-﻿<UserControl x:Class="Skladistenje.View.ZaliheView"
+﻿<UserControl x:Class="Skladistenje.View.Zalihe"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Skladistenje.View"
+             xmlns:viewmodels="clr-namespace:Skladistenje.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:ZaliheViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
+            <ComboBox x:Name="comboBoxSearch" Margin="10,0,0,0" Height="25" Width="120" >
+                <ComboBoxItem  IsSelected="True" Content="/"/>
+                <ComboBoxItem  Content="Proizvodu"/>
+                <ComboBoxItem Content="Skladištu"/>
+                <ComboBoxItem Content="Rafu"/>
+                <ComboBoxItem Content="Količini"/>
+                <ComboBoxItem Content="Rezervisanom"/>
+                <ComboBoxItem Content="Minimumu količine"/>
+            </ComboBox>
+
+
+            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
+
+            <Button Content="Pretraži" Command="{Binding PretraziZaliheCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="0,0,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="zaliheGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Proizvod" Binding="{Binding Proizvod.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Skladište" Binding="{Binding Skladiste.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Raf" Binding="{Binding raf}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Količina" Binding="{Binding kolicina}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Rezervisano" Binding="{Binding rezervisano}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Minimum količine" Binding="{Binding minimumkolicine}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

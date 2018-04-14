@@ -89,7 +89,6 @@ namespace Skladistenje.ViewModel
 
         private void DodajSkladiste(object obj)
         {
-            //TO DO
             try
             {
                 foreach (Window w in Application.Current.Windows)
