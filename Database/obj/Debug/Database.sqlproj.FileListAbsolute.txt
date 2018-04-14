@@ -31,8 +31,4 @@ D:\E3\DIplomskiKlon3april\Database\bin\Debug\Database.pdb
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.dll
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.pdb
-D:\E3\DIplomskiKlon3april\Database\obj\Debug\Model.xml
-D:\E3\DIplomskiKlon3april\Database\obj\Debug\refactor.xml
-D:\E3\DIplomskiKlon3april\Database\obj\Debug\postdeploy.sql
-D:\E3\DIplomskiKlon3april\Database\obj\Debug\predeploy.sql
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache

@@ -67,7 +67,7 @@
                     </StackPanel>
 
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinom}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinom, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="300">
+                        <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinom}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinom, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>

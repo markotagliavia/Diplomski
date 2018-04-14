@@ -31,6 +31,10 @@ namespace Skladistenje.ViewModel
             PretraziZaliheCommand = new MyICommand<string>(PretraziZalihe);
             textSearch = "";
             JediniceZaliha = new ObservableCollection<Zalihe>();
+            foreach (var item in dbContext.Zalihes.ToList())
+            {
+                JediniceZaliha.Add(item);
+            }
             DefaultView = CollectionViewSource.GetDefaultView(jediniceZaliha);
         }
 

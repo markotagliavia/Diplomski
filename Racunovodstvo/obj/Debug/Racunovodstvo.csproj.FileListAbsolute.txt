@@ -185,3 +185,11 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\Dod
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\PretraziStorno.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajStorno.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\PretraziStorno.baml
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajFakturu.g.cs
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajPoslovnogPartnera.g.cs
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajStorno.g.cs
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\PretraziStorno.g.cs
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajFakturu.baml
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajPoslovnogPartnera.baml
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajStorno.baml
+D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\PretraziStorno.baml

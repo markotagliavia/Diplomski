@@ -115,7 +115,7 @@ namespace Skladistenje.ViewModel
                         {
                             if (dbContext.Zalihes.Any(x => x.Skladiste.naziv.Equals(SkladisteForEdit.naziv) && x.Proizvod.sifra.Equals(item.Sifra)))
                             {
-                                dbContext.Zalihes.FirstOrDefault(x => x.Skladiste.naziv.Equals(SkladisteForEdit.naziv) && x.Proizvod.sifra.Equals(item.Sifra) && x.raf.Equals(item.Raf)).kolicina += float.Parse(item.Kolicina);
+                                dbContext.Zalihes.FirstOrDefault(x => x.Skladiste.naziv.Equals(SkladisteForEdit.naziv) && x.Proizvod.sifra.Equals(item.Sifra)).kolicina += float.Parse(item.Kolicina);
                             }
                             else
                             {
