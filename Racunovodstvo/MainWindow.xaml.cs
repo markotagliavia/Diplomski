@@ -45,16 +45,7 @@ namespace Racunovodstvo
             }
         }
 
-        private void FaktureCall(object sender, RoutedEventArgs e)
-        {
-                        foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("fakture");
-                }
-            }
-        }
+       
 
         private void ProizvodiCall(object sender, RoutedEventArgs e)
         {
@@ -158,6 +149,43 @@ namespace Racunovodstvo
         private void deselect(object sender, RoutedEventArgs e)
         {
             listView.SelectedIndex = -1;
+        }
+
+
+        private void FaktureCall(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
+                }
+            }
+        }
+        private void MenuItem1_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+                }
+            }
+        }
+        private void MenuItem2_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
+                }
+            }
         }
     }
 }

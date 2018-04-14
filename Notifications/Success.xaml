@@ -34,7 +34,11 @@
             <Image Source="Images/success.png" Height="40"></Image>
         </Grid>
         <Grid Grid.Column="1">
-            <Label Content="{Binding Message}" Foreground="White" FontFamily="Comic Sans" FontSize="10" HorizontalAlignment="Center" Height="60" Width="Auto" Margin="0,0,-10,10"/>
+            <Label Foreground="White" FontFamily="Comic Sans" FontSize="10" HorizontalAlignment="Center" Height="60" Width="Auto" Margin="0,10,0,10">
+                <Label.Content>
+                    <AccessText TextWrapping="Wrap" Text="{Binding Message}"/>
+                </Label.Content>
+            </Label>
         </Grid>
         <Grid Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right">
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="#FF317654" BorderBrush="#FF317654" Margin="0,0,0,0" Click="Exit" >

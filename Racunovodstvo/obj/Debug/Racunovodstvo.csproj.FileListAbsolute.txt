@@ -177,3 +177,11 @@ D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CoreCompi
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajFakturu.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajPoslovnogPartnera.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajFakturu.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajPoslovnogPartnera.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajStorno.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\PretraziStorno.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\DodajStorno.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\PretraziStorno.baml
