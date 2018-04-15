@@ -26,7 +26,6 @@ namespace Common.Model
         public double kolicina { get; set; }
         public double rabat { get; set; }
         public double cena { get; set; }
-        public double izdatorobe { get; set; }
         public int faktura_id { get; set; }
         public int zalihe_proizvod_id { get; set; }
         public int zalihe_skladiste_id { get; set; }

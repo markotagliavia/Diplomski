@@ -19,24 +19,24 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="datumfakturisanja" Type="date" Nullable="false" />
+          <Property Name="datumfakturisanja" Type="date" />
           <Property Name="upripremi" Type="bit" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="zaposleni_id" Type="int" Nullable="false" />
           <Property Name="datumprometadobara" Type="date" />
           <Property Name="redovna" Type="bit" Nullable="false" />
-          <Property Name="ulazna" Type="bit" />
-          <Property Name="placeno" Type="float" Nullable="false" />
-          <Property Name="pdv" Type="float" Nullable="false" />
-          <Property Name="otpremljena" Type="bit" Nullable="false" />
-          <Property Name="rokplacanja" Type="date" Nullable="false" />
-          <Property Name="avansnoplacanje" Type="bit" Nullable="false" />
-          <Property Name="avans" Type="float" Nullable="false" />
-          <Property Name="profaktura_id" Type="int" Nullable="false" />
-          <Property Name="likvidirano" Type="bit" Nullable="false" />
-          <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
-          <Property Name="stornoceo" Type="bit" Nullable="false" />
+          <Property Name="ulazna" Type="bit" Nullable="false" />
+          <Property Name="placeno" Type="float" />
+          <Property Name="pdv" Type="float" />
+          <Property Name="otpremljena" Type="bit" />
+          <Property Name="rokplacanja" Type="date" />
+          <Property Name="avansnoplacanje" Type="bit" />
+          <Property Name="avans" Type="float" />
+          <Property Name="profaktura_id" Type="int" />
+          <Property Name="likvidirano" Type="bit" />
+          <Property Name="poslovnipartner_mbr" Type="int" />
+          <Property Name="stornoceo" Type="bit" />
           <Property Name="oznaka" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="grad">
@@ -82,6 +82,17 @@
           <Property Name="zaposleni_id" Type="int" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="ulogovan" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aplikacija" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="30" />
+          <Property Name="tekst" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="procitana" Type="bit" Nullable="false" />
+          <Property Name="obradjena" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Opomena">
           <Key>
@@ -226,7 +237,6 @@
           <Property Name="kolicina" Type="float" Nullable="false" />
           <Property Name="rabat" Type="float" Nullable="false" />
           <Property Name="cena" Type="float" Nullable="false" />
-          <Property Name="izdatorobe" Type="float" Nullable="false" />
           <Property Name="faktura_id" Type="int" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
           <Property Name="zalihe_skladiste_id" Type="int" Nullable="false" />
@@ -353,6 +363,7 @@
             <PropertyRef Name="zaposleni_id" />
             <PropertyRef Name="skladiste_id" />
           </Key>
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="zaposleni_id" Type="int" Nullable="false" />
           <Property Name="skladiste_id" Type="int" Nullable="false" />
         </EntityType>
@@ -369,7 +380,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Faktura_FK1">
-          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="0..1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PoslovniPartner">
@@ -381,7 +392,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Faktura_FK2">
-          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="0..1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profaktura">
@@ -1010,6 +1021,7 @@
           <EntitySet Name="Karakteristika" EntityType="Self.Karakteristika" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kompenzacija" EntityType="Self.Kompenzacija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Opomena" EntityType="Self.Opomena" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission_Uloga" EntityType="Self.Permission_Uloga" Schema="dbo" store:Type="Tables" />
@@ -1262,24 +1274,24 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="datumfakturisanja" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="datumfakturisanja" Type="DateTime" Precision="0" />
           <Property Name="upripremi" Type="Boolean" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
           <Property Name="datumprometadobara" Type="DateTime" Precision="0" />
           <Property Name="redovna" Type="Boolean" Nullable="false" />
-          <Property Name="ulazna" Type="Boolean" />
-          <Property Name="placeno" Type="Double" Nullable="false" />
-          <Property Name="pdv" Type="Double" Nullable="false" />
-          <Property Name="otpremljena" Type="Boolean" Nullable="false" />
-          <Property Name="rokplacanja" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="avansnoplacanje" Type="Boolean" Nullable="false" />
-          <Property Name="avans" Type="Double" Nullable="false" />
-          <Property Name="profaktura_id" Type="Int32" Nullable="false" />
-          <Property Name="likvidirano" Type="Boolean" Nullable="false" />
-          <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
-          <Property Name="stornoceo" Type="Boolean" Nullable="false" />
+          <Property Name="ulazna" Type="Boolean" Nullable="false" />
+          <Property Name="placeno" Type="Double" />
+          <Property Name="pdv" Type="Double" />
+          <Property Name="otpremljena" Type="Boolean" />
+          <Property Name="rokplacanja" Type="DateTime" Precision="0" />
+          <Property Name="avansnoplacanje" Type="Boolean" />
+          <Property Name="avans" Type="Double" />
+          <Property Name="profaktura_id" Type="Int32" />
+          <Property Name="likvidirano" Type="Boolean" />
+          <Property Name="poslovnipartner_mbr" Type="Int32" />
+          <Property Name="stornoceo" Type="Boolean" />
           <Property Name="oznaka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Zaposleni" Relationship="Self.Faktura_FK" FromRole="Faktura" ToRole="Zaposleni" />
           <NavigationProperty Name="PoslovniPartner" Relationship="Self.Faktura_FK1" FromRole="Faktura" ToRole="PoslovniPartner" />
@@ -1343,6 +1355,17 @@
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="ulogovan" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Zaposleni" Relationship="Self.Korisnik_FK" FromRole="Korisnik" ToRole="Zaposleni" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aplikacija" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tekst" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="procitana" Type="Boolean" Nullable="false" />
+          <Property Name="obradjena" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Opomena">
           <Key>
@@ -1489,7 +1512,6 @@
           <Property Name="kolicina" Type="Double" Nullable="false" />
           <Property Name="rabat" Type="Double" Nullable="false" />
           <Property Name="cena" Type="Double" Nullable="false" />
-          <Property Name="izdatorobe" Type="Double" Nullable="false" />
           <Property Name="faktura_id" Type="Int32" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
           <Property Name="zalihe_skladiste_id" Type="Int32" Nullable="false" />
@@ -1637,6 +1659,7 @@
             <PropertyRef Name="zaposleni_id" />
             <PropertyRef Name="skladiste_id" />
           </Key>
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
           <Property Name="skladiste_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Skladiste" Relationship="Self.ZaposleniSkladista_FK" FromRole="ZaposleniSkladista" ToRole="Skladiste" />
@@ -1656,7 +1679,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Faktura_FK1">
-          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="0..1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PoslovniPartner">
@@ -1668,7 +1691,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Faktura_FK2">
-          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="1" />
+          <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="0..1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profaktura">
@@ -2177,6 +2200,7 @@
           <EntitySet Name="Karakteristikas" EntityType="Self.Karakteristika" />
           <EntitySet Name="Kompenzacijas" EntityType="Self.Kompenzacija" />
           <EntitySet Name="Korisniks" EntityType="Self.Korisnik" />
+          <EntitySet Name="Notifications" EntityType="Self.Notification" />
           <EntitySet Name="Opomenas" EntityType="Self.Opomena" />
           <EntitySet Name="Permissions" EntityType="Self.Permission" />
           <EntitySet Name="Popis" EntityType="Self.Popi" />
@@ -2470,6 +2494,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="DeltaEximModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="aplikacija" ColumnName="aplikacija" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="tekst" ColumnName="tekst" />
+                <ScalarProperty Name="procitana" ColumnName="procitana" />
+                <ScalarProperty Name="obradjena" ColumnName="obradjena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Opomenas">
             <EntityTypeMapping TypeName="DeltaEximModel.Opomena">
               <MappingFragment StoreEntitySet="Opomena">
@@ -2588,7 +2624,6 @@
                 <ScalarProperty Name="kolicina" ColumnName="kolicina" />
                 <ScalarProperty Name="rabat" ColumnName="rabat" />
                 <ScalarProperty Name="cena" ColumnName="cena" />
-                <ScalarProperty Name="izdatorobe" ColumnName="izdatorobe" />
                 <ScalarProperty Name="faktura_id" ColumnName="faktura_id" />
                 <ScalarProperty Name="zalihe_proizvod_id" ColumnName="zalihe_proizvod_id" />
                 <ScalarProperty Name="zalihe_skladiste_id" ColumnName="zalihe_skladiste_id" />
@@ -2696,6 +2731,7 @@
           <EntitySetMapping Name="ZaposleniSkladistas">
             <EntityTypeMapping TypeName="DeltaEximModel.ZaposleniSkladista">
               <MappingFragment StoreEntitySet="ZaposleniSkladista">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
                 <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
               </MappingFragment>

@@ -199,6 +199,14 @@ namespace Racunovodstvo.ViewModel
                         Back("");
                         Notifications.Success s = new Notifications.Success("Uspešno ste kreirali izlaznu fakturu");
                         s.Show();
+                        Common.Model.Notification n = new Common.Model.Notification();
+                        n.aplikacija = "Skladistenje";
+                        n.adresa = SkladisteForBind;
+                        n.obradjena = false;
+                        n.procitana = false;
+                        n.tekst = $"Kreirana je Izlazna faktura {FakturaForEdit.oznaka}";
+                        dbContext.Notifications.Add(n);
+                        dbContext.SaveChanges();
                         SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana izlazna faktura {FakturaForEdit.oznaka}", "Info");
                     }
                     else
@@ -359,8 +367,12 @@ namespace Racunovodstvo.ViewModel
             get => removeEnabled;
             set
             {
-                if (!FakturaForEdit.otpremljena) removeEnabled = value;
-                else removeEnabled = false;
+                if (FakturaForEdit.otpremljena != null)
+                {
+                    if (!(bool)FakturaForEdit.otpremljena) removeEnabled = value;
+                    else removeEnabled = false;
+                }
+                    
                 OnPropertyChanged("RemoveEnabled");
             }
         }
@@ -370,8 +382,11 @@ namespace Racunovodstvo.ViewModel
             get => addEnabled;
             set
             {
-                if (!FakturaForEdit.otpremljena) addEnabled = value;
-                else addEnabled = false;
+                if (FakturaForEdit.otpremljena != null)
+                {
+                    if (!(bool)FakturaForEdit.otpremljena) addEnabled = value;
+                    else addEnabled = false;
+                }
                 OnPropertyChanged("AddEnabled");
                 
             }
@@ -419,7 +434,27 @@ namespace Racunovodstvo.ViewModel
             {
                 if (_selectedProizvod == value)
                 {
-                    if (!FakturaForEdit.otpremljena)
+                    if (FakturaForEdit.otpremljena != null)
+                    {
+                        if (!(bool)FakturaForEdit.otpremljena)
+                        {
+                            if (_selectedProizvod > -1)
+                            {
+                                AddEnabled = true;
+                            }
+                            else
+                            {
+                                AddEnabled = false;
+                            }
+                        }
+                    }
+                        
+                    return;
+                }
+                _selectedProizvod = value;
+                if (FakturaForEdit.otpremljena != null)
+                {
+                    if (!(bool)FakturaForEdit.otpremljena)
                     {
                         if (_selectedProizvod > -1)
                         {
@@ -430,20 +465,8 @@ namespace Racunovodstvo.ViewModel
                             AddEnabled = false;
                         }
                     }
-                    return;
                 }
-                _selectedProizvod = value;
-                if (!FakturaForEdit.otpremljena)
-                {
-                    if (_selectedProizvod > -1)
-                    {
-                        AddEnabled = true;
-                    }
-                    else
-                    {
-                        AddEnabled = false;
-                    }
-                }
+                
                 return;
             }
         }
@@ -455,23 +478,27 @@ namespace Racunovodstvo.ViewModel
             {
                 if (_selectedProizvodSaKolicinom == value)
                 {
-                    if(!FakturaForEdit.otpremljena)
+                    if (FakturaForEdit.otpremljena != null)
                     {
-                        if (_selectedProizvodSaKolicinom > -1)
+                        if (!(bool)FakturaForEdit.otpremljena)
                         {
-                            RemoveEnabled = true;
-                        }
-                        else
-                        {
-                            RemoveEnabled = false;
+                            if (_selectedProizvodSaKolicinom > -1)
+                            {
+                                RemoveEnabled = true;
+                            }
+                            else
+                            {
+                                RemoveEnabled = false;
+                            }
                         }
                     }
+                    
                        
                     
                     return;
                 }
                 _selectedProizvodSaKolicinom = value;
-                if (!FakturaForEdit.otpremljena)
+                if (!(bool)FakturaForEdit.otpremljena)
                 {
                     if (_selectedProizvodSaKolicinom > -1)
                     {

@@ -20,6 +20,7 @@ namespace Common.Model
             this.SkladisteniDokuments = new HashSet<SkladisteniDokument>();
         }
     
+        public bool active { get; set; }
         public int zaposleni_id { get; set; }
         public int skladiste_id { get; set; }
     

@@ -25,24 +25,24 @@ namespace Common.Model
             this.Fakturas = new HashSet<Faktura>();
         }
     
-        public System.DateTime datumfakturisanja { get; set; }
+        public Nullable<System.DateTime> datumfakturisanja { get; set; }
         public bool upripremi { get; set; }
         public int id { get; set; }
         public bool active { get; set; }
         public int zaposleni_id { get; set; }
         public Nullable<System.DateTime> datumprometadobara { get; set; }
         public bool redovna { get; set; }
-        public Nullable<bool> ulazna { get; set; }
-        public double placeno { get; set; }
-        public double pdv { get; set; }
-        public bool otpremljena { get; set; }
-        public System.DateTime rokplacanja { get; set; }
-        public bool avansnoplacanje { get; set; }
-        public double avans { get; set; }
-        public int profaktura_id { get; set; }
-        public bool likvidirano { get; set; }
-        public int poslovnipartner_mbr { get; set; }
-        public bool stornoceo { get; set; }
+        public bool ulazna { get; set; }
+        public Nullable<double> placeno { get; set; }
+        public Nullable<double> pdv { get; set; }
+        public Nullable<bool> otpremljena { get; set; }
+        public Nullable<System.DateTime> rokplacanja { get; set; }
+        public Nullable<bool> avansnoplacanje { get; set; }
+        public Nullable<double> avans { get; set; }
+        public Nullable<int> profaktura_id { get; set; }
+        public Nullable<bool> likvidirano { get; set; }
+        public Nullable<int> poslovnipartner_mbr { get; set; }
+        public Nullable<bool> stornoceo { get; set; }
         public string oznaka { get; set; }
     
         public virtual Zaposleni Zaposleni { get; set; }

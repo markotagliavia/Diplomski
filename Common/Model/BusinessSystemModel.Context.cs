@@ -18,7 +18,7 @@ namespace Common.Model
         public DeltaEximEntities()
             : base("name=DeltaEximEntities")
         {
-            this.Database.Connection.ConnectionString = ConnectionString.secureConnectionString();
+            this.Database.Connection.ConnectionString = Common.ConnectionString.secureConnectionString();
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,6 +33,7 @@ namespace Common.Model
         public virtual DbSet<Karakteristika> Karakteristikas { get; set; }
         public virtual DbSet<Kompenzacija> Kompenzacijas { get; set; }
         public virtual DbSet<Korisnik> Korisniks { get; set; }
+        public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Opomena> Opomenas { get; set; }
         public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<Popi> Popis { get; set; }
