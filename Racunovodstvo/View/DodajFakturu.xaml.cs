@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,14 @@ namespace Racunovodstvo.View
         public DodajFakturu()
         {
             InitializeComponent();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    this.DataContext = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                }
+            }
         }
+        
     }
 }

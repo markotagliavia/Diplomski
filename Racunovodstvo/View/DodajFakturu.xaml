@@ -4,9 +4,136 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Racunovodstvo.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:ui="clr-namespace:Racunovodstvo"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
+            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="310"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                   
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Oznaka : " Height="30" Width="100" FontSize="14"/>
+                        <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.oznaka}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Datum fakturisanja: " Height="30" Width="130" FontSize="14"/>
+                        <DatePicker Text="{Binding FakturaForEdit.datumfakturisanja}"  Width="140" Margin="10,0,0,0" ></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Datum prometa: " Height="30" Width="130" FontSize="14"/>
+                        <DatePicker Text="{Binding FakturaForEdit.datumprometadobara}"  Width="140" Margin="10,0,0,0" ></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Rok plaćanja: " Height="30" Width="130" FontSize="14"/>
+                        <DatePicker Text="{Binding FakturaForEdit.rokplacanja}"  Width="140" Margin="10,0,0,0" ></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="PDV : " Height="30" Width="100" FontSize="14"/>
+                        <TextBox x:Name="pdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding Pdv}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Plaćeno : " Height="30" Width="100" FontSize="14"/>
+                        <TextBox x:Name="placenoTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.placeno}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Avansno plaćanje : " Height="30" Width="130" FontSize="14"/>
+                        <CheckBox x:Name="avansnoTextBox"  Margin="150,0,0,0" IsChecked="{Binding AvansnoPlacanje}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Avans : " Height="30" Width="100" FontSize="14"/>
+                        <TextBox x:Name="avansTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.avans}" IsEnabled="{Binding PlacanjeEnabled}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                        <Label Content="Poslovni partner : " Height="30" Width="120" FontSize="14"/>
+                        <ComboBox x:Name="partneriComboBox" Width="170" Margin="10,0,0,0" ItemsSource="{Binding PoslovniPartneri}"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding PoslovniPartnerForBind}">
+                        </ComboBox>
+                    </StackPanel>
+                    
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                        <Label Content="Skladišta : " Height="30" Width="100" FontSize="14"/>
+                        <ComboBox x:Name="gradComboBox" Width="170" Margin="10,0,0,0" ItemsSource="{Binding Skladista}"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding SkladisteForBind}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvod}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding Proizvodi, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="130">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+
+                        <StackPanel Orientation="Vertical" Height="300" Width="50">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
+                                <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                            </Button>
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
+                                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                            </Button>
+                        </StackPanel>
+
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinom}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinom, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="320">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}" IsReadOnly="True"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Količina" Binding="{Binding Kolicina}" IsReadOnly="True"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" IsReadOnly="True"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Rabat" Binding="{Binding Rabat}" IsReadOnly="True"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                        <Label Content="Količina : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding KolicinaText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                        <Label Content="Cena : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding CenaText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                        <Label Content="Rabat : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding RabatText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
+                        <Label Content="Ukupno bez PDV : " Height="30" Width="140" FontSize="14"/>
+                        <TextBox x:Name="bezpdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding BezPDV}" IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="30,10,0,0" >
+                        <Label Content="Ukupno : " Height="30" Width="140" FontSize="14"/>
+                        <TextBox x:Name="sapdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding SaPDV}" IsEnabled="false"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,35,0,0">
+                        <Button x:Name="dodajButton" Content="{Binding SubmitButtonText}"  Margin="100,30,20,0" Command="{Binding DodajCommand}"/>
+                        <Button x:Name="otkaziButton" Content="Otkaži" Margin="0,30,0,0" Command="{Binding OtkaziCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
             
+        </StackPanel>
     </Grid>
 </UserControl>
+

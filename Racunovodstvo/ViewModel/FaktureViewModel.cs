@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Racunovodstvo.ViewModel
@@ -67,7 +68,7 @@ namespace Racunovodstvo.ViewModel
                     }
                 }
             }
-            else if (context == 2)
+            else if (context == 2)//ovo ce se brisati
             {
                 foreach (var item in dbContext.Fakturas)
                 {
@@ -175,7 +176,30 @@ namespace Racunovodstvo.ViewModel
 
         private void DodajNav(string obj)
         {
-            throw new NotImplementedException();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    //if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddProizvod))
+                    //{
+                    if (context == 0)
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(0, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Izlazna faktura";
+                    }
+                    else if (context == 1)
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(2, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Ulazna faktura";
+                    }
+                    
+                }
+            }
         }
         #endregion
     }

@@ -30,7 +30,19 @@ namespace SecurityManager
             EditProizvodjac,
             AddGrad,
             DeleteGrad,
-            EditGrad
+            EditGrad,
+            AddUlazna,
+            EditUlazna,
+            DeleteUlazna,
+            AddIzlazna,
+            EditIzlazna,
+            DeleteIzlazna,
+            AddStorno,
+            EditStorno,
+            DeleteStoro,
+            AddProfaktura,
+            EditProfaktura,
+            DeleteProfaktura
     }
 
     public class AuthorizationPolicy

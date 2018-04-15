@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Administracija.ViewModel
         private string stariNaziv;
         private grad grad;
         private string submitButtonText;
+        private Korisnik userOnSession;
         #endregion
 
         #region Commands
@@ -76,18 +78,36 @@ namespace Administracija.ViewModel
             {
                 try
                 {
-                    dbContext.grads.Add(Grad);
-                    dbContext.SaveChanges();
-                    Notifications.Success s = new Notifications.Success("Uspešno ste kreirali grad");
                     foreach (Window w in Application.Current.Windows)
                     {
                         if (w.GetType().Equals(typeof(MainWindow)))
                         {
-                            SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je dodat grad " + Grad.naziv, "Info");
+                            UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
                         }
                     }
-                    Back("");
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddGrad))
+                    {
+                        dbContext.grads.Add(Grad);
+                        dbContext.SaveChanges();
+                        Notifications.Success s = new Notifications.Success("Uspešno ste kreirali grad");
+                        foreach (Window w in Application.Current.Windows)
+                        {
+                            if (w.GetType().Equals(typeof(MainWindow)))
+                            {
+                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je dodat grad " + Grad.naziv, "Info");
+
+                            }
+                        }
+                        Back("");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj dodavanja grada", "Upozorenje");
+                        Back("");
+                    }
 
                 }
                 catch (Exception ex)
@@ -100,26 +120,44 @@ namespace Administracija.ViewModel
             {
                 try
                 {
-                    var original = dbContext.grads.FirstOrDefault(x => x.naziv.Equals(stariNaziv));
-
-                    if (original != null)
-                    {
-                        original.naziv = grad.naziv;
-                        original.postanskibroj = grad.postanskibroj;
-                        original.drzava = grad.drzava;
-                        dbContext.SaveChanges();
-                    }
-                    Notifications.Success s = new Notifications.Success("Uspešno ste izmenili grad " + stariNaziv);
-                    s.Show();
                     foreach (Window w in Application.Current.Windows)
                     {
                         if (w.GetType().Equals(typeof(MainWindow)))
                         {
-                            SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjen grad " + stariNaziv, "Info");
+                            UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
                         }
                     }
-                    Back("");
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditGrad))
+                    {
+                        var original = dbContext.grads.FirstOrDefault(x => x.naziv.Equals(stariNaziv));
+
+                        if (original != null)
+                        {
+                            original.naziv = grad.naziv;
+                            original.postanskibroj = grad.postanskibroj;
+                            original.drzava = grad.drzava;
+                            dbContext.SaveChanges();
+                        }
+                        Notifications.Success s = new Notifications.Success("Uspešno ste izmenili grad " + stariNaziv);
+                        s.Show();
+                        foreach (Window w in Application.Current.Windows)
+                        {
+                            if (w.GetType().Equals(typeof(MainWindow)))
+                            {
+                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjen grad " + stariNaziv, "Info");
+
+                            }
+                        }
+                        Back("");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj izmene grada", "Upozorenje");
+                        Back("");
+                    }
 
                 }
                 catch (Exception ex)
@@ -143,6 +181,8 @@ namespace Administracija.ViewModel
         }
 
         public string SubmitButtonText { get => submitButtonText; set { submitButtonText = value; OnPropertyChanged("SubmitButtonText"); } }
+
+        public Korisnik UserOnSession { get => userOnSession; set => userOnSession = value; }
         #endregion
     }
 }

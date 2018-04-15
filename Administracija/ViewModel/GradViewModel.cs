@@ -25,6 +25,7 @@ namespace Administracija.ViewModel
         private string textSearch;
         private grad selectedValue;
         
+        
         #endregion
 
         #region Commands
@@ -55,35 +56,75 @@ namespace Administracija.ViewModel
 
         private void DodajGradNav(string obj)
         {
-            //to do autorizacija
-            foreach (Window w in Application.Current.Windows)
+            try
             {
-                if (w.GetType().Equals(typeof(MainWindow)))
+                foreach (Window w in Application.Current.Windows)
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(0,null);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj grad";
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+                    }
+                }
+                if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddGrad))
+                {
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(0, null);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Dodaj grad";
+                        }
+                    }
+                }
+                else
+                {
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                    er.Show();
                 }
             }
+            catch (Exception ex)
+            {
+                Notifications.Error e = new Notifications.Error("Greška pri povezivanju sa bazom");
+                e.Show();
+            }
+            
         }
 
         private void IzmeniGradNav(string obj)
         {
-            //to do autorizacija
-            foreach (Window w in Application.Current.Windows)
+            try
             {
-                if (w.GetType().Equals(typeof(MainWindow)))
+                foreach (Window w in Application.Current.Windows)
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(1, selectedValue);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmeni grad";
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+                    }
+                }
+                foreach (Window w in Application.Current.Windows)
+                {
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel = new DodajGradViewModel(1, selectedValue);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajGradViewModel;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmeni grad";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Notifications.Error e = new Notifications.Error("Greška pri povezivanju sa bazom");
+                e.Show();
+            }
+            
         }
 
         private void IzbrisiGrad(string obj)
         {
-            //to do autorizacija
+            
             try
             {
                 foreach (Window w in Application.Current.Windows)
@@ -95,47 +136,47 @@ namespace Administracija.ViewModel
                     }
                 }
 
-                //if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteUser))
-                //{
-
-
-                if (SelectedIndex > -1)
+                if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteGrad))
                 {
-                    string nazivbrisanog = SelectedValue.naziv;
-                    if (dbContext.grads.Any(x => x.id == selectedValue.id))
-                    {
-                        dbContext.grads.Remove(dbContext.grads.FirstOrDefault(x => x.id == selectedValue.id));
-                        dbContext.SaveChanges();
-                        Success suc = new Success("Uspešno ste obrisali grad.");
-                        suc.Show();
 
-                        SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje grada {nazivbrisanog}.", "Info");
-                        gradovi.Clear();
-                        foreach (var item in dbContext.grads.ToList())
+
+                    if (SelectedIndex > -1)
+                    {
+                        string nazivbrisanog = SelectedValue.naziv;
+                        if (dbContext.grads.Any(x => x.id == selectedValue.id))
                         {
-                            gradovi.Add(item);
+                            dbContext.grads.Remove(dbContext.grads.FirstOrDefault(x => x.id == selectedValue.id));
+                            dbContext.SaveChanges();
+                            Success suc = new Success("Uspešno ste obrisali grad.");
+                            suc.Show();
+
+                            SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje grada {nazivbrisanog}.", "Info");
+                            gradovi.Clear();
+                            foreach (var item in dbContext.grads.ToList())
+                            {
+                                gradovi.Add(item);
+
+                            }
+                        }
+                        else
+                        {
+                            Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
+                            er.Show();
 
                         }
                     }
-                    else
-                    {
-                        Error er = new Error("Greška pri pronalaženju korisnika.\nZa više informacija obratite se administratorima.");
-                        er.Show();
 
-                    }
+
+
                 }
+                else
+                {
 
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                    er.Show();
+                    SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj brisnja grada", "Upozorenje");
 
-
-                //}
-                //else
-                //{
-
-                //    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
-                //    er.Show();
-                //    SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj brisnja korisnika", "Upozorenje");
-
-                //}
+                }
 
             }
             catch (Exception ex)
