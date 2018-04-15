@@ -25,7 +25,7 @@ namespace Skladistenje
         public DodajSkladisteViewModel dodajSkladisteViewModel = new DodajSkladisteViewModel(0, null);
         public DodajProizvodViewModel dodajProizvodViewModel = new DodajProizvodViewModel(0, null);
         public DodajProizvodjacaViewModel dodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null);
-        private ZaliheViewModel zaliheViewModel = new ZaliheViewModel();
+        private ZaliheViewModel zaliheViewModel = new ZaliheViewModel(null);
         private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
         private PopisViewModel popisViewModel = new PopisViewModel();
@@ -181,6 +181,8 @@ namespace Skladistenje
             set { dodajProizvodjacaViewModel = value; }
         }
 
+        public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
+
         #endregion Properties
 
         public MainWindowViewModel()
@@ -227,6 +229,7 @@ namespace Skladistenje
                 
                 case "skladista":
                     ViewModelTitle = "Skladišta";
+                    skladistaViewModel = new SkladistaViewModel();
                     CurrentViewModel = skladistaViewModel;
                     break;
                 case "dodajSkladiste":
@@ -235,7 +238,8 @@ namespace Skladistenje
                     break;
                 case "zalihe":
                     ViewModelTitle = "Zalihe";
-                    CurrentViewModel = zaliheViewModel;
+                    ZaliheViewModel = new ZaliheViewModel(UserOnSession);
+                    CurrentViewModel = ZaliheViewModel;
                     break;
                 case "skladisteniDokumenti":
                     ViewModelTitle = "Skladišteni Dokumenti";
@@ -243,6 +247,7 @@ namespace Skladistenje
                     break;
                 case "proizvodi":
                     ViewModelTitle = "Pregled Proizvoda";
+                    proizvodiViewModel = new ProizvodiViewModel();
                     CurrentViewModel = proizvodiViewModel;
                     break;
                 case "dodajProizvod":
@@ -251,6 +256,7 @@ namespace Skladistenje
                     break;
                 case "proizvodjaci":
                     ViewModelTitle = "Pregled Proizvođača";
+                    pregledProizvodjacaViewModel = new PregledProizvodjacaViewModel();
                     CurrentViewModel = pregledProizvodjacaViewModel;
                     break;
                 case "dodajProizvodjaca":
@@ -263,6 +269,7 @@ namespace Skladistenje
                     break;
                 case "zaposleni":
                     ViewModelTitle = "Zaposleni";
+                    zaposleniViewModel = new ZaposleniViewModel();
                     CurrentViewModel = zaposleniViewModel;
                     break;
                 case "obavestenja":

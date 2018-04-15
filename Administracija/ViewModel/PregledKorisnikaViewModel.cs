@@ -228,6 +228,13 @@ namespace Administracija.ViewModel
                         korisnickoImeBrisanog = SelectedValue.KorisnickoIme;
                         if (dbContext.Korisniks.Any(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)))
                         {
+                            foreach (var item in dbContext.ZaposleniSkladistas.ToList())
+                            {
+                                if (item.active == true && item.Zaposleni.id == dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)).zaposleni_id)
+                                {
+                                    dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.active == true && x.zaposleni_id == item.zaposleni_id && x.skladiste_id == item.skladiste_id).active = false;
+                                }
+                            }
                             dbContext.Korisniks.Remove(dbContext.Korisniks.First(x => x.active == true && x.korisnickoime.Equals(korisnickoImeBrisanog)));
                             dbContext.SaveChanges();
                             Success suc = new Success("Uspešno ste obrisali korisnika.");

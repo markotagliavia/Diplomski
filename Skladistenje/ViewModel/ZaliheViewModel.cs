@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Skladistenje.ViewModel
@@ -26,14 +27,20 @@ namespace Skladistenje.ViewModel
         private ICollectionView defaultView;
         #endregion
 
-        public ZaliheViewModel()
+        public ZaliheViewModel(Korisnik k)
         {
+            UserOnSession = k;
             PretraziZaliheCommand = new MyICommand<string>(PretraziZalihe);
             textSearch = "";
             JediniceZaliha = new ObservableCollection<Zalihe>();
-            foreach (var item in dbContext.Zalihes.ToList())
+            if (k != null)
             {
-                JediniceZaliha.Add(item);
+                foreach (var item in dbContext.Zalihes.ToList())
+                {
+                    if (dbContext.ZaposleniSkladistas.Any(x => x.active == true && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(UserOnSession.korisnickoime))
+                                    && x.skladiste_id == item.skladiste_id))
+                        JediniceZaliha.Add(item);
+                }
             }
             DefaultView = CollectionViewSource.GetDefaultView(jediniceZaliha);
         }

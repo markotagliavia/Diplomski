@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,7 +45,10 @@ namespace Skladistenje.ViewModel
             Zaposleni = new ObservableCollection<ZaposleniKorisnik>();
             foreach (var item in dbContext.Zaposlenis.ToList())
             {
-                Zaposleni.Add(new ZaposleniKorisnik(item.ime, item.prezime, item.Korisniks.ElementAt(0).korisnickoime));
+                if (item.active)
+                {
+                    Zaposleni.Add(new ZaposleniKorisnik(item.ime, item.prezime, item.Korisniks.ElementAt(0).korisnickoime, item.active, item.id));
+                }
             }
         }
 
@@ -56,11 +60,13 @@ namespace Skladistenje.ViewModel
             set
             {
                 zaposleniForBind = value;
+                DodeljenaSkladista.Clear();
+                PonudjenaSkladista.Clear();
                 string[] pom = ZaposleniForBind.Split('(');
                 string username = pom[1].Trim(')');
                 foreach (var item in dbContext.ZaposleniSkladistas.ToList())
                 {
-                    if (item.Zaposleni.Korisniks.ElementAt(0).korisnickoime.Equals(username))
+                    if (item.Zaposleni.Korisniks.ElementAt(0).korisnickoime.Equals(username) && item.active == true)
                     {
                         if (!DodeljenaSkladista.Any(x => x.naziv.Equals(item.Skladiste.naziv)))
                         {
@@ -212,7 +218,44 @@ namespace Skladistenje.ViewModel
 
         private void Sacuvaj(object obj)
         {
-            //TO DO : ono sto smo pricali sa active treba dodati u model
+            //TO DO autorizacija i audit
+
+            string[] pom = ZaposleniForBind.Split('(');
+            string username = pom[1].Trim(')');
+            foreach (var dodeljenoItem in DodeljenaSkladista.ToList())
+            {
+                if(!dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username))))
+                {
+                    ZaposleniSkladista zs = new ZaposleniSkladista();
+                    zs.active = true;
+                    zs.skladiste_id = dodeljenoItem.id;
+                    zs.zaposleni_id = Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id;
+                    dbContext.ZaposleniSkladistas.Add(zs);
+                }
+                else if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false))
+                {
+                    dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false).active = true;
+                }
+            }
+            dbContext.SaveChanges();
+
+            foreach (var item in dbContext.ZaposleniSkladistas.ToList())
+            {
+                if (item.zaposleni_id == Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id) //zaposleni_id nadjen
+                {
+                    if (!DodeljenaSkladista.Any(x => x.id == item.skladiste_id))        //za njega ako nema skladiste u listi izbacuje se 
+                    {
+                        if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true))
+                        {
+                            dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true).active = false;
+                        }
+                    }
+                }
+            }
+            dbContext.SaveChanges();
+
+            Success s = new Success("Uspešno ste izmenili zaposlenog");
+            s.Show();
         }
         #endregion
 
@@ -224,18 +267,24 @@ namespace Skladistenje.ViewModel
         private string prezime;
         private string korisnickoIme;
         private string identifikacija;
+        private bool active;
+        private int id;
 
-        public ZaposleniKorisnik(string ime, string prz, string ki)
+        public ZaposleniKorisnik(string ime, string prz, string ki, bool active, int id)
         {
+            this.Active = active;
             this.Ime = ime;
             Prezime = prz;
             KorisnickoIme = ki;
             identifikacija = ime + " " + prezime + $"({korisnickoIme})";
+            this.Id = id;
         }
 
         public string Ime { get => ime; set { ime = value; OnPropertyChanged("Ime"); } }
         public string Prezime { get => prezime; set { prezime = value; OnPropertyChanged("Prezime"); } }
         public string KorisnickoIme { get => korisnickoIme; set { korisnickoIme = value; OnPropertyChanged("korisnickoIme"); } }
         public string Identifikacija { get => identifikacija; set { identifikacija = value; OnPropertyChanged("Identifikacija"); } }
+        public bool Active { get => active; set => active = value; }
+        public int Id { get => id; set => id = value; }
     }
 }
