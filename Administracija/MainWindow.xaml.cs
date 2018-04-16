@@ -31,7 +31,7 @@ namespace Administracija
                     ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
                     ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
                 }
-            }           
+            }
         }
 
         private void auditMethodCall(object sender, RoutedEventArgs e)
@@ -90,6 +90,17 @@ namespace Administracija
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("grad");
+                }
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).Close("");
                 }
             }
         }

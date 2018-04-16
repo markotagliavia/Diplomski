@@ -209,7 +209,7 @@ namespace Racunovodstvo
             ButtonCloseMenu = Visibility.Visible;
         }
 
-        private void Close(string obj)
+        public void Close(string obj)
         {
             dbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
             dbContext.SaveChanges();

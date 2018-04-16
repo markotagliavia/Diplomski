@@ -24,6 +24,7 @@ namespace Skladistenje.ViewModel
         private bool removeEnabled;
         private int _selectedPonudjenaSkl = -1;
         private int _selectedDodeljenaSkl = -1;
+        private bool mozeEdit = false;
         #endregion
 
         #region Commands
@@ -40,6 +41,17 @@ namespace Skladistenje.ViewModel
             AddCommand = new MyICommand<int>(Add);
             RemoveCommand = new MyICommand<int>(Remove);
             userOnSession = new Korisnik();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    if (((MainWindowViewModel)((MainWindow)w).DataContext) != null)
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                        mozeEdit = SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditZaposleniSkl);
+                    }
+                }
+            }
             PonudjenaSkladista = new ObservableCollection<Skladiste>();
             DodeljenaSkladista = new ObservableCollection<Skladiste>();
             Zaposleni = new ObservableCollection<ZaposleniKorisnik>();
@@ -120,7 +132,25 @@ namespace Skladistenje.ViewModel
             get => _selectedPonudjenaSkl;
             set
             {
-                if (_selectedPonudjenaSkl == value)
+                if (mozeEdit)
+                {
+                    if (_selectedPonudjenaSkl == value)
+                    {
+                        if (_selectedPonudjenaSkl > -1)
+                        {
+                            AddEnabled = true;
+                        }
+                        else
+                        {
+                            AddEnabled = false;
+                        }
+                        return;
+                    }
+                }
+
+                _selectedPonudjenaSkl = value;
+
+                if (mozeEdit)
                 {
                     if (_selectedPonudjenaSkl > -1)
                     {
@@ -132,18 +162,6 @@ namespace Skladistenje.ViewModel
                     }
                     return;
                 }
-
-                _selectedPonudjenaSkl = value;
-
-                if (_selectedPonudjenaSkl > -1)
-                {
-                    AddEnabled = true;
-                }
-                else
-                {
-                    AddEnabled = false;
-                }
-                return;
             }
         }
 
@@ -152,7 +170,25 @@ namespace Skladistenje.ViewModel
             get => _selectedDodeljenaSkl;
             set
             {
-                if (_selectedDodeljenaSkl == value)
+                if (mozeEdit)
+                {
+                    if (_selectedDodeljenaSkl == value)
+                    {
+                        if (_selectedDodeljenaSkl > -1)
+                        {
+                            RemoveEnabled = true;
+                        }
+                        else
+                        {
+                            RemoveEnabled = false;
+                        }
+                        return;
+                    }
+                }
+
+                _selectedDodeljenaSkl = value;
+
+                if (mozeEdit)
                 {
                     if (_selectedDodeljenaSkl > -1)
                     {
@@ -164,16 +200,6 @@ namespace Skladistenje.ViewModel
                     }
                     return;
                 }
-                _selectedDodeljenaSkl = value;
-                if (_selectedDodeljenaSkl > -1)
-                {
-                    RemoveEnabled = true;
-                }
-                else
-                {
-                    RemoveEnabled = false;
-                }
-                return;
             }
         }
         #endregion
@@ -218,44 +244,52 @@ namespace Skladistenje.ViewModel
 
         private void Sacuvaj(object obj)
         {
-            //TO DO autorizacija i audit
-
-            string[] pom = ZaposleniForBind.Split('(');
-            string username = pom[1].Trim(')');
-            foreach (var dodeljenoItem in DodeljenaSkladista.ToList())
+            if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditZaposleniSkl))
             {
-                if(!dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username))))
+                string[] pom = ZaposleniForBind.Split('(');
+                string username = pom[1].Trim(')');
+                foreach (var dodeljenoItem in DodeljenaSkladista.ToList())
                 {
-                    ZaposleniSkladista zs = new ZaposleniSkladista();
-                    zs.active = true;
-                    zs.skladiste_id = dodeljenoItem.id;
-                    zs.zaposleni_id = Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id;
-                    dbContext.ZaposleniSkladistas.Add(zs);
-                }
-                else if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false))
-                {
-                    dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false).active = true;
-                }
-            }
-            dbContext.SaveChanges();
-
-            foreach (var item in dbContext.ZaposleniSkladistas.ToList())
-            {
-                if (item.zaposleni_id == Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id) //zaposleni_id nadjen
-                {
-                    if (!DodeljenaSkladista.Any(x => x.id == item.skladiste_id))        //za njega ako nema skladiste u listi izbacuje se 
+                    if (!dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username))))
                     {
-                        if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true))
+                        ZaposleniSkladista zs = new ZaposleniSkladista();
+                        zs.active = true;
+                        zs.skladiste_id = dodeljenoItem.id;
+                        zs.zaposleni_id = Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id;
+                        dbContext.ZaposleniSkladistas.Add(zs);
+                    }
+                    else if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false))
+                    {
+                        dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == dodeljenoItem.id && x.Zaposleni.Korisniks.Any(u => u.korisnickoime.Equals(username)) && x.active == false).active = true;
+                    }
+                }
+                dbContext.SaveChanges();
+
+                foreach (var item in dbContext.ZaposleniSkladistas.ToList())
+                {
+                    if (item.zaposleni_id == Zaposleni.FirstOrDefault(x => x.KorisnickoIme.Equals(username)).Id) //zaposleni_id nadjen
+                    {
+                        if (!DodeljenaSkladista.Any(x => x.id == item.skladiste_id))        //za njega ako nema skladiste u listi izbacuje se 
                         {
-                            dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true).active = false;
+                            if (dbContext.ZaposleniSkladistas.Any(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true))
+                            {
+                                dbContext.ZaposleniSkladistas.FirstOrDefault(x => x.skladiste_id == item.skladiste_id && x.zaposleni_id == item.zaposleni_id && x.active == true).active = false;
+                            }
                         }
                     }
                 }
+                dbContext.SaveChanges();
+                SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesna izmena zaposlenog {username}", "Info");
+                Success s = new Success("Uspešno ste izmenili zaposlenog");
+                s.Show();
             }
-            dbContext.SaveChanges();
+            else
+            {
+                SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesna izmena zaposlenog. Autorizacija", "Upozorenje");
+                Error e = new Error("Nemate ovlašćenja za izvršenje ove akcije");
+                e.Show();
+            }
 
-            Success s = new Success("Uspešno ste izmenili zaposlenog");
-            s.Show();
         }
         #endregion
 

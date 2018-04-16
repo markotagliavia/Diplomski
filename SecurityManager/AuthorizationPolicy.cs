@@ -42,7 +42,8 @@ namespace SecurityManager
             DeleteStoro,
             AddProfaktura,
             EditProfaktura,
-            DeleteProfaktura
+            DeleteProfaktura,
+            EditZaposleniSkl
     }
 
     public class AuthorizationPolicy

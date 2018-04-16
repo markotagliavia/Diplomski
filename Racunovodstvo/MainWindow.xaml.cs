@@ -36,6 +36,7 @@ namespace Racunovodstvo
             }
         }
 
+
         private void ProfaktureCall(object sender, RoutedEventArgs e)
         {
             foreach (Window w in Application.Current.Windows)
@@ -189,6 +190,8 @@ namespace Racunovodstvo
                 }
             }
         }
+
+
     }
     public class DigetTextBox :TextBox
     {

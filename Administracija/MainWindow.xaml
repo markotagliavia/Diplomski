@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Administracija.View"
         xmlns:viewModel="clr-namespace:Administracija.ViewModel"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="700" Width="1124" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="700" Width="1124" WindowStyle="None" WindowStartupLocation="CenterScreen" >
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>

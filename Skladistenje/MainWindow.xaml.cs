@@ -33,6 +33,7 @@ namespace Skladistenje
                 }
             }
         }
+
         private void deselect(object sender, RoutedEventArgs e)
         {
             listView.SelectedIndex = -1;
