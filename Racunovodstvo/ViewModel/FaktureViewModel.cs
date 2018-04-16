@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -171,7 +172,49 @@ namespace Racunovodstvo.ViewModel
 
         private void IzmeniNav(string obj)
         {
-            throw new NotImplementedException();
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+                    if (context == 0)
+                    {
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditIzlazna))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Izlazne fakture";
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj izmene izlazne fakture", "Upozorenje");
+                        }
+                    }
+                    else if (context == 1)
+                    {
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditIzlazna))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(3, SelectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Ulazne fakture";
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj izmene ulazne fakture", "Upozorenje");
+                        }
+
+                    }
+
+
+                }
+            }
         }
 
         private void DodajNav(string obj)
@@ -181,22 +224,41 @@ namespace Racunovodstvo.ViewModel
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
                     UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-                    //if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddProizvod))
-                    //{
+
                     if (context == 0)
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(0, null);
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Izlazna faktura";
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddIzlazna))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(0, null);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Izlazna faktura";
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja izlazne fakture", "Upozorenje");
+                        }
                     }
                     else if (context == 1)
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(2, null);
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Ulazna faktura";
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddUlazna))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(2, null);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Ulazna faktura";
+                        }
+                        else
+                        {
+                            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja ulazne fakture", "Upozorenje");
+                        }
+
                     }
+                    
                     
                 }
             }

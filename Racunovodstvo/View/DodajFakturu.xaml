@@ -24,8 +24,8 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Row="0">
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
-                        <Label Content="Oznaka : " Height="30" Width="100" FontSize="14"/>
-                        <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.oznaka}"/>
+                        <Label Content="Oznaka : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="nazivTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding FakturaForEdit.oznaka}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="Datum fakturisanja: " Height="30" Width="130" FontSize="14"/>
@@ -40,24 +40,24 @@
                         <DatePicker Text="{Binding FakturaForEdit.rokplacanja}"  Width="140" Margin="10,0,0,0" ></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
-                        <Label Content="PDV : " Height="30" Width="100" FontSize="14"/>
-                        <TextBox x:Name="pdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding Pdv}"/>
+                        <Label Content="PDV : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="pdvTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding Pdv}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
-                        <Label Content="Plaćeno : " Height="30" Width="100" FontSize="14"/>
-                        <TextBox x:Name="placenoTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.placeno}"/>
+                        <Label Content="Plaćeno : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="placenoTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding FakturaForEdit.placeno}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="Avansno plaćanje : " Height="30" Width="130" FontSize="14"/>
-                        <CheckBox x:Name="avansnoTextBox"  Margin="150,0,0,0" IsChecked="{Binding AvansnoPlacanje}"/>
+                        <CheckBox x:Name="avansnoTextBox"  Margin="130,0,0,0" IsChecked="{Binding AvansnoPlacanje}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
-                        <Label Content="Avans : " Height="30" Width="100" FontSize="14"/>
-                        <TextBox x:Name="avansTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding FakturaForEdit.avans}" IsEnabled="{Binding PlacanjeEnabled}"/>
+                        <Label Content="Avans : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="avansTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding FakturaForEdit.avans}" IsEnabled="{Binding PlacanjeEnabled}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Label Content="Poslovni partner : " Height="30" Width="120" FontSize="14"/>
-                        <ComboBox x:Name="partneriComboBox" Width="170" Margin="10,0,0,0" ItemsSource="{Binding PoslovniPartneri}"
+                        <Label Content="Poslovni partner : " Height="30" Width="130" FontSize="14"/>
+                        <ComboBox x:Name="partneriComboBox" Width="140" Margin="10,0,0,0" ItemsSource="{Binding PoslovniPartneri}"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding PoslovniPartnerForBind}">
@@ -66,9 +66,9 @@
                     
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="1">
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Label Content="Skladišta : " Height="30" Width="100" FontSize="14"/>
-                        <ComboBox x:Name="gradComboBox" Width="170" Margin="10,0,0,0" ItemsSource="{Binding Skladista}"
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+                        <Label Content="Skladišta : " Height="30" Width="130" FontSize="14"/>
+                        <ComboBox x:Name="gradComboBox" Width="140" Margin="10,0,0,0" ItemsSource="{Binding Skladista}"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteForBind}">
@@ -106,25 +106,25 @@
                             </DataGrid>
                         </ScrollViewer>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Label Content="Količina : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
-                        <ui:DigetTextBox Text="{Binding KolicinaText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+                        <Label Content="Količina : " FontSize="14" Width="130" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding KolicinaText}" Background="Transparent"  Width="140" Margin="20,0,0,0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Label Content="Cena : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
-                        <ui:DigetTextBox Text="{Binding CenaText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+                        <Label Content="Cena : " FontSize="14" Width="130" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding CenaText}" Background="Transparent"  Width="140" Margin="20,0,0,0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
-                        <Label Content="Rabat : " FontSize="14" Width="100" HorizontalAlignment="Left"/>
-                        <ui:DigetTextBox Text="{Binding RabatText}" Background="Transparent"  Width="100" Margin="20,0,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0">
+                        <Label Content="Rabat : " FontSize="14" Width="130" HorizontalAlignment="Left"/>
+                        <ui:DigetTextBox Text="{Binding RabatText}" Background="Transparent"  Width="140" Margin="20,0,0,0"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
-                        <Label Content="Ukupno bez PDV : " Height="30" Width="140" FontSize="14"/>
-                        <TextBox x:Name="bezpdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding BezPDV}" IsEnabled="False"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0" >
+                        <Label Content="Ukupno bez PDV : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="bezpdvTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding BezPDV}" IsEnabled="False"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="30,10,0,0" >
-                        <Label Content="Ukupno : " Height="30" Width="140" FontSize="14"/>
-                        <TextBox x:Name="sapdvTextBox" MaxLength="30" Width="170" Margin="10,0,0,0" Text="{Binding SaPDV}" IsEnabled="false"/>
+                    <StackPanel Orientation="Horizontal" Margin="5,10,0,0" >
+                        <Label Content="Ukupno : " Height="30" Width="130" FontSize="14"/>
+                        <TextBox x:Name="sapdvTextBox" MaxLength="30" Width="140" Margin="10,0,0,0" Text="{Binding SaPDV}" IsEnabled="false"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,35,0,0">
                         <Button x:Name="dodajButton" Content="{Binding SubmitButtonText}"  Margin="100,30,20,0" Command="{Binding DodajCommand}"/>
