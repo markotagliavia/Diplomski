@@ -28,7 +28,8 @@ namespace Skladistenje
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel(null);
         private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
-        private PopisViewModel popisViewModel = new PopisViewModel();
+        private DodajPopisViewModel dodajPopisViewModel = new DodajPopisViewModel();
+        private PregledPopisaViewModel pregledPopisaViewModel = new PregledPopisaViewModel();
         private ZaposleniViewModel zaposleniViewModel = new ZaposleniViewModel();
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
         private NaprednaPretragaViewModel naprednapretragaViewModel = new NaprednaPretragaViewModel();
@@ -181,6 +182,12 @@ namespace Skladistenje
             set { dodajProizvodjacaViewModel = value; }
         }
 
+        public DodajPopisViewModel DodajPopisViewModel
+        {
+            get { return dodajPopisViewModel; }
+            set { dodajPopisViewModel = value; }
+        }
+
         public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
 
         #endregion Properties
@@ -264,8 +271,12 @@ namespace Skladistenje
                     CurrentViewModel = dodajProizvodjacaViewModel;
                     break;
                 case "popisi":
-                    ViewModelTitle = "Popisi";
-                    CurrentViewModel = popisViewModel;
+                    ViewModelTitle = "Pregled Popisa";
+                    CurrentViewModel = new PregledPopisaViewModel();
+                    break;
+                case "dodajPopis":
+                    ViewModelTitle = "Novi Popisa";
+                    CurrentViewModel = dodajPopisViewModel;
                     break;
                 case "zaposleni":
                     ViewModelTitle = "Zaposleni";
