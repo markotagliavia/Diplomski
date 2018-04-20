@@ -43,7 +43,9 @@ namespace SecurityManager
             AddProfaktura,
             EditProfaktura,
             DeleteProfaktura,
-            EditZaposleniSkl
+            EditZaposleniSkl,
+            AddPopis,
+            PreviewPopis
     }
 
     public class AuthorizationPolicy

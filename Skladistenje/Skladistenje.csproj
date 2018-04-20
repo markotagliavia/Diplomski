@@ -83,13 +83,14 @@
     </ApplicationDefinition>
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="ViewModel\DodajProizvodjacaViewModel.cs" />
+    <Compile Include="ViewModel\PregledPopisaViewModel.cs" />
     <Compile Include="ViewModel\PregledProizvodjacaViewModel.cs" />
     <Compile Include="ViewModel\DodajProizvodViewModel.cs" />
     <Compile Include="ViewModel\DodajSkladisteViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
-    <Compile Include="ViewModel\PopisViewModel.cs" />
+    <Compile Include="ViewModel\DodajPopisViewModel.cs" />
     <Compile Include="ViewModel\ProizvodiViewModel.cs" />
     <Compile Include="ViewModel\SkladistaViewModel.cs" />
     <Compile Include="ViewModel\SkladisteniDokumentiViewModel.cs" />
@@ -113,8 +114,11 @@
     <Compile Include="View\Obavestenja.xaml.cs">
       <DependentUpon>Obavestenja.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PopisView.xaml.cs">
-      <DependentUpon>PopisView.xaml</DependentUpon>
+    <Compile Include="View\DodajPopisView.xaml.cs">
+      <DependentUpon>DodajPopisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PregledPopisaView.xaml.cs">
+      <DependentUpon>PregledPopisaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PregledProizvodjacaView.xaml.cs">
       <DependentUpon>PregledProizvodjacaView.xaml</DependentUpon>
@@ -177,7 +181,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\PopisView.xaml">
+    <Page Include="View\DodajPopisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PregledPopisaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

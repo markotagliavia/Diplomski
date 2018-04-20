@@ -38,8 +38,11 @@
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:ProizvodiView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:PopisViewModel}">
-            <views:PopisView/>
+        <DataTemplate DataType="{x:Type viewModel:PregledPopisaViewModel}">
+            <views:PregledPopisaView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajPopisViewModel}">
+            <views:DodajPopisView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaposleniViewModel}">
             <views:ZaposleniView/>

@@ -111,7 +111,6 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\MainWindow.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\HelpView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\NaprednaPretraga.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\Obavestenja.g.cs
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PopisView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\ProizvodiView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\Skladista.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\SkladisteniDokumenti.g.cs
@@ -152,7 +151,6 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\MainWindow.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\HelpView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\NaprednaPretraga.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\Obavestenja.baml
-D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PopisView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\ProizvodiView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\Skladista.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\SkladisteniDokumenti.baml
@@ -181,3 +179,7 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Preg
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodjacaView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajProizvodView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledProizvodjacaView.baml
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.g.cs
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.g.cs
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.baml
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.baml
