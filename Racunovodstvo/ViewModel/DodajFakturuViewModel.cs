@@ -36,6 +36,7 @@ namespace Racunovodstvo.ViewModel
         private string kolicinaText;
         private string rabatText;
         private string cenaText;
+        private string staroSkladiste;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         #endregion
 
@@ -96,7 +97,16 @@ namespace Racunovodstvo.ViewModel
                 BezPDV = 0;
                 SaPDV = 0;
                 FakturaForEdit = f;
-                SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
+                if (f.StavkaFaktures.Count > 0)
+                {
+                    SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
+                }
+                else
+                {
+                    SkladisteForBind = "";
+                }
+                staroSkladiste = SkladisteForBind;
+                PoslovniPartnerForBind = f.PoslovniPartner?.naziv ?? "";
                 AvansnoPlacanje = (bool)f.avansnoplacanje;
                 foreach (var item in f.StavkaFaktures)
                 {
@@ -130,7 +140,28 @@ namespace Racunovodstvo.ViewModel
             else if (context == 3)
             {
                 SubmitButtonText = "Potvrdi izmenu";
+                BezPDV = 0;
+                SaPDV = 0;
                 FakturaForEdit = f;
+                if (f.StavkaFaktures.Count > 0)
+                {
+                    SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
+                }
+                else
+                {
+                    SkladisteForBind = "";
+                }
+                staroSkladiste = SkladisteForBind;
+                PoslovniPartnerForBind = f.PoslovniPartner?.naziv ?? "";
+                AvansnoPlacanje = (bool)f.avansnoplacanje;
+                foreach (var item in f.StavkaFaktures)
+                {
+                    BezPDV += (item.cena * item.kolicina) * (1 - (item.rabat / 100));
+                    SaPDV = (1 + (Pdv / 100)) * BezPDV;
+                    ProizvodKolicina pk = new ProizvodKolicina(item.Zalihe.Proizvod, item.kolicina.ToString(), item.cena.ToString(), item.rabat.ToString());
+                    ProizvodiSaKolicinom.Add(pk);
+
+                }
             }
             
             
@@ -152,37 +183,26 @@ namespace Racunovodstvo.ViewModel
                 }
                 else
                 {
-                    Dictionary<int, double> proizvodi = new Dictionary<int, double>();
-                    foreach (var item in ProizvodiSaKolicinom)
+                    if (staroSkladiste.Equals(SkladisteForBind))
                     {
-                        Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                        if (proizvodi.ContainsKey(z.proizvod_id))
+                       
+                        foreach (var item in ProizvodiSaKolicinom)
                         {
-                            proizvodi[z.proizvod_id] += Double.Parse(item.Kolicina);
+                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
+                            z.rezervisano -= Double.Parse(item.Kolicina);
+                            
                         }
-                        else
+                        Faktura f = dbContext.Fakturas.FirstOrDefault(x => x.id == FakturaForEdit.id);
+                        foreach (var item in f.StavkaFaktures)
                         {
-                            proizvodi.Add(z.proizvod_id, Double.Parse(item.Kolicina));
-                        }
-                    }
-                    Faktura f = dbContext.Fakturas.FirstOrDefault(x => x.id == FakturaForEdit.id);
-                    foreach (var item in f.StavkaFaktures)
-                    {
-                        Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.zalihe_proizvod_id) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                        if (proizvodi.ContainsKey(item.zalihe_proizvod_id))
-                        {
-                            proizvodi[item.zalihe_proizvod_id] -= item.kolicina;
-                        }
-                        else
-                        {
+                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.id.Equals(item.zalihe_proizvod_id) && x.Skladiste.naziv.Equals(SkladisteForBind));
+                            
                             z.rezervisano += item.kolicina;
+                           
                         }
+                        
                     }
-                    foreach (var item in proizvodi)
-                    {
-                        Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Key) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                        z.rezervisano -= item.Value;
-                    }
+                    
                 }
                 
                 dbContext.SaveChanges();
@@ -233,7 +253,7 @@ namespace Racunovodstvo.ViewModel
                         FakturaForEdit.upripremi = false;
                         dbContext.Fakturas.Add(FakturaForEdit);
                         dbContext.SaveChanges();
-                        int i = 0;
+                        int i = 1;
                         foreach (var item in ProizvodiSaKolicinom)
                         {
                             StavkaFakture st = new StavkaFakture();
@@ -306,42 +326,53 @@ namespace Racunovodstvo.ViewModel
                 {
                     if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditIzlazna))
                     {
-                        Back("");
+                        var original = dbContext.Fakturas.FirstOrDefault(x => x.id == FakturaForEdit.id);
+
+                        if (original != null)
+                        {
+                            original.oznaka = FakturaForEdit.oznaka;
+                            original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
+                            original.datumprometadobara = FakturaForEdit.datumprometadobara;
+                            original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.pdv = FakturaForEdit.pdv;
+                            original.placeno = FakturaForEdit.placeno;
+                            original.avans = FakturaForEdit.avans;
+                            original.avansnoplacanje = FakturaForEdit.avansnoplacanje;
+                            original.poslovnipartner_mbr = dbContext.PoslovniPartners.FirstOrDefault(x => x.naziv.Equals(PoslovniPartnerForBind)).mbr;
+                            int i = 1;
+                            original.StavkaFaktures.Clear();
+                            foreach (var item in ProizvodiSaKolicinom)
+                            {
+                                StavkaFakture st = new StavkaFakture();
+                                st.rednibroj = i;
+                                st.kolicina = Double.Parse(item.Kolicina);
+                                st.rabat = Double.Parse(item.Rabat);
+                                st.cena = Double.Parse(item.Cena);
+                                st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
+                                st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
+                                st.Faktura = dbContext.Fakturas.FirstOrDefault(x => x.oznaka.Equals(FakturaForEdit.oznaka));
+                                original.StavkaFaktures.Add(st);
+                                
+                                ++i;
+                            }
+
+                        }
+                        dbContext.SaveChanges();
+                        Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
+                        s.Show();
+                        foreach (Window w in Application.Current.Windows)
+                        {
+                            if (w.GetType().Equals(typeof(MainWindow)))
+                            {
+                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
+                            }
+                        }
+                        
                     }
                     else
                     {
-                        Dictionary<int, double> proizvodi = new Dictionary<int, double>();
-                        foreach (var item in ProizvodiSaKolicinom)
-                        {
-                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                            if (proizvodi.ContainsKey(z.proizvod_id))
-                            {
-                                proizvodi[z.proizvod_id] += Double.Parse(item.Kolicina);
-                            }
-                            else
-                            {
-                                proizvodi.Add(z.proizvod_id, Double.Parse(item.Kolicina));
-                            }
-                        }
-                        Faktura f = dbContext.Fakturas.FirstOrDefault(x => x.id == FakturaForEdit.id);
-                        foreach (var item in f.StavkaFaktures)
-                        {
-                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.zalihe_proizvod_id) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                            if (proizvodi.ContainsKey(item.zalihe_proizvod_id))
-                            {
-                                proizvodi[item.zalihe_proizvod_id] -= item.kolicina;
-                            }
-                            else
-                            {
-                                z.rezervisano += item.kolicina;
-                            }
-                        }
-                        foreach (var item in proizvodi)
-                        {
-                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Key) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                            z.rezervisano -= item.Value;
-                        }
-                        dbContext.SaveChanges();
+                        
                         Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
                         er.Show();
                         SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja izlazne fakture", "Upozorenje");
@@ -360,18 +391,114 @@ namespace Racunovodstvo.ViewModel
             {
                 try
                 {
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddUlazna))
+                    {
+                        FakturaForEdit.active = true;
+                        Zaposleni z = dbContext.Korisniks.FirstOrDefault(x => x.korisnickoime.Equals(UserOnSession.korisnickoime)).Zaposleni;
+                        FakturaForEdit.zaposleni_id = z.id;
+                        PoslovniPartner pp = dbContext.PoslovniPartners.FirstOrDefault(x => x.naziv.Equals(PoslovniPartnerForBind));
+                        FakturaForEdit.PoslovniPartner = pp;
+                        FakturaForEdit.likvidirano = false;
+                        FakturaForEdit.upripremi = false;
+                        
+                        
+                        int i = 1;
+                        foreach (var item in ProizvodiSaKolicinom)
+                        {
+                            StavkaFakture st = new StavkaFakture();
+                            st.rednibroj = i;
+                            st.kolicina = Double.Parse(item.Kolicina);
+                            st.rabat = Double.Parse(item.Rabat);
+                            st.cena = Double.Parse(item.Cena);
+                            st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
+                            st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
+                            FakturaForEdit.StavkaFaktures.Add(st);
+                            ++i;
+                        }
+                        dbContext.Fakturas.Add(FakturaForEdit);
+                        dbContext.SaveChanges();
+                        Back("");
+                        Notifications.Success s = new Notifications.Success("Uspešno ste kreirali ulaznu fakturu");
+                        s.Show();
+                        Common.Model.Notification n = new Common.Model.Notification();
+                        n.aplikacija = "Skladistenje";
+                        n.adresa = SkladisteForBind;
+                        n.obradjena = false;
+                        n.procitana = false;
+                        n.tekst = $"Kreirana je Ulazna faktura {FakturaForEdit.oznaka}";
+                        dbContext.Notifications.Add(n);
+                        dbContext.SaveChanges();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana ulazna faktura {FakturaForEdit.oznaka}", "Info");
+                    }
+                    else
+                    {
+                        
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja ulazne fakture", "Upozorenje");
+                        Back("");
+                    }
                 }
                 catch (Exception)
                 {
+                    Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
+                    er.Show();
                 }
             }
             else if (context == 3)
             {
                 try
                 {
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.EditUlazna))
+                    {
+                        var original = dbContext.Fakturas.FirstOrDefault(x => x.id == FakturaForEdit.id);
+
+                        if (original != null)
+                        {
+                            original.oznaka = FakturaForEdit.oznaka;
+                            original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
+                            original.datumprometadobara = FakturaForEdit.datumprometadobara;
+                            original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.pdv = FakturaForEdit.pdv;
+                            original.placeno = FakturaForEdit.placeno;
+                            original.avans = FakturaForEdit.avans;
+                            original.avansnoplacanje = FakturaForEdit.avansnoplacanje;
+                            original.poslovnipartner_mbr = dbContext.PoslovniPartners.FirstOrDefault(x => x.naziv.Equals(PoslovniPartnerForBind)).mbr;
+                            int i = 1;
+                            original.StavkaFaktures.Clear();
+                            foreach (var item in ProizvodiSaKolicinom)
+                            {
+                                StavkaFakture st = new StavkaFakture();
+                                st.rednibroj = i;
+                                st.kolicina = Double.Parse(item.Kolicina);
+                                st.rabat = Double.Parse(item.Rabat);
+                                st.cena = Double.Parse(item.Cena);
+                                st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
+                                st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
+                                st.Faktura = dbContext.Fakturas.FirstOrDefault(x => x.oznaka.Equals(FakturaForEdit.oznaka));
+                                original.StavkaFaktures.Add(st);
+
+                                ++i;
+                            }
+
+                        }
+                        dbContext.SaveChanges();
+                        Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
+                        s.Show();
+                        foreach (Window w in Application.Current.Windows)
+                        {
+                            if (w.GetType().Equals(typeof(MainWindow)))
+                            {
+                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+                            }
+                        }
+                    }
                 }
                 catch (Exception)
                 {
+                    Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
+                    er.Show();
                 }
             }
            
@@ -379,13 +506,13 @@ namespace Racunovodstvo.ViewModel
         private void Remove(int obj)
         {
             ProizvodKolicina p = ProizvodiSaKolicinom.ElementAt(SelectedProizvodSaKolicinom);
-            Double kolicina = Double.Parse(KolicinaText);
+            Double kolicina = Double.Parse(p.Kolicina);
             Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(p.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
             if (SelectedProizvodSaKolicinom != -1)
             {
                 
                 ProizvodiSaKolicinom.RemoveAt(SelectedProizvodSaKolicinom);
-                BezPDV -= (Double.Parse(CenaText) * kolicina) * (1 - (Double.Parse(RabatText) / 100));
+                BezPDV -= (Double.Parse(p.Cena) * kolicina) * (1 - (Double.Parse(p.Rabat) / 100));
                 SaPDV = (1 + (Pdv / 100)) * BezPDV;
                 if (context == 0 || context == 1)
                 {
@@ -664,7 +791,7 @@ namespace Racunovodstvo.ViewModel
 
         public string PoslovniPartnerForBind
         {
-            get => skladisteForBind;
+            get => poslovniPatnerForBind;
             set
             {
                 poslovniPatnerForBind = value;
