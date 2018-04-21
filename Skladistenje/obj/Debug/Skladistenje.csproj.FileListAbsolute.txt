@@ -80,7 +80,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\Skladiste
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\HelpView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\NaprednaPretraga.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Obavestenja.g.cs
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PopisView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\ProizvodiView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Skladista.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\SkladisteniDokumenti.g.cs
@@ -95,7 +94,6 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\bin\Debug\SecurityM
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\HelpView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\NaprednaPretraga.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Obavestenja.baml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PopisView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\ProizvodiView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Skladista.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\SkladisteniDokumenti.baml
@@ -183,3 +181,7 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajPopisView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledPopisaView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajPopisView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledPopisaView.baml
