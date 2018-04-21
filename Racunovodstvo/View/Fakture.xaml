@@ -24,11 +24,10 @@
             <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" >
                 <ComboBoxItem  IsSelected="True" Content="/"/>
                 <ComboBoxItem  Content="Oznaci"/>
-                <ComboBoxItem Content="Datumu"/>
                 <ComboBoxItem Content="Poslovnom partneru"/>
                 <ComboBoxItem Content="Plaćanju"/>
                 <ComboBoxItem Content="Avansu"/>
-                <ComboBoxItem Content="Roku plaćanja"/>
+                
             </ComboBox>
 
 

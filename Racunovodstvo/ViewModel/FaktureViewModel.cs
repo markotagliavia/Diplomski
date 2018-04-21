@@ -160,14 +160,187 @@ namespace Racunovodstvo.ViewModel
         #endregion
 
         #region CommandsImplementation
-        private void Pretrazi(string obj)
+        private void Pretrazi(string type)
         {
-            throw new NotImplementedException();
+            if (!type.Equals("/"))
+            {
+                if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(DefaultView);
+                    if (type.Equals("Oznaci"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Faktura)w).oznaka.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Poslovnom partneru"))
+                    {
+                        DefaultView.Filter =
+                        w => ((Faktura)w).PoslovniPartner.naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Plaćanju"))
+                    {
+                        try
+                        {
+                            DefaultView.Filter =
+                                w => ((Faktura)w).placeno == Double.Parse(TextSearch);
+                        }
+                        catch (Exception ex)
+                        {
+                            Error e = new Error("Morate uneti cifru.");
+                            e.Show();
+                        }
+                        
+                    }
+                    else if (type.Equals("Avansu"))
+                    {
+                        try
+                        {
+                            DefaultView.Filter =
+                                w => ((Faktura)w).avans == Double.Parse(TextSearch);
+                        }
+                        catch (Exception ex)
+                        {
+                            Error e = new Error("Morate uneti cifru.");
+                            e.Show();
+                        }
+                    }
+                    
+
+                    DefaultView.Refresh();
+                }
+                else
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(Fakture);
+                    DefaultView.Filter = null;
+                    DefaultView.Refresh();
+                }
+            }
+            else
+            {
+                DefaultView = CollectionViewSource.GetDefaultView(Fakture);
+                DefaultView.Filter = null;
+                DefaultView.Refresh();
+            }
         }
 
         private void Izbrisi(string obj)
         {
-            throw new NotImplementedException();
+            //TO DO kaskadno brisanje ponuditi 
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                }
+            }
+
+            if (context == 0)
+            {
+                if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteIzlazna))
+                {
+                    
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
+                        }
+                    }
+
+                    if (SelectedIndex > -1)
+                    {
+                        
+                        if (dbContext.Fakturas.Any(x => x.id == SelectedValue.id))
+                        {
+                            dbContext.Fakturas.FirstOrDefault(x => x.id == SelectedValue.id).active = false;
+                            foreach (var item in dbContext.Fakturas.FirstOrDefault(x => x.id == SelectedValue.id).StavkaFaktures)
+                            {
+                                Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == item.zalihe_proizvod_id && x.skladiste_id == item.zalihe_skladiste_id);
+                                z.rezervisano -= item.kolicina;
+                            }
+                            dbContext.SaveChanges();
+                            Success suc = new Success("Uspešno ste obrisali fakturu.");
+                            suc.Show();
+
+                            SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje izlazne fakture {SelectedValue.id}.", "Info");
+                            Fakture.Clear();
+                            foreach (var item in dbContext.Fakturas)
+                            {
+                                if (item.redovna == true && item.active == true && item.ulazna == false)
+                                {
+                                    Fakture.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Error er = new Error("Greška pri pronalaženju proizvođača.\nZa više informacija obratite se administratorima.");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje izlazne fakture {SelectedValue.id}.", "Upozorenje");
+                        }
+                    }
+                }
+                else
+                {
+
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                    er.Show();
+                    SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje ulazne fakture {SelectedValue.id}.", "Upozorenje");
+
+                }
+            }
+            else if (context == 1)
+            {
+                if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.DeleteIzlazna))
+                {
+
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            UserOnSession.korisnickoime = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime;
+                        }
+                    }
+
+                    if (SelectedIndex > -1)
+                    {
+
+                        if (dbContext.Fakturas.Any(x => x.id == SelectedValue.id))
+                        {
+                            dbContext.Fakturas.FirstOrDefault(x => x.id == SelectedValue.id).active = false;
+                            
+                            dbContext.SaveChanges();
+                            Success suc = new Success("Uspešno ste obrisali fakturu.");
+                            suc.Show();
+
+                            SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Uspešno brisanje ulazne fakture {SelectedValue.id}.", "Info");
+                            Fakture.Clear();
+                            foreach (var item in dbContext.Fakturas)
+                            {
+                                if (item.redovna == true && item.active == true && item.ulazna == true)
+                                {
+                                    Fakture.Add(item);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Error er = new Error("Greška pri pronalaženju proizvođača.\nZa više informacija obratite se administratorima.");
+                            er.Show();
+                            SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje ulazne fakture {SelectedValue.id}.", "Upozorenje");
+                        }
+                    }
+                }
+                else
+                {
+
+                    Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                    er.Show();
+                    SecurityManager.AuditManager.AuditToDB(userOnSession.korisnickoime, $"Neuspešno brisanje ulazne fakture {SelectedValue.id}.", "Upozorenje");
+
+                }
+            }
+            
         }
 
         private void IzmeniNav(string obj)
