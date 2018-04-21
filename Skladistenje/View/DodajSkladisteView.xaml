@@ -82,7 +82,7 @@
 
 
             <StackPanel Orientation="Horizontal">
-                <Label Content="Kolicina : " FontSize="14" HorizontalAlignment="Left"/>
+                <Label Content="Količina : " FontSize="14" HorizontalAlignment="Left"/>
                 <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">

@@ -29,7 +29,7 @@ namespace Skladistenje.ViewModel
         private bool selectedInGrid;
         private string textSearch;
         private ObservableCollection<Popi> popisi;
-        private Proizvodjac selectedValue;
+        private Popi selectedValue;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private ICollectionView defaultView;
         #endregion
@@ -104,7 +104,7 @@ namespace Skladistenje.ViewModel
             }
         }
 
-        public Proizvodjac SelectedValue
+        public Popi SelectedValue
         {
             get { return selectedValue; }
             set
@@ -171,7 +171,7 @@ namespace Skladistenje.ViewModel
                     UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
                     if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.PreviewPopis))
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel();
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel(SelectedValue);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajPopis");
                         ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Popis";
@@ -195,7 +195,7 @@ namespace Skladistenje.ViewModel
                     UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
                     if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddPopis))
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel();
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel(null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajPopis");
                         ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Popis";
