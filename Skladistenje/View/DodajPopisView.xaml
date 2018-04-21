@@ -8,12 +8,9 @@
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewmodels:DodajPopisViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="11*"></ColumnDefinition>
             <ColumnDefinition Width="11*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,36 +34,36 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Datum : " Height="30" Width="100" FontSize="14"/>
-                <DatePicker Text="{Binding PopisForBind.datum}"  Width="140" Margin="10,0,0,0" ></DatePicker>
+                <DatePicker Text="{Binding PopisForBind.datum}"  Width="170" Margin="30,0,0,0" />
             </StackPanel>
 
-            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="0,20,0,0">
-                <Label Content="Popisna komisija : " FontSize="20" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="10,20,0,0">
+                <Label Content="Popisna komisija : " FontSize="20" Margin="100,0,0,0"/>
 
                 <StackPanel Orientation="Vertical" Height="312">
                     <StackPanel Orientation="Horizontal">
 
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedZaposleniKorisnik}" AutoGenerateColumns="False" x:Name="zapoesleniLevoGrid" ItemsSource="{Binding ZaposleniLevo, Mode=OneWay}" VerticalAlignment="Top" Height="250" Width="150">
+                            <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedZaposleniKorisnikLevo}" AutoGenerateColumns="False" x:Name="zaposleniLevoGrid" ItemsSource="{Binding ZaposleniLevo, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="170">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Zaposleni" Binding="{Binding naziv}"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Zaposleni" Binding="{Binding Identifikacija}"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>
 
                         <StackPanel Orientation="Vertical" Height="300" Width="50">
-                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand1}" CommandParameter="{Binding ElementName=zaposleniLevoGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled1}">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand2}" CommandParameter="{Binding ElementName=zaposleniLevoGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled2}">
                                 <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
                             </Button>
-                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand1}" CommandParameter="{Binding ElementName=zaposleniDesnoGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled1}">
+                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand2}" CommandParameter="{Binding ElementName=zaposleniDesnoGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled2}">
                                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
                             </Button>
                         </StackPanel>
 
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedZaposleniKorisnik}" AutoGenerateColumns="False" x:Name="zaposleniDesnoGrid" ItemsSource="{Binding ZaposleniDesno, Mode=OneWay}" VerticalAlignment="Top" Height="250" Width="150">
+                            <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedZaposleniKorisnikDesno}" AutoGenerateColumns="False" x:Name="zaposleniDesnoGrid" ItemsSource="{Binding ZaposleniDesno, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="170">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Zaposleni" Binding="{Binding Kolicina}" IsReadOnly="True"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Zaposleni" Binding="{Binding Identifikacija}" IsReadOnly="True"></DataGridTextColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </ScrollViewer>
@@ -76,7 +73,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
-            <Label Content="Stanje : " FontSize="20" HorizontalAlignment="Center"/>
+            <Label Content="Stanje : " FontSize="20" Margin="150,0,0,0"/>
 
             <StackPanel Orientation="Vertical" Height="312">
                 <StackPanel Orientation="Horizontal">
@@ -91,10 +88,10 @@
                     </ScrollViewer>
 
                     <StackPanel Orientation="Vertical" Height="300" Width="50">
-                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand1}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled1}">
                             <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
                         </Button>
-                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand1}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled1}">
                             <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
                         </Button>
                     </StackPanel>
@@ -114,7 +111,7 @@
 
 
             <StackPanel Orientation="Horizontal">
-                <Label Content="Kolicina : " FontSize="14" HorizontalAlignment="Left"/>
+                <Label Content="Količina : " FontSize="14" HorizontalAlignment="Left"/>
                 <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -122,8 +119,8 @@
                 <TextBox Text="{Binding RafText}" Width="100" Margin="47,0,0,0"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="0,45,0,0" HorizontalAlignment="Center">
-                <Button x:Name="dodajButton" Content="Dodaj" Command="{Binding DodajSkladisteCommand}"/>
+            <StackPanel Orientation="Horizontal" Margin="0,75,0,0" HorizontalAlignment="Center">
+                <Button x:Name="dodajButton" Content="Dodaj" Command="{Binding DodajSkladisteCommand}" IsEnabled="{Binding DodajButtonEnabled}"/>
                 <Button x:Name="otkaziButton" Content="Otkaži" Margin="20,0,0,0" Command="{Binding OtkaziCommand}"/>
             </StackPanel>
 

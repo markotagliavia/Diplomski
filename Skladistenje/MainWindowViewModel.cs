@@ -28,7 +28,7 @@ namespace Skladistenje
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel(null);
         private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
-        private DodajPopisViewModel dodajPopisViewModel = new DodajPopisViewModel();
+        private DodajPopisViewModel dodajPopisViewModel = new DodajPopisViewModel(null);
         private PregledPopisaViewModel pregledPopisaViewModel = new PregledPopisaViewModel();
         private ZaposleniViewModel zaposleniViewModel = new ZaposleniViewModel();
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
@@ -276,7 +276,7 @@ namespace Skladistenje
                     break;
                 case "dodajPopis":
                     ViewModelTitle = "Novi Popisa";
-                    CurrentViewModel = dodajPopisViewModel;
+                    CurrentViewModel = new DodajPopisViewModel(null);
                     break;
                 case "zaposleni":
                     ViewModelTitle = "Zaposleni";
