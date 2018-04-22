@@ -183,3 +183,5 @@ D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.g.cs
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\DodajPopisView.baml
 D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PregledPopisaView.baml
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PripisOtpisView.g.cs
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PripisOtpisView.baml

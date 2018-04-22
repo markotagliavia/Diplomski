@@ -1,0 +1,52 @@
+﻿<Window x:Class="Skladistenje.View.PripisOtpisView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:Skladistenje.View"
+        xmlns:viewmodels="clr-namespace:Skladistenje.ViewModel"
+        mc:Ignorable="d"
+        Title="Korekcioni dokument" Height="460" Width="400" WindowStartupLocation="CenterScreen" Icon="/Images/username1.png" Background="{Binding BackgroundColor}">
+   <!-- <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Blue.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources> -->
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label Margin="30,30,0,0">
+                <Label.Content>
+                    <AccessText TextWrapping="Wrap" Text="{Binding LabelText}" />
+                </Label.Content>
+            </Label>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,20,0,0">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" x:Name="pripisGrid" ItemsSource="{Binding Proizvodi, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="250">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Proizvod" Binding="{Binding naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Kolicina" Binding="{Binding kolicina}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button x:Name="dodajButton" Content="{Binding DodajText}" Command="{Binding DodajCommand}"/>
+                <Button x:Name="otkaziButton" Content="Otkaži" Margin="20,0,0,0" Command="{Binding OtkaziCommand}"/>
+            </StackPanel>
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -88,22 +89,62 @@ namespace Skladistenje.ViewModel
         #region CommandsImplementatios
         private void Remove2(int obj)
         {
-            throw new NotImplementedException();
+            if (SelectedProizvodSaKolicinom != -1)
+            {
+                ProizvodKolicina p = ProizvodiSaKolicinom.ElementAt(SelectedProizvodSaKolicinom);
+                ProizvodiSaKolicinom.RemoveAt(SelectedProizvodSaKolicinom);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
 
         private void Add2(int obj)
         {
-            throw new NotImplementedException();
+            if (SelectedProizvod != -1)
+            {
+                Proizvod p = Proizvodi.ElementAt(SelectedProizvod);
+                //TO DO validacija za kolicinu
+                ProizvodKolicina pk = new ProizvodKolicina(p, KolicinaText, RafText);
+                ProizvodiSaKolicinom.Add(pk);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
 
         private void Remove1(int obj)
         {
-            throw new NotImplementedException();
+            if (SelectedZaposleniDesno != -1)
+            {
+                ZaposleniKorisnik zk = ZaposleniDesno.ElementAt(SelectedZaposleniDesno);
+                ZaposleniDesno.RemoveAt(SelectedZaposleniDesno);
+                ZaposleniLevo.Add(zk);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
 
         private void Add1(int obj)
         {
-            throw new NotImplementedException();
+            if (SelectedZaposleniLevo != -1)
+            {
+                ZaposleniKorisnik zk = ZaposleniLevo.ElementAt(SelectedZaposleniLevo);
+                ZaposleniDesno.Add(zk);
+                ZaposleniLevo.RemoveAt(SelectedZaposleniLevo);
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
 
         private void Otkazi(string obj)
@@ -119,7 +160,53 @@ namespace Skladistenje.ViewModel
 
         private void DodajPopis(object obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                foreach (Window w in Application.Current.Windows)
+                {
+                    if (w.GetType().Equals(typeof(MainWindow)))
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    }
+                }
+
+                if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddPopis))
+                {
+                    Popi newPopis = new Popi();
+                    newPopis.oznaka = PopisForBind.oznaka;
+                    newPopis.datum = PopisForBind.datum;
+                    newPopis.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
+
+                    List<Zaposleni> zapPom = dbContext.Zaposlenis.ToList();
+                    foreach (var item in ZaposleniDesno)
+                    {
+                        newPopis.Zaposlenis.Add(zapPom.FirstOrDefault(x => x.id == item.Id));
+                    }
+
+                    dbContext.Popis.Add(newPopis);
+                    dbContext.SaveChanges();
+                    int idPopisa = dbContext.Popis.FirstOrDefault(x => x.oznaka.Equals(newPopis.oznaka)).id;
+
+                    int i = 1;
+                    foreach (var item in ProizvodiSaKolicinom)
+                    {
+                        StavkaPopisa sp = new StavkaPopisa();
+                        sp.kolicina = Double.Parse(item.Kolicina);
+                        sp.proizvod_id = Proizvodi.FirstOrDefault(x => x.naziv.Equals(item.Naziv)).id;
+                        sp.raf = item.Raf;
+                        sp.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
+                        sp.rednibroj = i++;
+                        dbContext.StavkaPopisas.Add(sp);
+                    }
+
+                    //window za pripis/otpis
+                }
+            }
+            catch (Exception ex)
+            {
+                Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
+                er.Show();
+            }
         }
         #endregion
 

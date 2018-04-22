@@ -91,6 +91,7 @@
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
     <Compile Include="ViewModel\DodajPopisViewModel.cs" />
+    <Compile Include="ViewModel\PripisOtpisViewModel.cs" />
     <Compile Include="ViewModel\ProizvodiViewModel.cs" />
     <Compile Include="ViewModel\SkladistaViewModel.cs" />
     <Compile Include="ViewModel\SkladisteniDokumentiViewModel.cs" />
@@ -122,6 +123,9 @@
     </Compile>
     <Compile Include="View\PregledProizvodjacaView.xaml.cs">
       <DependentUpon>PregledProizvodjacaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PripisOtpisView.xaml.cs">
+      <DependentUpon>PripisOtpisView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ProizvodiView.xaml.cs">
       <DependentUpon>ProizvodiView.xaml</DependentUpon>
@@ -190,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PregledProizvodjacaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PripisOtpisView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
