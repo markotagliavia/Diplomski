@@ -96,7 +96,6 @@ namespace Skladistenje.ViewModel
                     if (w.GetType().Equals(typeof(MainWindow)))
                     {
                         UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-
                     }
                 }
                 if (context == 0)
