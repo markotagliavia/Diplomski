@@ -95,6 +95,7 @@
     <Compile Include="ViewModel\ProfaktureViewModel.cs" />
     <Compile Include="ViewModel\ProizvodiViewModel.cs" />
     <Compile Include="ViewModel\StatistikaViewModel.cs" />
+    <Compile Include="ViewModel\StornoFaktureViewModel.cs" />
     <Compile Include="ViewModel\ZaliheViewModel.cs" />
     <Compile Include="ViewModel\ZaposleniViewModel.cs" />
     <Compile Include="View\Bilansi.xaml.cs">
@@ -138,6 +139,9 @@
     </Compile>
     <Compile Include="View\Statistika.xaml.cs">
       <DependentUpon>Statistika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StornoFaktureView.xaml.cs">
+      <DependentUpon>StornoFaktureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ZaliheView.xaml.cs">
       <DependentUpon>ZaliheView.xaml</DependentUpon>
@@ -217,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Statistika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StornoFaktureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

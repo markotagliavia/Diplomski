@@ -23,6 +23,8 @@ namespace Racunovodstvo
         private ProfaktureViewModel profaktureViewModel = new ProfaktureViewModel();
         private FaktureViewModel faktureViewModel = new FaktureViewModel(0);
         private DodajFakturuViewModel dodajFakturu = new DodajFakturuViewModel(0,null);
+        private StornoFaktureViewModel stornoFaktureViewModel = new StornoFaktureViewModel();
+        private DodajStornoViewModel dodajStornoViewModel = new DodajStornoViewModel(0,null);
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
         private KompenzacijeViewModel kompenzacijeViewModel = new KompenzacijeViewModel();
         private PoslovniPartneriViewModel poslovniPartnerViewModel = new PoslovniPartneriViewModel();
@@ -178,6 +180,8 @@ namespace Racunovodstvo
         public ZaposleniViewModel ZaposleniViewModel { get => zaposleniViewModel; set => zaposleniViewModel = value; }
         public DodajFakturuViewModel DodajFakturu { get => dodajFakturu; set => dodajFakturu = value; }
         public DodajPoslovnogPartneraViewModel DodajPoslovnogPartnera { get => dodajPoslovnogPartnera; set => dodajPoslovnogPartnera = value; }
+        public StornoFaktureViewModel StornoFaktureViewModel { get => stornoFaktureViewModel; set => stornoFaktureViewModel = value; }
+        public DodajStornoViewModel DodajStornoViewModel { get => dodajStornoViewModel; set => dodajStornoViewModel = value; }
 
         #endregion Properties
 
