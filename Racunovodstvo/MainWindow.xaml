@@ -18,8 +18,14 @@
         <DataTemplate DataType="{x:Type viewModel:FaktureViewModel}">
             <views:Fakture/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StornoFaktureViewModel}">
+            <views:StornoFaktureView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:DodajFakturuViewModel}">
             <views:DodajFakturu/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajStornoViewModel}">
+            <views:DodajStorno/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:Proizvodi/>

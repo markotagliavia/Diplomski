@@ -193,3 +193,5 @@ D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajFakturu.baml
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajPoslovnogPartnera.baml
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\DodajStorno.baml
 D:\E3\DIplomskiKlon3april\Racunovodstvo\obj\Debug\View\PretraziStorno.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\StornoFaktureView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\View\StornoFaktureView.baml

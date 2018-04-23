@@ -157,18 +157,6 @@ D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CoreCom
 D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.csproj.CopyComplete
 D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.exe
 D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\Administracija.pdb
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\DevExpress.Data.v17.2.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\DevExpress.Xpo.v17.2.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\DevExpress.Data.v17.2.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\DevExpress.Xpo.v17.2.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\de\DevExpress.Data.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\es\DevExpress.Data.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\ja\DevExpress.Data.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\ru\DevExpress.Data.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\de\DevExpress.Xpo.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\es\DevExpress.Xpo.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\ja\DevExpress.Xpo.v17.2.resources.dll
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\bin\Debug\ru\DevExpress.Xpo.v17.2.resources.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajGrad.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\GradView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Administracija\obj\Debug\View\DodajGrad.baml
