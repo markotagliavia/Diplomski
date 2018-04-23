@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Skladistenje.View"
         xmlns:viewmodels="clr-namespace:Skladistenje.ViewModel"
         mc:Ignorable="d"
-        Title="Korekcioni dokument" Height="460" Width="400" WindowStartupLocation="CenterScreen" Icon="/Images/username1.png" Background="{Binding BackgroundColor}">
+        Title="Korekcioni dokument" Height="560" Width="420" WindowStartupLocation="CenterScreen" Icon="/Images/username1.png" Background="{Binding BackgroundColor}">
    <!-- <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,20 +25,25 @@
     </Window.Resources> -->
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Label Margin="30,30,0,0">
+            <Label Margin="30,30,0,0" FontSize="14">
                 <Label.Content>
                     <AccessText TextWrapping="Wrap" Text="{Binding LabelText}" />
                 </Label.Content>
             </Label>
 
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,20,0,0">
-                <DataGrid CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" x:Name="pripisGrid" ItemsSource="{Binding Proizvodi, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="250">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False" x:Name="pripisGrid" ItemsSource="{Binding Stavke, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="250">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Proizvod" Binding="{Binding naziv}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Proizvod" Binding="{Binding Proizvod.naziv}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Kolicina" Binding="{Binding kolicina}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label Content="Šifra korekcionog dokumenta : " Visibility="{Binding DokumentVisible}" Margin="0,20,0,0"/>
+                <TextBox Width="140" Margin="20,20,0,0" Visibility="{Binding DokumentVisible}" Text="{Binding SifraForBind}"/>
+            </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
                 <Button x:Name="dodajButton" Content="{Binding DodajText}" Command="{Binding DodajCommand}"/>

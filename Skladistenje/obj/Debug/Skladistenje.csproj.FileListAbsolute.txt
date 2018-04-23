@@ -185,3 +185,5 @@ D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\Doda
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledPopisaView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\DodajPopisView.baml
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Skladistenje\obj\Debug\View\PregledPopisaView.baml
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PripisOtpisView.g.cs
+D:\E3\DIplomskiKlon3april\Skladistenje\obj\Debug\View\PripisOtpisView.baml

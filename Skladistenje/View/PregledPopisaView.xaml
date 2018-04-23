@@ -38,7 +38,7 @@
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
             <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="popisiGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Šifra" Binding="{Binding oznaka}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Skladište" Binding="{Binding Skladiste.naziv}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
                 </DataGrid.Columns>

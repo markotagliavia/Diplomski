@@ -61,7 +61,7 @@ namespace Skladistenje.ViewModel
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodjaci");
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("popisi");
                 }
             }
         }

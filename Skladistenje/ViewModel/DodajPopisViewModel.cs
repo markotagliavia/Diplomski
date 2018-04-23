@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Model;
 using Notifications;
+using Skladistenje.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,8 +28,8 @@ namespace Skladistenje.ViewModel
         private bool dodajButtonEnabled;
         private int _selectedProizvod = -1;
         private int _selectedProizvodSaKolicinom = -1;
-        private int _selectedZaposleniLevo = -1;
-        private int _selectedZaposleniDesno = -1;
+        private int _selectedZaposleniKorisnikLevo = -1;
+        private int _selectedZaposleniKorisnikDesno = -1;
         private ObservableCollection<Proizvod> proizvodi;
         private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinom;
         private ObservableCollection<Skladiste> skladista;
@@ -55,6 +56,12 @@ namespace Skladistenje.ViewModel
                 addEnabled2 = false;
                 removeEnabled1 = false;
                 removeEnabled2 = false;
+            }
+            else
+            {
+                DodajButtonEnabled = true;
+                popisForBind = new Popi();
+                popisForBind.datum = DateTime.Now;
             }
             DodajPopisCommand = new MyICommand<object>(DodajPopis);
             OtkaziCommand = new MyICommand<string>(Otkazi);
@@ -119,10 +126,10 @@ namespace Skladistenje.ViewModel
 
         private void Remove1(int obj)
         {
-            if (SelectedZaposleniDesno != -1)
+            if (SelectedZaposleniKorisnikDesno != -1)
             {
-                ZaposleniKorisnik zk = ZaposleniDesno.ElementAt(SelectedZaposleniDesno);
-                ZaposleniDesno.RemoveAt(SelectedZaposleniDesno);
+                ZaposleniKorisnik zk = ZaposleniDesno.ElementAt(SelectedZaposleniKorisnikDesno);
+                ZaposleniDesno.RemoveAt(SelectedZaposleniKorisnikDesno);
                 ZaposleniLevo.Add(zk);
             }
             else
@@ -134,11 +141,11 @@ namespace Skladistenje.ViewModel
 
         private void Add1(int obj)
         {
-            if (SelectedZaposleniLevo != -1)
+            if (SelectedZaposleniKorisnikLevo != -1)
             {
-                ZaposleniKorisnik zk = ZaposleniLevo.ElementAt(SelectedZaposleniLevo);
+                ZaposleniKorisnik zk = ZaposleniLevo.ElementAt(SelectedZaposleniKorisnikLevo);
                 ZaposleniDesno.Add(zk);
-                ZaposleniLevo.RemoveAt(SelectedZaposleniLevo);
+                ZaposleniLevo.RemoveAt(SelectedZaposleniKorisnikLevo);
             }
             else
             {
@@ -175,6 +182,7 @@ namespace Skladistenje.ViewModel
                     Popi newPopis = new Popi();
                     newPopis.oznaka = PopisForBind.oznaka;
                     newPopis.datum = PopisForBind.datum;
+                    newPopis.datum += new TimeSpan(0, 0, 0);
                     newPopis.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
 
                     List<Zaposleni> zapPom = dbContext.Zaposlenis.ToList();
@@ -196,10 +204,14 @@ namespace Skladistenje.ViewModel
                         sp.raf = item.Raf;
                         sp.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
                         sp.rednibroj = i++;
+                        sp.popis_id = idPopisa;
                         dbContext.StavkaPopisas.Add(sp);
                     }
+                    dbContext.SaveChanges();
 
                     //window za pripis/otpis
+                    PripisOtpisView pow = new PripisOtpisView(1 ,idPopisa);
+                    pow.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -393,16 +405,16 @@ namespace Skladistenje.ViewModel
             }
         }
 
-        public int SelectedZaposleniLevo
+        public int SelectedZaposleniKorisnikLevo
         {
-            get => _selectedZaposleniLevo;
+            get => _selectedZaposleniKorisnikLevo;
             set
             {
-                if (_selectedZaposleniLevo == value)
+                if (_selectedZaposleniKorisnikLevo == value)
                 {
                     if (DodajButtonEnabled)
                     {
-                        if (_selectedZaposleniLevo > -1)
+                        if (_selectedZaposleniKorisnikLevo > -1)
                         {
                             AddEnabled1 = true;
                         }
@@ -413,10 +425,10 @@ namespace Skladistenje.ViewModel
                     }
                     return;
                 }
-                _selectedZaposleniLevo = value;
+                _selectedZaposleniKorisnikLevo = value;
                 if (DodajButtonEnabled)
                 {
-                    if (_selectedZaposleniLevo > -1)
+                    if (_selectedZaposleniKorisnikLevo > -1)
                     {
                         AddEnabled1 = true;
                     }
@@ -429,16 +441,16 @@ namespace Skladistenje.ViewModel
             }
         }
 
-        public int SelectedZaposleniDesno
+        public int SelectedZaposleniKorisnikDesno
         {
-            get => _selectedZaposleniDesno;
+            get => _selectedZaposleniKorisnikDesno;
             set
             {
-                if (_selectedZaposleniDesno == value)
+                if (_selectedZaposleniKorisnikDesno == value)
                 {
                     if (DodajButtonEnabled)
                     {
-                        if (_selectedZaposleniDesno > -1)
+                        if (_selectedZaposleniKorisnikDesno > -1)
                         {
                             RemoveEnabled1 = true;
                         }
@@ -449,10 +461,10 @@ namespace Skladistenje.ViewModel
                     }
                     return;
                 }
-                _selectedZaposleniDesno = value;
+                _selectedZaposleniKorisnikDesno = value;
                 if (DodajButtonEnabled)
                 {
-                    if (_selectedZaposleniDesno > -1)
+                    if (_selectedZaposleniKorisnikDesno > -1)
                     {
                         RemoveEnabled1 = true;
                     }
