@@ -181,8 +181,9 @@ namespace Racunovodstvo.ViewModel
                     {
                         try
                         {
+                            Double kolicina = Double.Parse(TextSearch);
                             DefaultView.Filter =
-                                w => ((Faktura)w).placeno == Double.Parse(TextSearch);
+                                w => ((Faktura)w).placeno == kolicina;
                         }
                         catch (Exception ex)
                         {
@@ -195,8 +196,10 @@ namespace Racunovodstvo.ViewModel
                     {
                         try
                         {
+                            Double kolicina = Double.Parse(TextSearch);
+
                             DefaultView.Filter =
-                                w => ((Faktura)w).avans == Double.Parse(TextSearch);
+                                w => ((Faktura)w).avans == kolicina;
                         }
                         catch (Exception ex)
                         {
