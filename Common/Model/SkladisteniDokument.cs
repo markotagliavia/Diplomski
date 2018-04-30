@@ -38,7 +38,7 @@ namespace Common.Model
         public string nacinotpreme { get; set; }
         public string izdao { get; set; }
         public string primio { get; set; }
-        public int poslovnipartner_mbr { get; set; }
+        public Nullable<int> poslovnipartner_mbr { get; set; }
         public int skladiste_id { get; set; }
     
         public virtual PoslovniPartner PoslovniPartner { get; set; }

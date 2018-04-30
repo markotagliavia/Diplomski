@@ -20,7 +20,7 @@ namespace Common.Model
             this.StavkaFaktures = new HashSet<StavkaFakture>();
         }
     
-        public bool storno { get; set; }
+        public Nullable<bool> storno { get; set; }
         public double kolicina { get; set; }
         public int rednibroj { get; set; }
         public int zalihe_proizvod_id { get; set; }

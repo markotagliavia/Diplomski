@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[StavkaSklDokumenta]
 (
-	storno                     bit NOT NULL,
+	storno                     bit,
     kolicina                   FLOAT NOT NULL,
     rednibroj                  INTEGER NOT NULL,
     zalihe_proizvod_id         INTEGER NOT NULL,

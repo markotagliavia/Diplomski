@@ -35,7 +35,7 @@ namespace Racunovodstvo.ViewModel
         #endregion
 
         /*
-         * 0 - izlazna, 1 - ulazna, 2 - storno
+         * 0 - izlazna, 1 - ulazna
          */
 
         public FaktureViewModel(int i)
@@ -69,19 +69,7 @@ namespace Racunovodstvo.ViewModel
                     }
                 }
             }
-            else if (context == 2)//ovo ce se brisati
-            {
-                foreach (var item in dbContext.Fakturas)
-                {
-                    if (item.redovna == false && item.active == true)
-                    {
-                        Fakture.Add(item);
-                        
-                    }
-                }
-
-               
-            }
+            
             DefaultView = CollectionViewSource.GetDefaultView(Fakture);
         }
 

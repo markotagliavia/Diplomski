@@ -12,7 +12,7 @@ namespace Common.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class DeltaEximEntities : DbContext
     {
         public DeltaEximEntities()

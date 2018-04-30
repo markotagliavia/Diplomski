@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="06b406ff9e90488f9c27fe1ea97e0dd4" Name="Diagram1">
+      <Diagram DiagramId="ab353686bc594028926ee8d12541c6fa" Name="Diagram1">
         <EntityTypeShape EntityType="DeltaEximModel.Audit" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.Faktura" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.grad" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
@@ -22,7 +22,7 @@
         <EntityTypeShape EntityType="DeltaEximModel.Proizvodjac" Width="1.5" PointX="3" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.Skladiste" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.SkladisteniDokument" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DeltaEximModel.StavkaFakture" Width="1.5" PointX="18" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DeltaEximModel.StavkaFakture" Width="1.5" PointX="18" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.StavkaKompenzacije" Width="1.5" PointX="20.25" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.StavkaPopisa" Width="1.5" PointX="10.5" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DeltaEximModel.StavkaProfakture" Width="1.5" PointX="15.75" PointY="15" IsExpanded="true" />

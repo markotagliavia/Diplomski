@@ -24,8 +24,9 @@ namespace Common.Model
     
         public int rednibroj { get; set; }
         public double kolicina { get; set; }
-        public double rabat { get; set; }
-        public double cena { get; set; }
+        public Nullable<double> rabat { get; set; }
+        public Nullable<double> cena { get; set; }
+        public Nullable<bool> storno { get; set; }
         public int faktura_id { get; set; }
         public int zalihe_proizvod_id { get; set; }
         public int zalihe_skladiste_id { get; set; }

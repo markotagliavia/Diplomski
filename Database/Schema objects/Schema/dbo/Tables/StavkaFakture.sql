@@ -2,8 +2,9 @@
 (
 	rednibroj                             INTEGER NOT NULL,
     kolicina                              FLOAT NOT NULL,
-    rabat                                 FLOAT NOT NULL,
-    cena                                  FLOAT NOT NULL,
+    rabat                                 FLOAT,
+    cena                                  FLOAT,
+	storno							      Bit,
     faktura_id                            INTEGER NOT NULL,
     zalihe_proizvod_id                    INTEGER NOT NULL,
     zalihe_skladiste_id                   INTEGER NOT NULL,

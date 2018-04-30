@@ -212,12 +212,12 @@
           <Property Name="tipredovnog" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="redovniskldok_id" Type="int" Nullable="false" />
           <Property Name="storniranceo" Type="bit" Nullable="false" />
-          <Property Name="vozac" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="vozac" Type="varchar" MaxLength="30" />
           <Property Name="regbr" Type="varchar" MaxLength="30" />
           <Property Name="nacinotpreme" Type="varchar" MaxLength="40" />
-          <Property Name="izdao" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="primio" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
+          <Property Name="izdao" Type="varchar" MaxLength="30" />
+          <Property Name="primio" Type="varchar" MaxLength="30" />
+          <Property Name="poslovnipartner_mbr" Type="int" />
           <Property Name="skladiste_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SpoljniSklDokument_RedovnaFak">
@@ -235,8 +235,9 @@
           </Key>
           <Property Name="rednibroj" Type="int" Nullable="false" />
           <Property Name="kolicina" Type="float" Nullable="false" />
-          <Property Name="rabat" Type="float" Nullable="false" />
-          <Property Name="cena" Type="float" Nullable="false" />
+          <Property Name="rabat" Type="float" />
+          <Property Name="cena" Type="float" />
+          <Property Name="storno" Type="bit" />
           <Property Name="faktura_id" Type="int" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
           <Property Name="zalihe_skladiste_id" Type="int" Nullable="false" />
@@ -295,7 +296,7 @@
             <PropertyRef Name="zalihe_idskladista" />
             <PropertyRef Name="skladistenidokument_id" />
           </Key>
-          <Property Name="storno" Type="bit" Nullable="false" />
+          <Property Name="storno" Type="bit" />
           <Property Name="kolicina" Type="float" Nullable="false" />
           <Property Name="rednibroj" Type="int" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="int" Nullable="false" />
@@ -646,7 +647,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SkladisteniDokument_FK2">
-          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="0..1" />
           <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PoslovniPartner">
@@ -1488,12 +1489,12 @@
           <Property Name="tipredovnog" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="redovniskldok_id" Type="Int32" Nullable="false" />
           <Property Name="storniranceo" Type="Boolean" Nullable="false" />
-          <Property Name="vozac" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vozac" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="regbr" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="nacinotpreme" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="izdao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="primio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
+          <Property Name="izdao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="primio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="poslovnipartner_mbr" Type="Int32" />
           <Property Name="skladiste_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PoslovniPartner" Relationship="Self.SkladisteniDokument_FK2" FromRole="SkladisteniDokument" ToRole="PoslovniPartner" />
           <NavigationProperty Name="Skladiste" Relationship="Self.SkladisteniDokument_FK" FromRole="SkladisteniDokument" ToRole="Skladiste" />
@@ -1510,8 +1511,9 @@
           </Key>
           <Property Name="rednibroj" Type="Int32" Nullable="false" />
           <Property Name="kolicina" Type="Double" Nullable="false" />
-          <Property Name="rabat" Type="Double" Nullable="false" />
-          <Property Name="cena" Type="Double" Nullable="false" />
+          <Property Name="rabat" Type="Double" />
+          <Property Name="cena" Type="Double" />
+          <Property Name="storno" Type="Boolean" />
           <Property Name="faktura_id" Type="Int32" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
           <Property Name="zalihe_skladiste_id" Type="Int32" Nullable="false" />
@@ -1586,7 +1588,7 @@
             <PropertyRef Name="zalihe_idskladista" />
             <PropertyRef Name="skladistenidokument_id" />
           </Key>
-          <Property Name="storno" Type="Boolean" Nullable="false" />
+          <Property Name="storno" Type="Boolean" />
           <Property Name="kolicina" Type="Double" Nullable="false" />
           <Property Name="rednibroj" Type="Int32" Nullable="false" />
           <Property Name="zalihe_proizvod_id" Type="Int32" Nullable="false" />
@@ -1871,7 +1873,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SkladisteniDokument_FK2">
-          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="1" />
+          <End Role="PoslovniPartner" Type="Self.PoslovniPartner" Multiplicity="0..1" />
           <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PoslovniPartner">
@@ -2624,6 +2626,7 @@
                 <ScalarProperty Name="kolicina" ColumnName="kolicina" />
                 <ScalarProperty Name="rabat" ColumnName="rabat" />
                 <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="storno" ColumnName="storno" />
                 <ScalarProperty Name="faktura_id" ColumnName="faktura_id" />
                 <ScalarProperty Name="zalihe_proizvod_id" ColumnName="zalihe_proizvod_id" />
                 <ScalarProperty Name="zalihe_skladiste_id" ColumnName="zalihe_skladiste_id" />

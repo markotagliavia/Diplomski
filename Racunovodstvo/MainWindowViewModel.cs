@@ -242,8 +242,8 @@ namespace Racunovodstvo
                     break;
                 case "storno":
                     ViewModelTitle = "Pregled storno faktura";
-                    faktureViewModel = new FaktureViewModel(2);
-                    CurrentViewModel = faktureViewModel;
+                    stornoFaktureViewModel = new StornoFaktureViewModel();
+                    CurrentViewModel = stornoFaktureViewModel;
                     break;
                 case "proizvodi":
                     ViewModelTitle = "Proizvodi";

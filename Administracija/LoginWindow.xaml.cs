@@ -218,7 +218,7 @@ namespace Administracija
             Korisnik k = new Korisnik();
             k.korisnickoime = "";            
             string inputPassword = Encryption.sha256(passBox.Password);
-
+            
             if (dbContext.Korisniks.Any(p => p.korisnickoime.Equals(inputUsername)))
             {
                 k = dbContext.Korisniks.First(p => p.korisnickoime.Equals(inputUsername));

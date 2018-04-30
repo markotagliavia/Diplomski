@@ -110,7 +110,7 @@ namespace Racunovodstvo.ViewModel
                 AvansnoPlacanje = (bool)f.avansnoplacanje;
                 foreach (var item in f.StavkaFaktures)
                 {
-                    BezPDV += (item.cena * item.kolicina) * (1 - (item.rabat / 100));
+                    BezPDV += ((double)item.cena * item.kolicina) * (1 - ((double)(item.rabat) / 100));
                     SaPDV = (1 + (Pdv / 100)) * BezPDV;
                     ProizvodKolicina pk = new ProizvodKolicina(item.Zalihe.Proizvod,item.kolicina.ToString(),item.cena.ToString(),item.rabat.ToString());
                     ProizvodiSaKolicinom.Add(pk);
@@ -156,7 +156,7 @@ namespace Racunovodstvo.ViewModel
                 AvansnoPlacanje = (bool)f.avansnoplacanje;
                 foreach (var item in f.StavkaFaktures)
                 {
-                    BezPDV += (item.cena * item.kolicina) * (1 - (item.rabat / 100));
+                    BezPDV += ((double)item.cena * item.kolicina) * (1 - ((double)item.rabat / 100));
                     SaPDV = (1 + (Pdv / 100)) * BezPDV;
                     ProizvodKolicina pk = new ProizvodKolicina(item.Zalihe.Proizvod, item.kolicina.ToString(), item.cena.ToString(), item.rabat.ToString());
                     ProizvodiSaKolicinom.Add(pk);

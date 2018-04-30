@@ -11,12 +11,12 @@
 	tipredovnog						  VARCHAR(10) NOT NULL,
 	redovniskldok_id				  INTEGER NOT NULL,
     storniranceo					  bit NOT NULL,
-	vozac							  VARCHAR(30) NOT NULL,
+	vozac							  VARCHAR(30),
     regbr                             VARCHAR(30),
     nacinotpreme                      VARCHAR(40),
-    izdao                             VARCHAR(30) NOT NULL,
-    primio                            VARCHAR(30) NOT NULL,
-    poslovnipartner_mbr               INTEGER NOT NULL,
+    izdao                             VARCHAR(30),
+    primio                            VARCHAR(30),
+    poslovnipartner_mbr               INTEGER,
 	skladiste_id					  INTEGER NOT NULL,
 
 
