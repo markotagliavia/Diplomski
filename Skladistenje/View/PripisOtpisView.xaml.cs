@@ -1,4 +1,5 @@
-﻿using Skladistenje.ViewModel;
+﻿using Common.Model;
+using Skladistenje.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Skladistenje.View
             {
                 if (w.GetType().Equals(typeof(PripisOtpisView)))
                 {
-                    this.DataContext = new PripisOtpisViewModel(i, id);
+                    this.DataContext = new PripisOtpisViewModel(id);
                 }
             }
         }
