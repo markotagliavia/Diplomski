@@ -211,8 +211,9 @@
                         <TextBlock Text="Zalihe" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="SkladisteniDokumentiSelected">
-                    <ListViewItem.RenderTransform>
+                <!-->
+                    <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="SkladisteniDokumentiSelected">
+                        <ListViewItem.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
@@ -224,7 +225,74 @@
                         <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Skladišteni dokumenti" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
+                </ListViewItem><!-->
+
+                <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="SkladisteniDokumentiSelected">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <StackPanel Orientation="Horizontal" Margin="10 0">
+                        <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
+                        <TextBlock Text="Skladišteni dokumenti" Margin="10" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <ListViewItem.Style>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Triggers>
+                                <EventTrigger RoutedEvent="Selected">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="ContextMenu.IsOpen">
+                                                    <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Style.Triggers>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Spoljni">
+                                            <MenuItem.Style>
+                                                <Style TargetType="MenuItem">
+                                                    <EventSetter Event="Click" Handler="MenuItem_Click"/>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>
+                                        <MenuItem Header="Interni">
+                                            <MenuItem.Style>
+                                                <Style TargetType="MenuItem">
+                                                    <EventSetter Event="Click" Handler="MenuItem1_Click"/>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>
+                                        <MenuItem Header="Korekcioni">
+                                            <MenuItem.Style>
+                                                <Style TargetType="MenuItem">
+                                                    <EventSetter Event="Click" Handler="MenuItem2_Click"/>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>
+                                        <MenuItem Header="Storni">
+                                            <MenuItem.Style>
+                                                <Style TargetType="MenuItem">
+                                                    <EventSetter Event="Click" Handler="MenuItem3_Click"/>
+                                                </Style>
+                                            </MenuItem.Style>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListViewItem.Style>
                 </ListViewItem>
+
                 <ListViewItem x:Name="listViewItem3" Height="60" RenderTransformOrigin="0.5,0.5" Selected="ProizvodiSelected">
                     <ListViewItem.RenderTransform>
                         <TransformGroup>

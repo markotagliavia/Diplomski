@@ -194,8 +194,8 @@ namespace Skladistenje.ViewModel
                 sd.vozac = "";
                 sd.zaposleniskladista_skladiste_id = p.skladiste_id;
                 sd.zaposleniskladista_zaposleni_id = dbContext.Zaposlenis.FirstOrDefault(x => x.active == true && x.Korisniks.Any(y => y.id == UserOnSession.id)).id;
-                sd.poslovnipartner_mbr = -1;
-                sd.redovniskldok_id = -1;
+                sd.poslovnipartner_mbr = null;
+                //sd.redovniskldok_id = null;
                 sd.upripremi = false;
                 sd.datum = p.datum;
                 sd.redovni = true;

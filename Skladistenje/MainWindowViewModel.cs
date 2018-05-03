@@ -26,7 +26,7 @@ namespace Skladistenje
         public DodajProizvodViewModel dodajProizvodViewModel = new DodajProizvodViewModel(0, null);
         public DodajProizvodjacaViewModel dodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null);
         private ZaliheViewModel zaliheViewModel = new ZaliheViewModel(null);
-        private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel();
+        private SkladisteniDokumentiViewModel skladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(1);
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
         private DodajPopisViewModel dodajPopisViewModel = new DodajPopisViewModel(null);
         private PregledPopisaViewModel pregledPopisaViewModel = new PregledPopisaViewModel();
@@ -189,6 +189,7 @@ namespace Skladistenje
         }
 
         public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
+        public SkladisteniDokumentiViewModel SkladisteniDokumentiViewModel { get => skladisteniDokumentiViewModel; set => skladisteniDokumentiViewModel = value; }
 
         #endregion Properties
 
@@ -248,9 +249,21 @@ namespace Skladistenje
                     ZaliheViewModel = new ZaliheViewModel(UserOnSession);
                     CurrentViewModel = ZaliheViewModel;
                     break;
-                case "skladisteniDokumenti":
-                    ViewModelTitle = "Skladišteni Dokumenti";
-                    CurrentViewModel = skladisteniDokumentiViewModel;
+                case "interni":
+                    ViewModelTitle = "Interni Skladišteni Dokumenti";
+                    CurrentViewModel = new SkladisteniDokumentiViewModel(1);
+                    break;
+                case "spoljni":
+                    ViewModelTitle = "Spoljni Skladišteni Dokumenti";
+                    CurrentViewModel = new SkladisteniDokumentiViewModel(2);
+                    break;
+                case "korekcioni":
+                    ViewModelTitle = "Korekcioni Skladišteni Dokumenti";
+                    CurrentViewModel = new SkladisteniDokumentiViewModel(3);
+                    break;
+                case "storni":
+                    ViewModelTitle = "Storni Skladišteni Dokumenti";
+                    CurrentViewModel = new SkladisteniDokumentiViewModel(4);
                     break;
                 case "proizvodi":
                     ViewModelTitle = "Pregled Proizvoda";

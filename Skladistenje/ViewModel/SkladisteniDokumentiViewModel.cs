@@ -9,7 +9,7 @@ namespace Skladistenje.ViewModel
 {
     public class SkladisteniDokumentiViewModel : BindableBase
     {
-        public SkladisteniDokumentiViewModel()
+        public SkladisteniDokumentiViewModel(int tip)
         {
         }
     }
