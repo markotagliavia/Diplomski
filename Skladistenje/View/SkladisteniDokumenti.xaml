@@ -20,10 +20,10 @@
             <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
             <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" >
                 <ComboBoxItem  IsSelected="True" Content="/"/>
-                <ComboBoxItem  Content="Oznaci"/>
-                <ComboBoxItem Content="Poslovnom partneru"/>
-                <ComboBoxItem Content="Plaćanju"/>
-                <ComboBoxItem Content="Avansu"/>
+                <ComboBoxItem  Content="Šifri"/>
+                <ComboBoxItem Content="Tipu"/>
+                <ComboBoxItem Content="Skladištu"/>
+                <ComboBoxItem Content="Datumu"/>
 
             </ComboBox>
 
@@ -36,22 +36,20 @@
         <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
             <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="sklDokGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Oznaka" Binding="{Binding oznaka}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Datum" Binding="{Binding datumfakturisanja}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Poslovni partner" Binding="{Binding PoslovniPartner.naziv}"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Header="Likvidirana" Width="Auto" Binding="{Binding likvidirana}"></DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="Plaćeno" Binding="{Binding placeno}"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Header="Avansno plaćanje" Width="Auto" Binding="{Binding avansnoplacanje}"></DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="Avans" Binding="{Binding avans}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Rok plaćanja" Binding="{Binding rokplacanja}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tip" Binding="{Binding tipredovnog}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="Skladište" Width="Auto" Binding="{Binding skladiste_id}"></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="U pripremi" Width="Auto" Binding="{Binding upripremi}"></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="Aktivan" Binding="{Binding active}"></DataGridTextColumn>                    
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Novi" Command="{Binding DodajFakturuNavCommand}" CommandParameter="dodajSklDok" Margin="20,0,460,0"  />
-            <Button Content="Izbriši" Command="{Binding IzbrisiFakturuCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
-            <Button Content="Izmeni" Command="{Binding IzmeniFakturuNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
+            <Button Content="Novi" Command="{Binding DodajSklDokNavCommand}" CommandParameter="dodajSklDok" Margin="20,0,460,0"  />
+            <Button Content="Izbriši" Command="{Binding IzbrisiSklDokCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+            <Button Content="Detaljnije" Command="{Binding DetaljnijeSklDokNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
 </UserControl>
