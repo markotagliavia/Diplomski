@@ -137,5 +137,46 @@ namespace Skladistenje
                 }
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("spoljni");
+                }
+            }
+        }
+        private void MenuItem1_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("interni");
+                }
+            }
+        }
+        private void MenuItem2_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("korekcioni");
+                }
+            }
+        }
+        private void MenuItem3_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
+                }
+            }
+        }
     }
 }
