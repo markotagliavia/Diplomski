@@ -17,6 +17,6 @@
     profaktura_id     INTEGER NULL,
     likvidirano       bit NULL,
 	poslovnipartner_mbr   INTEGER NULL,
-	stornoceo			  bit NULL,
+	stornoceo			  bit NOT NULL DEFAULT 0,
 	oznaka			      VARCHAR(30)
 )

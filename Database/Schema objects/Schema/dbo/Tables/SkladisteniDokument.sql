@@ -9,7 +9,7 @@
     active                            bit NOT NULL,
 	redovni							  bit NOT NULL,
 	tipredovnog						  VARCHAR(10) NOT NULL,
-	redovniskldok_id				  INTEGER NOT NULL,
+	redovniskldok_id				  INTEGER NULL,
     storniranceo					  bit NOT NULL,
 	vozac							  VARCHAR(30),
     regbr                             VARCHAR(30),

@@ -42,7 +42,7 @@ namespace Common.Model
         public Nullable<int> profaktura_id { get; set; }
         public Nullable<bool> likvidirano { get; set; }
         public Nullable<int> poslovnipartner_mbr { get; set; }
-        public Nullable<bool> stornoceo { get; set; }
+        public bool stornoceo { get; set; }
         public string oznaka { get; set; }
     
         public virtual Zaposleni Zaposleni { get; set; }

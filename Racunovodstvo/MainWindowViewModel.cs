@@ -279,7 +279,7 @@ namespace Racunovodstvo
                     break;
                 case "zaposleni":
                     ViewModelTitle = "Zaposleni";
-                    CurrentViewModel = zaliheViewModel;
+                    CurrentViewModel = zaposleniViewModel;
                     break;
                 case "help":
                     ViewModelTitle = "Pomoć";

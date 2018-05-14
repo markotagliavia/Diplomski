@@ -47,7 +47,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
             <Button Content="Nova faktura" Command="{Binding DodajNavCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
-            <Button Content="Pregled" Command="{Binding PregledNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
+            <Button Content="Pregled" Command="{Binding PregledNavCommand}"  HorizontalAlignment="Right"  Margin="100,0,460,0" IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
 </UserControl>

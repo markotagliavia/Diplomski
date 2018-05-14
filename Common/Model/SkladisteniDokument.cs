@@ -31,7 +31,7 @@ namespace Common.Model
         public bool active { get; set; }
         public bool redovni { get; set; }
         public string tipredovnog { get; set; }
-        public int redovniskldok_id { get; set; }
+        public Nullable<int> redovniskldok_id { get; set; }
         public bool storniranceo { get; set; }
         public string vozac { get; set; }
         public string regbr { get; set; }

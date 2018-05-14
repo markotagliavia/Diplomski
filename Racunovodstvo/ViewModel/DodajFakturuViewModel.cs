@@ -846,7 +846,11 @@ namespace Racunovodstvo.ViewModel
         private string kolicina;
         private string cena;
         private string rabat;
-
+        private bool storno;
+        private int id;
+        private Faktura faktura;
+        private Zalihe zalihe;
+        
         public ProizvodKolicina(Proizvod p, string kolicina, string cena, string rabat)
         {
             
@@ -855,14 +859,22 @@ namespace Racunovodstvo.ViewModel
             this.kolicina = kolicina;
             this.cena = cena;
             this.rabat = rabat;
+            this.storno = false;
+            
+            
         }
 
         public string Naziv { get => naziv; set { naziv = value; OnPropertyChanged("Naziv"); } }
         public string Sifra { get => sifra; set { sifra = value; OnPropertyChanged("Sifra"); } }
         public string Kolicina { get => kolicina; set { kolicina = value; OnPropertyChanged("Kolicina"); } }
-
+        public bool Storno { get => storno; set { storno = value; OnPropertyChanged("Storno"); } }
         public string Cena { get => cena; set { cena = value; OnPropertyChanged("Cena"); } }
-
         public string Rabat { get => rabat; set { rabat = value; OnPropertyChanged("Rabat"); } }
+        public int Id { get => id; set { id = value; OnPropertyChanged("Id"); } }
+
+        
+        public Faktura Faktura { get => faktura; set => faktura = value; }
+ 
+        public Zalihe Zalihe { get => zalihe; set => zalihe = value; }
     }
 }

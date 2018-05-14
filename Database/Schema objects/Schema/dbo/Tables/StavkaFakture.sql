@@ -4,7 +4,7 @@
     kolicina                              FLOAT NOT NULL,
     rabat                                 FLOAT,
     cena                                  FLOAT,
-	storno							      Bit,
+	storno							      Bit DEFAULT 0 NULL,
     faktura_id                            INTEGER NOT NULL,
     zalihe_proizvod_id                    INTEGER NOT NULL,
     zalihe_skladiste_id                   INTEGER NOT NULL,
