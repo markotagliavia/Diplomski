@@ -4,9 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Racunovodstvo.View"
+            xmlns:viewmodels="clr-namespace:Racunovodstvo.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:ProizvodiViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
+            <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" >
+                <ComboBoxItem  IsSelected="True" Content="/"/>
+                <ComboBoxItem  Content="Šifri"/>
+                <ComboBoxItem Content="Nazivu"/>
+                <ComboBoxItem Content="Jedinici mere"/>
+                <ComboBoxItem Content="Proizvođaču"/>
+                <ComboBoxItem Content="Minimumu količine"/>
+            </ComboBox>
+
+
+            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
+
+            <Button Content="Pretraži" Command="{Binding PretraziProizvodCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}"  Margin="0,0,0,0"/>
+        </StackPanel>
+
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="proizvodiGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Jedinica mere" Binding="{Binding jedinicamere.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Proizvođač" Binding="{Binding Proizvodjac.naziv}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Minimum količine" Binding="{Binding minimumkolicine}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Novi proizvod" Command="{Binding DodajProizvodNavCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
+            <Button Content="Izbriši" Command="{Binding IzbrisiProizvodCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+            <Button Content="Izmeni" Command="{Binding IzmeniProizvodNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
+

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\obj\Debug\
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\
 Racunovodstvo
 none
 false
 DEBUG;TRACE
-D:\cetvrta godina\Diplomski\BusinessSystem_copy\Racunovodstvo\App.xaml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\App.xaml
 19-1303432038
 
 45-1872351752
-281171884968
+28-94727821
 LoginWindow.xaml;MainWindow.xaml;View\Bilansi.xaml;View\DodajFakturu.xaml;View\DodajPoslovnogPartnera.xaml;View\DodajStorno.xaml;View\Fakture.xaml;View\HelpView.xaml;View\Kompenzacije.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\PoslovniPartneri.xaml;View\PretraziStorno.xaml;View\Profakture.xaml;View\Proizvodi.xaml;View\Statistika.xaml;View\StornoFaktureView.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
-False
+True
 

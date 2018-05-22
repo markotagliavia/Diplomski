@@ -25,6 +25,7 @@ namespace Racunovodstvo
     {
         public MainWindow(Korisnik k)
         {
+            this.DataContext = MainWindowViewModel.Instance;
             InitializeComponent();
             foreach (Window w in Application.Current.Windows)
             {

@@ -346,7 +346,8 @@ namespace Racunovodstvo.ViewModel
                     {
                         if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditIzlazna))
                         {
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
+                            MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
+                            //((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Izlazne fakture";
@@ -362,7 +363,7 @@ namespace Racunovodstvo.ViewModel
                     {
                         if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditIzlazna))
                         {
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(3, SelectedValue);
+                            MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(3, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Ulazne fakture";

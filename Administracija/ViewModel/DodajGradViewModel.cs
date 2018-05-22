@@ -43,6 +43,50 @@ namespace Administracija.ViewModel
             {
                 Grad = new grad();
                 SubmitButtonText = "Dodaj";
+
+                //string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Tijana-PC\Desktop\gradovi.txt");
+                //foreach (var line in lines)
+                //{
+                //    string[] gradbroj = line.Split(',');
+                //    grad g = new grad();
+                //    g.naziv = gradbroj[0];
+                //    g.postanskibroj = gradbroj[1];
+                //    if (dbContext.grads.Any(x => x.naziv.Equals(g.naziv)))
+                //    {
+                //        if (!dbContext.grads.Any(x => x.naziv.Equals(g.naziv) && x.postanskibroj.Equals(g.postanskibroj)))
+                //        {
+                            
+                //            for (int ind = 0; ind < 100; ind++)
+                //            {
+                //                string pom = g.naziv + ind;
+                //                if(!dbContext.grads.Any(x => x.naziv.Equals(pom)))
+                //                {
+                //                    if (!dbContext.grads.Any(x => x.naziv.Equals(pom) && x.postanskibroj.Equals(g.postanskibroj)))
+                //                    {
+                //                        g.naziv = pom;
+                //                        g.drzava = "Srbija";
+                //                        g.postanskibroj = gradbroj[1];
+                //                        dbContext.grads.Add(g);
+                //                        dbContext.SaveChanges();
+                //                        break;
+                //                    }
+                                    
+                //                }
+                //            }
+                           
+                //        }
+                       
+                //    }
+                //    else
+                //    {
+                //        g.naziv = gradbroj[0];
+                //        g.drzava = "Srbija";
+                //        g.postanskibroj = gradbroj[1];
+                //        dbContext.grads.Add(g);
+                //        dbContext.SaveChanges();
+                //    }
+
+                //}
             }
             else
             {

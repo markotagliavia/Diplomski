@@ -185,7 +185,20 @@ namespace Racunovodstvo
 
         #endregion Properties
 
-        public MainWindowViewModel()
+
+        private static MainWindowViewModel instance;
+        public static MainWindowViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MainWindowViewModel();
+                }
+                return instance;
+            }
+        }
+        private MainWindowViewModel()
         {
             c1 = System.Windows.Media.Color.FromArgb(255, 53, 128, 191);
             FirmColor = new SolidColorBrush(c1);
