@@ -21,7 +21,7 @@ namespace Administracija.ViewModel
         public MyICommand<string> DodajUloguNavCommand { get; private set; }
         public MyICommand<int> IzmeniUloguNavCommand { get; private set; }
         public MyICommand<int> IzbrisiUloguCommand { get; private set; }
-        public MyICommand<int> PretraziUlogeCommand { get; private set; }
+        public MyICommand<string> PretraziUlogeCommand { get; private set; }
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace Administracija.ViewModel
             DodajUloguNavCommand = new MyICommand<string>(DodajUloguNav);
             IzmeniUloguNavCommand = new MyICommand<int>(IzmeniUloguNav);
             IzbrisiUloguCommand = new MyICommand<int>(IzbrisiUlogu);
-            PretraziUlogeCommand = new MyICommand<int>(PretraziUloge);
+            PretraziUlogeCommand = new MyICommand<string>(PretraziUloge);
             Uloge = new ObservableCollection<Common.Model.Uloga>();
             foreach (var item in dbContext.Ulogas.ToList())
             {
@@ -52,7 +52,7 @@ namespace Administracija.ViewModel
 
 
         #region CommandImplementation
-        private void PretraziUloge(int type)
+        private void PretraziUloge(string type)
         {
             if (!type.Equals("/"))
             {
@@ -103,6 +103,13 @@ namespace Administracija.ViewModel
 
                         if (itemToRemove != null)
                         {
+                            if (itemToRemove.Permissions.Count != 0)
+                            {
+                                dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv)).Permissions.Clear();
+                                dbContext.SaveChanges();
+                            }
+                            
+                            
                             foreach (var zaposleni in dbContext.Zaposlenis)
                             {
                                 if (zaposleni.Ulogas.Any(x => x.naziv.Equals(naziv)))
@@ -111,7 +118,8 @@ namespace Administracija.ViewModel
                                     zaposleni.Ulogas.Remove(itemToRemove);
                                 }
                             }
-                            dbContext.Ulogas.Remove(itemToRemove);
+                            dbContext.SaveChanges();
+                            dbContext.Ulogas.Remove(dbContext.Ulogas.FirstOrDefault(x => x.naziv.Equals(naziv)));
                             dbContext.SaveChanges();
                         }
                         Notifications.Success s = new Notifications.Success("Uspešno ste obrisali " + itemToRemove.naziv);

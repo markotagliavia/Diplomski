@@ -216,7 +216,7 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_FK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_FK1.sql" />
-    <Build Include="Schema objects\Schema\dbo\Tables\Triggers\Notification.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Notification_PK.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Notification.sql" />
   </ItemGroup>
 </Project>
