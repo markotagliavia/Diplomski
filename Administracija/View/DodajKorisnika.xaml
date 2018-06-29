@@ -20,32 +20,32 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Ime : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="imeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Ime}"/>
+                <TextBox x:Name="imeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Ime}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Prezime : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="prezimeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Prezime}"/>
+                <TextBox x:Name="prezimeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Prezime}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="JMBG : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="JMBGTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.JMBG}"/>
+                <TextBox x:Name="JMBGTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.JMBG}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Broj telefona : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="telefonTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Telefon}"/>
+                <TextBox x:Name="telefonTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Telefon}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="E-mail : " Height="30" Width="100"/>
-                <TextBox x:Name="emailTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Email}"/>
+                <TextBox x:Name="emailTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Email}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Adresa : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="adresaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Adresa}"/>
+                <TextBox x:Name="adresaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Adresa}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
@@ -53,28 +53,28 @@
                 <ComboBox x:Name="gradComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Gradovi}"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
-                    SelectedValue="{Binding GradForBind}">
+                    SelectedValue="{Binding GradForBind}" Foreground="White">
                 </ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Plata : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="plataTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Plata}"/>
+                <TextBox x:Name="plataTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Plata}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Doprinosi : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="doprinosiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Doprinosi}"/>
+                <TextBox x:Name="doprinosiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Doprinosi}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Bonusi : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="bonusiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Bonusi}"/>
+                <TextBox x:Name="bonusiTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Bonusi}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Tekući račun : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="racunTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Racun}"/>
+                <TextBox x:Name="racunTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding UserForBind.Racun}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
@@ -82,7 +82,7 @@
                 <ComboBox x:Name="sefComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Korisnici}"
                     DisplayMemberPath="korisnickoime" 
                     SelectedValuePath="korisnickoime"
-                    SelectedValue="{Binding SefForBind}">
+                    SelectedValue="{Binding SefForBind}" Foreground="White"> 
                 </ComboBox>
             </StackPanel>
 
@@ -91,12 +91,12 @@
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
                 <Label Content="Korisničko ime : " Height="30" Width="105" FontSize="14"/>
-                <TextBox x:Name="usernameTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding UserForBind.KorisnickoIme}"/>
+                <TextBox x:Name="usernameTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding UserForBind.KorisnickoIme}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
                 <Label Content="Lozinka : " Height="30" Width="100" FontSize="14"/>
-                <PasswordBox x:Name="lozinkaPassBox" MaxLength="30" Width="170" Margin="30,0,0,0"/>
+                <PasswordBox x:Name="lozinkaPassBox" MaxLength="30" Width="170" Margin="30,0,0,0" Foreground="White"/>
             </StackPanel>
 
 

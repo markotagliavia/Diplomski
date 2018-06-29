@@ -16,7 +16,7 @@
             </Button>
             <StackPanel Orientation="Horizontal" Height="30" Margin="10">
                 <Label Content="Naziv uloge: " FontSize="14"></Label>
-                <TextBox Text="{Binding Uloga.naziv}" Width="120"></TextBox>
+                <TextBox Text="{Binding Uloga.naziv}" Width="120" Foreground="White"></TextBox>
             </StackPanel>
             <Label Content="Permisije" Margin="10" FontSize="14"></Label>
             <Grid Margin="10">

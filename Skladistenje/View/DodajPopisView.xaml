@@ -20,12 +20,12 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Šifra : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PopisForBind.oznaka}"/>
+                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PopisForBind.oznaka}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Skladište : " Height="30" Width="100" FontSize="14"/>
-                <ComboBox x:Name="skladisteComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Skladista}"
+                <ComboBox x:Name="skladisteComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Skladista}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteForBind}">
@@ -34,7 +34,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Datum : " Height="30" Width="100" FontSize="14"/>
-                <DatePicker Text="{Binding PopisForBind.datum}"  Width="170" Margin="30,0,0,0" />
+                <DatePicker Text="{Binding PopisForBind.datum}"  Width="170" Margin="30,0,0,0" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="10,20,0,0">
@@ -112,11 +112,11 @@
 
             <StackPanel Orientation="Horizontal">
                 <Label Content="Količina : " FontSize="14" HorizontalAlignment="Left"/>
-                <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0"/>
+                <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Raf : " FontSize="14" HorizontalAlignment="Left"/>
-                <TextBox Text="{Binding RafText}" Width="100" Margin="47,0,0,0"/>
+                <TextBox Text="{Binding RafText}" Width="100" Margin="47,0,0,0" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,75,0,0" HorizontalAlignment="Center">

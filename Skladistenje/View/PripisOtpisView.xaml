@@ -42,12 +42,12 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label Content="Šifra korekcionog dokumenta : " Visibility="{Binding DokumentVisible}" Margin="0,20,0,0"/>
-                <TextBox Width="140" Margin="20,20,0,0" Visibility="{Binding DokumentVisible}" Text="{Binding SifraForBind}"/>
+                <TextBox Width="140" Margin="20,20,0,0" Visibility="{Binding DokumentVisible}" Text="{Binding SifraForBind}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
                 <Button x:Name="dodajButton" Content="{Binding DodajText}" Command="{Binding DodajCommand}"/>
-                <Button x:Name="otkaziButton" Content="Otkaži" Margin="20,0,0,0" Command="{Binding OtkaziCommand}"/>
+                <Button x:Name="otkaziButton" Content="Otkaži" Margin="20,0,0,0" Command="{Binding OtkaziCommand}" Foreground="White"/>
             </StackPanel>
 
         </StackPanel>
