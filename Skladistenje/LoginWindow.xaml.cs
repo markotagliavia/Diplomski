@@ -53,7 +53,7 @@ namespace Skladistenje
         {
             c1 = System.Windows.Media.Color.FromArgb(255, 68, 95, 245);
             c2 = System.Windows.Media.Color.FromArgb(255, 128, 170, 255);
-            c3 = System.Windows.Media.Color.FromArgb(255, 204, 179, 255);
+            c3 = System.Windows.Media.Color.FromArgb(255, 37, 44, 50);
             FirmColor = new SolidColorBrush(c1);
             LightFirmColor = new SolidColorBrush(c2);
             BackgroundColor = new SolidColorBrush(c3);

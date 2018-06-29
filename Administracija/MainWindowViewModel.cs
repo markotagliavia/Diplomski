@@ -176,7 +176,7 @@ namespace Administracija
         {
             c1 = System.Windows.Media.Color.FromArgb(255, 53, 128, 191);
             FirmColor = new SolidColorBrush(c1);
-            c2 = System.Windows.Media.Color.FromArgb(255, 204, 179, 255);
+            c2 = System.Windows.Media.Color.FromArgb(255, 37, 44, 50);
             BackgroundColor = new SolidColorBrush(c2);
             NavCommand = new MyICommand<string>(OnNav);
             OpenMenuCommand = new MyICommand<string>(OpenMenu);
