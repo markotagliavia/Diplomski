@@ -15,19 +15,19 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Naziv : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.naziv}"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.naziv}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="PIB : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="pibTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.pib}"/>
+                <TextBox x:Name="pibTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.pib}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Adresa : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="adresaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.adresa}"/>
+                <TextBox x:Name="adresaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.adresa}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Grad : " Height="30" Width="100" FontSize="14"/>
-                <ComboBox x:Name="gradComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Gradovi}"
+                <ComboBox x:Name="gradComboBox" Foreground="White" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Gradovi}"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding GradForBind}">
@@ -35,15 +35,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Broj telefona : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="brojTelefonaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.brojtelefona}"/>
+                <TextBox x:Name="brojTelefonaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.brojtelefona}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Email : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="emailTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.email}"/>
+                <TextBox x:Name="emailTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.email}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Tekući račun : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="tekuciracunTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.tekuciracun}"/>
+                <TextBox x:Name="tekuciracunTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PoslovniPartnerForEdit.tekuciracun}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,35,0,0">
                 <Button x:Name="dodajButton" Content="{Binding SubmitButtonText}"  Margin="100,30,20,0" Command="{Binding DodajCommand}"/>
