@@ -178,5 +178,17 @@ namespace Skladistenje
                 }
             }
         }
+
+        public void ZvonceBelo()
+        {
+            zvonce.Foreground = new SolidColorBrush(Colors.White);
+            obavestenjaText.Foreground = new SolidColorBrush(Colors.White);
+        }
+
+        public void ZvonceCrveno()
+        {
+            zvonce.Foreground = new SolidColorBrush(Colors.Red);
+            obavestenjaText.Foreground = new SolidColorBrush(Colors.Red);
+        }
     }
 }
