@@ -360,7 +360,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0" >
                         <materialDesign:PackIcon Kind="Bell" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Obavestenja" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Obavestenja" Margin="10" VerticalAlignment="Center" Name="obavestenjaText"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem7" Height="60" RenderTransformOrigin="0.5,0.5" Selected="NaprednaPretragaSelected" IsEnabled="False">
@@ -452,7 +452,7 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
-                <materialDesign:PackIcon Kind="Bell"/>
+                <materialDesign:PackIcon Kind="Bell" Name="zvonce"/>
             </Button>
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding CloseCommand}">
                 <materialDesign:PackIcon Kind="Power"/>
