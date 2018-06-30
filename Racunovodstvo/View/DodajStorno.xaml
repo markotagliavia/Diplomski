@@ -31,7 +31,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                     <Label Content="Datum fakturisanja: " Height="30" Width="130" FontSize="14"/>
-                        <DatePicker x:Name="a" Text="{Binding FakturaForBind.datumfakturisanja}"  Width="140" Margin="10,0,0,0" IsEnabled="{Binding Edit}"></DatePicker>
+                        <DatePicker x:Name="a" SelectedDate="{Binding FakturaForBind.datumfakturisanja}"  Width="140" Margin="10,0,0,0" IsEnabled="{Binding Edit}"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
 

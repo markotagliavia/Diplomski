@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Racunovodstvo.View.DodajProizvodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Racunovodstvo.View"
+             xmlns:viewmodels="clr-namespace:Racunovodstvo.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Column="0" Grid.Row="0" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackNavCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
+                <Label Content="Naziv : " Height="30" Width="130" FontSize="14"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.naziv}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Šifra : " Height="30" Width="130" FontSize="14"/>
+                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.sifra}" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Minimum količine : " Height="30" Width="130" FontSize="14"/>
+                <TextBox x:Name="minimumKolicineTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.minimumkolicine}" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Jedinica mere : " Height="30" Width="130" FontSize="14"/>
+                <ComboBox x:Name="jedinicaMereComboBox" Width="170" Margin="30,0,0,0" IsEditable="True" ItemsSource="{Binding Jedinicamere}" Text="{Binding MereForBind, Mode=TwoWay}"
+                    SelectedValue="{Binding MereForBind}" Foreground="White">
+                </ComboBox>
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                <Label Content="Ponuđene karakteristike" Height="30" Width="160" FontSize="14"/>
+                <Label Content="Dodeljene karakteristike" Height="30" Width="160" FontSize="14" Margin="50,0,0,0"/>
+            </StackPanel>
+
+            <Grid Margin="-40,0,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedKarakteristika}" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="karakteristikeGrid" ItemsSource="{Binding Karakteristike, Mode=OneWay}" Height="200" Width="200">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Orientation="Vertical" Margin="0,50,0,50" Grid.Column="1" Grid.Row="0" >
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=karakteristikeGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodKarakteristikeGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                    </Button>
+                </StackPanel>
+
+                <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedKarakteristikaProizvod}" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="0"  Margin="10" x:Name="proizvodKarakteristikeGrid" ItemsSource="{Binding KarakteristikaProizvod, Mode=OneWay}" Height="200" Width="200">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Bottom">
+                <TextBox Text="{Binding TextBox}" MaxLength="30" Width="130" Foreground="White"></TextBox>
+                <Button Content="Dodaj" Command="{Binding DodajKarakteristikuCommand}" Margin="5" />
+                <Button Content="Izmeni" Command="{Binding IzmeniKarakteristikuCommand}" IsEnabled="{Binding AddEnabled}" Margin="5" />
+                <Button Content="Obriši" Command="{Binding ObrisiKarakteristikuCommand}" IsEnabled="{Binding AddEnabled}" Margin="5" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Proizvođać : " Height="30" Width="130" FontSize="14"/>
+                <ComboBox x:Name="proizvodjacComboBox" Width="170" Margin="5,0,0,0" ItemsSource="{Binding Proizvodjaci}"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding ProizvodjacForBind}" Foreground="White">
+                </ComboBox>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Command="{Binding AddProizvodjacCommand}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"  Margin="5" >
+                    <materialDesign:PackIcon Kind="Plus" Foreground="White"/>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">
+            <Button Content="{Binding SubmitButtonText}" Command="{Binding DodajCommand}" Margin="10" />
+            <Button Content="Otkaži" Command="{Binding OtkaziCommand}" Margin="10" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>

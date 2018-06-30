@@ -251,6 +251,9 @@ namespace Racunovodstvo.ViewModel
                         FakturaForEdit.PoslovniPartner = pp;
                         FakturaForEdit.likvidirano = false;
                         FakturaForEdit.upripremi = false;
+                        FakturaForEdit.datumfakturisanja += new TimeSpan(0, 0, 0);
+                        FakturaForEdit.datumprometadobara += new TimeSpan(0, 0, 0);
+                        FakturaForEdit.rokplacanja += new TimeSpan(0, 0, 0);
                         dbContext.Fakturas.Add(FakturaForEdit);
                         dbContext.SaveChanges();
                         int i = 1;
@@ -334,6 +337,9 @@ namespace Racunovodstvo.ViewModel
                             original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
                             original.datumprometadobara = FakturaForEdit.datumprometadobara;
                             original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.datumfakturisanja += new TimeSpan(0, 0, 0);
+                            original.datumprometadobara += new TimeSpan(0, 0, 0);
+                            original.rokplacanja += new TimeSpan(0, 0, 0);
                             original.pdv = FakturaForEdit.pdv;
                             original.placeno = FakturaForEdit.placeno;
                             original.avans = FakturaForEdit.avans;
@@ -459,6 +465,9 @@ namespace Racunovodstvo.ViewModel
                             original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
                             original.datumprometadobara = FakturaForEdit.datumprometadobara;
                             original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.datumfakturisanja += new TimeSpan(0, 0, 0);
+                            original.datumprometadobara += new TimeSpan(0, 0, 0);
+                            original.rokplacanja += new TimeSpan(0, 0, 0);
                             original.pdv = FakturaForEdit.pdv;
                             original.placeno = FakturaForEdit.placeno;
                             original.avans = FakturaForEdit.avans;
@@ -837,6 +846,16 @@ namespace Racunovodstvo.ViewModel
         }
 
         public string RabatText { get => rabatText; set { rabatText = value; OnPropertyChanged("RabatText"); } }
+
+        public DateTime Datumfakturisanja
+        {
+            get => fakturaForEdit.datumfakturisanja.Value.Date;
+            set
+            {
+                fakturaForEdit.datumfakturisanja = value;
+                OnPropertyChanged("Datumfakturisanja");
+            }
+        }
         #endregion
     }
     public class ProizvodKolicina : BindableBase

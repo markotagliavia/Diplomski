@@ -22,7 +22,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
             <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
-            <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" >
+            <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" Foreground="White" >
                 <ComboBoxItem  IsSelected="True" Content="/"/>
                 <ComboBoxItem  Content="Šifri"/>
                 <ComboBoxItem Content="Nazivu"/>
@@ -32,7 +32,7 @@
             </ComboBox>
 
 
-            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}"/>
+            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}" Foreground="White"/>
 
             <Button Content="Pretraži" Command="{Binding PretraziProizvodCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}"  Margin="0,0,0,0"/>
         </StackPanel>
@@ -51,8 +51,6 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
             <Button Content="Novi proizvod" Command="{Binding DodajProizvodNavCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
-            <Button Content="Izbriši" Command="{Binding IzbrisiProizvodCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
-            <Button Content="Izmeni" Command="{Binding IzmeniProizvodNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
 </UserControl>

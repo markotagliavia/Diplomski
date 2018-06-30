@@ -84,6 +84,8 @@
     <Compile Include="ViewModel\BilansiViewModel.cs" />
     <Compile Include="ViewModel\DodajFakturuViewModel.cs" />
     <Compile Include="ViewModel\DodajPoslovnogPartneraViewModel.cs" />
+    <Compile Include="ViewModel\DodajProizvodjacaViewModel.cs" />
+    <Compile Include="ViewModel\DodajProizvodViewModel.cs" />
     <Compile Include="ViewModel\DodajStornoViewModel.cs" />
     <Compile Include="ViewModel\FaktureViewModel.cs" />
     <Compile Include="ViewModel\HelpViewModel.cs" />
@@ -106,6 +108,12 @@
     </Compile>
     <Compile Include="View\DodajPoslovnogPartnera.xaml.cs">
       <DependentUpon>DodajPoslovnogPartnera.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajProizvodjacaView.xaml.cs">
+      <DependentUpon>DodajProizvodjacaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DodajProizvodView.xaml.cs">
+      <DependentUpon>DodajProizvodView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DodajStorno.xaml.cs">
       <DependentUpon>DodajStorno.xaml</DependentUpon>
@@ -177,6 +185,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DodajPoslovnogPartnera.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajProizvodjacaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajProizvodView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,6 +26,8 @@ namespace Racunovodstvo
         private StornoFaktureViewModel stornoFaktureViewModel = new StornoFaktureViewModel();
         private DodajStornoViewModel dodajStornoViewModel = new DodajStornoViewModel(0,null);
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
+        private DodajProizvodViewModel dodajProizvodViewModel = new DodajProizvodViewModel(0, null);
+        private DodajProizvodjacaViewModel dodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0,null,null);
         private KompenzacijeViewModel kompenzacijeViewModel = new KompenzacijeViewModel();
         private PoslovniPartneriViewModel poslovniPartnerViewModel = new PoslovniPartneriViewModel();
         private DodajPoslovnogPartneraViewModel dodajPoslovnogPartnera = new DodajPoslovnogPartneraViewModel(0,null);
@@ -166,9 +168,13 @@ namespace Racunovodstvo
             }
         }
 
+        
+
         public ProfaktureViewModel ProfaktureViewModel { get => profaktureViewModel; set => profaktureViewModel = value; }
         public FaktureViewModel FaktureViewModel { get => faktureViewModel; set => faktureViewModel = value; }
         public ProizvodiViewModel ProizvodiViewModel { get => proizvodiViewModel; set => proizvodiViewModel = value; }
+        public DodajProizvodViewModel DodajProizvodViewModel { get => dodajProizvodViewModel; set => dodajProizvodViewModel = value; }
+        public DodajProizvodjacaViewModel DodajProizvodjacaViewModel { get => dodajProizvodjacaViewModel; set => dodajProizvodjacaViewModel = value; }
         public KompenzacijeViewModel KompenzacijeViewModel { get => kompenzacijeViewModel; set => kompenzacijeViewModel = value; }
         public PoslovniPartneriViewModel PoslovniPartnerViewModel { get => poslovniPartnerViewModel; set => poslovniPartnerViewModel = value; }
         public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
@@ -262,6 +268,14 @@ namespace Racunovodstvo
                     ViewModelTitle = "Proizvodi";
                     CurrentViewModel = proizvodiViewModel;
                     break;
+                case "dodajProizvod":
+                    ViewModelTitle = "Novi Proizvod";
+                    CurrentViewModel = dodajProizvodViewModel;
+                    break;
+                case "dodajProizvodjaca":
+                    ViewModelTitle = "Novi Proizvođač";
+                    CurrentViewModel = dodajProizvodjacaViewModel;
+                    break;
                 case "kompenzacije":
                     ViewModelTitle = "Kompenzacije";
                     CurrentViewModel = kompenzacijeViewModel;
@@ -328,6 +342,9 @@ namespace Racunovodstvo
                 e.Show();
             }
         }
+
+      
+        
         #endregion
     }
 }
