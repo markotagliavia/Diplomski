@@ -45,7 +45,8 @@ namespace SecurityManager
             DeleteProfaktura,
             EditZaposleniSkl,
             AddPopis,
-            PreviewPopis
+            PreviewPopis,
+            AddSklDok   //dodati u bazu
     }
 
     public class AuthorizationPolicy

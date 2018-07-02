@@ -329,3 +329,5 @@ D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.csproj.CoreCompi
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.csproj.CopyComplete
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.exe
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.pdb
+D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\View\DodajGenericSklDok.g.cs
+D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\View\DodajGenericSklDok.baml
