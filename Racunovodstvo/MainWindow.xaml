@@ -28,6 +28,12 @@
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:Proizvodi/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProizvodViewModel}">
+            <views:DodajProizvodView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProizvodjacaViewModel}">
+            <views:DodajProizvodjacaView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:KompenzacijeViewModel}">
             <views:Kompenzacije/>
         </DataTemplate>

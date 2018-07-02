@@ -196,16 +196,32 @@ namespace Skladistenje.ViewModel
                     int idPopisa = dbContext.Popis.FirstOrDefault(x => x.oznaka.Equals(newPopis.oznaka)).id;
 
                     int i = 1;
+                    int skladisteId = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
                     foreach (var item in ProizvodiSaKolicinom)
                     {
                         StavkaPopisa sp = new StavkaPopisa();
                         sp.kolicina = Double.Parse(item.Kolicina);
                         sp.proizvod_id = Proizvodi.FirstOrDefault(x => x.naziv.Equals(item.Naziv)).id;
                         sp.raf = item.Raf;
-                        sp.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
+                        sp.skladiste_id = skladisteId;
                         sp.rednibroj = i++;
                         sp.popis_id = idPopisa;
                         dbContext.StavkaPopisas.Add(sp);
+                    }
+                    dbContext.SaveChanges();
+                    foreach (var item in dbContext.Zalihes.Where(x => x.skladiste_id == skladisteId).ToList())
+                    {
+                        if (!dbContext.StavkaPopisas.Any(x => x.skladiste_id == skladisteId && x.proizvod_id == item.proizvod_id && x.popis_id == idPopisa))
+                        {
+                            StavkaPopisa sp = new StavkaPopisa();
+                            sp.kolicina = 0;
+                            sp.proizvod_id = item.proizvod_id;
+                            sp.raf = "";
+                            sp.skladiste_id = skladisteId;
+                            sp.rednibroj = i++;
+                            sp.popis_id = idPopisa;
+                            dbContext.StavkaPopisas.Add(sp);
+                        }
                     }
                     dbContext.SaveChanges();
 

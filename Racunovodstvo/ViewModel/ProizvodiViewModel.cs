@@ -273,27 +273,27 @@ namespace Racunovodstvo.ViewModel
 
         private void DodajProizvodNav(string obj)
         {
-            //tp dp
-            //foreach (Window w in Application.Current.Windows)
-            //{
-            //    if (w.GetType().Equals(typeof(MainWindow)))
-            //    {
-            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-            //        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddProizvod))
-            //        {
-            //            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, null);
-            //            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
-            //            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
-            //            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
-            //        }
-            //        else
-            //        {
-            //            Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
-            //            er.Show();
-            //            SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog proizvoda", "Upozorenje");
-            //        }
-            //    }
-            //}
+            
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddProizvod))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, null);
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog proizvoda", "Upozorenje");
+                    }
+                }
+            }
         }
         #endregion
     }
