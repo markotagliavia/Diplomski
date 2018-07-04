@@ -265,6 +265,34 @@ namespace Skladistenje
                     ViewModelTitle = "Storni Skladišteni Dokumenti";
                     CurrentViewModel = new SkladisteniDokumentiViewModel(4);
                     break;
+                case "genericINT_PR":
+                    ViewModelTitle = "Nova Interna Prijemnica";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("INT_PR");
+                    break;
+                case "genericINT_OTP":
+                    ViewModelTitle = "Nova Interna Otpremnica";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("INT_OTP");
+                    break;
+                case "genericSP_PR":
+                    ViewModelTitle = "Nova Spoljna Prijemnica";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("SP_PR");
+                    break;
+                case "genericSP_OTP":
+                    ViewModelTitle = "Nova Spoljna Otpremnica";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("SP_OTP");
+                    break;
+                case "genericKOR_PR":
+                    ViewModelTitle = "Novi Pripis";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("KOR_PR");
+                    break;
+                case "genericKOR_OTP":
+                    ViewModelTitle = "Novi Otpis";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("KOR_OTP");
+                    break;
+                case "genericSTORNI":
+                    ViewModelTitle = "Novi Storni Sladišteni Dokument";
+                    CurrentViewModel = new DodajGenericSklDokViewModel("STORNI");
+                    break;
                 case "proizvodi":
                     ViewModelTitle = "Pregled Proizvoda";
                     proizvodiViewModel = new ProizvodiViewModel();
