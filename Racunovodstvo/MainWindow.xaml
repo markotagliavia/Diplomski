@@ -13,6 +13,9 @@
         <DataTemplate DataType="{x:Type viewModel:ProfaktureViewModel}">
             <views:Profakture/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProfakturuViewModel}">
+            <views:DodajProfakturu/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:FaktureViewModel}">
             <views:Fakture/>
         </DataTemplate>
@@ -45,6 +48,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaliheViewModel}">
             <views:ZaliheView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajZalihuViewModel}">
+            <views:DodajZalihe/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:NaprednaPretragaViewModel}">
             <views:NaprednaPretraga/>

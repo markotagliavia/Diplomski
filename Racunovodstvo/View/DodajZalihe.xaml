@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Racunovodstvo.View.DodajZalihe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Racunovodstvo.View"
+             xmlns:viewmodels="clr-namespace:Racunovodstvo.ViewModel"
+             xmlns:ui="clr-namespace:Racunovodstvo"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             Height="560" Width="420" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding OtkaziCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="10,40,0,0">
+                <Label Content="Skladišta : " Height="30" Width="130" FontSize="14"/>
+                <ComboBox x:Name="gradComboBox" Width="140" Margin="10,0,0,0" ItemsSource="{Binding Skladista}"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding SkladisteForBind}" Foreground="White">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,40,0,0">
+                <Label Content="Proizvodi : " Height="30" Width="130" FontSize="14"/>
+                <ComboBox x:Name="proizvodiComboBox" Width="140" Margin="10,0,0,0" ItemsSource="{Binding Proizvodi}"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding ProizvodForBind}" Foreground="White">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,40,0,0">
+                <Label Content="Minimum količine : " FontSize="14" Width="130" HorizontalAlignment="Left"/>
+                <ui:DigetTextBox Text="{Binding MinimumKolicine}" Background="Transparent"  Width="140" Margin="10,0,0,0" Foreground="White"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,40,0,0">
+                <Label Content="Raf : " FontSize="14" Width="130" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Raf}" Background="Transparent"  Width="140" Margin="10,0,0,0" Foreground="White"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button x:Name="dodajButton" Content="Dodaj" Command="{Binding DodajCommand}" Margin="100,0,20,0"/>
+            <Button x:Name="otkaziButton" Content="Otkaži" Command="{Binding OtkaziCommand}"/>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

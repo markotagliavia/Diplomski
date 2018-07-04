@@ -207,21 +207,29 @@ namespace Racunovodstvo.ViewModel
                 
                 dbContext.SaveChanges();
             }
-            foreach (Window w in Application.Current.Windows)
+            if (context == 0 || context == 1)
             {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    if (context == 0 || context == 1)
-                    {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
-                    }
-                    else
-                    {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
-                    }
-                    
-                }
+                MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
             }
+            else
+            {
+                MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
+            }
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        if (context == 0 || context == 1)
+            //        {
+            //            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
+            //        }
+            //        else
+            //        {
+            //            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+            //        }
+
+            //    }
+            //}
         }
         private void Back(string obj)
         {
@@ -229,15 +237,15 @@ namespace Racunovodstvo.ViewModel
         }
         private void Dodaj(string obj)
         {
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-
-                }
-            }
+            //    }
+            //}
             if (context == 0)
             {
                 try
@@ -366,14 +374,9 @@ namespace Racunovodstvo.ViewModel
                         dbContext.SaveChanges();
                         Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
                         s.Show();
-                        foreach (Window w in Application.Current.Windows)
-                        {
-                            if (w.GetType().Equals(typeof(MainWindow)))
-                            {
-                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
-                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
-                            }
-                        }
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
+                        
                         
                     }
                     else
@@ -494,14 +497,16 @@ namespace Racunovodstvo.ViewModel
                         dbContext.SaveChanges();
                         Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
                         s.Show();
-                        foreach (Window w in Application.Current.Windows)
-                        {
-                            if (w.GetType().Equals(typeof(MainWindow)))
-                            {
-                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
-                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
-                            }
-                        }
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
+                        //foreach (Window w in Application.Current.Windows)
+                        //{
+                        //    if (w.GetType().Equals(typeof(MainWindow)))
+                        //    {
+                        //        SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+                        //    }
+                        //}
                     }
                 }
                 catch (Exception)

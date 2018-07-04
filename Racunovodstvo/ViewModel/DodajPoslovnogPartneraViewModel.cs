@@ -56,13 +56,14 @@ namespace Racunovodstvo.ViewModel
         #region Commands Implements
         private void Otkazi(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("poslovnipartneri");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.poslovniPartneri);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("poslovnipartneri");
+            //    }
+            //}
         }
         private void Back(string obj)
         {
@@ -72,14 +73,15 @@ namespace Racunovodstvo.ViewModel
         {
             try
             {
-                foreach (Window w in Application.Current.Windows)
-                {
-                    if (w.GetType().Equals(typeof(MainWindow)))
-                    {
-                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+                //foreach (Window w in Application.Current.Windows)
+                //{
+                //    if (w.GetType().Equals(typeof(MainWindow)))
+                //    {
+                //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-                    }
-                }
+                //    }
+                //}
                 if (context == 0)
                 {
                     //if (SecurityManager.AuthorizationPolicy.HavePermission(UserOnSession.id, SecurityManager.Permission.AddProizvodjac))

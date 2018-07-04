@@ -267,13 +267,14 @@ namespace Racunovodstvo.ViewModel
         
         private void Back(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodi");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.proizvodi);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodi");
+            //    }
+            //}
         }
         private void Remove(int obj)
         {
@@ -307,19 +308,23 @@ namespace Racunovodstvo.ViewModel
         }
         private void AddProizvodjac(string obj)
         {
-           
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
 
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null,ProizvodForBind);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
+            MainWindowViewModel.Instance.DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null, ProizvodForBind);
+            MainWindowViewModel.Instance.DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
+            MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvodjaca);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-                }
-            }
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null,ProizvodForBind);
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
+
+            //    }
+            //}
         }
         private void Dodaj(string obj)
         {

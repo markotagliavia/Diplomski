@@ -60,36 +60,48 @@ namespace Racunovodstvo.ViewModel
 
         private void Otkazi(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
 
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
+            MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
+            MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+            MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
+            MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-                }
-            }
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
+
+            //    }
+            //}
         }
 
         private void Back(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-                    
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
-                    
-                }
-            }
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+
+            MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
+            MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+            MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
+            MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvod");
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvod";
+
+            //    }
+            //}
         }
 
         private void DodajProizvodjaca(string obj)
