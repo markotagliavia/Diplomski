@@ -34,7 +34,8 @@ namespace Skladistenje
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
         private NaprednaPretragaViewModel naprednapretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
-            
+        private DodajGenericSklDokViewModel dodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR");
+
         private BindableBase currentViewModel;
 
         private string _imeUser;
@@ -188,6 +189,12 @@ namespace Skladistenje
             set { dodajPopisViewModel = value; }
         }
 
+        public DodajGenericSklDokViewModel DodajGenericSklDokViewModel
+        {
+            get { return dodajGenericSklDokViewModel; }
+            set { dodajGenericSklDokViewModel = value; }
+        }
+
         public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
         public SkladisteniDokumentiViewModel SkladisteniDokumentiViewModel { get => skladisteniDokumentiViewModel; set => skladisteniDokumentiViewModel = value; }
 
@@ -241,7 +248,7 @@ namespace Skladistenje
                     CurrentViewModel = skladistaViewModel;
                     break;
                 case "dodajSkladiste":
-                    ViewModelTitle = "Novo Skladište";
+                    ViewModelTitle = "Skladišta -> Novo";
                     CurrentViewModel = dodajSkladisteViewModel;
                     break;
                 case "zalihe":
@@ -250,73 +257,83 @@ namespace Skladistenje
                     CurrentViewModel = ZaliheViewModel;
                     break;
                 case "interni":
-                    ViewModelTitle = "Interni Skladišteni Dokumenti";
-                    CurrentViewModel = new SkladisteniDokumentiViewModel(1);
+                    ViewModelTitle = "Skladišni dokumenti -> Interni";
+                    SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(1);
+                    CurrentViewModel = SkladisteniDokumentiViewModel;
                     break;
                 case "spoljni":
-                    ViewModelTitle = "Spoljni Skladišteni Dokumenti";
-                    CurrentViewModel = new SkladisteniDokumentiViewModel(2);
+                    ViewModelTitle = "Skladišni dokumenti -> Spoljni";
+                    SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(2);
+                    CurrentViewModel = SkladisteniDokumentiViewModel;
                     break;
                 case "korekcioni":
-                    ViewModelTitle = "Korekcioni Skladišteni Dokumenti";
-                    CurrentViewModel = new SkladisteniDokumentiViewModel(3);
+                    ViewModelTitle = "Skladišni dokumenti -> Korekcioni";
+                    SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(3);
+                    CurrentViewModel = SkladisteniDokumentiViewModel;
                     break;
                 case "storni":
-                    ViewModelTitle = "Storni Skladišteni Dokumenti";
-                    CurrentViewModel = new SkladisteniDokumentiViewModel(4);
+                    ViewModelTitle = "Skladišni dokumenti -> Storni";
+                    SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(4);
+                    CurrentViewModel = SkladisteniDokumentiViewModel;
                     break;
                 case "genericINT_PR":
-                    ViewModelTitle = "Nova Interna Prijemnica";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("INT_PR");
+                    ViewModelTitle = "Skladišni dokumenti -> Nova Interna Prijemnica";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "genericINT_OTP":
-                    ViewModelTitle = "Nova Interna Otpremnica";
+                    ViewModelTitle = "Skladišni dokumenti -> Nova Interna Otpremnica";
                     CurrentViewModel = new DodajGenericSklDokViewModel("INT_OTP");
                     break;
                 case "genericSP_PR":
-                    ViewModelTitle = "Nova Spoljna Prijemnica";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("SP_PR");
+                    ViewModelTitle = "Skladišni dokumenti -> Nova Spoljna Prijemnica";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("SP_PR");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "genericSP_OTP":
-                    ViewModelTitle = "Nova Spoljna Otpremnica";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("SP_OTP");
+                    ViewModelTitle = "Skladišni dokumenti -> Nova Spoljna Otpremnica";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("SP_OTP");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "genericKOR_PR":
-                    ViewModelTitle = "Novi Pripis";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("KOR_PR");
+                    ViewModelTitle = "Skladišni dokumenti -> Novi Pripis";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("KOR_PR");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "genericKOR_OTP":
-                    ViewModelTitle = "Novi Otpis";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("KOR_OTP");
+                    ViewModelTitle = "Skladišni dokumenti -> Novi Otpis";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("KOR_OTP");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "genericSTORNI":
-                    ViewModelTitle = "Novi Storni Sladišteni Dokument";
-                    CurrentViewModel = new DodajGenericSklDokViewModel("STORNI");
+                    ViewModelTitle = "Skladišni dokumenti -> Novi Storni";
+                    DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("STORNI");
+                    CurrentViewModel = DodajGenericSklDokViewModel;
                     break;
                 case "proizvodi":
-                    ViewModelTitle = "Pregled Proizvoda";
+                    ViewModelTitle = "Proizvodi";
                     proizvodiViewModel = new ProizvodiViewModel();
                     CurrentViewModel = proizvodiViewModel;
                     break;
                 case "dodajProizvod":
-                    ViewModelTitle = "Novi Proizvod";
+                    ViewModelTitle = "Proizvodi -> Novi";
                     CurrentViewModel = dodajProizvodViewModel;
                     break;
                 case "proizvodjaci":
-                    ViewModelTitle = "Pregled Proizvođača";
+                    ViewModelTitle = "Proizvođači";
                     pregledProizvodjacaViewModel = new PregledProizvodjacaViewModel();
                     CurrentViewModel = pregledProizvodjacaViewModel;
                     break;
                 case "dodajProizvodjaca":
-                    ViewModelTitle = "Novi Proizvođač";
+                    ViewModelTitle = "Proizvo]a;i -> Novi";
                     CurrentViewModel = dodajProizvodjacaViewModel;
                     break;
                 case "popisi":
-                    ViewModelTitle = "Pregled Popisa";
+                    ViewModelTitle = "Popisi";
                     CurrentViewModel = new PregledPopisaViewModel();
                     break;
                 case "dodajPopis":
-                    ViewModelTitle = "Novi Popisa";
+                    ViewModelTitle = "Popisi -> Novi";
                     CurrentViewModel = new DodajPopisViewModel(null);
                     break;
                 case "zaposleni":

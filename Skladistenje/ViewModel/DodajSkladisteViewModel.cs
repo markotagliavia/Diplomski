@@ -35,6 +35,7 @@ namespace Skladistenje.ViewModel
         #region Commands
         public MyICommand<object> DodajSkladisteCommand { get; private set; }
         public MyICommand<string> OtkaziCommand { get; private set; }
+        public MyICommand<string> BackNavCommand { get; private set; }
         public MyICommand<int> AddCommand { get; private set; }
         public MyICommand<int> RemoveCommand { get; private set; }
         #endregion
@@ -43,6 +44,7 @@ namespace Skladistenje.ViewModel
         {
             DodajSkladisteCommand = new MyICommand<object>(DodajSkladiste);
             OtkaziCommand = new MyICommand<string>(Otkazi);
+            BackNavCommand = new MyICommand<string>(Otkazi);
             AddCommand = new MyICommand<int>(Add);
             RemoveCommand = new MyICommand<int>(Remove);
             context = v;

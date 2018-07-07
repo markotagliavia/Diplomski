@@ -34,7 +34,7 @@ namespace Skladistenje.ViewModel
         private ICollectionView defaultView;
         private string novi1 = "", novi2 = "";
         private Visibility novi2Visible;
-        private int tip = "";
+        private int tip = -1;
         #endregion
 
         public SkladisteniDokumentiViewModel(int tip)
@@ -102,7 +102,11 @@ namespace Skladistenje.ViewModel
         public ObservableCollection<SkladisteniDokument> SklDokumenti
         {
             get { return sklDokumenti; }
-            set { sklDokumenti = value; }
+            set
+            {
+                sklDokumenti = value;
+                OnPropertyChanged("SelectedInGrid");
+            }
         }
 
         public ICollectionView DefaultView { get => defaultView; set => defaultView = value; }

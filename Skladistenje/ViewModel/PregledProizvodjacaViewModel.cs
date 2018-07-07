@@ -232,7 +232,7 @@ namespace Skladistenje.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(1, selectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Proizvođača";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Proizvođači -> Izmena";
                         }
                         else
                         {
@@ -264,7 +264,7 @@ namespace Skladistenje.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajProizvodjacaViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajProizvodjaca");
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Proizvođač";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Proizvođač -> Novi";
                     }
                     else
                     {
