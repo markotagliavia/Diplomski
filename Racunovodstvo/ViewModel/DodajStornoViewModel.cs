@@ -313,7 +313,7 @@ namespace Racunovodstvo.ViewModel
                         FakturaForBind.zaposleni_id = z.id;
                         dbContext.Fakturas.Add(FakturaForBind);
                         dbContext.SaveChanges();
-                        int rednibroj = 0;
+                        int rednibroj = 1;
                         foreach (var item in stavkeFaktura)
                         {
                             if (item.Storno)

@@ -279,7 +279,7 @@ namespace Racunovodstvo.ViewModel
                 MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, null);
                 MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
                 MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
-                MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+                MainWindowViewModel.Instance.ViewModelTitle = "Proizvod -> Novi";
             }
             else
             {

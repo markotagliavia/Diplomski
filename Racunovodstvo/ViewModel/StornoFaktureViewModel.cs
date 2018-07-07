@@ -97,7 +97,7 @@ namespace Racunovodstvo.ViewModel
                     UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
                     ((MainWindowViewModel)((MainWindow)w).DataContext).DodajStornoViewModel = new DodajStornoViewModel(1, SelectedValue);
                     ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajStornoViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Pregled storno fakture";
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Fakture -> Storno";
                 }
             }
         }
@@ -120,7 +120,7 @@ namespace Racunovodstvo.ViewModel
                     {
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajStornoViewModel = new DodajStornoViewModel(0,null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajStornoViewModel;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova storno faktura";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Storno faktura -> Nova";
                     }
                 }
             }

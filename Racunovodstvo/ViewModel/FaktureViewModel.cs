@@ -354,7 +354,7 @@ namespace Racunovodstvo.ViewModel
                             //((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Izlazne fakture";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izlazna Faktura -> Izmena";
                         }
                         else
                         {
@@ -370,7 +370,7 @@ namespace Racunovodstvo.ViewModel
                             MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(3, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Ulazne fakture";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Ulazna faktura -> Izmena";
                         }
                         else
                         {
@@ -401,7 +401,7 @@ namespace Racunovodstvo.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(0, null);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Izlazna faktura";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izlazna faktura -> Nova";
                         }
                         else
                         {
@@ -417,7 +417,7 @@ namespace Racunovodstvo.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(2, null);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Ulazna faktura";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Ulazna faktura -> Nova";
                         }
                         else
                         {

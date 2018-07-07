@@ -70,7 +70,7 @@ namespace Racunovodstvo.ViewModel
             }
             if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.EditProfaktura))
             {
-                MainWindowViewModel.Instance.DodajProfakturuViewModel = new DodajProfakturuViewModel(3, SelectedValue);
+                MainWindowViewModel.Instance.DodajProfakturuViewModel = new DodajProfakturuViewModel(1, SelectedValue);
                 MainWindowViewModel.Instance.OnNav(Navigation.izmeniProfakturu);
             }
             else
@@ -111,46 +111,22 @@ namespace Racunovodstvo.ViewModel
                 if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
                 {
                     DefaultView = CollectionViewSource.GetDefaultView(DefaultView);
-                    if (type.Equals("PIB-u"))
+                    if (type.Equals("Oznaci"))
                     {
                         DefaultView.Filter =
-                        w => ((PoslovniPartner)w).pib.ToUpper().Contains(TextSearch.ToUpper());
+                        w => ((Profaktura)w).oznaka.ToUpper().Contains(TextSearch.ToUpper());
                     }
-                    else if (type.Equals("Nazivu"))
+                    else if (type.Equals("Poslovnom partneru"))
                     {
                         DefaultView.Filter =
-                        w => ((PoslovniPartner)w).naziv.ToUpper().Contains(TextSearch.ToUpper());
+                        w => ((Profaktura)w).PoslovniPartner.naziv.ToUpper().Contains(TextSearch.ToUpper());
                     }
-                    else if (type.Equals("Gradu"))
+                    else if (type.Equals("Datumu"))
                     {
                         DefaultView.Filter =
-                        w => ((PoslovniPartner)w).grad.naziv.ToUpper().Contains(TextSearch.ToUpper());
+                        w => ((Profaktura)w).datum.ToString().ToUpper().Contains(TextSearch.ToUpper());
                     }
-                    else if (type.Equals("Adresi"))
-                    {
-                        DefaultView.Filter =
-                        w => ((PoslovniPartner)w).adresa.ToUpper().Contains(TextSearch.ToUpper());
-                    }
-                    else if (type.Equals("Dugovanjima"))
-                    {
-                        DefaultView.Filter =
-                        w => ((PoslovniPartner)w).dugovanja.ToString().ToUpper().Contains(TextSearch.ToUpper());
-                    }
-                    else if (type.Equals("Emailu"))
-                    {
-                        DefaultView.Filter =
-                        w => ((PoslovniPartner)w).email.ToUpper().Contains(TextSearch.ToUpper());
-                    }
-                    else if (type.Equals("Tekućem računu"))
-                    {
-                        DefaultView.Filter =
-                        w => ((PoslovniPartner)w).tekuciracun.ToUpper().Contains(TextSearch.ToUpper());
-                    }
-                    else if (type.Equals("Broju telefona"))
-                    {
-                        DefaultView.Filter =
-                        w => ((PoslovniPartner)w).brojtelefona.ToUpper().Contains(TextSearch.ToUpper());
-                    }
+                    
 
                     DefaultView.Refresh();
                 }

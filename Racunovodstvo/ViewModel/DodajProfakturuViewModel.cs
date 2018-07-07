@@ -87,8 +87,9 @@ namespace Racunovodstvo.ViewModel
                 SubmitButtonText = "Potvrdi izmenu";
                 BezPDV = 0;
                 SaPDV = 0;
-                Pdv = f.PDV;
                 ProfakturaForEdit = f;
+                Pdv = f.PDV;
+                
                 if (f.StavkaProfaktures.Count > 0)
                 {
                     SkladisteForBind = f.StavkaProfaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
@@ -199,7 +200,7 @@ namespace Racunovodstvo.ViewModel
                         Notifications.Success s = new Notifications.Success("Uspešno ste kreirali profakturu");
                         s.Show();
                         
-                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana profaktura {ProfakturaForEdit.oznaka}", "Info");
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, $"Uspesno je kreirana profaktura {ProfakturaForEdit.oznaka}", "Info");
                     }
                     else
                     {
@@ -213,6 +214,40 @@ namespace Racunovodstvo.ViewModel
 
                     if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.EditProfaktura))
                     {
+                        var original = dbContext.Profakturas.FirstOrDefault(x => x.id == ProfakturaForEdit.id);
+
+                        if (original != null)
+                        {
+                            original.oznaka = ProfakturaForEdit.oznaka;
+                            original.datum = ProfakturaForEdit.datum;
+                            original.PDV = ProfakturaForEdit.PDV;
+                            original.poslovnipartner_mbr = ProfakturaForEdit.poslovnipartner_mbr;
+                            
+                            int i = 1;
+                            original.StavkaProfaktures.Clear();
+                            foreach (var item in ProizvodiSaKolicinom)
+                            {
+                                StavkaProfakture st = new StavkaProfakture();
+                                st.rednibroj = i;
+                                st.kolicina = Double.Parse(item.Kolicina);
+                                st.rabat = Double.Parse(item.Rabat);
+                                st.cena = Double.Parse(item.Cena);
+                                st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
+                                st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
+                                st.Profaktura = dbContext.Profakturas.FirstOrDefault(x => x.oznaka.Equals(ProfakturaForEdit.oznaka));
+                                original.StavkaProfaktures.Add(st);
+
+                                ++i;
+                            }
+
+                        }
+                        dbContext.SaveChanges();
+                        Notifications.Success s = new Notifications.Success("Uspešno ste izmenili profakturu.");
+                        s.Show();
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + ProfakturaForEdit.oznaka, "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
+
+
                         Back("");
                     }
                     else
@@ -402,7 +437,7 @@ namespace Racunovodstvo.ViewModel
             set
             {
                 pdv = value;
-                //Profaktura.pdv = pdv;
+                ProfakturaForEdit.PDV= pdv;
                 SaPDV = (1 + (pdv / 100)) * BezPDV;
                 OnPropertyChanged("Pdv");
             }
