@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -74,8 +75,8 @@ namespace Racunovodstvo.ViewModel
                 ProfakturaForEdit = new Profaktura();
                 ProfakturaForEdit.active = true;
                 ProfakturaForEdit.zaposleni_id = -1;
-                //ProfakturaForEdit.datum = DateTime.Now();
-                //ProfakturaForEdit.PDV = 0;
+                ProfakturaForEdit.datum = DateTime.Now;
+                ProfakturaForEdit.PDV = 0;
                 Pdv = 0;
                 SaPDV = 0;
                 BezPDV = 0;
@@ -86,6 +87,7 @@ namespace Racunovodstvo.ViewModel
                 SubmitButtonText = "Potvrdi izmenu";
                 BezPDV = 0;
                 SaPDV = 0;
+                Pdv = f.PDV;
                 ProfakturaForEdit = f;
                 if (f.StavkaProfaktures.Count > 0)
                 {
@@ -110,14 +112,52 @@ namespace Racunovodstvo.ViewModel
 
         private void Remove(int obj)
         {
-            throw new NotImplementedException();
+            ProizvodKolicina p = ProizvodiSaKolicinom.ElementAt(SelectedProizvodSaKolicinom);
+            Double kolicina = Double.Parse(p.Kolicina);
+            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(p.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
+            if (SelectedProizvodSaKolicinom != -1)
+            {
+
+                ProizvodiSaKolicinom.RemoveAt(SelectedProizvodSaKolicinom);
+                BezPDV -= (Double.Parse(p.Cena) * kolicina) * (1 - (Double.Parse(p.Rabat) / 100));
+                SaPDV = (1 + (Pdv / 100)) * BezPDV;
+               
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
         }
 
         private void Add(int obj)
         {
-            throw new NotImplementedException();
-        }
+            if (SelectedProizvod != -1)
+            {
+                if (String.IsNullOrEmpty(KolicinaText) || String.IsNullOrEmpty(RabatText) || String.IsNullOrEmpty(CenaText))
+                {
+                    Error er = new Error("Sva polja su obavezna");
+                    er.Show();
+                    return;
+                }
+                Proizvod p = Proizvodi.ElementAt(SelectedProizvod);
+                Double kolicina = Double.Parse(KolicinaText);
+                Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == p.id && x.Skladiste.naziv.Equals(SkladisteForBind));
+                
+                
+                ProizvodKolicina pk = new ProizvodKolicina(p, KolicinaText, CenaText, RabatText);
+                ProizvodiSaKolicinom.Add(pk);
+                BezPDV += (Double.Parse(CenaText) * kolicina) * (1 - (Double.Parse(RabatText) / 100));
+                SaPDV = (1 + (Pdv / 100)) * BezPDV;
 
+               
+            }
+            else
+            {
+                Notifications.Error e = new Notifications.Error("Morate selektovati odgovarajuću kolonu.");
+                e.Show();
+            }
+        }
         private void Back(string obj)
         {
             Otkazi("");
@@ -130,11 +170,68 @@ namespace Racunovodstvo.ViewModel
 
         private void Dodaj(string obj)
         {
-            if (context == 0)
-            {
-                ProfakturaForEdit.zaposleni_id = MainWindowViewModel.Instance.UserOnSession.zaposleni_id;
+            try {
+                if (context == 0)
+                {
+                    ProfakturaForEdit.zaposleni_id = MainWindowViewModel.Instance.UserOnSession.zaposleni_id;
+                    ProfakturaForEdit.poslovnipartner_mbr = dbContext.PoslovniPartners.FirstOrDefault(x => x.naziv.Equals(PoslovniPartnerForBind)).mbr;
+                    
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.AddProfaktura))
+                    {
+                        dbContext.Profakturas.Add(ProfakturaForEdit);
+                        dbContext.SaveChanges();
+                        int i = 1;
+                        foreach (var item in ProizvodiSaKolicinom)
+                        {
+                            StavkaProfakture st = new StavkaProfakture();
+                            st.rednibroj = i;
+                            st.kolicina = Double.Parse(item.Kolicina);
+                            st.rabat = Double.Parse(item.Rabat);
+                            st.cena = Double.Parse(item.Cena);
+                            st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
+                            st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
+                            st.Profaktura = dbContext.Profakturas.FirstOrDefault(x => x.oznaka.Equals(ProfakturaForEdit.oznaka));
+                            dbContext.StavkaProfaktures.Add(st);
+                            dbContext.SaveChanges();
+                            ++i;
+                        }
+                        Back("");
+                        Notifications.Success s = new Notifications.Success("Uspešno ste kreirali profakturu");
+                        s.Show();
+                        
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana profaktura {ProfakturaForEdit.oznaka}", "Info");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja profakture", "Upozorenje");
+                    }
+                }
+                else
+                {
+
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.EditProfaktura))
+                    {
+                        Back("");
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Neuspesan pokusaj izmene profakture", "Upozorenje");
+                    }
+                }
             }
-            throw new NotImplementedException();
+            catch (Exception ex)
+            {
+                
+                Error er = new Error("Greška sa konekcijom!\nObratite se administratorima.");
+                er.Show();
+                
+
+            }
+
         }
 
         #region Constructors

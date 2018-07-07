@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,12 +47,38 @@ namespace Racunovodstvo.ViewModel
 
         private void Obrisi(string obj)
         {
-            throw new NotImplementedException();
+            if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.DeleteProfaktura))
+            {
+                //to do
+            }
+            else
+            {
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Neuspesan pokusaj brisanja profakture", "Upozorenje");
+            }
         }
 
         private void Izmeni(string obj)
         {
-            throw new NotImplementedException();
+            if (SelectedIndex < -1)
+            {
+                Error er = new Error("Morate selektovati profakturu.");
+                er.Show();
+                return;
+
+            }
+            if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.EditProfaktura))
+            {
+                MainWindowViewModel.Instance.DodajProfakturuViewModel = new DodajProfakturuViewModel(3, SelectedValue);
+                MainWindowViewModel.Instance.OnNav(Navigation.izmeniProfakturu);
+            }
+            else
+            {
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Neuspesan pokusaj izmene profakture", "Upozorenje");
+            }
         }
 
         private void Dodaj(string obj)
@@ -63,14 +90,83 @@ namespace Racunovodstvo.ViewModel
             //p.zaposleni_id;
             //f.datum;
             //f.pdv;
-            MainWindowViewModel.Instance.DodajProfakturuViewModel = new DodajProfakturuViewModel(0,null);
-            MainWindowViewModel.Instance.OnNav(Navigation.dodajProfakturu);
+            if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.AddProfaktura))
+            {
+                MainWindowViewModel.Instance.DodajProfakturuViewModel = new DodajProfakturuViewModel(0, null);
+                MainWindowViewModel.Instance.OnNav(Navigation.dodajProfakturu);
+            }
+            else
+            {
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Neuspesan pokusaj kreiranja profakture", "Upozorenje");
+            }
             
         }
 
-        private void Pretrazi(string obj)
+        private void Pretrazi(string type)
         {
-            throw new NotImplementedException();
+            if (!type.Equals("/"))
+            {//to do
+                if (TextSearch != null && !String.IsNullOrWhiteSpace(TextSearch) && (TextSearch != ""))
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(DefaultView);
+                    if (type.Equals("PIB-u"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).pib.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Nazivu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Gradu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).grad.naziv.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Adresi"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).adresa.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Dugovanjima"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).dugovanja.ToString().ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Emailu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).email.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Tekućem računu"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).tekuciracun.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+                    else if (type.Equals("Broju telefona"))
+                    {
+                        DefaultView.Filter =
+                        w => ((PoslovniPartner)w).brojtelefona.ToUpper().Contains(TextSearch.ToUpper());
+                    }
+
+                    DefaultView.Refresh();
+                }
+                else
+                {
+                    DefaultView = CollectionViewSource.GetDefaultView(Profakture);
+                    DefaultView.Filter = null;
+                    DefaultView.Refresh();
+                }
+            }
+            else
+            {
+                DefaultView = CollectionViewSource.GetDefaultView(Profakture);
+                DefaultView.Filter = null;
+                DefaultView.Refresh();
+            }
         }
         #region Properties
         public ObservableCollection<Profaktura> Profakture { get => profakture; set => profakture = value; }

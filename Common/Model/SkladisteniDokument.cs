@@ -39,10 +39,12 @@ namespace Common.Model
         public string izdao { get; set; }
         public string primio { get; set; }
         public Nullable<int> poslovnipartner_mbr { get; set; }
-        public int skladiste_id { get; set; }
+        public Nullable<int> skladiste_id { get; set; }
+        public Nullable<int> skladiste_id1 { get; set; }
     
         public virtual PoslovniPartner PoslovniPartner { get; set; }
         public virtual Skladiste Skladiste { get; set; }
+        public virtual Skladiste Skladiste1 { get; set; }
         public virtual ZaposleniSkladista ZaposleniSkladista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SkladisteniDokument> SkladisteniDokument1 { get; set; }

@@ -218,5 +218,8 @@
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Permission_Uloga_FK1.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Keys\Notification_PK.sql" />
     <Build Include="Schema objects\Schema\dbo\Tables\Notification.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\StavkaKompenzacije_FK2.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\SkladisteniDokument_FK5.sql" />
+    <Build Include="Schema objects\Schema\dbo\Tables\Keys\Popis_UQ.sql" />
   </ItemGroup>
 </Project>

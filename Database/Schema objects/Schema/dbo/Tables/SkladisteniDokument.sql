@@ -17,7 +17,7 @@
     izdao                             VARCHAR(30),
     primio                            VARCHAR(30),
     poslovnipartner_mbr               INTEGER,
-	skladiste_id					  INTEGER NOT NULL,
-
+	skladiste_id					  INTEGER  NULL,
+	skladiste_id1					  INTEGER NULL,
 
 )

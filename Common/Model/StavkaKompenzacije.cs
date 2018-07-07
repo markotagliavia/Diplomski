@@ -16,11 +16,13 @@ namespace Common.Model
     {
         public int stavkafakture_faktura_id { get; set; }
         public int stavkafakture_rednibroj { get; set; }
+        public int stavkafakture_faktura_id1 { get; set; }
+        public int stavkafakture_rednibroj1 { get; set; }
         public int kompenzacija_id { get; set; }
-        public int kolicina { get; set; }
         public int rednibroj { get; set; }
     
         public virtual Kompenzacija Kompenzacija { get; set; }
         public virtual StavkaFakture StavkaFakture { get; set; }
+        public virtual StavkaFakture StavkaFakture1 { get; set; }
     }
 }
