@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\
+E:\aj\repo\Skladistenje\obj\Debug\
 Skladistenje
 none
 false
 DEBUG;TRACE
-D:\E3\DiplomskiKlon296\repo\Skladistenje\App.xaml
+E:\aj\repo\Skladistenje\App.xaml
 18-561573804
 
-4341652673
-28-1360309432
+43-1670166489
+28-364022147
 LoginWindow.xaml;MainWindow.xaml;View\DodajGenericSklDok.xaml;View\DodajProizvodjacaView.xaml;View\DodajProizvodView.xaml;View\DodajSkladisteView.xaml;View\HelpView.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\DodajPopisView.xaml;View\PregledPopisaView.xaml;View\PregledProizvodjacaView.xaml;View\PripisOtpisView.xaml;View\ProizvodiView.xaml;View\Skladista.xaml;View\SkladisteniDokumenti.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
-False
+True
 
