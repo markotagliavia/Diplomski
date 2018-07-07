@@ -253,10 +253,14 @@ namespace Racunovodstvo
             {
                 case Navigation.profakture:
                     ViewModelTitle = "Profakture";
-                    CurrentViewModel = profaktureViewModel;
+                    CurrentViewModel = new ProfaktureViewModel();
                     break;
                 case Navigation.dodajProfakturu:
                     ViewModelTitle = "Dodaj Profakturu";
+                    CurrentViewModel = dodajProfakturuViewModel;
+                    break;
+                case Navigation.izmeniProfakturu:
+                    ViewModelTitle = "Izmena Profakture";
                     CurrentViewModel = dodajProfakturuViewModel;
                     break;
                 case Navigation.izlazna:
@@ -381,6 +385,7 @@ namespace Racunovodstvo
         bilansi,
         zaposleni,
         dodajZalihe,
-        dodajProfakturu
+        dodajProfakturu,
+        izmeniProfakturu
     }
 }

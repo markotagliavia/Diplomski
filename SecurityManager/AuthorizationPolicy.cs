@@ -46,7 +46,9 @@ namespace SecurityManager
             EditZaposleniSkl,
             AddPopis,
             PreviewPopis,
-            AddSklDok   //dodati u bazu
+            AddSklDok,   //dodati u bazu
+           
+
     }
 
     public class AuthorizationPolicy

@@ -336,6 +336,10 @@ namespace Racunovodstvo.ViewModel
 
         private void IzmeniNav(string obj)
         {
+            if (SelectedIndex < -1)
+            {
+                return;
+            }
             foreach (Window w in Application.Current.Windows)
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
@@ -348,7 +352,7 @@ namespace Racunovodstvo.ViewModel
                         {
                             MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
                             //((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu = new DodajFakturuViewModel(1, SelectedValue);
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Izlazne fakture";
                         }
@@ -361,10 +365,10 @@ namespace Racunovodstvo.ViewModel
                     }
                     else if (context == 1)
                     {
-                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditIzlazna))
+                        if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.EditUlazna))
                         {
                             MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(3, SelectedValue);
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajFakturu;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Ulazne fakture";
                         }

@@ -331,3 +331,5 @@ D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.exe
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\Skladistenje.pdb
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\View\DodajGenericSklDok.g.cs
 D:\E3\DiplomskiKlon296\repo\Skladistenje\obj\Debug\View\DodajGenericSklDok.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Skladistenje\obj\Debug\View\DodajGenericSklDok.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Skladistenje\obj\Debug\View\DodajGenericSklDok.baml

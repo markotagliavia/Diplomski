@@ -18,6 +18,7 @@ namespace Common.Model
         public StavkaFakture()
         {
             this.StavkaKompenzacijes = new HashSet<StavkaKompenzacije>();
+            this.StavkaKompenzacijes1 = new HashSet<StavkaKompenzacije>();
             this.StavkaProfaktures = new HashSet<StavkaProfakture>();
             this.StavkaSklDokumentas = new HashSet<StavkaSklDokumenta>();
         }
@@ -43,6 +44,8 @@ namespace Common.Model
         public virtual Zalihe Zalihe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StavkaKompenzacije> StavkaKompenzacijes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StavkaKompenzacije> StavkaKompenzacijes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StavkaProfakture> StavkaProfaktures { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

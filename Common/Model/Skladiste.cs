@@ -19,6 +19,7 @@ namespace Common.Model
         {
             this.Popis = new HashSet<Popi>();
             this.SkladisteniDokuments = new HashSet<SkladisteniDokument>();
+            this.SkladisteniDokuments1 = new HashSet<SkladisteniDokument>();
             this.StavkaPopisas = new HashSet<StavkaPopisa>();
             this.Zalihes = new HashSet<Zalihe>();
             this.ZaposleniSkladistas = new HashSet<ZaposleniSkladista>();
@@ -36,6 +37,8 @@ namespace Common.Model
         public virtual ICollection<Popi> Popis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SkladisteniDokument> SkladisteniDokuments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SkladisteniDokument> SkladisteniDokuments1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StavkaPopisa> StavkaPopisas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

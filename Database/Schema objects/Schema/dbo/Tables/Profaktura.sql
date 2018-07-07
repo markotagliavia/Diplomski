@@ -2,7 +2,7 @@
 (
 	active              bit NOT NULL,
     id                  INTEGER NOT NULL IDENTITY(1,1),
-    redovnafaktura_id   INTEGER NOT NULL,
+    redovnafaktura_id   INTEGER NULL,
 	datum				DATETIME NOT NULL,
 	PDV					FLOAT NOT NULL,
 	oznaka		        VARCHAR(30) NOT NULL,		  

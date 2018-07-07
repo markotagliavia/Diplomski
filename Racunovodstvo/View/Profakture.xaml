@@ -21,12 +21,12 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
             <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
-            <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="120" Foreground="White">
+            <ComboBox x:Name="comboBoxSearch"  Margin="10,0,0,0" Height="25" Width="150" Foreground="White">
                 <ComboBoxItem  IsSelected="True" Content="/"/>
                 <ComboBoxItem  Content="Oznaci"/>
                 <ComboBoxItem Content="Poslovnom partneru"/>
-                <ComboBoxItem Content="Plaćanju"/>
-                <ComboBoxItem Content="Avansu"/>
+                <ComboBoxItem Content="Datumu"/>
+                
 
             </ComboBox>
 
@@ -41,13 +41,14 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Oznaka" Binding="{Binding oznaka}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Poslovni partner" Binding="{Binding PoslovniPartner.naziv}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Aktivna" Binding="{Binding active}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="Aktivna" Binding="{Binding active}"></DataGridCheckBoxColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Nova faktura" Command="{Binding DodajCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
+            <Button Content="Nova profaktura" Command="{Binding DodajCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
             <Button Content="Izbriši" Command="{Binding ObrisiCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
             <Button Content="Izmeni" Command="{Binding IzmeniCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>

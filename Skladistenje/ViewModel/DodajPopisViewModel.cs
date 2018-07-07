@@ -184,7 +184,7 @@ namespace Skladistenje.ViewModel
                     newPopis.datum = PopisForBind.datum;
                     newPopis.datum += new TimeSpan(0, 0, 0);
                     newPopis.skladiste_id = Skladista.FirstOrDefault(x => x.naziv.Equals(SkladisteForBind)).id;
-
+                    newPopis.id = -1;
                     List<Zaposleni> zapPom = dbContext.Zaposlenis.ToList();
                     foreach (var item in ZaposleniDesno)
                     {

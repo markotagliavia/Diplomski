@@ -154,7 +154,9 @@
           </Key>
           <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="redovnafaktura_id" Type="int" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="int" />
+          <Property Name="datum" Type="datetime" Nullable="false" />
+          <Property Name="PDV" Type="float" Nullable="false" />
           <Property Name="oznaka" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="zaposleni_id" Type="int" Nullable="false" />
           <Property Name="poslovnipartner_mbr" Type="int" Nullable="false" />
@@ -218,7 +220,8 @@
           <Property Name="izdao" Type="varchar" MaxLength="30" />
           <Property Name="primio" Type="varchar" MaxLength="30" />
           <Property Name="poslovnipartner_mbr" Type="int" />
-          <Property Name="skladiste_id" Type="int" Nullable="false" />
+          <Property Name="skladiste_id" Type="int" />
+          <Property Name="skladiste_id1" Type="int" />
         </EntityType>
         <EntityType Name="SpoljniSklDokument_RedovnaFak">
           <Key>
@@ -256,8 +259,9 @@
           </Key>
           <Property Name="stavkafakture_faktura_id" Type="int" Nullable="false" />
           <Property Name="stavkafakture_rednibroj" Type="int" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id1" Type="int" Nullable="false" />
+          <Property Name="stavkafakture_rednibroj1" Type="int" Nullable="false" />
           <Property Name="kompenzacija_id" Type="int" Nullable="false" />
-          <Property Name="kolicina" Type="int" Nullable="false" />
           <Property Name="rednibroj" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="StavkaPopisa">
@@ -525,7 +529,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Profaktura_FK1">
-          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
           <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faktura">
@@ -621,7 +625,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SkladisteniDokument_FK">
-          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="0..1" />
           <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Skladiste">
@@ -667,6 +671,18 @@
             </Principal>
             <Dependent Role="SkladisteniDokument1">
               <PropertyRef Name="redovniskldok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK5">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="0..1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="skladiste_id1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -775,6 +791,20 @@
             <Dependent Role="StavkaKompenzacije">
               <PropertyRef Name="stavkafakture_faktura_id" />
               <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK2">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="stavkafakture_faktura_id1" />
+              <PropertyRef Name="stavkafakture_rednibroj1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1147,6 +1177,10 @@
             <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
             <End Role="SkladisteniDokument1" EntitySet="SkladisteniDokument" />
           </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK5" Association="Self.SkladisteniDokument_FK5">
+            <End Role="Skladiste" EntitySet="Skladiste" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokument" />
+          </AssociationSet>
           <AssociationSet Name="SpoljniSklDokument_RedovnaFak_FK" Association="Self.SpoljniSklDokument_RedovnaFak_FK">
             <End Role="Faktura" EntitySet="Faktura" />
             <End Role="SpoljniSklDokument_RedovnaFak" EntitySet="SpoljniSklDokument_RedovnaFak" />
@@ -1176,6 +1210,10 @@
             <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacije" />
           </AssociationSet>
           <AssociationSet Name="StavkaKompenzacije_FK1" Association="Self.StavkaKompenzacije_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFakture" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacije" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK2" Association="Self.StavkaKompenzacije_FK2">
             <End Role="StavkaFakture" EntitySet="StavkaFakture" />
             <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacije" />
           </AssociationSet>
@@ -1421,7 +1459,9 @@
           </Key>
           <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="redovnafaktura_id" Type="Int32" Nullable="false" />
+          <Property Name="redovnafaktura_id" Type="Int32" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PDV" Type="Double" Nullable="false" />
           <Property Name="oznaka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="zaposleni_id" Type="Int32" Nullable="false" />
           <Property Name="poslovnipartner_mbr" Type="Int32" Nullable="false" />
@@ -1470,6 +1510,7 @@
           <NavigationProperty Name="grad" Relationship="Self.Skladiste_FK" FromRole="Skladiste" ToRole="grad" />
           <NavigationProperty Name="Popis" Relationship="Self.Popis_FK" FromRole="Skladiste" ToRole="Popis" />
           <NavigationProperty Name="SkladisteniDokuments" Relationship="Self.SkladisteniDokument_FK" FromRole="Skladiste" ToRole="SkladisteniDokument" />
+          <NavigationProperty Name="SkladisteniDokuments1" Relationship="Self.SkladisteniDokument_FK5" FromRole="Skladiste" ToRole="SkladisteniDokument" />
           <NavigationProperty Name="StavkaPopisas" Relationship="Self.StavkaPopisa_FK2" FromRole="Skladiste" ToRole="StavkaPopisa" />
           <NavigationProperty Name="Zalihes" Relationship="Self.Zalihe_FK1" FromRole="Skladiste" ToRole="Zalihe" />
           <NavigationProperty Name="ZaposleniSkladistas" Relationship="Self.ZaposleniSkladista_FK" FromRole="Skladiste" ToRole="ZaposleniSkladista" />
@@ -1495,9 +1536,11 @@
           <Property Name="izdao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="primio" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="poslovnipartner_mbr" Type="Int32" />
-          <Property Name="skladiste_id" Type="Int32" Nullable="false" />
+          <Property Name="skladiste_id" Type="Int32" />
+          <Property Name="skladiste_id1" Type="Int32" />
           <NavigationProperty Name="PoslovniPartner" Relationship="Self.SkladisteniDokument_FK2" FromRole="SkladisteniDokument" ToRole="PoslovniPartner" />
           <NavigationProperty Name="Skladiste" Relationship="Self.SkladisteniDokument_FK" FromRole="SkladisteniDokument" ToRole="Skladiste" />
+          <NavigationProperty Name="Skladiste1" Relationship="Self.SkladisteniDokument_FK5" FromRole="SkladisteniDokument" ToRole="Skladiste" />
           <NavigationProperty Name="ZaposleniSkladista" Relationship="Self.SkladisteniDokument_FK1" FromRole="SkladisteniDokument" ToRole="ZaposleniSkladista" />
           <NavigationProperty Name="SkladisteniDokument1" Relationship="Self.SkladisteniDokument_FK3" FromRole="SkladisteniDokument" ToRole="SkladisteniDokument1" />
           <NavigationProperty Name="SkladisteniDokument2" Relationship="Self.SkladisteniDokument_FK3" FromRole="SkladisteniDokument1" ToRole="SkladisteniDokument" />
@@ -1528,6 +1571,7 @@
           <NavigationProperty Name="StavkaSklDokumenta" Relationship="Self.StavkaFakture_FK2" FromRole="StavkaFakture" ToRole="StavkaSklDokumenta" />
           <NavigationProperty Name="Zalihe" Relationship="Self.StavkaFakture_FK3" FromRole="StavkaFakture" ToRole="Zalihe" />
           <NavigationProperty Name="StavkaKompenzacijes" Relationship="Self.StavkaKompenzacije_FK1" FromRole="StavkaFakture" ToRole="StavkaKompenzacije" />
+          <NavigationProperty Name="StavkaKompenzacijes1" Relationship="Self.StavkaKompenzacije_FK2" FromRole="StavkaFakture" ToRole="StavkaKompenzacije" />
           <NavigationProperty Name="StavkaProfaktures" Relationship="Self.StavkaProfakture_FK1" FromRole="StavkaFakture" ToRole="StavkaProfakture" />
           <NavigationProperty Name="StavkaSklDokumentas" Relationship="Self.StavkaSklDokumenta_FK1" FromRole="StavkaFakture" ToRole="StavkaSklDokumenta" />
         </EntityType>
@@ -1539,11 +1583,13 @@
           </Key>
           <Property Name="stavkafakture_faktura_id" Type="Int32" Nullable="false" />
           <Property Name="stavkafakture_rednibroj" Type="Int32" Nullable="false" />
+          <Property Name="stavkafakture_faktura_id1" Type="Int32" Nullable="false" />
+          <Property Name="stavkafakture_rednibroj1" Type="Int32" Nullable="false" />
           <Property Name="kompenzacija_id" Type="Int32" Nullable="false" />
-          <Property Name="kolicina" Type="Int32" Nullable="false" />
           <Property Name="rednibroj" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Kompenzacija" Relationship="Self.StavkaKompenzacije_FK" FromRole="StavkaKompenzacije" ToRole="Kompenzacija" />
           <NavigationProperty Name="StavkaFakture" Relationship="Self.StavkaKompenzacije_FK1" FromRole="StavkaKompenzacije" ToRole="StavkaFakture" />
+          <NavigationProperty Name="StavkaFakture1" Relationship="Self.StavkaKompenzacije_FK2" FromRole="StavkaKompenzacije" ToRole="StavkaFakture" />
         </EntityType>
         <EntityType Name="StavkaPopisa">
           <Key>
@@ -1717,7 +1763,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Profaktura_FK1">
-          <End Role="Faktura" Type="Self.Faktura" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="0..1" />
           <End Role="Profaktura" Type="Self.Profaktura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faktura">
@@ -1945,7 +1991,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SkladisteniDokument_FK">
-          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="1" />
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="0..1" />
           <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Skladiste">
@@ -1953,6 +1999,18 @@
             </Principal>
             <Dependent Role="SkladisteniDokument">
               <PropertyRef Name="skladiste_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SkladisteniDokument_FK5">
+          <End Role="Skladiste" Type="Self.Skladiste" Multiplicity="0..1" />
+          <End Role="SkladisteniDokument" Type="Self.SkladisteniDokument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladiste">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SkladisteniDokument">
+              <PropertyRef Name="skladiste_id1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2087,6 +2145,20 @@
             <Dependent Role="StavkaKompenzacije">
               <PropertyRef Name="stavkafakture_faktura_id" />
               <PropertyRef Name="stavkafakture_rednibroj" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StavkaKompenzacije_FK2">
+          <End Role="StavkaFakture" Type="Self.StavkaFakture" Multiplicity="1" />
+          <End Role="StavkaKompenzacije" Type="Self.StavkaKompenzacije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StavkaFakture">
+              <PropertyRef Name="faktura_id" />
+              <PropertyRef Name="rednibroj" />
+            </Principal>
+            <Dependent Role="StavkaKompenzacije">
+              <PropertyRef Name="stavkafakture_faktura_id1" />
+              <PropertyRef Name="stavkafakture_rednibroj1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2317,6 +2389,10 @@
             <End Role="Skladiste" EntitySet="Skladistes" />
             <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
           </AssociationSet>
+          <AssociationSet Name="SkladisteniDokument_FK5" Association="Self.SkladisteniDokument_FK5">
+            <End Role="Skladiste" EntitySet="Skladistes" />
+            <End Role="SkladisteniDokument" EntitySet="SkladisteniDokuments" />
+          </AssociationSet>
           <AssociationSet Name="StavkaPopisa_FK2" Association="Self.StavkaPopisa_FK2">
             <End Role="Skladiste" EntitySet="Skladistes" />
             <End Role="StavkaPopisa" EntitySet="StavkaPopisas" />
@@ -2354,6 +2430,10 @@
             <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
           </AssociationSet>
           <AssociationSet Name="StavkaKompenzacije_FK1" Association="Self.StavkaKompenzacije_FK1">
+            <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
+            <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacijes" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaKompenzacije_FK2" Association="Self.StavkaKompenzacije_FK2">
             <End Role="StavkaFakture" EntitySet="StavkaFaktures" />
             <End Role="StavkaKompenzacije" EntitySet="StavkaKompenzacijes" />
           </AssociationSet>
@@ -2556,6 +2636,8 @@
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="redovnafaktura_id" ColumnName="redovnafaktura_id" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="PDV" ColumnName="PDV" />
                 <ScalarProperty Name="oznaka" ColumnName="oznaka" />
                 <ScalarProperty Name="zaposleni_id" ColumnName="zaposleni_id" />
                 <ScalarProperty Name="poslovnipartner_mbr" ColumnName="poslovnipartner_mbr" />
@@ -2616,6 +2698,7 @@
                 <ScalarProperty Name="primio" ColumnName="primio" />
                 <ScalarProperty Name="poslovnipartner_mbr" ColumnName="poslovnipartner_mbr" />
                 <ScalarProperty Name="skladiste_id" ColumnName="skladiste_id" />
+                <ScalarProperty Name="skladiste_id1" ColumnName="skladiste_id1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2644,8 +2727,9 @@
               <MappingFragment StoreEntitySet="StavkaKompenzacije">
                 <ScalarProperty Name="stavkafakture_faktura_id" ColumnName="stavkafakture_faktura_id" />
                 <ScalarProperty Name="stavkafakture_rednibroj" ColumnName="stavkafakture_rednibroj" />
+                <ScalarProperty Name="stavkafakture_faktura_id1" ColumnName="stavkafakture_faktura_id1" />
+                <ScalarProperty Name="stavkafakture_rednibroj1" ColumnName="stavkafakture_rednibroj1" />
                 <ScalarProperty Name="kompenzacija_id" ColumnName="kompenzacija_id" />
-                <ScalarProperty Name="kolicina" ColumnName="kolicina" />
                 <ScalarProperty Name="rednibroj" ColumnName="rednibroj" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -36,9 +36,5 @@ D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\bin\Debug\Dat
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\bin\Debug\Database.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\bin\Debug\Database.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Model.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\refactor.xml
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\postdeploy.sql
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\predeploy.sql
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.pdb

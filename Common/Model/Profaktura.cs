@@ -23,7 +23,9 @@ namespace Common.Model
     
         public bool active { get; set; }
         public int id { get; set; }
-        public int redovnafaktura_id { get; set; }
+        public Nullable<int> redovnafaktura_id { get; set; }
+        public System.DateTime datum { get; set; }
+        public double PDV { get; set; }
         public string oznaka { get; set; }
         public int zaposleni_id { get; set; }
         public int poslovnipartner_mbr { get; set; }
