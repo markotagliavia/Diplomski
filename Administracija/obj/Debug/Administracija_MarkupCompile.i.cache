@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\E3\DIplomskiKlon3april\Administracija\obj\Debug\
+E:\aj\repo\Administracija\obj\Debug\
 Administracija
 none
 false
 DEBUG;TRACE
-D:\E3\DIplomskiKlon3april\Administracija\App.xaml
+E:\aj\repo\Administracija\App.xaml
 11-1647811862
 
-29609181893
-28270425731
+29-1102637269
+28-364022147
 LoginWindow.xaml;MainWindow.xaml;View\Audit.xaml;View\DodajGrad.xaml;View\DodajKorisnika.xaml;View\DodajUlogu.xaml;View\GradView.xaml;View\Help.xaml;View\NaprednaPretraga.xaml;View\PregledKorisnika.xaml;View\PregledUloga.xaml;
 
-False
+True
 

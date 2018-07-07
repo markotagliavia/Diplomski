@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Skladistenje\obj\Debug\
+E:\aj\repo\Skladistenje\obj\Debug\
 Skladistenje
 none
 false
 DEBUG;TRACE
-D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Skladistenje\App.xaml
+E:\aj\repo\Skladistenje\App.xaml
 17850422364
 
-41136602006
-28-94727821
+41-1643026609
+28-364022147
 LoginWindow.xaml;MainWindow.xaml;View\DodajProizvodjacaView.xaml;View\DodajProizvodView.xaml;View\DodajSkladisteView.xaml;View\HelpView.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\DodajPopisView.xaml;View\PregledPopisaView.xaml;View\PregledProizvodjacaView.xaml;View\PripisOtpisView.xaml;View\ProizvodiView.xaml;View\Skladista.xaml;View\SkladisteniDokumenti.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
 True

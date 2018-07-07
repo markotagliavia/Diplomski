@@ -32,3 +32,8 @@ D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.sqlprojResolveAssemblyRefe
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.dll
 D:\E3\DIplomskiKlon3april\Database\obj\Debug\Database.pdb
 D:\cetvrta godina\Diplomski\BusinessSystem_copy\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
+E:\aj\repo\Database\bin\Debug\Database.dacpac
+E:\aj\repo\Database\bin\Debug\Database.dll
+E:\aj\repo\Database\bin\Debug\Database.pdb
+E:\aj\repo\Database\obj\Debug\Database.dll
+E:\aj\repo\Database\obj\Debug\Database.pdb
