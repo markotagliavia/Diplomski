@@ -15,12 +15,13 @@ namespace Racunovodstvo
     public class MainWindowViewModel:BindableBase
     {
         #region Members
-        public MyICommand<string> NavCommand { get; set; }
+        public MyICommand<Navigation> NavCommand { get; set; }
         public MyICommand<string> OpenMenuCommand { get; set; }
         public MyICommand<string> CloseMenuCommand { get; set; }
         public MyICommand<string> CloseCommand { get; set; }
 
         private ProfaktureViewModel profaktureViewModel = new ProfaktureViewModel();
+        private DodajProfakturuViewModel dodajProfakturuViewModel = new DodajProfakturuViewModel(0,null);
         private FaktureViewModel faktureViewModel = new FaktureViewModel(0);
         private DodajFakturuViewModel dodajFakturu = new DodajFakturuViewModel(0,null);
         private StornoFaktureViewModel stornoFaktureViewModel = new StornoFaktureViewModel();
@@ -28,6 +29,7 @@ namespace Racunovodstvo
         private ProizvodiViewModel proizvodiViewModel = new ProizvodiViewModel();
         private DodajProizvodViewModel dodajProizvodViewModel = new DodajProizvodViewModel(0, null);
         private DodajProizvodjacaViewModel dodajProizvodjacaViewModel = new DodajProizvodjacaViewModel(0,null,null);
+        private DodajZalihuViewModel dodajZalihuViewModel = new DodajZalihuViewModel();
         private KompenzacijeViewModel kompenzacijeViewModel = new KompenzacijeViewModel();
         private PoslovniPartneriViewModel poslovniPartnerViewModel = new PoslovniPartneriViewModel();
         private DodajPoslovnogPartneraViewModel dodajPoslovnogPartnera = new DodajPoslovnogPartneraViewModel(0,null);
@@ -204,13 +206,17 @@ namespace Racunovodstvo
                 return instance;
             }
         }
+
+        public DodajZalihuViewModel DodajZalihuViewModel { get => dodajZalihuViewModel; set => dodajZalihuViewModel = value; }
+        public DodajProfakturuViewModel DodajProfakturuViewModel { get => dodajProfakturuViewModel; set => dodajProfakturuViewModel = value; }
+
         private MainWindowViewModel()
         {
             c1 = System.Windows.Media.Color.FromArgb(255, 53, 128, 191);
             FirmColor = new SolidColorBrush(c1);
             c2 = System.Windows.Media.Color.FromArgb(255, 37, 44, 50);
             BackgroundColor = new SolidColorBrush(c2);
-            NavCommand = new MyICommand<string>(OnNav);
+            NavCommand = new MyICommand<Navigation>(OnNav);
             OpenMenuCommand = new MyICommand<string>(OpenMenu);
             CloseMenuCommand = new MyICommand<string>(CloseMenu);
             CloseCommand = new MyICommand<string>(Close);
@@ -241,78 +247,86 @@ namespace Racunovodstvo
             Application.Current.Shutdown();
         }
 
-        public void OnNav(string destination)
+        public void OnNav(Navigation destination)
         {
             switch (destination)
             {
-                case "profakture":
+                case Navigation.profakture:
                     ViewModelTitle = "Profakture";
                     CurrentViewModel = profaktureViewModel;
                     break;
-                case "izlazna":
+                case Navigation.dodajProfakturu:
+                    ViewModelTitle = "Dodaj Profakturu";
+                    CurrentViewModel = dodajProfakturuViewModel;
+                    break;
+                case Navigation.izlazna:
                     ViewModelTitle = "Pregled izlaznih faktura";
                     faktureViewModel = new FaktureViewModel(0);
                     CurrentViewModel = faktureViewModel;
                     break;
-                case "ulazna":
+                case Navigation.ulazna:
                     ViewModelTitle = "Pregled ulaznih faktura";
                     faktureViewModel = new FaktureViewModel(1);
                     CurrentViewModel = faktureViewModel;
                     break;
-                case "storno":
+                case Navigation.storno:
                     ViewModelTitle = "Pregled storno faktura";
                     stornoFaktureViewModel = new StornoFaktureViewModel();
                     CurrentViewModel = stornoFaktureViewModel;
                     break;
-                case "proizvodi":
+                case Navigation.proizvodi:
                     ViewModelTitle = "Proizvodi";
                     CurrentViewModel = proizvodiViewModel;
                     break;
-                case "dodajProizvod":
+                case Navigation.dodajProizvod:
                     ViewModelTitle = "Novi Proizvod";
                     CurrentViewModel = dodajProizvodViewModel;
                     break;
-                case "dodajProizvodjaca":
+                case Navigation.dodajProizvodjaca:
                     ViewModelTitle = "Novi Proizvođač";
                     CurrentViewModel = dodajProizvodjacaViewModel;
                     break;
-                case "kompenzacije":
+                case Navigation.kompenzacije:
                     ViewModelTitle = "Kompenzacije";
                     CurrentViewModel = kompenzacijeViewModel;
                     break;
-                case "poslovnipartneri":
+                case Navigation.poslovniPartneri:
                     ViewModelTitle = "Poslovni partneri";
                     CurrentViewModel = poslovniPartnerViewModel;
                     break;
-                case "zalihe":
+                case Navigation.zalihe:
                     ViewModelTitle = "Zalihe";
                     CurrentViewModel = zaliheViewModel;
                     break;
-                case "naprednaPretraga":
+                case Navigation.naprednaPretraga:
                     ViewModelTitle = "Napredna pretraga";
                     CurrentViewModel = naprednaPretragaViewModel;
                     break;
-                case "obavestenja":
+                case Navigation.obavestenja:
                     ViewModelTitle = "Obaveštenja";
                     CurrentViewModel = obavestenjaViewModel;
                     break;
-                case "statistika":
+                case Navigation.statistika:
                     ViewModelTitle = "Statistika";
                     CurrentViewModel = statistikaViewModel;
                     break;
-                case "bilansi":
+                case Navigation.bilansi:
                     ViewModelTitle = "Bilansi";
                     CurrentViewModel = bilansiViewModel;
                     break;
-                case "zaposleni":
+                case Navigation.zaposleni:
                     ViewModelTitle = "Zaposleni";
                     CurrentViewModel = zaposleniViewModel;
                     break;
-                case "help":
+                case Navigation.dodajZalihe:
+                    ViewModelTitle = "Dodaj Zalihu";
+                    CurrentViewModel = dodajZalihuViewModel;
+                    break;
+                case Navigation.help:
                     ViewModelTitle = "Pomoć";
                     CurrentViewModel = helpViewModel;
                     break;
-                case "info":
+                case Navigation.info:
                     Info i = new Info("Vlasnici ovog softvera su \n Marko Tagliavia i Tijana Lalošević");
                     i.Show();
                     break;
@@ -346,5 +360,27 @@ namespace Racunovodstvo
       
         
         #endregion
+    }
+
+    public enum Navigation {
+        profakture,
+        izlazna,
+        ulazna,
+        storno,
+        help,
+        info,
+        proizvodi,
+        dodajProizvod,
+        dodajProizvodjaca,
+        kompenzacije,
+        poslovniPartneri,
+        zalihe,
+        obavestenja,
+        naprednaPretraga,
+        statistika,
+        bilansi,
+        zaposleni,
+        dodajZalihe,
+        dodajProfakturu
     }
 }

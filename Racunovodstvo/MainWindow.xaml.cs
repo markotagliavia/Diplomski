@@ -27,127 +27,139 @@ namespace Racunovodstvo
         {
             this.DataContext = MainWindowViewModel.Instance;
             InitializeComponent();
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
-                }
-            }
+            MainWindowViewModel.Instance.UserOnSession = k;
+            MainWindowViewModel.Instance.setUserInformations();
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
+            //    }
+            //}
         }
 
 
         private void ProfaktureCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("profakture");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.profakture);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.profakture);
+            //    }
+            //}
         }
 
        
 
         private void ProizvodiCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodi");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.proizvodi);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.proizvodi);
+            //    }
+            //}
         }
 
         private void KompenzacijaCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("kompenzacije");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.kompenzacije);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.kompenzacije);
+            //    }
+            //}
         }
 
         private void PoslovniPartneriCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("poslovnipartneri");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.poslovniPartneri);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.poslovniPartneri);
+            //    }
+            //}
         }
 
         private void ZaliheCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("zalihe");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.zalihe);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.zalihe);
+            //    }
+            //}
         }
 
         private void NaprednaPretragaCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("naprednaPretraga");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.naprednaPretraga);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.naprednaPretraga);
+            //    }
+            //}
         }
 
         private void ObavestenjaCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("obavestenja");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.obavestenja);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.obavestenja);
+            //    }
+            //}
         }
 
         private void StatistikaCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("statistika");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.statistika);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.statistika);
+            //    }
+            //}
         }
 
         private void BilansiCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("bilansi");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.bilansi);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav(Navigation.bilansi);
+            //    }
+            //}
         }
 
         private void ZaposleniCall(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("zaposleni");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.zaposleni);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("zaposleni");
+            //    }
+            //}
         }
 
         private void deselect(object sender, RoutedEventArgs e)
@@ -163,33 +175,36 @@ namespace Racunovodstvo
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
+            //    }
+            //}
         }
         private void MenuItem1_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+            //    }
+            //}
         }
         private void MenuItem2_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
-                }
-            }
+            MainWindowViewModel.Instance.OnNav(Navigation.storno);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
+            //    }
+            //}
         }
 
 

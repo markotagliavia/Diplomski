@@ -46,6 +46,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Nova zaliha" Command="{Binding DodajCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
+            
+        </StackPanel>
     </Grid>
 </UserControl>

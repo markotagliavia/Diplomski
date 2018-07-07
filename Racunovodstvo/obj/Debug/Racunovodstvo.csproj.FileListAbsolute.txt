@@ -275,3 +275,7 @@ D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debu
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajProizvodjacaView.g.cs
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajProizvodjacaView.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajZalihe.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajZalihe.baml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajProfakturu.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\DodajProfakturu.baml
