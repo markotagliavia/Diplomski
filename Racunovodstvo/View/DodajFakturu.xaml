@@ -29,15 +29,15 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="Datum fakturisanja: " Height="30" Width="130" FontSize="14"/>
-                        <DatePicker Text="{Binding FakturaForEdit.datumfakturisanja}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
+                        <DatePicker SelectedDate="{Binding FakturaForEdit.datumfakturisanja}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="Datum prometa: " Height="30" Width="130" FontSize="14"/>
-                        <DatePicker Text="{Binding FakturaForEdit.datumprometadobara}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
+                        <DatePicker SelectedDate="{Binding FakturaForEdit.datumprometadobara}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="Rok plaćanja: " Height="30" Width="130" FontSize="14"/>
-                        <DatePicker Text="{Binding FakturaForEdit.rokplacanja}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
+                        <DatePicker SelectedDate="{Binding FakturaForEdit.rokplacanja}"  Width="140" Margin="10,0,0,0" Foreground="White"></DatePicker>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                         <Label Content="PDV : " Height="30" Width="130" FontSize="14"/>

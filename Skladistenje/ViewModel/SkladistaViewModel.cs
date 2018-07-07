@@ -238,7 +238,7 @@ namespace Skladistenje.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel = new DodajSkladisteViewModel(1, selectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajSkladiste");
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Skladišta";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišta -> Izmena";
                         }
                         else
                         {
@@ -270,7 +270,7 @@ namespace Skladistenje.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel = new DodajSkladisteViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajSkladisteViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajSkladiste");
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novo Skladište";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišta -> Novo";
                     }
                     else
                     {

@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Model;
 using Notifications;
+using Racunovodstvo.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace Racunovodstvo.ViewModel
     {
         #region Commands
         public MyICommand<string> PretraziCommand { get; private set; }
-        
+        public MyICommand<string> DodajCommand { get; set; }
         #endregion
 
         #region Properties
@@ -31,6 +32,7 @@ namespace Racunovodstvo.ViewModel
         public ZaliheViewModel()
         {
             PretraziCommand = new MyICommand<string>(Pretrazi);
+            DodajCommand = new MyICommand<string>(DodajStavku);
             textSearch = "";
             Zalihe = new ObservableCollection<Zalihe>();
             foreach (var item in dbContext.Zalihes)
@@ -38,6 +40,11 @@ namespace Racunovodstvo.ViewModel
                 zalihe.Add(item);
             }
             DefaultView = CollectionViewSource.GetDefaultView(Zalihe);
+        }
+
+        private void DodajStavku(string obj)
+        {
+            Dodaj();
         }
 
 
@@ -121,6 +128,26 @@ namespace Racunovodstvo.ViewModel
                 OnPropertyChanged("Zalihe");
             }
         }
+        
+
+        public void Dodaj()
+        {
+            MainWindowViewModel.Instance.OnNav(Navigation.dodajZalihe);
+        }
+
+        public void ProcessMessage(String mess)
+        {
+            Zalihe = new ObservableCollection<Zalihe>();
+            foreach (var item in dbContext.Zalihes)
+            {
+                zalihe.Add(item);
+            }
+            DefaultView = CollectionViewSource.GetDefaultView(Zalihe);
+        }
+
+        
+
+
 
         public ICollectionView DefaultView { get => defaultView; set => defaultView = value; }
         #endregion

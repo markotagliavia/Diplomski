@@ -35,6 +35,9 @@
         <DataTemplate DataType="{x:Type viewModel:SkladisteniDokumentiViewModel}">
             <views:SkladisteniDokumenti/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajGenericSklDokViewModel}">
+            <views:DodajGenericSklDok/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:ProizvodiView/>
         </DataTemplate>
@@ -238,7 +241,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
                         <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
-                        <TextBlock Text="Skladišteni dokumenti" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Skladišni dokumenti" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                     <ListViewItem.Style>
                         <Style TargetType="{x:Type ListViewItem}">

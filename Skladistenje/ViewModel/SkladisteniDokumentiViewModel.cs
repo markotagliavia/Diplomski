@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Skladistenje.ViewModel
@@ -14,7 +16,8 @@ namespace Skladistenje.ViewModel
     public class SkladisteniDokumentiViewModel : BindableBase
     {
         #region Commands
-        public MyICommand<string> DodajSklDokNavCommand { get; private set; }
+        public MyICommand<string> DodajSklDok1NavCommand { get; private set; }
+        public MyICommand<string> DodajSklDok2NavCommand { get; private set; }
         public MyICommand<string> DetaljnijeSklDokNavCommand { get; private set; }
         public MyICommand<string> IzbrisiSklDokCommand { get; private set; }
         public MyICommand<string> PretraziSklDokCommand { get; private set; }
@@ -29,11 +32,16 @@ namespace Skladistenje.ViewModel
         private SkladisteniDokument selectedValue;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private ICollectionView defaultView;
+        private string novi1 = "", novi2 = "";
+        private Visibility novi2Visible;
+        private int tip = -1;
         #endregion
 
         public SkladisteniDokumentiViewModel(int tip)
         {
-            DodajSklDokNavCommand = new MyICommand<string>(DodajSklDokNav);
+            this.tip = tip;
+            DodajSklDok1NavCommand = new MyICommand<string>(DodajSklDok1Nav);
+            DodajSklDok2NavCommand = new MyICommand<string>(DodajSklDok2Nav);
             DetaljnijeSklDokNavCommand = new MyICommand<string>(DetaljnijeSklDokNav);
             IzbrisiSklDokCommand = new MyICommand<string>(IzbrisiSklDok);
             PretraziSklDokCommand = new MyICommand<string>(PretraziSklDok);
@@ -41,7 +49,39 @@ namespace Skladistenje.ViewModel
             sklDokumenti = new ObservableCollection<SkladisteniDokument>();
             foreach (var item in dbContext.SkladisteniDokuments.ToList())
             {
-                sklDokumenti.Add(item);
+                if (tip == 1)   //interni
+                {
+                    if (item.tipredovnog == "INT_PR" || item.tipredovnog == "INT_OTP") sklDokumenti.Add(item);
+                }
+                else if (tip == 2)  //spoljni
+                {
+                    if (item.tipredovnog == "SP_PR" || item.tipredovnog == "SP_OTP") sklDokumenti.Add(item);
+                }
+                else if (tip == 3) //korekcioni
+                {
+                    if (item.tipredovnog == "KOR_PR" || item.tipredovnog == "KOR_OTP") sklDokumenti.Add(item);
+                }
+                else if (tip == 4) //storni
+                {
+                    if (item.tipredovnog == "STORNI") sklDokumenti.Add(item);
+                }
+            }
+
+            Novi2Visible = Visibility.Visible;
+            if (tip == 1 || tip == 2)   //interni
+            {
+                Novi1 = "Nova pirjemnica";
+                Novi2 = "Nova otpremnica";
+            }
+            else if (tip == 3)  //spoljni
+            {
+                Novi1 = "Novi pripis";
+                Novi2 = "Novi otpis";
+            }
+            else if (tip == 4) //korekcioni
+            {
+                Novi1 = "Novi storni";
+                Novi2Visible = Visibility.Hidden;
             }
 
             DefaultView = CollectionViewSource.GetDefaultView(sklDokumenti);
@@ -49,10 +89,24 @@ namespace Skladistenje.ViewModel
 
         #region Constructors
 
+        public Visibility Novi2Visible
+        {
+            get { return novi2Visible; }
+            set
+            {
+                novi2Visible = value;
+                OnPropertyChanged("Novi2Visible");
+            }
+        }
+
         public ObservableCollection<SkladisteniDokument> SklDokumenti
         {
             get { return sklDokumenti; }
-            set { sklDokumenti = value; }
+            set
+            {
+                sklDokumenti = value;
+                OnPropertyChanged("SelectedInGrid");
+            }
         }
 
         public ICollectionView DefaultView { get => defaultView; set => defaultView = value; }
@@ -74,6 +128,26 @@ namespace Skladistenje.ViewModel
             {
                 textSearch = value;
                 OnPropertyChanged("TextSearch");
+            }
+        }
+
+        public string Novi1
+        {
+            get { return novi1; }
+            set
+            {
+                novi1 = value;
+                OnPropertyChanged("Novi1");
+            }
+        }
+
+        public string Novi2
+        {
+            get { return novi2; }
+            set
+            {
+                novi2 = value;
+                OnPropertyChanged("Novi2");
             }
         }
 
@@ -120,9 +194,63 @@ namespace Skladistenje.ViewModel
         #endregion
 
         #region COmmandsImplementation
-        private void DodajSklDokNav(string obj)
+        private void DodajSklDok1Nav(string obj)
         {
-            throw new NotImplementedException();
+            if (tip == 1)   //interni
+            {
+                PromeniUserControlu("INT_PR");
+            }
+            else if (tip == 2)  //spoljni
+            {
+                PromeniUserControlu("SP_PR");
+            }
+            else if (tip == 3) //korekcioni
+            {
+                PromeniUserControlu("KOR_PR");
+            }
+            else if (tip == 4) //storni
+            {
+                PromeniUserControlu("STORNI");
+            }
+        }
+
+        private void DodajSklDok2Nav(string obj)
+        {
+            if (tip == 1)   //interni
+            {
+                PromeniUserControlu("INT_OTP");
+            }
+            else if (tip == 2)  //spoljni
+            {
+                PromeniUserControlu("SP_OTP");
+            }
+            else if (tip == 3) //korekcioni
+            {
+                PromeniUserControlu("KOR_OTP");
+            }
+        }
+
+        private void PromeniUserControlu(string v)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddSklDok))
+                    {
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = this.UserOnSession;
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("generic" + v);
+                    }
+                    else
+                    {
+                        Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                        er.Show();
+                        SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspšan pokušaj izmene skladišta.", "Upozorenje");
+                    }
+
+                }
+            }
         }
 
         private void PretraziSklDok(string type)

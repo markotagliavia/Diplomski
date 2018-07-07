@@ -273,7 +273,21 @@ namespace Racunovodstvo.ViewModel
 
         private void DodajProizvodNav(string obj)
         {
-            //tp dp
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+            if (SecurityManager.AuthorizationPolicy.HavePermission(userOnSession.id, SecurityManager.Permission.AddProizvod))
+            {
+                MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, null);
+                MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
+                MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
+                MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+            }
+            else
+            {
+                Error er = new Error("Nemate ovlašćenja za izvršenje ove akcije!");
+                er.Show();
+                SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, "Neuspešan pokušaj dodavanja novog proizvoda", "Upozorenje");
+            }
+
             //foreach (Window w in Application.Current.Windows)
             //{
             //    if (w.GetType().Equals(typeof(MainWindow)))

@@ -26,12 +26,14 @@ namespace Skladistenje.ViewModel
         #region Commands
         public MyICommand<string> DodajProizvodjacaCommand { get; private set; }
         public MyICommand<string> OtkaziCommand { get; private set; }
+        public MyICommand<string> BackNavCommand { get; private set; }
         #endregion
 
         public DodajProizvodjacaViewModel(int v, Proizvodjac p)
         {
             DodajProizvodjacaCommand = new MyICommand<string>(DodajProizvodjaca);
             OtkaziCommand = new MyICommand<string>(Otkazi);
+            BackNavCommand = new MyICommand<string>(Otkazi);
             context = v;
             
             gradovi = new ObservableCollection<grad>();
@@ -61,7 +63,7 @@ namespace Skladistenje.ViewModel
             {
                 if (w.GetType().Equals(typeof(MainWindow)))
                 {
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("popisi");
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("proizvodjaci");
                 }
             }
         }

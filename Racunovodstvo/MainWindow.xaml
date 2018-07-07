@@ -13,6 +13,9 @@
         <DataTemplate DataType="{x:Type viewModel:ProfaktureViewModel}">
             <views:Profakture/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProfakturuViewModel}">
+            <views:DodajProfakturu/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:FaktureViewModel}">
             <views:Fakture/>
         </DataTemplate>
@@ -28,6 +31,12 @@
         <DataTemplate DataType="{x:Type viewModel:ProizvodiViewModel}">
             <views:Proizvodi/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProizvodViewModel}">
+            <views:DodajProizvodView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajProizvodjacaViewModel}">
+            <views:DodajProizvodjacaView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:KompenzacijeViewModel}">
             <views:Kompenzacije/>
         </DataTemplate>
@@ -39,6 +48,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ZaliheViewModel}">
             <views:ZaliheView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DodajZalihuViewModel}">
+            <views:DodajZalihe/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:NaprednaPretragaViewModel}">
             <views:NaprednaPretraga/>

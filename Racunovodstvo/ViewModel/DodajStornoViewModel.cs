@@ -275,16 +275,17 @@ namespace Racunovodstvo.ViewModel
         #region CommandsImplements
         private void Otkazi(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
+            MainWindowViewModel.Instance.OnNav(Navigation.storno);
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
                     
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
+            //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
                     
 
-                }
-            }
+            //    }
+            //}
         }
         private void Back(string obj)
         {
@@ -292,14 +293,15 @@ namespace Racunovodstvo.ViewModel
         }
         private void Dodaj(string obj)
         {
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-                }
-            }
+            //    }
+            //}
             if (context == 0)
             {
                 try

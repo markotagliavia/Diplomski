@@ -127,7 +127,7 @@ namespace Administracija.ViewModel
                 {
                     
                     ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).pregledUlogaViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Pregled uloga";
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Uloge";
                 }
             }
         }

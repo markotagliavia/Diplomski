@@ -207,21 +207,29 @@ namespace Racunovodstvo.ViewModel
                 
                 dbContext.SaveChanges();
             }
-            foreach (Window w in Application.Current.Windows)
+            if (context == 0 || context == 1)
             {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    if (context == 0 || context == 1)
-                    {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
-                    }
-                    else
-                    {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
-                    }
-                    
-                }
+                MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
             }
+            else
+            {
+                MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
+            }
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        if (context == 0 || context == 1)
+            //        {
+            //            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
+            //        }
+            //        else
+            //        {
+            //            ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+            //        }
+
+            //    }
+            //}
         }
         private void Back(string obj)
         {
@@ -229,15 +237,15 @@ namespace Racunovodstvo.ViewModel
         }
         private void Dodaj(string obj)
         {
+            UserOnSession = MainWindowViewModel.Instance.UserOnSession;
+            //foreach (Window w in Application.Current.Windows)
+            //{
+            //    if (w.GetType().Equals(typeof(MainWindow)))
+            //    {
+            //        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
 
-            foreach (Window w in Application.Current.Windows)
-            {
-                if (w.GetType().Equals(typeof(MainWindow)))
-                {
-                    UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
-
-                }
-            }
+            //    }
+            //}
             if (context == 0)
             {
                 try
@@ -251,6 +259,9 @@ namespace Racunovodstvo.ViewModel
                         FakturaForEdit.PoslovniPartner = pp;
                         FakturaForEdit.likvidirano = false;
                         FakturaForEdit.upripremi = false;
+                        FakturaForEdit.datumfakturisanja += new TimeSpan(0, 0, 0);
+                        FakturaForEdit.datumprometadobara += new TimeSpan(0, 0, 0);
+                        FakturaForEdit.rokplacanja += new TimeSpan(0, 0, 0);
                         dbContext.Fakturas.Add(FakturaForEdit);
                         dbContext.SaveChanges();
                         int i = 1;
@@ -334,6 +345,9 @@ namespace Racunovodstvo.ViewModel
                             original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
                             original.datumprometadobara = FakturaForEdit.datumprometadobara;
                             original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.datumfakturisanja += new TimeSpan(0, 0, 0);
+                            original.datumprometadobara += new TimeSpan(0, 0, 0);
+                            original.rokplacanja += new TimeSpan(0, 0, 0);
                             original.pdv = FakturaForEdit.pdv;
                             original.placeno = FakturaForEdit.placeno;
                             original.avans = FakturaForEdit.avans;
@@ -360,14 +374,9 @@ namespace Racunovodstvo.ViewModel
                         dbContext.SaveChanges();
                         Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
                         s.Show();
-                        foreach (Window w in Application.Current.Windows)
-                        {
-                            if (w.GetType().Equals(typeof(MainWindow)))
-                            {
-                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
-                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("izlazna");
-                            }
-                        }
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
+                        
                         
                     }
                     else
@@ -459,6 +468,9 @@ namespace Racunovodstvo.ViewModel
                             original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
                             original.datumprometadobara = FakturaForEdit.datumprometadobara;
                             original.rokplacanja = FakturaForEdit.rokplacanja;
+                            original.datumfakturisanja += new TimeSpan(0, 0, 0);
+                            original.datumprometadobara += new TimeSpan(0, 0, 0);
+                            original.rokplacanja += new TimeSpan(0, 0, 0);
                             original.pdv = FakturaForEdit.pdv;
                             original.placeno = FakturaForEdit.placeno;
                             original.avans = FakturaForEdit.avans;
@@ -485,14 +497,16 @@ namespace Racunovodstvo.ViewModel
                         dbContext.SaveChanges();
                         Notifications.Success s = new Notifications.Success("Uspešno ste izmenili fakturu.");
                         s.Show();
-                        foreach (Window w in Application.Current.Windows)
-                        {
-                            if (w.GetType().Equals(typeof(MainWindow)))
-                            {
-                                SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
-                                ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
-                            }
-                        }
+                        SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
+                        //foreach (Window w in Application.Current.Windows)
+                        //{
+                        //    if (w.GetType().Equals(typeof(MainWindow)))
+                        //    {
+                        //        SecurityManager.AuditManager.AuditToDB(((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession.korisnickoime, "Uspesno je izmenjena faktura " + FakturaForEdit.id, "Info");
+                        //        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("ulazna");
+                        //    }
+                        //}
                     }
                 }
                 catch (Exception)
@@ -837,6 +851,16 @@ namespace Racunovodstvo.ViewModel
         }
 
         public string RabatText { get => rabatText; set { rabatText = value; OnPropertyChanged("RabatText"); } }
+
+        public DateTime Datumfakturisanja
+        {
+            get => fakturaForEdit.datumfakturisanja.Value.Date;
+            set
+            {
+                fakturaForEdit.datumfakturisanja = value;
+                OnPropertyChanged("Datumfakturisanja");
+            }
+        }
         #endregion
     }
     public class ProizvodKolicina : BindableBase

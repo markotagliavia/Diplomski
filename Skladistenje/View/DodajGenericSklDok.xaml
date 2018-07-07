@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Skladistenje.View.DodajGenericSklDok"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Skladistenje.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+        Height="490" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"></ColumnDefinition>
+            <ColumnDefinition Width="11*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Column="0" Grid.Row="0" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackNavCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Šifra : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.sifra}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+                <Label Content="Datum : " Height="30" Width="100" FontSize="14"/>
+                <DatePicker Text="{Binding SklDokForBind.datum}"  Width="170" Margin="30,0,0,0" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding IzSklVisible}">
+                <Label Content="Izvorno Skladište : " Height="30" Width="115" FontSize="14"/>
+                <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" Foreground="White"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding SkladisteSourceForBind}">
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding USklVisible}">
+                <Label Content="Odredišno Skladište : " Height="30" Width="115" FontSize="14"/>
+                <ComboBox x:Name="UskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" Foreground="White"
+                    DisplayMemberPath="naziv" 
+                    SelectedValuePath="naziv"
+                    SelectedValue="{Binding SkladisteDestForBind}">
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding IzdaoVisible}">
+                <Label Content="Izdao : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="izdaoTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.izdao}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding PrimioVisible}">
+                <Label Content="Primio : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="primioTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.primio}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding VozacVisible}">
+                <Label Content="Vozač : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="vozacTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding RegBrVisible}">
+                <Label Content="Registarski broj : " Height="30" Width="105" FontSize="14"/>
+                <TextBox x:Name="regBrTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding NacinOtpremeVisible}">
+                <Label Content="Način otpreme : " Height="30" Width="100" FontSize="14"/>
+                <TextBox x:Name="nacinOtpremeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{Binding SourceZalihe}" FontSize="20" HorizontalAlignment="Center"/>
+                    <Label Content="{Binding DestinationZalihe}" FontSize="20" HorizontalAlignment="Center" Margin="180,0,0,0"/>
+                </StackPanel>
+            <StackPanel Orientation="Vertical" Height="312">
+                <StackPanel Orientation="Horizontal">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvod}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding Proizvodi, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+
+                    <StackPanel Orientation="Vertical" Height="300" Width="50">
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
+                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                        </Button>
+                    </StackPanel>
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinom}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinom, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Količina" Binding="{Binding Kolicina}" IsReadOnly="True"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </StackPanel>
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Količina : " FontSize="14" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0" Foreground="White"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,45,0,0" HorizontalAlignment="Center">
+                <Button x:Name="dodajButton" Content="Dodaj" Command="{Binding DodajSklDokCommand}"/>
+                <Button x:Name="otkaziButton" Content="Otkaži" Margin="20,0,0,0" Command="{Binding OtkaziCommand}"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

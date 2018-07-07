@@ -174,7 +174,7 @@ namespace Skladistenje.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel(SelectedValue);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajPopis");
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Popis";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Popisi -> Pregled";
                     }
                     else
                     {
@@ -198,7 +198,7 @@ namespace Skladistenje.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel = new DodajPopisViewModel(null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPopisViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("dodajPopis");
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Popis";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Popisi -> Novi";
                     }
                     else
                     {
