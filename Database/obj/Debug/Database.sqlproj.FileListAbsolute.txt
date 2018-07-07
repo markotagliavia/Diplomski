@@ -38,3 +38,10 @@ D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\bin\Debug\Dat
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.dll
 D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Database.pdb
+E:\aj\repo\Database\bin\Debug\Database.dacpac
+E:\aj\repo\Database\obj\Debug\Model.xml
+E:\aj\repo\Database\obj\Debug\refactor.xml
+E:\aj\repo\Database\obj\Debug\postdeploy.sql
+E:\aj\repo\Database\obj\Debug\predeploy.sql
+E:\aj\repo\Database\obj\Debug\Database.dll
+E:\aj\repo\Database\obj\Debug\Database.pdb
