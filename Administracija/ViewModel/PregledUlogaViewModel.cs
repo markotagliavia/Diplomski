@@ -179,7 +179,7 @@ namespace Administracija.ViewModel
                         {
                             ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(1, uloge.ElementAt(index).naziv);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Uloge";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Uloge -> Izmena";
                         }
                         else
                         {
@@ -210,7 +210,7 @@ namespace Administracija.ViewModel
                     {
                         ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel = new DodajUloguViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).dodajUloguViewModel;
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Nova Uloga";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Uloge -> Nova";
                     }
                     else
                     {

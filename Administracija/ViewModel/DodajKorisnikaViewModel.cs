@@ -19,6 +19,7 @@ namespace Administracija.ViewModel
         #region Commands
         public MyICommand<object> DodajKorisnikaCommand { get; private set; }
         public MyICommand<string> OtkaziCommand { get; private set; }
+        public MyICommand<string> BackNavCommand { get; private set; }
         public MyICommand<int> AddNavCommand { get; private set; }
         public MyICommand<int> RemoveNavCommand { get; private set; }
 
@@ -49,6 +50,7 @@ namespace Administracija.ViewModel
             zaposleni = zk;
             DodajKorisnikaCommand = new MyICommand<object>(DodajKorisnika);
             OtkaziCommand = new MyICommand<string>(Otkazi);
+            BackNavCommand = new MyICommand<string>(Otkazi);
             AddNavCommand = new MyICommand<int>(Add);
             RemoveNavCommand = new MyICommand<int>(Remove);
             Korisnici = new ObservableCollection<Korisnik>();

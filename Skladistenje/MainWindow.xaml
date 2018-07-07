@@ -241,7 +241,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
                         <materialDesign:PackIcon Kind="File" Width="30" Height="30" VerticalAlignment="Center" Margin="5" />
-                        <TextBlock Text="Skladišteni dokumenti" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Skladišni dokumenti" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                     <ListViewItem.Style>
                         <Style TargetType="{x:Type ListViewItem}">

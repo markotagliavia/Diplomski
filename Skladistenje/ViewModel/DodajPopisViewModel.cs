@@ -40,6 +40,7 @@ namespace Skladistenje.ViewModel
         #region Commands
         public MyICommand<object> DodajPopisCommand { get; private set; }
         public MyICommand<string> OtkaziCommand { get; private set; }
+        public MyICommand<string> BackNavCommand { get; private set; }
         public MyICommand<int> AddCommand1 { get; private set; }
         public MyICommand<int> RemoveCommand1 { get; private set; }
         public MyICommand<int> AddCommand2 { get; private set; }
@@ -65,6 +66,7 @@ namespace Skladistenje.ViewModel
             }
             DodajPopisCommand = new MyICommand<object>(DodajPopis);
             OtkaziCommand = new MyICommand<string>(Otkazi);
+            BackNavCommand = new MyICommand<string>(Otkazi);
             AddCommand1 = new MyICommand<int>(Add1);
             RemoveCommand1 = new MyICommand<int>(Remove1);
             AddCommand2 = new MyICommand<int>(Add2);
@@ -209,6 +211,8 @@ namespace Skladistenje.ViewModel
                         dbContext.StavkaPopisas.Add(sp);
                     }
                     dbContext.SaveChanges();
+
+                    //ovaj foreach sam dodao da proverim kojei proizvodi uopste nisu popisani, i onda ubacim i njih u popis sa kolicinom 0, a onda ona provera u pripis/otpis treba da sracuna to out of the box
                     foreach (var item in dbContext.Zalihes.Where(x => x.skladiste_id == skladisteId).ToList())
                     {
                         if (!dbContext.StavkaPopisas.Any(x => x.skladiste_id == skladisteId && x.proizvod_id == item.proizvod_id && x.popis_id == idPopisa))

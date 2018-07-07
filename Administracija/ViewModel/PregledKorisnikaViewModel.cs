@@ -282,7 +282,7 @@ namespace Administracija.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(1, selectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Korisnika";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Korisnici -> Izmena";
                         }
                         else
                         {
@@ -315,7 +315,7 @@ namespace Administracija.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel = new DodajKorisnikaViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajKorisnikaViewModel.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("addUser");
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Korisnik";
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Korisnici -> Novi";
                     }
                     else
                     {

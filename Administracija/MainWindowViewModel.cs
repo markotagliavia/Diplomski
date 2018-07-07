@@ -219,20 +219,20 @@ namespace Administracija
                     ((MainWindow)Application.Current.MainWindow).MenuItemAccountDetails.Command.Execute("previewPictures");
                      */                   
                 case "previewUsers":
-                    ViewModelTitle = "Pregled Korisnika";
+                    ViewModelTitle = "Korisnici";
                     pregledKorisnikaViewModel.UserOnSession = userOnSession;
                     CurrentViewModel = pregledKorisnikaViewModel;                   
                     break;
                 case "addUser":
-                    ViewModelTitle = "Novi Korisnik";
+                    ViewModelTitle = "Korisnici -> Novi";
                     CurrentViewModel = dodajKorisnikaViewModel;
                     break;
                 case "previewRoles":
-                    ViewModelTitle = "Pregled Uloga";
+                    ViewModelTitle = "Uloge";
                     CurrentViewModel = pregledUlogaViewModel;
                     break;
                 case "addRole":
-                    ViewModelTitle = "Nova Uloga";
+                    ViewModelTitle = "Uloge -> Nova";
                     CurrentViewModel = dodajUloguViewModel;
                     break;
                 case "advancedSearch":
@@ -240,7 +240,7 @@ namespace Administracija
                     CurrentViewModel = naprednaPretragaViewModel;
                     break;
                 case "audit":
-                    ViewModelTitle = "Pregled Akcija";
+                    ViewModelTitle = "Akcije";
                     CurrentViewModel = auditViewModel;
                     break;
                 case "help":
@@ -248,7 +248,7 @@ namespace Administracija
                     CurrentViewModel = helpViewModel;
                     break;
                 case "grad":
-                    ViewModelTitle = "Pregled Gradova";
+                    ViewModelTitle = "Gradovi";
                     CurrentViewModel = GradViewModel;
                     break;
                 case "info":

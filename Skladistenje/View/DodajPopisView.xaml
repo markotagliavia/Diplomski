@@ -18,6 +18,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Column="0" Grid.Row="0" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackNavCommand}">
+                <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
+            </Button>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Šifra : " Height="30" Width="100" FontSize="14"/>
                 <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding PopisForBind.oznaka}" Foreground="White"/>

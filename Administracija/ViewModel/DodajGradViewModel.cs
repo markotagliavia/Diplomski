@@ -106,7 +106,7 @@ namespace Administracija.ViewModel
                 {
 
                     ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).GradViewModel;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Pregled gradova";
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Gradovi";
                 }
             }
         }
