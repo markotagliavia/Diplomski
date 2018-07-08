@@ -5,6 +5,7 @@
 	adresa VARCHAR(30) NULL,
 	tekst VARCHAR(50) NOT NULL,
 	procitana bit NOT NULL,
-	obradjena bit NOT NULL
+	obradjena bit NOT NULL,
+	idDokumenta int NULL
 
 )
