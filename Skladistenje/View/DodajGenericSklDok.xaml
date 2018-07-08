@@ -65,12 +65,12 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding RegBrVisible}">
                 <Label Content="Registarski broj : " Height="30" Width="105" FontSize="14"/>
-                <TextBox x:Name="regBrTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+                <TextBox x:Name="regBrTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.regbr}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding NacinOtpremeVisible}">
                 <Label Content="Način otpreme : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="nacinOtpremeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+                <TextBox x:Name="nacinOtpremeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.nacinotpreme}" Foreground="White"/>
             </StackPanel>
 
         </StackPanel>
@@ -84,10 +84,11 @@
                 <StackPanel Orientation="Horizontal">
 
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvod}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding Proizvodi, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
+                        <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvodSaKolicinomLevo}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding ProizvodiSaKolicinomLevo, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Naziv" Binding="{Binding naziv}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Količina" Binding="{Binding Kolicina}" IsReadOnly="True"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </ScrollViewer>
@@ -102,7 +103,7 @@
                     </StackPanel>
 
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinom}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinom, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
+                        <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinomDesno}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinomDesno, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}" IsReadOnly="True"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" IsReadOnly="True"></DataGridTextColumn>

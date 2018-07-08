@@ -33,7 +33,7 @@ namespace Skladistenje.ViewModel
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private ICollectionView defaultView;
         private string novi1 = "", novi2 = "";
-        private Visibility novi2Visible;
+        private Visibility novi2Visible, novi1Visible;
         private int tip = -1;
         #endregion
 
@@ -68,17 +68,27 @@ namespace Skladistenje.ViewModel
             }
 
             Novi2Visible = Visibility.Visible;
-            if (tip == 1 || tip == 2)   //interni
+            Novi1Visible = Visibility.Visible;
+            if (tip == 1)   //interni
             {
                 Novi1 = "Nova pirjemnica";
                 Novi2 = "Nova otpremnica";
             }
-            else if (tip == 3)  //spoljni
+            else if (tip == 2) //spoljni
+            {
+                Novi1 = "Nova pirjemnica";
+                Novi2 = "Nova otpremnica";
+                Novi2Visible = Visibility.Hidden;
+                Novi1Visible = Visibility.Hidden;
+            }
+            else if (tip == 3)  //korekcioni
             {
                 Novi1 = "Novi pripis";
                 Novi2 = "Novi otpis";
+                Novi2Visible = Visibility.Hidden;
+                Novi1Visible = Visibility.Hidden;
             }
-            else if (tip == 4) //korekcioni
+            else if (tip == 4) //storni
             {
                 Novi1 = "Novi storni";
                 Novi2Visible = Visibility.Hidden;
@@ -96,6 +106,16 @@ namespace Skladistenje.ViewModel
             {
                 novi2Visible = value;
                 OnPropertyChanged("Novi2Visible");
+            }
+        }
+
+        public Visibility Novi1Visible
+        {
+            get { return novi1Visible; }
+            set
+            {
+                novi1Visible = value;
+                OnPropertyChanged("Novi1Visible");
             }
         }
 

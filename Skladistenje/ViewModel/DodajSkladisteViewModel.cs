@@ -402,6 +402,16 @@ namespace Skladistenje.ViewModel
             this.raf = raf;
         }
 
+        public ProizvodKolicina(string naziv, string sifra, string kolicina)
+        {
+            this.JedinicaMere = "";
+            this.Sifra = sifra;
+            this.Naziv = naziv;
+            this.Proizvodjac = "";
+            this.Kolicina = kolicina;
+            this.raf = "";
+        }
+
         public string Naziv { get => naziv; set { naziv = value; OnPropertyChanged("Naziv"); } }
         public string Sifra { get => sifra; set { sifra = value; OnPropertyChanged("Sifra"); } }
         public string JedinicaMere { get => jedinicaMere; set { jedinicaMere = value; OnPropertyChanged("JedinicaMere"); } }

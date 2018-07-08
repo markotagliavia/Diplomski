@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.Model;
+using Notifications;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,19 +14,20 @@ namespace Skladistenje.ViewModel
     public class DodajGenericSklDokViewModel : BindableBase
     {
         #region Members
+        private int? idFakture;
         private string tip;
         private Korisnik userOnSession;
         private string kolicinaText;
         private string rafText = "";
         private bool addEnabled;
         private bool removeEnabled;
-        private int _selectedProizvod = -1;
-        private int _selectedProizvodSaKolicinom = -1;
+        private int _selectedProizvodSaKolicinomLevo = -1;
+        private int _selectedProizvodSaKolicinomDesno = -1;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
-        private ObservableCollection<Proizvod> proizvodi;
-        private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinom;
+        private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomLevo;
+        private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomDesno;
         private SkladisteniDokument sklDokForBind;
-        private Skladiste skladisteSourceForBind, skladisteDestForBind;
+        private string skladisteSourceForBind, skladisteDestForBind;
         private ObservableCollection<Skladiste> skladista;
         private string sourceZalihe = "";
         private string destinationZalihe = "";
@@ -44,8 +46,9 @@ namespace Skladistenje.ViewModel
         {
         }
 
-        public DodajGenericSklDokViewModel(string tip)
+        public DodajGenericSklDokViewModel(string tip, int? idFakture = null)
         {
+            this.idFakture = idFakture;
             this.tip = tip;
             DodajSklDokCommand = new MyICommand<object>(DodajSklDok);
             OtkaziCommand = new MyICommand<string>(Otkazi);
@@ -53,12 +56,12 @@ namespace Skladistenje.ViewModel
             AddCommand = new MyICommand<int>(Add);
             RemoveCommand = new MyICommand<int>(Remove);
             userOnSession = new Korisnik();
-            proizvodi = new ObservableCollection<Proizvod>();
-            proizvodiSaKolicinom = new ObservableCollection<ProizvodKolicina>();
+            proizvodiSaKolicinomLevo = new ObservableCollection<ProizvodKolicina>();
+            proizvodiSaKolicinomDesno = new ObservableCollection<ProizvodKolicina>();
             skladista = new ObservableCollection<Skladiste>();
             sklDokForBind = new SkladisteniDokument();
-            skladisteSourceForBind = new Skladiste();
-            skladisteDestForBind = new Skladiste();
+            skladisteSourceForBind = "";
+            skladisteDestForBind = "";
             KolicinaText = "";
 
             foreach (var item in dbContext.Skladistes)
@@ -106,14 +109,63 @@ namespace Skladistenje.ViewModel
             {
                 //ovo cu izmestiti
             }
-        }
 
+            sklDokForBind.datum = DateTime.Now;
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    if (((MainWindowViewModel)((MainWindow)w).DataContext) != null)
+                    {
+                        UserOnSession = ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession;
+                    }
+                }
+            }
+        }
         #region Properties
 
         public Korisnik UserOnSession { get => userOnSession; set => userOnSession = value; }
         public SkladisteniDokument SklDokForBind { get => sklDokForBind; set { sklDokForBind = value; OnPropertyChanged("SklDokForBind"); } }
-        public Skladiste SkladisteSourceForBind { get => skladisteSourceForBind; set { skladisteSourceForBind = value; OnPropertyChanged("SkladisteSourceForBind"); } }
-        public Skladiste SkladisteDestForBind { get => skladisteDestForBind; set { skladisteDestForBind = value; OnPropertyChanged("SkladisteDestForBind"); } }
+        public string SkladisteSourceForBind //nije, to je radilo kod popisa
+        {
+            get => skladisteSourceForBind;
+            set
+            {
+                if (tip == "INT_PR" || tip == "INT_OTP")
+                {
+                    if (value != null)
+                    {
+                        ProizvodiSaKolicinomLevo.Clear();
+                        ProizvodiSaKolicinomDesno.Clear();
+                        skladisteSourceForBind = value;
+                        OnPropertyChanged("SkladisteSourceForBind");
+                        populateProizvodiGrid(dbContext.Skladistes.FirstOrDefault(x=>x.naziv.Equals(value)));
+                    }
+                    else
+                    {
+                        ProizvodiSaKolicinomLevo.Clear();
+                        ProizvodiSaKolicinomDesno.Clear();
+                        skladisteSourceForBind = value;
+                        OnPropertyChanged("SkladisteSourceForBind");
+                    }
+                }
+                else
+                {
+                    skladisteSourceForBind = value;
+                }
+            }
+        }
+
+        public string SkladisteDestForBind
+        {
+            get => skladisteDestForBind;
+            set
+            {
+                skladisteDestForBind = value;
+                OnPropertyChanged("SkladisteDestForBind");
+            }
+        }
+
         public string KolicinaText { get => kolicinaText; set { kolicinaText = value; OnPropertyChanged("KolicinaText"); } }
 
         public ObservableCollection<Skladiste> Skladista
@@ -131,8 +183,15 @@ namespace Skladistenje.ViewModel
             get => removeEnabled;
             set
             {
-                removeEnabled = value;
-                OnPropertyChanged("RemoveEnabled");
+                if (idFakture != null || tip == "STORNI")
+                {
+                    removeEnabled = false;
+                }
+                else
+                {
+                    removeEnabled = value;
+                    OnPropertyChanged("RemoveEnabled");
+                }
             }
         }
 
@@ -141,38 +200,45 @@ namespace Skladistenje.ViewModel
             get => addEnabled;
             set
             {
-                addEnabled = value;
-                OnPropertyChanged("AddEnabled");
+                if (idFakture != null || tip == "STORNI")
+                {
+                    addEnabled = false;
+                }
+                else
+                {
+                    addEnabled = value;
+                    OnPropertyChanged("AddEnabled");
+                }
             }
         }
 
-        public ObservableCollection<Proizvod> Proizvodi
+        public ObservableCollection<ProizvodKolicina> ProizvodiSaKolicinomLevo
         {
-            get => proizvodi;
+            get => proizvodiSaKolicinomLevo;
             set
             {
-                proizvodi = value;
-                OnPropertyChanged("Proizvodi");
+                proizvodiSaKolicinomLevo = value;
+                OnPropertyChanged("ProizvodiSaKolicinomLevo");
             }
         }
 
-        public ObservableCollection<ProizvodKolicina> ProizvodiSaKolicinom
+        public ObservableCollection<ProizvodKolicina> ProizvodiSaKolicinomDesno
         {
-            get => proizvodiSaKolicinom;
+            get => proizvodiSaKolicinomDesno;
             set
             {
-                proizvodiSaKolicinom = value;
-                OnPropertyChanged("ProizvodiSaKolicinom");
+                proizvodiSaKolicinomDesno = value;
+                OnPropertyChanged("ProizvodiSaKolicinomDesno");
             }
         }
 
-        public int SelectedProizvod
+        public int SelectedProizvodSaKolicinomLevo
         {
-            get => _selectedProizvod;
+            get => _selectedProizvodSaKolicinomLevo;
             set
             {
-                _selectedProizvod = value;
-                if (_selectedProizvod > -1)
+                _selectedProizvodSaKolicinomLevo = value;
+                if (_selectedProizvodSaKolicinomLevo > -1)
                 {
                     AddEnabled = true;
                 }
@@ -183,13 +249,13 @@ namespace Skladistenje.ViewModel
             }
         }
 
-        public int SelectedProizvodSaKolicinom
+        public int SelectedProizvodSaKolicinomDesno
         {
-            get => _selectedProizvodSaKolicinom;
+            get => _selectedProizvodSaKolicinomDesno;
             set
             {
-                _selectedProizvodSaKolicinom = value;
-                if (_selectedProizvodSaKolicinom > -1)
+                _selectedProizvodSaKolicinomDesno = value;
+                if (_selectedProizvodSaKolicinomDesno > -1)
                 {
                     RemoveEnabled = true;
                 }
@@ -200,15 +266,15 @@ namespace Skladistenje.ViewModel
             }
         }
 
-        public string SourceZalihe { get => sourceZalihe; set => sourceZalihe = value; }
-        public string DestinationZalihe { get => destinationZalihe; set => destinationZalihe = value; }
-        public Visibility IzdaoVisible { get => izdaoVisible; set => izdaoVisible = value; }
-        public Visibility PrimioVisible { get => primioVisible; set => primioVisible = value; }
-        public Visibility VozacVisible { get => vozacVisible; set => vozacVisible = value; }
-        public Visibility RegBrVisible { get => regBrVisible; set => regBrVisible = value; }
-        public Visibility NacinOtpremeVisible { get => nacinOtpremeVisible; set => nacinOtpremeVisible = value; }
-        public Visibility IzSklVisible { get => izSklVisible; set => izSklVisible = value; }
-        public Visibility USklVisible { get => uSklVisible; set => uSklVisible = value; }
+        public string SourceZalihe { get => sourceZalihe; set { sourceZalihe = value; OnPropertyChanged("SourceZalihe"); } }
+        public string DestinationZalihe { get => destinationZalihe; set { destinationZalihe = value; OnPropertyChanged("DestinationZalihe"); } }
+        public Visibility IzdaoVisible { get => izdaoVisible; set { izdaoVisible = value; OnPropertyChanged("IzdaoVisible"); }}
+        public Visibility PrimioVisible { get => primioVisible; set { primioVisible = value; OnPropertyChanged("PrimioVisible"); }}
+        public Visibility VozacVisible { get => vozacVisible; set { vozacVisible = value; OnPropertyChanged("VozacVisible"); }}
+        public Visibility RegBrVisible { get => regBrVisible; set { regBrVisible = value; OnPropertyChanged("RegBrVisible"); }}
+        public Visibility NacinOtpremeVisible { get => nacinOtpremeVisible; set { nacinOtpremeVisible = value; OnPropertyChanged("NacinOtpremeVisible"); }}
+        public Visibility IzSklVisible { get => izSklVisible; set { izSklVisible = value; OnPropertyChanged("IzSklVisible"); }}
+        public Visibility USklVisible { get => uSklVisible; set { uSklVisible = value; OnPropertyChanged("USklVisible"); }}
 
         #endregion
 
@@ -244,10 +310,10 @@ namespace Skladistenje.ViewModel
 
         private void Remove(int obj)
         {
-            if (SelectedProizvodSaKolicinom != -1)
+            if (SelectedProizvodSaKolicinomDesno != -1)
             {
-                ProizvodKolicina p = ProizvodiSaKolicinom.ElementAt(SelectedProizvodSaKolicinom);
-                ProizvodiSaKolicinom.RemoveAt(SelectedProizvodSaKolicinom);
+                ProizvodKolicina p = ProizvodiSaKolicinomDesno.ElementAt(SelectedProizvodSaKolicinomDesno);
+                ProizvodiSaKolicinomDesno.RemoveAt(SelectedProizvodSaKolicinomDesno);
             }
             else
             {
@@ -258,12 +324,24 @@ namespace Skladistenje.ViewModel
 
         private void Add(int index)
         {
-            if (SelectedProizvod != -1)
+            if (SelectedProizvodSaKolicinomLevo != -1)
             {
-                Proizvod p = Proizvodi.ElementAt(SelectedProizvod);
+                ProizvodKolicina p = ProizvodiSaKolicinomLevo.ElementAt(SelectedProizvodSaKolicinomLevo);
+                ProizvodKolicina pk = new ProizvodKolicina(p.Naziv, p.Sifra, KolicinaText);
                 //TO DO validacija za kolicinu
-                ProizvodKolicina pk = new ProizvodKolicina(p, KolicinaText, "");
-                ProizvodiSaKolicinom.Add(pk);
+                if (tip == "INT_OTP")
+                {
+                    //Proizvod p = Proizvodi.ElementAt(SelectedProizvod); treba doraditi
+                    Double kolicina = Double.Parse(pk.Kolicina); 
+                    Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.naziv == pk.Naziv && x.Skladiste.naziv == SkladisteSourceForBind); //aj nadji ovo skladiste, nemas tu proizvod id da, znam, resicemo, daj samo skladiste
+                    if ((z.kolicina - z.rezervisano - z.minimumkolicine) < kolicina)
+                    {
+                        Notifications.Error e = new Notifications.Error("Na zalihama se ne nalazi dovoljno ovog proizvoda.");
+                        e.Show();
+                        return;
+                    }
+                }
+                ProizvodiSaKolicinomDesno.Add(pk);
             }
             else
             {
@@ -277,15 +355,89 @@ namespace Skladistenje.ViewModel
             //pitalica
             if (tip == "INT_PR" || tip == "INT_OTP")   //interni
             {
+                if (tip == "INT_PR")
+                {
+                    if (!dbContext.ZaposleniSkladistas.Any(x => x.Skladiste.naziv.Equals(SkladisteDestForBind) && x.zaposleni_id == UserOnSession.zaposleni_id))
+                    {
+                        Error er = new Error("Niste zaposleni u ovom skladistu.");
+                        er.Show();
+                        return;
+                    }
+                }
+                else
+                {
+                    if (!dbContext.ZaposleniSkladistas.Any(x => x.Skladiste.naziv.Equals(SkladisteSourceForBind) && x.zaposleni_id == UserOnSession.zaposleni_id))
+                    {
+                        Error er = new Error("Niste zaposleni u ovom skladistu.");
+                        er.Show();
+                        return;
+                    }
+                }
                 
+                SkladisteniDokument sd = new SkladisteniDokument();
+                sd.active = true;
+                sd.nacinotpreme = sklDokForBind.nacinotpreme;
+                sd.izdao = sklDokForBind.izdao;
+                sd.primio = sklDokForBind.primio;
+                sd.vozac = sklDokForBind.vozac;
+                sd.skladiste_id = dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(SkladisteSourceForBind)).id;//SkladisteSourceForBind.id;
+                sd.skladiste_id1 = sd.zaposleniskladista_skladiste_id = dbContext.Skladistes.FirstOrDefault(x => x.naziv.Equals(SkladisteDestForBind)).id;//SkladisteDestForBind.id;
+                sd.zaposleniskladista_zaposleni_id = dbContext.Zaposlenis.FirstOrDefault(x => x.active == true && x.Korisniks.Any(y => y.id == UserOnSession.id)).id;
+                if(tip == "INT_PR") sd.zaposleniskladista_skladiste_id = (int)sd.skladiste_id1;   //ako je prijemnica, onda korisnik radi za dest skladiste jer se tu prima
+                else if(tip == "INT_OTP") sd.zaposleniskladista_skladiste_id = (int)sd.skladiste_id; //ako je otpremnica onda korisnik radi za source jer se odatle otprema
+                sd.poslovnipartner_mbr = null;
+                sd.redovniskldok_id = null;
+                sd.upripremi = false;
+                sd.datum = sklDokForBind.datum;
+                sd.redovni = true;
+                sd.storniranceo = false;
+                sd.tipredovnog = tip;
+                sd.sifra = sklDokForBind.sifra;
+                sd.regbr = sklDokForBind.regbr;
+                dbContext.SkladisteniDokuments.Add(sd);
+                dbContext.SaveChanges();
+                ////ovo je ono o cemu smo pricali, da radnik mora biti zaposlen u skladistu da bi mogao da kreira dokument za to skladiste, ali ja jesam zaposlen u nisi u skladiste2,  pa onda ispada da moram biti u oba zaposlenne ne sad si pravio prjemnicu za skladiste u kom sam zaposlen (dest) jao ali nisi dobro kupio... 
+                //stavke dodaj fali nam i uslov pre svega da li radi u tom skladistu za koje pravi dokument gde to da stavim
+                int i = 1;
+                foreach (ProizvodKolicina item in ProizvodiSaKolicinomDesno)
+                {
+                    StavkaSklDokumenta stavka = new StavkaSklDokumenta();
+                    stavka.kolicina = Double.Parse(item.Kolicina);
+                    stavka.rednibroj = i++;
+                    stavka.skladistenidokument_id = sd.id;
+                    stavka.stavkafakture_faktura_id = idFakture; //je l moze da se kreira interni na osnovu fakture?
+                    stavka.storno = false;
+                    stavka.stavkafakture_rednibroj = i;
+                    if (tip == "INT_PR") stavka.zalihe_idskladista = (int)sd.skladiste_id1;   //ako je prijemnica, onda korisnik radi za dest skladiste jer se tu prima
+                    else if (tip == "INT_OTP") stavka.zalihe_idskladista = (int)sd.skladiste_id; //ako je otpremnica onda korisnik radi za source jer se odatle otprema
+                    stavka.zalihe_proizvod_id = dbContext.Proizvods.FirstOrDefault(x => x.sifra == item.Sifra).id;
+                    dbContext.StavkaSklDokumentas.Add(stavka);
+                    if (dbContext.Zalihes.Any(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista))
+                    {
+                        if (tip == "INT_PR")
+                        {
+                            dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).kolicina += stavka.kolicina;
+                        }
+                        else
+                        {
+                            dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).kolicina -= stavka.kolicina;
+                        }
+                    }
+                    else
+                    {
+                        dbContext.Zalihes.Add(new Zalihe() { kolicina = stavka.kolicina, proizvod_id = stavka.zalihe_proizvod_id, raf = "", minimumkolicine = 0, rezervisano = 0, skladiste_id = stavka.zalihe_idskladista });
+                    }
+                }
+                dbContext.SaveChanges();
+
             }
             else if (tip == "SP_PR" || tip == "SP_OTP")  //spoljni
             {
-                
+               //a ne tu pa kad testiras ovo da uradimo spoljnu otp hajde testiraj ovo 
             }
             else if (tip == "KOR_PR" || tip == "KOR_OTP") //korekcioni
             {
-                
+                //TO DO nema trenutno
             }
             else if (tip == "STORNI") //storni
             {
@@ -293,6 +445,16 @@ namespace Skladistenje.ViewModel
             }
         }
 
+        #endregion
+
+        #region HelperMethods
+        private void populateProizvodiGrid(Skladiste s)
+        {
+            foreach (var item in dbContext.Zalihes.ToList())
+            {
+                if(s.id == item.skladiste_id) proizvodiSaKolicinomLevo.Add(new ProizvodKolicina(item.Proizvod, item.kolicina.ToString(), item.raf));
+            }
+        }
         #endregion
     }
 }

@@ -47,7 +47,7 @@
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-            <Button Content="{Binding Novi1}" Command="{Binding DodajSklDok1NavCommand}" CommandParameter="dodajSklDok" Margin="20,0,20,0"  />
+            <Button Content="{Binding Novi1}" Command="{Binding DodajSklDok1NavCommand}" CommandParameter="dodajSklDok" Margin="20,0,20,0" Visibility="{Binding Novi1Visible}" />
             <Button Content="{Binding Novi2}" Command="{Binding DodajSklDok2NavCommand}" Visibility="{Binding Novi2Visible}" CommandParameter="dodajSklDok" Margin="20,0,410,0"  />
             <Button Content="Izbriši" Command="{Binding IzbrisiSklDokCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
             <Button Content="Detaljnije" Command="{Binding DetaljnijeSklDokNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
