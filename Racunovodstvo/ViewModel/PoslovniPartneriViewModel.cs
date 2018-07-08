@@ -258,7 +258,7 @@ namespace Racunovodstvo.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera = new DodajPoslovnogPartneraViewModel(1, selectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera;
-                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Izmena Poslovnog Partnera";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Poslovni Partneri -> Izmena";
                         //}
                         //else
                         //{
@@ -289,7 +289,7 @@ namespace Racunovodstvo.ViewModel
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera = new DodajPoslovnogPartneraViewModel(0, null);
                         ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera.UserOnSession = this.UserOnSession;
                         ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajPoslovnogPartnera;
-                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Novi Poslovni Partner";
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Poslovni Partneri -> Novi";
                 }
             }
         }

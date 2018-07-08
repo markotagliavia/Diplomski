@@ -256,25 +256,25 @@ namespace Racunovodstvo
                     CurrentViewModel = new ProfaktureViewModel();
                     break;
                 case Navigation.dodajProfakturu:
-                    ViewModelTitle = "Dodaj Profakturu";
+                    ViewModelTitle = " Profakture -> Nova";
                     CurrentViewModel = dodajProfakturuViewModel;
                     break;
                 case Navigation.izmeniProfakturu:
-                    ViewModelTitle = "Izmena Profakture";
+                    ViewModelTitle = "Profakture -> Izmena";
                     CurrentViewModel = dodajProfakturuViewModel;
                     break;
                 case Navigation.izlazna:
-                    ViewModelTitle = "Pregled izlaznih faktura";
+                    ViewModelTitle = "Fakture -> Izlazne";
                     faktureViewModel = new FaktureViewModel(0);
                     CurrentViewModel = faktureViewModel;
                     break;
                 case Navigation.ulazna:
-                    ViewModelTitle = "Pregled ulaznih faktura";
+                    ViewModelTitle = "Fakture -> Ulazne";
                     faktureViewModel = new FaktureViewModel(1);
                     CurrentViewModel = faktureViewModel;
                     break;
                 case Navigation.storno:
-                    ViewModelTitle = "Pregled storno faktura";
+                    ViewModelTitle = "Fakture -> Storne";
                     stornoFaktureViewModel = new StornoFaktureViewModel();
                     CurrentViewModel = stornoFaktureViewModel;
                     break;
@@ -283,11 +283,11 @@ namespace Racunovodstvo
                     CurrentViewModel = proizvodiViewModel;
                     break;
                 case Navigation.dodajProizvod:
-                    ViewModelTitle = "Novi Proizvod";
+                    ViewModelTitle = "Proizvodi -> Novi";
                     CurrentViewModel = dodajProizvodViewModel;
                     break;
                 case Navigation.dodajProizvodjaca:
-                    ViewModelTitle = "Novi Proizvođač";
+                    ViewModelTitle = "Proizvođači -> Novi";
                     CurrentViewModel = dodajProizvodjacaViewModel;
                     break;
                 case Navigation.kompenzacije:

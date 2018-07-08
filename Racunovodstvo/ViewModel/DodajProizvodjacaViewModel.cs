@@ -65,7 +65,7 @@ namespace Racunovodstvo.ViewModel
             MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
             MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
             MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
-            MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+            MainWindowViewModel.Instance.ViewModelTitle = "Proizvodi -> Novi";
             //foreach (Window w in Application.Current.Windows)
             //{
             //    if (w.GetType().Equals(typeof(MainWindow)))
@@ -88,7 +88,7 @@ namespace Racunovodstvo.ViewModel
             MainWindowViewModel.Instance.DodajProizvodViewModel = new DodajProizvodViewModel(0, proizvodBack);
             MainWindowViewModel.Instance.DodajProizvodViewModel.UserOnSession = this.UserOnSession;
             MainWindowViewModel.Instance.OnNav(Navigation.dodajProizvod);
-            MainWindowViewModel.Instance.ViewModelTitle = "Novi Proizvod";
+            MainWindowViewModel.Instance.ViewModelTitle = "Proizvodi -> Novi";
             //foreach (Window w in Application.Current.Windows)
             //{
             //    if (w.GetType().Equals(typeof(MainWindow)))

@@ -97,6 +97,7 @@ namespace Racunovodstvo.ViewModel
                 BezPDV = 0;
                 SaPDV = 0;
                 FakturaForEdit = f;
+                pdv = f?.pdv ?? 0;
                 if (f.StavkaFaktures.Count > 0)
                 {
                     SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
@@ -108,8 +109,9 @@ namespace Racunovodstvo.ViewModel
                 staroSkladiste = SkladisteForBind;
                 PoslovniPartnerForBind = f.PoslovniPartner?.naziv ?? "";
                 AvansnoPlacanje = (bool)f.avansnoplacanje;
-                foreach (var item in f.StavkaFaktures)
+                foreach (var item in f.StavkaFaktures.Where(x => x.storno == false))
                 {
+
                     BezPDV += ((double)item.cena * item.kolicina) * (1 - ((double)(item.rabat) / 100));
                     SaPDV = (1 + (Pdv / 100)) * BezPDV;
                     ProizvodKolicina pk = new ProizvodKolicina(item.Zalihe.Proizvod,item.kolicina.ToString(),item.cena.ToString(),item.rabat.ToString());
@@ -143,6 +145,7 @@ namespace Racunovodstvo.ViewModel
                 BezPDV = 0;
                 SaPDV = 0;
                 FakturaForEdit = f;
+                pdv = f?.pdv ?? 0;
                 if (f.StavkaFaktures.Count > 0)
                 {
                     SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
@@ -154,7 +157,7 @@ namespace Racunovodstvo.ViewModel
                 staroSkladiste = SkladisteForBind;
                 PoslovniPartnerForBind = f.PoslovniPartner?.naziv ?? "";
                 AvansnoPlacanje = (bool)f.avansnoplacanje;
-                foreach (var item in f.StavkaFaktures)
+                foreach (var item in f.StavkaFaktures.Where(x => x.storno == false))
                 {
                     BezPDV += ((double)item.cena * item.kolicina) * (1 - ((double)item.rabat / 100));
                     SaPDV = (1 + (Pdv / 100)) * BezPDV;
@@ -269,6 +272,7 @@ namespace Racunovodstvo.ViewModel
                         {
                             StavkaFakture st = new StavkaFakture();
                             st.rednibroj = i;
+                            st.storno = false;
                             st.kolicina = Double.Parse(item.Kolicina);
                             st.rabat = Double.Parse(item.Rabat);
                             st.cena = Double.Parse(item.Cena);
@@ -341,6 +345,7 @@ namespace Racunovodstvo.ViewModel
 
                         if (original != null)
                         {
+                            
                             original.oznaka = FakturaForEdit.oznaka;
                             original.datumfakturisanja = FakturaForEdit.datumfakturisanja;
                             original.datumprometadobara = FakturaForEdit.datumprometadobara;
@@ -359,6 +364,7 @@ namespace Racunovodstvo.ViewModel
                             {
                                 StavkaFakture st = new StavkaFakture();
                                 st.rednibroj = i;
+                                st.storno = item.Storno;
                                 st.kolicina = Double.Parse(item.Kolicina);
                                 st.rabat = Double.Parse(item.Rabat);
                                 st.cena = Double.Parse(item.Cena);
@@ -418,6 +424,7 @@ namespace Racunovodstvo.ViewModel
                             st.rednibroj = i;
                             st.kolicina = Double.Parse(item.Kolicina);
                             st.rabat = Double.Parse(item.Rabat);
+                            st.storno = false;
                             st.cena = Double.Parse(item.Cena);
                             st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
                             st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
@@ -485,6 +492,7 @@ namespace Racunovodstvo.ViewModel
                                 st.kolicina = Double.Parse(item.Kolicina);
                                 st.rabat = Double.Parse(item.Rabat);
                                 st.cena = Double.Parse(item.Cena);
+                                st.storno = item.Storno;
                                 st.zalihe_proizvod_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).proizvod_id;
                                 st.zalihe_skladiste_id = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind)).skladiste_id;
                                 st.Faktura = dbContext.Fakturas.FirstOrDefault(x => x.oznaka.Equals(FakturaForEdit.oznaka));
