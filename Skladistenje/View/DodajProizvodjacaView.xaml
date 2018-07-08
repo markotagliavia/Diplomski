@@ -23,12 +23,12 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Naziv : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodjacForEdit.naziv}"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodjacForEdit.naziv}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Grad : " Height="30" Width="100" FontSize="14"/>
-                <ComboBox x:Name="gradComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Gradovi}"
+                <ComboBox x:Name="gradComboBox" Width="170" Margin="30,0,0,0" ItemsSource="{Binding Gradovi}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding GradForBind}">

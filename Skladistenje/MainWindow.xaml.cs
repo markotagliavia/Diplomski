@@ -30,8 +30,14 @@ namespace Skladistenje
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
                     ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
+                    if (((MainWindowViewModel)((MainWindow)w).DataContext).DbContext.Notifications.Any(x => !x.procitana))
+                    {
+                        ZvonceCrveno();
+                    }
                 }
             }
+
+
         }
 
         private void deselect(object sender, RoutedEventArgs e)
@@ -179,7 +185,7 @@ namespace Skladistenje
             }
         }
 
-        public void ZvonceBelo()
+        public void ZvonceBelo()    //kako da pozovemo ovo sranje
         {
             zvonce.Foreground = new SolidColorBrush(Colors.White);
             obavestenjaText.Foreground = new SolidColorBrush(Colors.White);
@@ -189,6 +195,17 @@ namespace Skladistenje
         {
             zvonce.Foreground = new SolidColorBrush(Colors.Red);
             obavestenjaText.Foreground = new SolidColorBrush(Colors.Red);
+        }
+
+        private void obavestenjaNav(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("obavestenja");
+                }
+            }
         }
     }
 }

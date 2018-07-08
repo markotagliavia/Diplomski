@@ -73,25 +73,26 @@ namespace Skladistenje.ViewModel
             {
                 Novi1 = "Nova pirjemnica";
                 Novi2 = "Nova otpremnica";
+                Novi1Visible = Visibility.Collapsed;
             }
             else if (tip == 2) //spoljni
             {
                 Novi1 = "Nova pirjemnica";
                 Novi2 = "Nova otpremnica";
-                Novi2Visible = Visibility.Hidden;
-                Novi1Visible = Visibility.Hidden;
+                Novi2Visible = Visibility.Collapsed;
+                Novi1Visible = Visibility.Collapsed;
             }
             else if (tip == 3)  //korekcioni
             {
                 Novi1 = "Novi pripis";
                 Novi2 = "Novi otpis";
-                Novi2Visible = Visibility.Hidden;
-                Novi1Visible = Visibility.Hidden;
+                Novi2Visible = Visibility.Collapsed;
+                Novi1Visible = Visibility.Collapsed;
             }
             else if (tip == 4) //storni
             {
                 Novi1 = "Novi storni";
-                Novi2Visible = Visibility.Hidden;
+                Novi2Visible = Visibility.Collapsed;
             }
 
             DefaultView = CollectionViewSource.GetDefaultView(sklDokumenti);

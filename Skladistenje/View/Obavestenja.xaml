@@ -44,7 +44,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
             <Button Content="Obradi" Command="{Binding ObradiObavestenjeCommand}" HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="30,0,20,0"/>
-            <Button Content="Izbriši" Command="{Binding IzbrisiObavestenjeNavCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}"/>
+            <Button Content="Izbriši" Command="{Binding IzbrisiObavestenjeCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
 </UserControl>

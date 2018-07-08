@@ -15,15 +15,15 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Naziv : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.naziv}"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.naziv}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Država : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="drzavaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.drzava}"/>
+                <TextBox x:Name="drzavaTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.drzava}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Poštanski broj : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="postanskibrojTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.postanskibroj}"/>
+                <TextBox x:Name="postanskibrojTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding Grad.postanskibroj}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="60" Margin="20,220,0,0">
                 <Button Content="{Binding SubmitButtonText}" Command="{Binding DodajCommand}" Margin="10" />

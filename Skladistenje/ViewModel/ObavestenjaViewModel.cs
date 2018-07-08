@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Skladistenje.ViewModel
@@ -43,6 +44,18 @@ namespace Skladistenje.ViewModel
             }
 
             DefaultView = CollectionViewSource.GetDefaultView(Obavestenja);
+
+
+            foreach (Window w in Application.Current.Windows)
+            {
+                if (w.GetType().Equals(typeof(MainWindow)))
+                {
+                    if (((MainWindow)w).zvonce != null)
+                    {
+                        ((MainWindow)w).ZvonceBelo();
+                    }
+                }
+            }
         }
 
         #region Constructors
@@ -155,7 +168,21 @@ namespace Skladistenje.ViewModel
 
         private void Obradi(string obj)
         {
-            //TO DO
+            if (SelectedValue != null)
+            {
+                if (SelectedValue.tekst.StartsWith("Kreirana je nova otpremnica"))
+                {
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišni dokumenti -> Nova Interna Prijemnica";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR",SelectedValue.idDokumenta, SelectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel;
+                        }
+                    }
+                }
+            }
         }
         #endregion
     }

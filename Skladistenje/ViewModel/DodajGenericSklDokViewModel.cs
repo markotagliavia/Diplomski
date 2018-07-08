@@ -32,6 +32,9 @@ namespace Skladistenje.ViewModel
         private string sourceZalihe = "";
         private string destinationZalihe = "";
         private Visibility izdaoVisible, primioVisible, vozacVisible, regBrVisible, nacinOtpremeVisible, izSklVisible, uSklVisible;
+        private bool isEditable = true;
+        private Common.Model.Notification notification;
+
         #endregion
 
         #region Commands
@@ -46,10 +49,11 @@ namespace Skladistenje.ViewModel
         {
         }
 
-        public DodajGenericSklDokViewModel(string tip, int? idFakture = null)
+        public DodajGenericSklDokViewModel(string tip, int? idDokumenta = null, Common.Model.Notification notification = null)
         {
-            this.idFakture = idFakture;
+            this.idFakture = idDokumenta;
             this.tip = tip;
+            this.notification = notification;
             DodajSklDokCommand = new MyICommand<object>(DodajSklDok);
             OtkaziCommand = new MyICommand<string>(Otkazi);
             BackNavCommand = new MyICommand<string>(Otkazi);
@@ -80,6 +84,22 @@ namespace Skladistenje.ViewModel
                 USklVisible = Visibility.Visible;
                 SourceZalihe = "Svi Proizvodi : ";
                 DestinationZalihe = "Izabrano : ";
+                if (tip == "INT_PR")
+                {
+                    IsEditable = false;
+                    idFakture = idDokumenta;  //zbog dugmica
+                    SkladisteniDokument otp = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.id == idDokumenta);
+                    SkladisteSourceForBind = otp.Skladiste.naziv;
+                    SkladisteDestForBind = otp.Skladiste1.naziv;
+                    SklDokForBind.vozac = otp.vozac;
+                    SklDokForBind.regbr = otp.regbr;
+                    SklDokForBind.nacinotpreme = otp.nacinotpreme;
+                    foreach (var stavka in otp.StavkaSklDokumentas)
+                    {
+                        ProizvodKolicina pk = new ProizvodKolicina(stavka.Zalihe.Proizvod.naziv, stavka.Zalihe.Proizvod.sifra, stavka.kolicina.ToString());
+                        ProizvodiSaKolicinomDesno.Add(pk);
+                    }
+                }
             }
             else if (tip == "SP_PR" || tip == "SP_OTP")  //spoljni
             {
@@ -107,7 +127,7 @@ namespace Skladistenje.ViewModel
             }
             else if (tip == "STORNI") //storni
             {
-                //ovo cu izmestiti
+                //to do
             }
 
             sklDokForBind.datum = DateTime.Now;
@@ -121,12 +141,15 @@ namespace Skladistenje.ViewModel
                     }
                 }
             }
+
+            
         }
         #region Properties
 
+        
         public Korisnik UserOnSession { get => userOnSession; set => userOnSession = value; }
         public SkladisteniDokument SklDokForBind { get => sklDokForBind; set { sklDokForBind = value; OnPropertyChanged("SklDokForBind"); } }
-        public string SkladisteSourceForBind //nije, to je radilo kod popisa
+        public string SkladisteSourceForBind 
         {
             get => skladisteSourceForBind;
             set
@@ -276,6 +299,9 @@ namespace Skladistenje.ViewModel
         public Visibility IzSklVisible { get => izSklVisible; set { izSklVisible = value; OnPropertyChanged("IzSklVisible"); }}
         public Visibility USklVisible { get => uSklVisible; set { uSklVisible = value; OnPropertyChanged("USklVisible"); }}
 
+        public bool IsEditable { get => isEditable; set { isEditable = value; OnPropertyChanged("IsEditable"); } }
+
+
         #endregion
 
 
@@ -331,7 +357,7 @@ namespace Skladistenje.ViewModel
                 //TO DO validacija za kolicinu
                 if (tip == "INT_OTP")
                 {
-                    //Proizvod p = Proizvodi.ElementAt(SelectedProizvod); treba doraditi
+                    //Proizvod p = Proizvodi.ElementAt(SelectedProizvod); treba doraditievo me, sta radis?
                     Double kolicina = Double.Parse(pk.Kolicina); 
                     Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.naziv == pk.Naziv && x.Skladiste.naziv == SkladisteSourceForBind); //aj nadji ovo skladiste, nemas tu proizvod id da, znam, resicemo, daj samo skladiste
                     if ((z.kolicina - z.rezervisano - z.minimumkolicine) < kolicina)
@@ -395,7 +421,27 @@ namespace Skladistenje.ViewModel
                 sd.sifra = sklDokForBind.sifra;
                 sd.regbr = sklDokForBind.regbr;
                 dbContext.SkladisteniDokuments.Add(sd);
-                dbContext.SaveChanges();
+
+                if (tip == "INT_OTP")
+                {
+                    Common.Model.Notification n = new Common.Model.Notification();
+                    n.adresa = sd.Skladiste1.naziv;
+                    n.aplikacija = "Skladistenje";
+                    n.obradjena = false;
+                    n.procitana = false;
+                    n.tekst = "Kreirana je nova otpremnica";
+                    n.idDokumenta = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.sifra == sd.sifra).id;
+                    dbContext.Notifications.Add(n);
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindow)w).ZvonceCrveno();
+                        }
+                    }
+
+                    dbContext.SaveChanges();
+                }
                 ////ovo je ono o cemu smo pricali, da radnik mora biti zaposlen u skladistu da bi mogao da kreira dokument za to skladiste, ali ja jesam zaposlen u nisi u skladiste2,  pa onda ispada da moram biti u oba zaposlenne ne sad si pravio prjemnicu za skladiste u kom sam zaposlen (dest) jao ali nisi dobro kupio... 
                 //stavke dodaj fali nam i uslov pre svega da li radi u tom skladistu za koje pravi dokument gde to da stavim
                 int i = 1;
@@ -403,11 +449,11 @@ namespace Skladistenje.ViewModel
                 {
                     StavkaSklDokumenta stavka = new StavkaSklDokumenta();
                     stavka.kolicina = Double.Parse(item.Kolicina);
-                    stavka.rednibroj = i++;
+                    stavka.rednibroj = i;
                     stavka.skladistenidokument_id = sd.id;
-                    stavka.stavkafakture_faktura_id = idFakture; //je l moze da se kreira interni na osnovu fakture?
+                    //stavka.stavkafakture_faktura_id = idFakture; 
                     stavka.storno = false;
-                    stavka.stavkafakture_rednibroj = i;
+                    
                     if (tip == "INT_PR") stavka.zalihe_idskladista = (int)sd.skladiste_id1;   //ako je prijemnica, onda korisnik radi za dest skladiste jer se tu prima
                     else if (tip == "INT_OTP") stavka.zalihe_idskladista = (int)sd.skladiste_id; //ako je otpremnica onda korisnik radi za source jer se odatle otprema
                     stavka.zalihe_proizvod_id = dbContext.Proizvods.FirstOrDefault(x => x.sifra == item.Sifra).id;
@@ -428,7 +474,14 @@ namespace Skladistenje.ViewModel
                         dbContext.Zalihes.Add(new Zalihe() { kolicina = stavka.kolicina, proizvod_id = stavka.zalihe_proizvod_id, raf = "", minimumkolicine = 0, rezervisano = 0, skladiste_id = stavka.zalihe_idskladista });
                     }
                 }
-                dbContext.SaveChanges();
+                if (notification != null)
+                {
+                    notification.obradjena = true;
+
+                }
+                dbContext.SaveChanges();//kako se stavke popune koje stavke dokumenta
+                Success s = new Success("Uspešno ste dodali novi interni skladišni dokument.");
+                s.Show();
 
             }
             else if (tip == "SP_PR" || tip == "SP_OTP")  //spoljni

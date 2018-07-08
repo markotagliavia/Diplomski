@@ -23,20 +23,20 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
                 <Label Content="Naziv : " Height="30" Width="130" FontSize="14"/>
-                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.naziv}"/>
+                <TextBox x:Name="nazivTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.naziv}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Šifra : " Height="30" Width="130" FontSize="14"/>
-                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.sifra}"/>
+                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.sifra}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Minimum količine : " Height="30" Width="130" FontSize="14"/>
-                <TextBox x:Name="minimumKolicineTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.minimumkolicine}"/>
+                <TextBox x:Name="minimumKolicineTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding ProizvodForBind.minimumkolicine}" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
                 <Label Content="Jedinica mere : " Height="30" Width="130" FontSize="14"/>
-                <ComboBox x:Name="jedinicaMereComboBox" Width="170" Margin="30,0,0,0" IsEditable="True" ItemsSource="{Binding Jedinicamere}" Text="{Binding MereForBind, Mode=TwoWay}"
+                <ComboBox x:Name="jedinicaMereComboBox" Width="170" Margin="30,0,0,0" IsEditable="True" ItemsSource="{Binding Jedinicamere}" Text="{Binding MereForBind, Mode=TwoWay}" Foreground="White"
                     SelectedValue="{Binding MereForBind}">
                 </ComboBox>
             </StackPanel>

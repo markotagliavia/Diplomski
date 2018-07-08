@@ -46,10 +46,10 @@
 
                 <StackPanel Orientation="Vertical" Margin="20,50,10,50" Grid.Column="1" Grid.Row="0" >
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding AddNavCommand}" CommandParameter="{Binding ElementName=permissionsGrid,Path=SelectedIndex}" IsEnabled="{Binding AddPermissionEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                     </Button>
                     <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding RemoveNavCommand}" CommandParameter="{Binding ElementName=ulogapermisijeGrid,Path=SelectedIndex}" IsEnabled="{Binding RemovePermissionEnabled}">
-                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                     </Button>
                 </StackPanel>
 

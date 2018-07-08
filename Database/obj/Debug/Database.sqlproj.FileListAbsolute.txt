@@ -47,3 +47,13 @@ E:\aj\repo\Database\obj\Debug\Database.dll
 E:\aj\repo\Database\obj\Debug\Database.pdb
 E:\aj\repo\Database\bin\Debug\Database.dll
 E:\aj\repo\Database\bin\Debug\Database.pdb
+D:\E3\DiplomskiKlon296\repo\Database\bin\Debug\Database.dacpac
+D:\E3\DiplomskiKlon296\repo\Database\bin\Debug\Database.dll
+D:\E3\DiplomskiKlon296\repo\Database\bin\Debug\Database.pdb
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\Database.sqlprojResolveAssemblyReference.cache
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\Model.xml
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\refactor.xml
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\postdeploy.sql
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\predeploy.sql
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\Database.dll
+D:\E3\DiplomskiKlon296\repo\Database\obj\Debug\Database.pdb

@@ -19,7 +19,7 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Vertical" Margin="30,10,0,0">
                 <Label Content="Zapaposleni : " Height="30" Width="100" FontSize="14" HorizontalAlignment="Left"/>
-                <ComboBox x:Name="zaposleniComboBox" Width="170" HorizontalAlignment="Left" Margin="0,10,0,0" ItemsSource="{Binding Zaposleni}"
+                <ComboBox x:Name="zaposleniComboBox" Width="170" HorizontalAlignment="Left" Margin="0,10,0,0" ItemsSource="{Binding Zaposleni}" Foreground="White"
                     DisplayMemberPath="Identifikacija" 
                     SelectedValuePath="Identifikacija"
                     SelectedValue="{Binding ZaposleniForBind}">
@@ -47,10 +47,10 @@
 
                     <StackPanel Orientation="Vertical" Height="300" Width="50">
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=ponudjenaSklGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                         </Button>
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=dodeljenaSklGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                         </Button>
                     </StackPanel>
 

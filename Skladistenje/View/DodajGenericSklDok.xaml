@@ -32,7 +32,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding IzSklVisible}">
                 <Label Content="Izvorno Skladište : " Height="30" Width="115" FontSize="14"/>
-                <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" Foreground="White"
+                <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteSourceForBind}">
@@ -41,7 +41,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding USklVisible}">
                 <Label Content="Odredišno Skladište : " Height="30" Width="115" FontSize="14"/>
-                <ComboBox x:Name="UskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" Foreground="White"
+                <ComboBox x:Name="UskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteDestForBind}">
@@ -60,17 +60,17 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding VozacVisible}">
                 <Label Content="Vozač : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="vozacTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+                <TextBox x:Name="vozacTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding RegBrVisible}">
                 <Label Content="Registarski broj : " Height="30" Width="105" FontSize="14"/>
-                <TextBox x:Name="regBrTextBox" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.regbr}" Foreground="White"/>
+                <TextBox x:Name="regBrTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.regbr}" Foreground="White"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding NacinOtpremeVisible}">
                 <Label Content="Način otpreme : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="nacinOtpremeTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.nacinotpreme}" Foreground="White"/>
+                <TextBox x:Name="nacinOtpremeTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.nacinotpreme}" Foreground="White"/>
             </StackPanel>
 
         </StackPanel>
@@ -95,10 +95,10 @@
 
                     <StackPanel Orientation="Vertical" Height="300" Width="50">
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                         </Button>
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                         </Button>
                     </StackPanel>
 

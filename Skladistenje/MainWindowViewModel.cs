@@ -34,7 +34,7 @@ namespace Skladistenje
         private ObavestenjaViewModel obavestenjaViewModel = new ObavestenjaViewModel();
         private NaprednaPretragaViewModel naprednapretragaViewModel = new NaprednaPretragaViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
-        private DodajGenericSklDokViewModel dodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR");
+        private DodajGenericSklDokViewModel dodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_OTP");
 
         private BindableBase currentViewModel;
 
@@ -197,6 +197,7 @@ namespace Skladistenje
 
         public ZaliheViewModel ZaliheViewModel { get => zaliheViewModel; set => zaliheViewModel = value; }
         public SkladisteniDokumentiViewModel SkladisteniDokumentiViewModel { get => skladisteniDokumentiViewModel; set => skladisteniDokumentiViewModel = value; }
+        public DeltaEximEntities DbContext { get => dbContext; set => dbContext = value; }
 
         #endregion Properties
 
@@ -215,6 +216,8 @@ namespace Skladistenje
             CurrentViewModel = skladistaViewModel;
         }
 
+
+
         #region CommandsImplementation
         private void CloseMenu(string obj)
         {
@@ -230,8 +233,8 @@ namespace Skladistenje
 
         public void Close(string obj)
         {
-            dbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
-            dbContext.SaveChanges();
+            DbContext.Korisniks.First(p => p.korisnickoime.Equals(UserOnSession.korisnickoime)).ulogovan = false;
+            DbContext.SaveChanges();
             LoginWindow lw = new LoginWindow();
             lw.Show();
             Application.Current.Shutdown();
@@ -367,7 +370,7 @@ namespace Skladistenje
             UsernameUser = userOnSession.korisnickoime;
             try
             {
-                Zaposleni z = dbContext.Zaposlenis.First(x => x.active == true && x.id == userOnSession.zaposleni_id);
+                Zaposleni z = DbContext.Zaposlenis.First(x => x.active == true && x.id == userOnSession.zaposleni_id);
                 if (z.Ulogas.Count > 0)
                 {
                     ImeUser = z.ime;
