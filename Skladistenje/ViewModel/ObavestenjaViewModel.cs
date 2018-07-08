@@ -53,6 +53,11 @@ namespace Skladistenje.ViewModel
                     if (((MainWindow)w).zvonce != null)
                     {
                         ((MainWindow)w).ZvonceBelo();
+                        foreach (var item in dbContext.Notifications)
+                        {
+                            item.procitana = true;
+                        }
+                        dbContext.SaveChanges();
                     }
                 }
             }
@@ -179,6 +184,8 @@ namespace Skladistenje.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišni dokumenti -> Nova Interna Prijemnica";
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR",SelectedValue.idDokumenta, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel;
+                            dbContext.Notifications.FirstOrDefault(x => x.Id == SelectedValue.Id).obradjena = true;
+                            dbContext.SaveChanges();
                         }
                     }
                 }
