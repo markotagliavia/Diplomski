@@ -291,6 +291,7 @@ namespace Racunovodstvo.ViewModel
                         n.adresa = SkladisteForBind;
                         n.obradjena = false;
                         n.procitana = false;
+                        n.idDokumenta = dbContext.Fakturas.FirstOrDefault(x => x.oznaka == FakturaForEdit.oznaka).id;
                         n.tekst = $"Kreirana je Izlazna faktura {FakturaForEdit.oznaka}";
                         dbContext.Notifications.Add(n);
                         dbContext.SaveChanges();
@@ -441,6 +442,7 @@ namespace Racunovodstvo.ViewModel
                         n.adresa = SkladisteForBind;
                         n.obradjena = false;
                         n.procitana = false;
+                        n.idDokumenta = dbContext.Fakturas.FirstOrDefault(x => x.oznaka == FakturaForEdit.oznaka).id;
                         n.tekst = $"Kreirana je Ulazna faktura {FakturaForEdit.oznaka}";
                         dbContext.Notifications.Add(n);
                         dbContext.SaveChanges();

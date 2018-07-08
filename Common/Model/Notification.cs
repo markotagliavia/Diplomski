@@ -20,5 +20,6 @@ namespace Common.Model
         public string tekst { get; set; }
         public bool procitana { get; set; }
         public bool obradjena { get; set; }
+        public Nullable<int> idDokumenta { get; set; }
     }
 }

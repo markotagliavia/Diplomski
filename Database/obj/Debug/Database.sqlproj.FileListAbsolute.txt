@@ -45,3 +45,7 @@ E:\aj\repo\Database\obj\Debug\postdeploy.sql
 E:\aj\repo\Database\obj\Debug\predeploy.sql
 E:\aj\repo\Database\obj\Debug\Database.dll
 E:\aj\repo\Database\obj\Debug\Database.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\Model.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\refactor.xml
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\postdeploy.sql
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Database\obj\Debug\predeploy.sql

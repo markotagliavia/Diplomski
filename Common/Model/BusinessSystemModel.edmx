@@ -93,6 +93,7 @@
           <Property Name="tekst" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="procitana" Type="bit" Nullable="false" />
           <Property Name="obradjena" Type="bit" Nullable="false" />
+          <Property Name="idDokumenta" Type="int" />
         </EntityType>
         <EntityType Name="Opomena">
           <Key>
@@ -1405,6 +1406,7 @@
           <Property Name="tekst" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="procitana" Type="Boolean" Nullable="false" />
           <Property Name="obradjena" Type="Boolean" Nullable="false" />
+          <Property Name="idDokumenta" Type="Int32" />
         </EntityType>
         <EntityType Name="Opomena">
           <Key>
@@ -2585,6 +2587,7 @@
                 <ScalarProperty Name="tekst" ColumnName="tekst" />
                 <ScalarProperty Name="procitana" ColumnName="procitana" />
                 <ScalarProperty Name="obradjena" ColumnName="obradjena" />
+                <ScalarProperty Name="idDokumenta" ColumnName="idDokumenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
