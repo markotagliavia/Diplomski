@@ -71,36 +71,44 @@ namespace Skladistenje.ViewModel
             get => zaposleniForBind;
             set
             {
-                zaposleniForBind = value;
-                DodeljenaSkladista.Clear();
-                PonudjenaSkladista.Clear();
-                string[] pom = ZaposleniForBind.Split('(');
-                string username = pom[1].Trim(')');
-                foreach (var item in dbContext.ZaposleniSkladistas.ToList())
+                if (value != null)
                 {
-                    if (item.Zaposleni.Korisniks.ElementAt(0).korisnickoime.Equals(username) && item.active == true)
+                    zaposleniForBind = value;
+                    DodeljenaSkladista.Clear();
+                    PonudjenaSkladista.Clear();
+                    string[] pom = ZaposleniForBind.Split('(');
+                    string username = pom[1].Trim(')');
+                    foreach (var item in dbContext.ZaposleniSkladistas.ToList())
                     {
-                        if (!DodeljenaSkladista.Any(x => x.naziv.Equals(item.Skladiste.naziv)))
+                        if (item.Zaposleni.Korisniks.ElementAt(0).korisnickoime.Equals(username) && item.active == true)
                         {
-                            DodeljenaSkladista.Add(item.Skladiste);
+                            if (!DodeljenaSkladista.Any(x => x.naziv.Equals(item.Skladiste.naziv)))
+                            {
+                                DodeljenaSkladista.Add(item.Skladiste);
+                            }
+                        }
+                        else
+                        {
+                            if (!PonudjenaSkladista.Any(x => x.naziv.Equals(item.Skladiste.naziv)))
+                            {
+                                PonudjenaSkladista.Add(item.Skladiste);
+                            }
                         }
                     }
-                    else
+                    foreach (var item in dbContext.Skladistes.ToList())
                     {
-                        if (!PonudjenaSkladista.Any(x => x.naziv.Equals(item.Skladiste.naziv)))
+                        if (!DodeljenaSkladista.Any(x => x.naziv.Equals(item.naziv)) && !PonudjenaSkladista.Any(x => x.naziv.Equals(item.naziv)))
                         {
-                            PonudjenaSkladista.Add(item.Skladiste);
+                            PonudjenaSkladista.Add(item);
                         }
                     }
-                }
-                foreach (var item in dbContext.Skladistes.ToList())
-                {
-                    if (!DodeljenaSkladista.Any(x => x.naziv.Equals(item.naziv)) && !PonudjenaSkladista.Any(x => x.naziv.Equals(item.naziv)))
-                    {
-                        PonudjenaSkladista.Add(item);
-                    }
-                }
                     OnPropertyChanged(ZaposleniForBind);
+                }
+                else
+                {
+                    zaposleniForBind = value;
+                    OnPropertyChanged(ZaposleniForBind);
+                }
             }
         }
         public bool RemoveEnabled
