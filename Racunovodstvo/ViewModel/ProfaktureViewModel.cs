@@ -29,6 +29,7 @@ namespace Racunovodstvo.ViewModel
         public MyICommand<string> DodajCommand { get; set; }
         public MyICommand<string> IzmeniCommand { get; set; }
         public MyICommand<string> ObrisiCommand { get; set; }
+        public MyICommand<string> KreirajFakturu { get; set; }
         #endregion
         public ProfaktureViewModel()
         {
@@ -36,6 +37,7 @@ namespace Racunovodstvo.ViewModel
             DodajCommand = new MyICommand<string>(Dodaj);
             IzmeniCommand = new MyICommand<string>(Izmeni);
             ObrisiCommand = new MyICommand<string>(Obrisi);
+            KreirajFakturu = new MyICommand<string>(Kreiraj);
             textSearch = "";
             Profakture = new ObservableCollection<Profaktura>();
             foreach (var item in dbContext.Profakturas)
@@ -47,6 +49,35 @@ namespace Racunovodstvo.ViewModel
                 
             }
             DefaultView = CollectionViewSource.GetDefaultView(Profakture);
+        }
+
+        private void Kreiraj(string obj)
+        {
+            
+            if (SelectedValue.Fakturas.Count == 0)
+            {
+                Faktura f = new Faktura();
+                f.Profaktura = SelectedValue;
+                f.PoslovniPartner = SelectedValue.PoslovniPartner;
+                foreach (var item in SelectedValue.StavkaProfaktures)
+                {
+                    StavkaFakture st = new StavkaFakture();
+                    st.rednibroj = item.rednibroj;
+                    st.StavkaProfaktures.Add(item);
+                    st.storno = false;
+                    st.Zalihe = item.Zalihe;
+                    st.zalihe_proizvod_id= item.zalihe_proizvod_id;
+                    st.zalihe_skladiste_id = item.zalihe_skladiste_id;
+                    st.kolicina = item.kolicina;
+                    st.cena = item.cena;
+                    st.rabat = item.rabat;
+                    f.StavkaFaktures.Add(st);
+                }
+
+                MainWindowViewModel.Instance.DodajFakturu = new DodajFakturuViewModel(0, f, SelectedValue.id);
+                MainWindowViewModel.Instance.CurrentViewModel = MainWindowViewModel.Instance.DodajFakturu;
+                MainWindowViewModel.Instance.ViewModelTitle = "Izlazna faktura -> Nova";
+            }
         }
 
         private void Obrisi(string obj)
