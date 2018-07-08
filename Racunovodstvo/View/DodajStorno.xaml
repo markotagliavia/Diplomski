@@ -27,11 +27,11 @@
             <StackPanel Orientation="Vertical" Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                     <Label Content="Oznaka : " Height="30" Width="130" FontSize="14"/>
-                    <TextBox x:Name="nazivTextBox" MaxLength="30" Width="140" Margin="10,10,0,0" Text="{Binding FakturaForBind.oznaka}" IsEnabled="{Binding Edit}"/>
+                        <TextBox x:Name="nazivTextBox" MaxLength="30" Width="140" Margin="10,10,0,0" Text="{Binding FakturaForBind.oznaka}" IsEnabled="{Binding Edit}" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10,10,0,0" >
                     <Label Content="Datum fakturisanja: " Height="30" Width="130" FontSize="14"/>
-                        <DatePicker x:Name="a" SelectedDate="{Binding FakturaForBind.datumfakturisanja}"  Width="140" Margin="10,0,0,0" IsEnabled="{Binding Edit}"></DatePicker>
+                        <DatePicker x:Name="a" SelectedDate="{Binding FakturaForBind.datumfakturisanja}"  Width="140" Margin="10,0,0,0" IsEnabled="{Binding Edit}" Foreground="White"></DatePicker>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
 
@@ -46,10 +46,10 @@
 
                     <StackPanel Orientation="Vertical" Height="300" Width="50">
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                         </Button>
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Margin="10,10,0,0" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding RemoveCommand}" CommandParameter="{Binding ElementName=proizvodiKolicinaGrid,Path=SelectedIndex}" IsEnabled="{Binding RemoveEnabled}">
-                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="Black"/>
+                            <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White"/>
                         </Button>
                     </StackPanel>
 
