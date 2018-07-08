@@ -162,7 +162,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
                         <materialDesign:PackIcon Kind="Account" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Pregled korisnika" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Korisnici" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem1" Height="60" RenderTransformOrigin="0.5,0.5" Selected="pregledUlogaCall">
@@ -176,7 +176,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
                         <materialDesign:PackIcon Kind="Security" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Pregled uloga" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Uloge" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="gradMethodCall">
@@ -190,7 +190,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0" >
                         <materialDesign:PackIcon Kind="City" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Pregled gradova" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Gradovi" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem3" Height="60" RenderTransformOrigin="0.5,0.5" Selected="auditMethodCall">
@@ -204,7 +204,7 @@
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0" >
                         <materialDesign:PackIcon Kind="Book" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Pregled akcija" Margin="10" VerticalAlignment="Center"/>
+                        <TextBlock Text="Akcije" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem4" IsEnabled="False"  Height="60" RenderTransformOrigin="0.5,0.5" Selected="naprednaPretragaCall">

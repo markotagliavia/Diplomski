@@ -212,7 +212,7 @@ namespace Skladistenje.ViewModel
                     }
                     dbContext.SaveChanges();
 
-                    //ovaj foreach sam dodao da proverim kojei proizvodi uopste nisu popisani, i onda ubacim i njih u popis sa kolicinom 0, a onda ona provera u pripis/otpis treba da sracuna to out of the box
+                    //ovaj foreach sam dodao da proverim koji proizvodi uopste nisu popisani, i onda ubacim i njih u popis sa kolicinom 0, a onda ona provera u pripis/otpis treba da sracuna to out of the box
                     foreach (var item in dbContext.Zalihes.Where(x => x.skladiste_id == skladisteId).ToList())
                     {
                         if (!dbContext.StavkaPopisas.Any(x => x.skladiste_id == skladisteId && x.proizvod_id == item.proizvod_id && x.popis_id == idPopisa))

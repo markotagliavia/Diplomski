@@ -125,7 +125,6 @@ namespace Skladistenje.ViewModel
             else if (imaRazlike)
             {
                 Korekcija(idPopisa);
-                RegulisiZalihe(idPopisa);
                 Success s = new Success("Novi popis sa pratećim korekcionim dokumentima je uspešno dodat.");
                 s.Show();
                 foreach (Window w in Application.Current.Windows)
@@ -153,35 +152,31 @@ namespace Skladistenje.ViewModel
             List<StavkaPopisa> pripisStavke = new List<StavkaPopisa>();
             List<StavkaPopisa> otpisStavke = new List<StavkaPopisa>();
 
-            foreach (var item in dbContext.StavkaPopisas.ToList())
+            foreach (var item in Stavke)// dbContext.StavkaPopisas.ToList())
             {
-                if (item.popis_id == id)
+                //if (item.popis_id == id)
+                //{
+                if (item.kolicina > 0)
                 {
-                    if (zalihe.Any(x => x.proizvod_id == item.proizvod_id))
-                    {
-                        Zalihe zPom = zalihe.FirstOrDefault(x => x.proizvod_id == item.proizvod_id);
-                        dbContext.Zalihes.FirstOrDefault(x => x.skladiste_id == p.skladiste_id && x.proizvod_id == item.proizvod_id).kolicina += item.kolicina;
-                        if (item.kolicina > 0)
-                        {
-                            pripisStavke.Add(item);
-                        }
-                        else if (item.kolicina < 0)
-                        {
-                            otpisStavke.Add(item);
-                        }
-                    }
-                    else
-                    {
-                        Zalihe zPom = new Zalihe();
-                        zPom.kolicina = item.kolicina;
-                        zPom.minimumkolicine = 0;
-                        zPom.proizvod_id = item.proizvod_id;
-                        zPom.raf = item.raf;
-                        zPom.rezervisano = 0;
-                        zPom.skladiste_id = item.skladiste_id;
-                        dbContext.Zalihes.Add(zPom);
-                        pripisStavke.Add(item);
-                    }
+                    pripisStavke.Add(item);
+                }
+                else if (item.kolicina < 0)
+                {
+                    otpisStavke.Add(item);
+                }
+
+                if (!zalihe.Any(x => x.proizvod_id == item.proizvod_id))    //ne znam da li treba
+                {
+                    Zalihe zPom = new Zalihe();
+                    zPom.kolicina = 0;
+                    zPom.minimumkolicine = 0;
+                    zPom.proizvod_id = item.proizvod_id;
+                    zPom.raf = item.raf;
+                    zPom.rezervisano = 0;
+                    zPom.skladiste_id = item.skladiste_id;
+                    dbContext.Zalihes.Add(zPom);
+                    dbContext.SaveChanges();
+                    //pripisStavke.Add(item);
                 }
             }
 
@@ -219,8 +214,11 @@ namespace Skladistenje.ViewModel
                     ssd.zalihe_proizvod_id = item.proizvod_id;
                     ssd.skladistenidokument_id = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.sifra.Equals(sd.sifra)).id;
                     dbContext.StavkaSklDokumentas.Add(ssd);
-                    dbContext.SaveChanges();
+                    
                 }
+
+                RegulisiZalihe(sd);
+                dbContext.SaveChanges();
             }
 
             if (otpisStavke.Count > 0)
@@ -257,8 +255,11 @@ namespace Skladistenje.ViewModel
                     ssd.zalihe_proizvod_id = item.proizvod_id;
                     ssd.skladistenidokument_id = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.sifra.Equals(sd.sifra)).id;
                     dbContext.StavkaSklDokumentas.Add(ssd);
-                    dbContext.SaveChanges();
+                    
                 }
+
+                RegulisiZalihe(sd);
+                dbContext.SaveChanges();
             }
         }
 
@@ -267,19 +268,13 @@ namespace Skladistenje.ViewModel
             Popi p = dbContext.Popis.FirstOrDefault(x => x.id == id);
             List<Zalihe> zalihe = dbContext.Zalihes.Where(x => x.skladiste_id == p.skladiste_id).ToList();
             List<StavkaPopisa> pomocna = new List<StavkaPopisa>();
-            foreach (var item in dbContext.StavkaPopisas.ToList())
-            {
-                if (item.popis_id == id)
-                {
-                    pomocna.Add(item);
-                }
-            }
+            pomocna.AddRange(dbContext.StavkaPopisas.Where(x => x.popis_id == id));
 
             foreach (var item in pomocna)
             {
                 if (!Stavke.Any(x => x.proizvod_id == item.proizvod_id && x.skladiste_id == item.skladiste_id))
                 {
-                    Stavke.Add(item);
+                    Stavke.Add(new StavkaPopisa() { popis_id = item.popis_id, kolicina = item.kolicina, proizvod_id = item.proizvod_id, Proizvod = item.Proizvod, raf = item.raf, rednibroj = item.rednibroj, skladiste_id = item.skladiste_id});
                 }
                 else
                 {
@@ -303,11 +298,29 @@ namespace Skladistenje.ViewModel
                     }
                 }
             }
+
+            foreach (var item in Stavke)
+            {
+                if (!zalihe.Any(x => x.proizvod_id == item.proizvod_id))
+                {
+                    imaRazlike = true;
+                    DokumentVisible = Visibility.Visible;
+                    break;
+                }
+            }
         }
 
-        private void RegulisiZalihe(int idPopisa)
+        private void RegulisiZalihe(SkladisteniDokument sklDok)
         {
-            throw new NotImplementedException();
+            List<Zalihe> pom = dbContext.Zalihes.ToList();
+            foreach (StavkaSklDokumenta stavka in sklDok.StavkaSklDokumentas.ToList())
+            {
+                if (pom.Any(x => x.skladiste_id == stavka.zalihe_idskladista && x.proizvod_id == stavka.zalihe_proizvod_id))
+                {
+                    dbContext.Zalihes.FirstOrDefault(x => x.skladiste_id == stavka.zalihe_idskladista && x.proizvod_id == stavka.zalihe_proizvod_id).kolicina += stavka.kolicina;
+                }
+               
+            }
         }
         #endregion
     }
