@@ -40,16 +40,50 @@ namespace Racunovodstvo.ViewModel
             Profakture = new ObservableCollection<Profaktura>();
             foreach (var item in dbContext.Profakturas)
             {
-                profakture.Add(item);
+                if (item.active)
+                {
+                    profakture.Add(item);
+                }
+                
             }
             DefaultView = CollectionViewSource.GetDefaultView(Profakture);
         }
 
         private void Obrisi(string obj)
         {
+            if (SelectedIndex < -1)
+            {
+                Error er = new Error("Morate selektovati profakturu.");
+                er.Show();
+                return;
+
+            }
             if (SecurityManager.AuthorizationPolicy.HavePermission(MainWindowViewModel.Instance.UserOnSession.id, SecurityManager.Permission.DeleteProfaktura))
             {
-                //to do
+
+                dbContext.Profakturas.FirstOrDefault(x => x.oznaka == SelectedValue.oznaka).active = false;
+                try
+                {
+                    dbContext.SaveChanges();
+                    Success suc = new Success("Uspešno ste obrisali profakturu.");
+                    suc.Show();
+
+                    SecurityManager.AuditManager.AuditToDB(MainWindowViewModel.Instance.UserOnSession.korisnickoime, $"Uspešno brisanje profakture {SelectedValue.oznaka}.", "Info");
+                    Profakture.Clear();
+                    foreach (var item in dbContext.Profakturas)
+                    {
+                        if (item.active)
+                        {
+                            profakture.Add(item);
+                        }
+
+                    }
+                    DefaultView = CollectionViewSource.GetDefaultView(Profakture);
+                }
+                catch (Exception e)
+                {
+                }
+
             }
             else
             {
