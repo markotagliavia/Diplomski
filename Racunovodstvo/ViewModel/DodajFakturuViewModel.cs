@@ -37,6 +37,7 @@ namespace Racunovodstvo.ViewModel
         private string rabatText;
         private string cenaText;
         private string staroSkladiste;
+        private int idProfakture;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         #endregion
 
@@ -47,8 +48,9 @@ namespace Racunovodstvo.ViewModel
         public MyICommand<int> AddCommand { get; private set; }
         public MyICommand<int> RemoveCommand { get; private set; }
         #endregion
-        public DodajFakturuViewModel(int i, Faktura f)
+        public DodajFakturuViewModel(int i, Faktura f, int idProfakture = -1)
         { //0 - nova izlazna,1-izmena izlazne,2-nova ulazna,3-izmena izlazne
+            this.idProfakture = idProfakture;
             DodajCommand = new MyICommand<string>(Dodaj);
             OtkaziCommand = new MyICommand<string>(Otkazi);
             BackCommand = new MyICommand<string>(Back);
@@ -74,7 +76,17 @@ namespace Racunovodstvo.ViewModel
             {
                 SubmitButtonText = "Dodaj";
                 SkladisteForBind = "";
+                
+                
                 FakturaForEdit = new Faktura();
+
+                if (f != null)
+                {
+                    FakturaForEdit.profaktura_id = f.Profaktura.id;
+                    FakturaForEdit.PoslovniPartner = f.PoslovniPartner;
+                    
+                }
+
                 FakturaForEdit.otpremljena = false;
                 FakturaForEdit.likvidirano = false;
                 FakturaForEdit.redovna = true;
@@ -89,6 +101,47 @@ namespace Racunovodstvo.ViewModel
                 Pdv = 0;
                 SaPDV = 0;
                 BezPDV = 0;
+                if (f != null)
+                {
+                    pdv = f?.pdv ?? 0;
+                    if (f.StavkaFaktures.Count > 0)
+                    {
+                        SkladisteForBind = f.StavkaFaktures?.ElementAt(0).Zalihe.Skladiste.naziv ?? "";
+                    }
+                    else
+                    {
+                        SkladisteForBind = "";
+                    }
+                    staroSkladiste = SkladisteForBind;
+                    PoslovniPartnerForBind = f.PoslovniPartner?.naziv ?? "";
+                    foreach (var item in f.StavkaFaktures.Where(x => x.storno == false))
+                    {
+
+                        Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == item.zalihe_proizvod_id && x.Skladiste.naziv.Equals(SkladisteForBind));
+                        
+                        if ((z.kolicina - z.rezervisano - z.minimumkolicine) >= item.kolicina)
+                        {
+
+                            ProizvodKolicina pk;
+                            
+                                pk = new ProizvodKolicina(item.Zalihe.Proizvod, item.kolicina.ToString(), item.cena.ToString(), item.rabat.ToString());
+                                ProizvodiSaKolicinom.Add(pk);
+                                BezPDV += ((double)item.cena * item.kolicina) * (1 - (double)item.rabat / 100);
+                        
+
+                                SaPDV = (1 + (Pdv / 100)) * BezPDV;
+                                z.rezervisano += item.kolicina;
+                                dbContext.SaveChanges();
+                        }
+                        else
+                        {
+                            Notifications.Error e = new Notifications.Error("Na zalihama se ne nalazi dovoljno ovog proizvoda.");
+                            e.Show();
+                        }
+                       
+
+                    }
+                }
 
             }
             else if (context == 1)
@@ -259,12 +312,15 @@ namespace Racunovodstvo.ViewModel
                         Zaposleni z = dbContext.Korisniks.FirstOrDefault(x => x.korisnickoime.Equals(UserOnSession.korisnickoime)).Zaposleni;
                         FakturaForEdit.zaposleni_id = z.id;
                         PoslovniPartner pp = dbContext.PoslovniPartners.FirstOrDefault(x => x.naziv.Equals(PoslovniPartnerForBind));
+
                         FakturaForEdit.PoslovniPartner = pp;
+                    
                         FakturaForEdit.likvidirano = false;
                         FakturaForEdit.upripremi = false;
-                        FakturaForEdit.datumfakturisanja += new TimeSpan(0, 0, 0);
-                        FakturaForEdit.datumprometadobara += new TimeSpan(0, 0, 0);
-                        FakturaForEdit.rokplacanja += new TimeSpan(0, 0, 0);
+                        //FakturaForEdit.datumfakturisanja += new TimeSpan(0, 0, 0);
+                        //FakturaForEdit.datumprometadobara += new TimeSpan(0, 0, 0);
+                        //FakturaForEdit.rokplacanja += new TimeSpan(0, 0, 0);
+                        
                         dbContext.Fakturas.Add(FakturaForEdit);
                         dbContext.SaveChanges();
                         int i = 1;
@@ -317,12 +373,13 @@ namespace Racunovodstvo.ViewModel
                 {
                     try
                     {
-                        foreach (var item in ProizvodiSaKolicinom)
-                        {
-                            Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
-                            z.rezervisano -= Double.Parse(item.Kolicina);
+                        
+                        //foreach (var item in ProizvodiSaKolicinom)
+                        //{
+                        //    Zalihe z = dbContext.Zalihes.FirstOrDefault(x => x.Proizvod.sifra.Equals(item.Sifra) && x.Skladiste.naziv.Equals(SkladisteForBind));
+                        //    z.rezervisano -= Double.Parse(item.Kolicina);
 
-                        }
+                        //}
                         dbContext.SaveChanges();
                         Notifications.Error e = new Notifications.Error("Greška pri kreiranju fakture.");
                         e.Show();

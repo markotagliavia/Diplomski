@@ -48,8 +48,9 @@
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Nova profaktura" Command="{Binding DodajCommand}" CommandParameter="dodajProizvod" Margin="20,0,460,0"  />
+            <Button Content="Nova profaktura" Command="{Binding DodajCommand}" CommandParameter="dodajProizvod" Margin="20,0,300,0"  />
             <Button Content="Izbriši" Command="{Binding ObrisiCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+            <Button Content="Kreiraj fakturu" Command="{Binding KreirajFakturu}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
             <Button Content="Izmeni" Command="{Binding IzmeniCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>
