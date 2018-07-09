@@ -20,56 +20,65 @@
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Column="0" Grid.Row="0" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Command="{Binding BackNavCommand}">
                 <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF3580BF"/>
             </Button>
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding StornoVisible}">
+                <Label Content="Stornirani dokument :" Height="30" Width="145" FontSize="14"/>
+                <ComboBox x:Name="sotrnoComboBox" Width="170" Margin="5,0,0,0" ItemsSource="{Binding SklDoks}" Foreground="White"
+                    DisplayMemberPath="sifra" 
+                    SelectedValuePath="sifra"
+                    SelectedValue="{Binding SifraStornoForBind}">
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                 <Label Content="Šifra : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.sifra}" Foreground="White"/>
+                <TextBox x:Name="sifraTextBox" MaxLength="30" Width="170" Margin="50,0,0,0" Text="{Binding SklDokForBind.sifra}" Foreground="White"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0">
                 <Label Content="Datum : " Height="30" Width="100" FontSize="14"/>
-                <DatePicker Text="{Binding SklDokForBind.datum}"  Width="170" Margin="30,0,0,0" Foreground="White"/>
+                <DatePicker Text="{Binding SklDokForBind.datum}"  Width="170" Margin="50,0,0,0" Foreground="White"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding IzSklVisible}">
-                <Label Content="Izvorno Skladište : " Height="30" Width="115" FontSize="14"/>
-                <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding IzSklVisible}">
+                <Label Content="Izvorno Skladište : " Height="30" Width="125" FontSize="14"/>
+                <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="25,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteSourceForBind}">
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding USklVisible}">
-                <Label Content="Odredišno Skladište : " Height="30" Width="115" FontSize="14"/>
-                <ComboBox x:Name="UskladisteComboBox" Width="170" Margin="15,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding USklVisible}">
+                <Label Content="Odredišno Skladište : " Height="30" Width="145" FontSize="14"/>
+                <ComboBox x:Name="UskladisteComboBox" Width="170" Margin="5,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"
                     SelectedValue="{Binding SkladisteDestForBind}">
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding IzdaoVisible}">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding IzdaoVisible}">
                 <Label Content="Izdao : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="izdaoTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.izdao}" Foreground="White"/>
+                <TextBox x:Name="izdaoTextBox" MaxLength="30" Width="170" Margin="50,0,0,0" Text="{Binding SklDokForBind.izdao}" IsEnabled="{Binding IsEditableIzdao}" Foreground="White"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding PrimioVisible}">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding PrimioVisible}">
                 <Label Content="Primio : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="primioTextBox" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.primio}" Foreground="White"/>
+                <TextBox x:Name="primioTextBox" MaxLength="30" Width="170" Margin="50,0,0,0" Text="{Binding SklDokForBind.primio}" IsEnabled="{Binding IsEditableIzdao}" Foreground="White" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding VozacVisible}">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding VozacVisible}">
                 <Label Content="Vozač : " Height="30" Width="100" FontSize="14"/>
-                <TextBox x:Name="vozacTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
+                <TextBox x:Name="vozacTextBox" IsEnabled="{Binding IsEditable}" MaxLength="50" Width="170" Margin="50,0,0,0" Text="{Binding SklDokForBind.vozac}" Foreground="White"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding RegBrVisible}">
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding RegBrVisible}">
                 <Label Content="Registarski broj : " Height="30" Width="105" FontSize="14"/>
-                <TextBox x:Name="regBrTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding SklDokForBind.regbr}" Foreground="White"/>
+                <TextBox x:Name="regBrTextBox" IsEnabled="{Binding IsEditable}" MaxLength="50" Width="170" Margin="45,0,0,0" Text="{Binding SklDokForBind.regbr}" Foreground="White"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="30,10,0,0" Visibility="{Binding NacinOtpremeVisible}">
-                <Label Content="Način otpreme : " Height="30" Width="100" FontSize="14"/>
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding NacinOtpremeVisible}">
+                <Label Content="Način otpreme : " Height="30" Width="120" FontSize="14"/>
                 <TextBox x:Name="nacinOtpremeTextBox" IsEnabled="{Binding IsEditable}" MaxLength="30" Width="170" Margin="30,0,0,0" Text="{Binding SklDokForBind.nacinotpreme}" Foreground="White"/>
             </StackPanel>
 

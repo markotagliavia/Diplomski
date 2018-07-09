@@ -27,12 +27,13 @@ namespace Skladistenje.ViewModel
         private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomLevo;
         private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomDesno;
         private SkladisteniDokument sklDokForBind;
-        private string skladisteSourceForBind, skladisteDestForBind;
+        private string skladisteSourceForBind, skladisteDestForBind, sifraStornoForBind;
         private ObservableCollection<Skladiste> skladista;
+        private ObservableCollection<SkladisteniDokument> sklDoks;
         private string sourceZalihe = "";
         private string destinationZalihe = "";
-        private Visibility izdaoVisible, primioVisible, vozacVisible, regBrVisible, nacinOtpremeVisible, izSklVisible, uSklVisible;
-        private bool isEditable = true;
+        private Visibility izdaoVisible, primioVisible, vozacVisible, regBrVisible, nacinOtpremeVisible, izSklVisible, uSklVisible, stornoVisible;
+        private bool isEditable = true, isEditableIzdao = true;
         private Common.Model.Notification notification;
 
         #endregion
@@ -63,6 +64,7 @@ namespace Skladistenje.ViewModel
             proizvodiSaKolicinomLevo = new ObservableCollection<ProizvodKolicina>();
             proizvodiSaKolicinomDesno = new ObservableCollection<ProizvodKolicina>();
             skladista = new ObservableCollection<Skladiste>();
+            sklDoks = new ObservableCollection<SkladisteniDokument>();
             sklDokForBind = new SkladisteniDokument();
             skladisteSourceForBind = "";
             skladisteDestForBind = "";
@@ -82,6 +84,7 @@ namespace Skladistenje.ViewModel
                 NacinOtpremeVisible = Visibility.Visible;
                 IzSklVisible = Visibility.Visible;
                 USklVisible = Visibility.Visible;
+                StornoVisible = Visibility.Collapsed;
                 SourceZalihe = "Svi Proizvodi : ";
                 DestinationZalihe = "Izabrano : ";
                 if (tip == "INT_PR")
@@ -110,6 +113,7 @@ namespace Skladistenje.ViewModel
                 NacinOtpremeVisible = Visibility.Visible;
                 IzSklVisible = Visibility.Visible;
                 USklVisible = Visibility.Visible;
+                StornoVisible = Visibility.Collapsed;
                 SourceZalihe = "Svi Proizvodi : ";
                 DestinationZalihe = "Izabrano : ";
             }
@@ -122,12 +126,29 @@ namespace Skladistenje.ViewModel
                 NacinOtpremeVisible = Visibility.Hidden;
                 IzSklVisible = Visibility.Visible;
                 USklVisible = Visibility.Hidden;
+                StornoVisible = Visibility.Collapsed;
                 SourceZalihe = "Svi Proizvodi : ";
                 DestinationZalihe = "Izabrano : ";
             }
             else if (tip == "STORNI") //storni
             {
-                //to do
+                isEditableIzdao = false;
+                IsEditable = false;
+                IzdaoVisible = Visibility.Visible;
+                PrimioVisible = Visibility.Visible;
+                VozacVisible = Visibility.Visible;
+                RegBrVisible = Visibility.Visible;
+                NacinOtpremeVisible = Visibility.Visible;
+                IzSklVisible = Visibility.Visible;
+                USklVisible = Visibility.Visible;
+                StornoVisible = Visibility.Collapsed;
+                SourceZalihe = "Svi Proizvodi : ";
+                DestinationZalihe = "Izabrano : ";
+                StornoVisible = Visibility.Visible;
+                foreach (var item in dbContext.SkladisteniDokuments)
+                {
+                    if(item.tipredovnog == "INT_PR" || item.tipredovnog == "INT_OTP" || item.tipredovnog == "SP_PR" || tip == "SP_OTP") sklDoks.Add(item);
+                }
             }
 
             sklDokForBind.datum = DateTime.Now;
@@ -179,6 +200,16 @@ namespace Skladistenje.ViewModel
             }
         }
 
+        public string SifraStornoForBind
+        {
+            get => sifraStornoForBind;
+            set
+            {
+                sifraStornoForBind = value;
+                OnPropertyChanged("SifraStornoForBind");
+            }
+        }
+
         public string SkladisteDestForBind
         {
             get => skladisteDestForBind;
@@ -198,6 +229,16 @@ namespace Skladistenje.ViewModel
             {
                 skladista = value;
                 OnPropertyChanged("Skladista");
+            }
+        }
+
+        public ObservableCollection<SkladisteniDokument> SklDoks
+        {
+            get => sklDoks;
+            set
+            {
+                sklDoks = value;
+                OnPropertyChanged("SklDoks");
             }
         }
 
@@ -298,9 +339,9 @@ namespace Skladistenje.ViewModel
         public Visibility NacinOtpremeVisible { get => nacinOtpremeVisible; set { nacinOtpremeVisible = value; OnPropertyChanged("NacinOtpremeVisible"); }}
         public Visibility IzSklVisible { get => izSklVisible; set { izSklVisible = value; OnPropertyChanged("IzSklVisible"); }}
         public Visibility USklVisible { get => uSklVisible; set { uSklVisible = value; OnPropertyChanged("USklVisible"); }}
-
+        public Visibility StornoVisible { get => stornoVisible; set { stornoVisible = value; OnPropertyChanged("StornoVisible"); } }
         public bool IsEditable { get => isEditable; set { isEditable = value; OnPropertyChanged("IsEditable"); } }
-
+        public bool IsEditableIzdao { get => isEditableIzdao; set { isEditableIzdao = value; OnPropertyChanged("IsEditableIzdao"); } }
 
         #endregion
 
@@ -327,7 +368,7 @@ namespace Skladistenje.ViewModel
                     }
                     else if (tip == "STORNI") //storni
                     {
-                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storni");
+                        ((MainWindowViewModel)((MainWindow)w).DataContext).OnNav("storno");
                     }
                     
                 }
@@ -385,7 +426,7 @@ namespace Skladistenje.ViewModel
                 {
                     if (!dbContext.ZaposleniSkladistas.Any(x => x.Skladiste.naziv.Equals(SkladisteDestForBind) && x.zaposleni_id == UserOnSession.zaposleni_id))
                     {
-                        Error er = new Error("Niste zaposleni u ovom skladistu.");
+                        Error er = new Error("Niste zaposleni u ovom skladištu.");
                         er.Show();
                         return;
                     }
@@ -394,10 +435,17 @@ namespace Skladistenje.ViewModel
                 {
                     if (!dbContext.ZaposleniSkladistas.Any(x => x.Skladiste.naziv.Equals(SkladisteSourceForBind) && x.zaposleni_id == UserOnSession.zaposleni_id))
                     {
-                        Error er = new Error("Niste zaposleni u ovom skladistu.");
+                        Error er = new Error("Niste zaposleni u ovom skladištu.");
                         er.Show();
                         return;
                     }
+                }
+
+                if (SkladisteSourceForBind.Equals(SkladisteDestForBind))
+                {
+                    Error er = new Error("Izvorno i odredišno skladište su identični.");
+                    er.Show();
+                    return;
                 }
                 
                 SkladisteniDokument sd = new SkladisteniDokument();

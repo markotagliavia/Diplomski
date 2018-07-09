@@ -274,7 +274,7 @@ namespace Skladistenje
                     SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(3);
                     CurrentViewModel = SkladisteniDokumentiViewModel;
                     break;
-                case "storni":
+                case "storno":
                     ViewModelTitle = "Skladišni dokumenti -> Storni";
                     SkladisteniDokumentiViewModel = new SkladisteniDokumentiViewModel(4);
                     CurrentViewModel = SkladisteniDokumentiViewModel;
