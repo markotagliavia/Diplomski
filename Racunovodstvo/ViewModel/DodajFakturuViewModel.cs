@@ -339,7 +339,9 @@ namespace Racunovodstvo.ViewModel
                             dbContext.SaveChanges();
                             ++i;
                         }
-                        Back("");
+                        
+                            
+                        
                         Notifications.Success s = new Notifications.Success("Uspešno ste kreirali izlaznu fakturu");
                         s.Show();
                         Common.Model.Notification n = new Common.Model.Notification();
@@ -352,6 +354,7 @@ namespace Racunovodstvo.ViewModel
                         dbContext.Notifications.Add(n);
                         dbContext.SaveChanges();
                         SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana izlazna faktura {FakturaForEdit.oznaka}", "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.izlazna);
                     }
                     else
                     {
@@ -491,7 +494,7 @@ namespace Racunovodstvo.ViewModel
                         }
                         dbContext.Fakturas.Add(FakturaForEdit);
                         dbContext.SaveChanges();
-                        Back("");
+                        
                         Notifications.Success s = new Notifications.Success("Uspešno ste kreirali ulaznu fakturu");
                         s.Show();
                         Common.Model.Notification n = new Common.Model.Notification();
@@ -504,6 +507,7 @@ namespace Racunovodstvo.ViewModel
                         dbContext.Notifications.Add(n);
                         dbContext.SaveChanges();
                         SecurityManager.AuditManager.AuditToDB(UserOnSession.korisnickoime, $"Uspesno je kreirana ulazna faktura {FakturaForEdit.oznaka}", "Info");
+                        MainWindowViewModel.Instance.OnNav(Navigation.ulazna);
                     }
                     else
                     {
