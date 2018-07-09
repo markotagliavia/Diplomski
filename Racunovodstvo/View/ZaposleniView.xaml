@@ -4,9 +4,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Racunovodstvo.View"
+             xmlns:viewmodels="clr-namespace:Racunovodstvo.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:ZaposleniViewModel />
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Label Content="Pretraga po : " Margin="20,10,0,0" Width="100" FontSize="14"/>
+            <ComboBox x:Name="comboBoxSearch" Margin="10,0,0,0" Height="25" Width="120" Foreground="White">
+                <ComboBoxItem  IsSelected="True" Content="/"/>
+                <ComboBoxItem  Content="Korisničkom imenu"/>
+                <ComboBoxItem Content="Imenu"/>
+                <ComboBoxItem Content="Prezimenu"/>
+                <ComboBoxItem Content="JMBG-u"/>
+                <ComboBoxItem Content="Telefonu"/>
+                <ComboBoxItem Content="E-mailu"/>
+                <ComboBoxItem  Content="Adresi"/>
+                <ComboBoxItem Content="Gradu"/>
+                <ComboBoxItem Content="Tekućem računu"/>
+                <ComboBoxItem  Content="Šefu"/>
+                <ComboBoxItem Content="Ulozi"/>
+            </ComboBox>
+
+
+            <TextBox x:Name="textBoxSearch" Margin="20,0,20,0" MaxLength="30" Height="25" Width="120" Text="{Binding TextSearch}" Foreground="White"/>
+
+            <Button Content="Pretraži" Command="{Binding PretraziKorisnikaCommand}" CommandParameter="{Binding Text, ElementName=comboBoxSearch}" Margin="0,0,0,0" />
+        </StackPanel>
+
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1">
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" x:Name="zaposleniGrid" ItemsSource="{Binding DefaultView, Mode=Default}" Height="450" Width="830" SelectedIndex="{Binding SelectedIndex}" SelectedValue="{Binding Path=SelectedValue}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Korisničko ime" Binding="{Binding KorisnickoIme}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ime" Binding="{Binding Ime}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Header="Aktivan" Width="Auto" Binding="{Binding Active}"></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="JMBG" Binding="{Binding JMBG}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Adresa" Binding="{Binding Adresa}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Grad" Binding="{Binding Grad}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Plata" Binding="{Binding Plata}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Doprinosi" Binding="{Binding Doprinosi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Bonusi" Binding="{Binding Bonusi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tekući račun" Binding="{Binding Racun}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Šef" Binding="{Binding Sef}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Uloga" Binding="{Binding Uloga}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
