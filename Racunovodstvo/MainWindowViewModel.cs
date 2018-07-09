@@ -223,6 +223,7 @@ namespace Racunovodstvo
             ButtonCloseMenu = Visibility.Collapsed;
             ButtonOpenMenu = Visibility.Visible;
             CurrentViewModel = profaktureViewModel;
+            dugovanja();
         }
 
         #region CommandsImplementation
@@ -361,10 +362,89 @@ namespace Racunovodstvo
             }
         }
 
-      
-        
-        #endregion
-    }
+        public double UkupnaCenaSaPDV(Faktura f)
+        {
+            double SaPDV = 0;
+            double BezPDV = 0;
+
+            foreach (var item in f.StavkaFaktures.Where(x => x.storno == false))
+            {
+                BezPDV += ((double)item.cena * item.kolicina) * (1 - (double)item.rabat / 100);
+            }
+
+
+
+            SaPDV = (1 + ((double)f.pdv / 100)) * BezPDV;
+
+            return SaPDV;
+        }
+
+        public void dugovanja()
+        {
+            Dictionary<int, double> poslovniPartnerDugovanja = new Dictionary<int, double>();
+            foreach (var item in dbContext.PoslovniPartners)
+            {
+                poslovniPartnerDugovanja.Add(item.mbr, 0);
+            }
+            List<Faktura> fakturas = dbContext.Fakturas.ToList();
+            foreach (var izlazna in fakturas.Where(x => x.redovna == true && x.ulazna == false))
+            {
+                Double suma = UkupnaCenaSaPDV(izlazna);
+                if (suma > izlazna.placeno)
+                {
+                    poslovniPartnerDugovanja[izlazna.PoslovniPartner.mbr] += suma;
+
+                    if (izlazna.rokplacanja < DateTime.Now && !dbContext.Notifications.Any(x => x.tekst.Equals("Dug na osnovu izlazne fakture "+izlazna.oznaka.ToString())))
+                    {
+                        Common.Model.Notification n = new Common.Model.Notification();
+                        n.aplikacija = "Racunovodstvo";
+                        n.adresa = "Racunovodstvo";
+                        n.obradjena = false;
+                        n.procitana = false;
+                        n.idDokumenta = izlazna.id;
+                        n.tekst = $"Dug na osnovu izlazne fakture {izlazna.oznaka}";
+                        dbContext.Notifications.Add(n);
+                        dbContext.SaveChanges();
+                    }
+                    
+                    
+
+                }
+
+            }
+
+            foreach (var dug in poslovniPartnerDugovanja)
+            {
+                dbContext.PoslovniPartners.FirstOrDefault(x => x.mbr == dug.Key).dugovanja = dug.Value;
+                dbContext.SaveChanges();
+            }
+
+            foreach (var ulazna in fakturas.Where(x => x.redovna == true && x.ulazna == true))
+            {
+                if (UkupnaCenaSaPDV(ulazna) > ulazna.placeno)
+                {
+                    if (ulazna.rokplacanja < DateTime.Now && !dbContext.Notifications.Any(x => x.tekst.Equals($"Dug na osnovu ulazne fakture "+ ulazna.oznaka.ToString())))
+                    {
+                        Common.Model.Notification n = new Common.Model.Notification();
+                        n.aplikacija = "Racunovodstvo";
+                        n.adresa = "Racunovodstvo";
+                        n.obradjena = false;
+                        n.procitana = false;
+                        n.idDokumenta = ulazna.id;
+                        n.tekst = $"Dug na osnovu ulazne fakture {ulazna.oznaka}";
+                        dbContext.Notifications.Add(n);
+                        dbContext.SaveChanges();
+                    }
+
+                }
+            }
+
+            
+
+        }
+
+            #endregion
+        }
 
     public enum Navigation {
         profakture,
@@ -388,4 +468,7 @@ namespace Racunovodstvo
         dodajProfakturu,
         izmeniProfakturu
     }
+
+    
+  
 }
