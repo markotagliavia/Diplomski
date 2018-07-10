@@ -30,7 +30,7 @@ namespace Skladistenje
                 {
                     ((MainWindowViewModel)((MainWindow)w).DataContext).UserOnSession = k;
                     ((MainWindowViewModel)((MainWindow)w).DataContext).setUserInformations();
-                    if (((MainWindowViewModel)((MainWindow)w).DataContext).DbContext.Notifications.Any(x => !x.procitana))
+                    if (((MainWindowViewModel)((MainWindow)w).DataContext).DbContext.Notifications.Any(x => !x.procitana && x.aplikacija == "Skladistenje"))
                     {
                         ZvonceCrveno();
                     }
