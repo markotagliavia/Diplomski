@@ -40,6 +40,7 @@ namespace Racunovodstvo
         private BilansiViewModel bilansiViewModel = new BilansiViewModel();
         private ZaposleniViewModel zaposleniViewModel = new ZaposleniViewModel();
         private HelpViewModel helpViewModel = new HelpViewModel();
+        private OpomenaViewModel opomenaViewModel = new OpomenaViewModel(null);
 
         private BindableBase currentViewModel;
 
@@ -52,7 +53,7 @@ namespace Racunovodstvo
         private System.Windows.Media.Brush _firmColor;
         private System.Windows.Media.Color c2;
         private System.Windows.Media.Brush _backgroundColor;
-
+        private System.Windows.Media.Brush bellColor;
         private Visibility buttonOpenMenu;
         private Visibility buttonCloseMenu;
 
@@ -209,6 +210,9 @@ namespace Racunovodstvo
 
         public DodajZalihuViewModel DodajZalihuViewModel { get => dodajZalihuViewModel; set => dodajZalihuViewModel = value; }
         public DodajProfakturuViewModel DodajProfakturuViewModel { get => dodajProfakturuViewModel; set => dodajProfakturuViewModel = value; }
+        public Brush BellColor { get => bellColor; set { bellColor = value; OnPropertyChanged("BellColor"); } }
+
+        public OpomenaViewModel OpomenaViewModel { get => opomenaViewModel; set => opomenaViewModel = value; }
 
         private MainWindowViewModel()
         {
@@ -216,13 +220,14 @@ namespace Racunovodstvo
             FirmColor = new SolidColorBrush(c1);
             c2 = System.Windows.Media.Color.FromArgb(255, 37, 44, 50);
             BackgroundColor = new SolidColorBrush(c2);
+            ZvonceBelo();
             NavCommand = new MyICommand<Navigation>(OnNav);
             OpenMenuCommand = new MyICommand<string>(OpenMenu);
             CloseMenuCommand = new MyICommand<string>(CloseMenu);
             CloseCommand = new MyICommand<string>(Close);
             ButtonCloseMenu = Visibility.Collapsed;
             ButtonOpenMenu = Visibility.Visible;
-            CurrentViewModel = profaktureViewModel;
+            OnNav(Navigation.profakture);
             dugovanja();
         }
 
@@ -255,29 +260,35 @@ namespace Racunovodstvo
                 case Navigation.profakture:
                     ViewModelTitle = "Profakture";
                     CurrentViewModel = new ProfaktureViewModel();
+                    proveriNotifikacije();
                     break;
                 case Navigation.dodajProfakturu:
                     ViewModelTitle = " Profakture -> Nova";
                     CurrentViewModel = dodajProfakturuViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.izmeniProfakturu:
                     ViewModelTitle = "Profakture -> Izmena";
                     CurrentViewModel = dodajProfakturuViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.izlazna:
                     ViewModelTitle = "Fakture -> Izlazne";
                     faktureViewModel = new FaktureViewModel(0);
                     CurrentViewModel = faktureViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.ulazna:
                     ViewModelTitle = "Fakture -> Ulazne";
                     faktureViewModel = new FaktureViewModel(1);
                     CurrentViewModel = faktureViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.storno:
                     ViewModelTitle = "Fakture -> Storne";
                     stornoFaktureViewModel = new StornoFaktureViewModel();
                     CurrentViewModel = stornoFaktureViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.proizvodi:
                     ViewModelTitle = "Proizvodi";
@@ -286,50 +297,67 @@ namespace Racunovodstvo
                 case Navigation.dodajProizvod:
                     ViewModelTitle = "Proizvodi -> Novi";
                     CurrentViewModel = dodajProizvodViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.dodajProizvodjaca:
                     ViewModelTitle = "Proizvođači -> Novi";
                     CurrentViewModel = dodajProizvodjacaViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.kompenzacije:
                     ViewModelTitle = "Kompenzacije";
                     CurrentViewModel = kompenzacijeViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.poslovniPartneri:
                     ViewModelTitle = "Poslovni partneri";
                     CurrentViewModel = poslovniPartnerViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.zalihe:
                     ViewModelTitle = "Zalihe";
                     CurrentViewModel = zaliheViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.naprednaPretraga:
                     ViewModelTitle = "Napredna pretraga";
                     CurrentViewModel = naprednaPretragaViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.obavestenja:
                     ViewModelTitle = "Obaveštenja";
                     CurrentViewModel = obavestenjaViewModel;
+                    procitaj();
                     break;
                 case Navigation.statistika:
                     ViewModelTitle = "Statistika";
                     CurrentViewModel = statistikaViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.bilansi:
                     ViewModelTitle = "Bilansi";
                     CurrentViewModel = bilansiViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.zaposleni:
                     ViewModelTitle = "Zaposleni";
                     CurrentViewModel = zaposleniViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.dodajZalihe:
                     ViewModelTitle = "Dodaj Zalihu";
                     CurrentViewModel = dodajZalihuViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.help:
                     ViewModelTitle = "Pomoć";
                     CurrentViewModel = helpViewModel;
+                    proveriNotifikacije();
+                    break;
+                case Navigation.opomena:
+                    ViewModelTitle = "Opomena";
+                    CurrentViewModel = opomenaViewModel;
+                    proveriNotifikacije();
                     break;
                 case Navigation.info:
                     Info i = new Info("Vlasnici ovog softvera su \n Marko Tagliavia i Tijana Lalošević");
@@ -377,6 +405,41 @@ namespace Racunovodstvo
             SaPDV = (1 + ((double)f.pdv / 100)) * BezPDV;
 
             return SaPDV;
+        }
+
+        public void ZvonceBelo()
+        {
+            BellColor = Brushes.White; 
+        }
+
+        public void ZvonceCrveno()
+        {
+            BellColor = Brushes.Red;
+        }
+
+        public void proveriNotifikacije()
+        {
+            if (dbContext.Notifications.Any(x => x.procitana == false && x.adresa.Equals("Racunovodstvo")))
+            {
+                ZvonceCrveno();
+            }
+            else
+            {
+                ZvonceBelo();
+            }
+            
+        }
+
+
+        public void procitaj()
+        {
+            foreach (var item in dbContext.Notifications.Where(x => x.procitana == false && x.adresa.Equals("Racunovodstvo")))
+            {
+                item.procitana = true;
+            }
+
+            ZvonceBelo();
+            dbContext.SaveChanges();
         }
 
         public void dugovanja()
@@ -466,7 +529,8 @@ namespace Racunovodstvo
         zaposleni,
         dodajZalihe,
         dodajProfakturu,
-        izmeniProfakturu
+        izmeniProfakturu,
+        opomena
     }
 
     

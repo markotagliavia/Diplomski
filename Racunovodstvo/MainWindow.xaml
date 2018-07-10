@@ -67,6 +67,9 @@
         <DataTemplate DataType="{x:Type viewModel:ZaposleniViewModel}">
             <views:ZaposleniView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:OpomenaViewModel}">
+            <views:OpomenaView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
             <views:HelpView/>
         </DataTemplate>
@@ -359,8 +362,8 @@
                         </TransformGroup>
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0" >
-                        <materialDesign:PackIcon Kind="Bell" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Obaveštenja" Margin="10" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="Bell" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="{Binding BellColor}"/>
+                        <TextBlock Text="Obaveštenja" Margin="10" VerticalAlignment="Center" Foreground="{Binding BellColor}"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem8" Height="60" RenderTransformOrigin="0.5,0.5" Selected="StatistikaCall">
@@ -480,7 +483,7 @@
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}">
-                <materialDesign:PackIcon Kind="Bell"/>
+                <materialDesign:PackIcon Kind="Bell" Foreground="{Binding BellColor}"/>
             </Button>
             <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding CloseCommand}">
                 <materialDesign:PackIcon Kind="Power"/>

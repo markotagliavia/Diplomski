@@ -94,6 +94,7 @@
     <Compile Include="ViewModel\KompenzacijeViewModel.cs" />
     <Compile Include="ViewModel\NaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModel\ObavestenjaViewModel.cs" />
+    <Compile Include="ViewModel\OpomenaViewModel.cs" />
     <Compile Include="ViewModel\PoslovniPartneriViewModel.cs" />
     <Compile Include="ViewModel\PretraziStornoViewModel.cs" />
     <Compile Include="ViewModel\ProfaktureViewModel.cs" />
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="View\Obavestenja.xaml.cs">
       <DependentUpon>Obavestenja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OpomenaView.xaml.cs">
+      <DependentUpon>OpomenaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PoslovniPartneri.xaml.cs">
       <DependentUpon>PoslovniPartneri.xaml</DependentUpon>
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Obavestenja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OpomenaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

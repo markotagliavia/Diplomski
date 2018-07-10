@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\aj\repo\Racunovodstvo\obj\Debug\
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\
 Racunovodstvo
 none
 false
 DEBUG;TRACE
-E:\aj\repo\Racunovodstvo\App.xaml
-23-394610150
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\App.xaml
+24-1620845368
 
-531584726298
-28-364022147
-LoginWindow.xaml;MainWindow.xaml;View\Bilansi.xaml;View\DodajFakturu.xaml;View\DodajPoslovnogPartnera.xaml;View\DodajProfakturu.xaml;View\DodajProizvodjacaView.xaml;View\DodajProizvodView.xaml;View\DodajStorno.xaml;View\DodajZalihe.xaml;View\Fakture.xaml;View\HelpView.xaml;View\Kompenzacije.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\PoslovniPartneri.xaml;View\PretraziStorno.xaml;View\Profakture.xaml;View\Proizvodi.xaml;View\Statistika.xaml;View\StornoFaktureView.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
+55-1374078266
+28-94727821
+LoginWindow.xaml;MainWindow.xaml;View\Bilansi.xaml;View\DodajFakturu.xaml;View\DodajPoslovnogPartnera.xaml;View\DodajProfakturu.xaml;View\DodajProizvodjacaView.xaml;View\DodajProizvodView.xaml;View\DodajStorno.xaml;View\DodajZalihe.xaml;View\Fakture.xaml;View\HelpView.xaml;View\Kompenzacije.xaml;View\NaprednaPretraga.xaml;View\Obavestenja.xaml;View\OpomenaView.xaml;View\PoslovniPartneri.xaml;View\PretraziStorno.xaml;View\Profakture.xaml;View\Proizvodi.xaml;View\Statistika.xaml;View\StornoFaktureView.xaml;View\ZaliheView.xaml;View\ZaposleniView.xaml;
 
-True
+False
 

@@ -185,7 +185,7 @@ namespace Skladistenje
             }
         }
 
-        public void ZvonceBelo()    //kako da pozovemo ovo sranje
+        public void ZvonceBelo()    
         {
             zvonce.Foreground = new SolidColorBrush(Colors.White);
             obavestenjaText.Foreground = new SolidColorBrush(Colors.White);

@@ -442,3 +442,5 @@ D:\E3\DiplomskiKlon296\repo\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CoreCom
 D:\E3\DiplomskiKlon296\repo\Racunovodstvo\obj\Debug\Racunovodstvo.csproj.CopyComplete
 D:\E3\DiplomskiKlon296\repo\Racunovodstvo\obj\Debug\Racunovodstvo.exe
 D:\E3\DiplomskiKlon296\repo\Racunovodstvo\obj\Debug\Racunovodstvo.pdb
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\OpomenaView.g.cs
+D:\cetvrta godina\Diplomski\BusinessSystem_diplomski\code\Racunovodstvo\obj\Debug\View\OpomenaView.baml
