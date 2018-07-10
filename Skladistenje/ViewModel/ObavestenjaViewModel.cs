@@ -38,7 +38,7 @@ namespace Skladistenje.ViewModel
             PretraziObavestenjaCommand = new MyICommand<string>(Pretrazi);
             textSearch = "";
             obavestenja = new ObservableCollection<Notification>();
-            foreach (var item in dbContext.Notifications.ToList())
+            foreach (var item in dbContext.Notifications.Where(x => x.aplikacija == "Skladistenje").ToList())
             {
                 obavestenja.Add(item);
             }
@@ -53,7 +53,7 @@ namespace Skladistenje.ViewModel
                     if (((MainWindow)w).zvonce != null)
                     {
                         ((MainWindow)w).ZvonceBelo();
-                        foreach (var item in dbContext.Notifications)
+                        foreach (var item in dbContext.Notifications.Where(x => x.aplikacija == "Skladistenje").ToList())
                         {
                             item.procitana = true;
                         }

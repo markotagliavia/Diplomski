@@ -38,7 +38,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Šifra" Binding="{Binding sifra}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tip" Binding="{Binding tipredovnog}"></DataGridTextColumn>
-                    <DataGridCheckBoxColumn Header="Skladište" Width="Auto" Binding="{Binding skladiste_id}"></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="Skladište" Width="Auto" Binding="{Binding zaposleniskladista_skladiste_id}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Datum" Binding="{Binding datum}"></DataGridTextColumn>
                     <DataGridCheckBoxColumn Header="U pripremi" Width="Auto" Binding="{Binding upripremi}"></DataGridCheckBoxColumn>
                     <DataGridCheckBoxColumn Header="Aktivan" Binding="{Binding active}"></DataGridCheckBoxColumn>                    
@@ -48,8 +48,8 @@
 
         <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
             <Button Content="{Binding Novi1}" Command="{Binding DodajSklDok1NavCommand}" CommandParameter="dodajSklDok" Margin="20,0,20,0" Visibility="{Binding Novi1Visible}" />
-            <Button Content="{Binding Novi2}" Command="{Binding DodajSklDok2NavCommand}" Visibility="{Binding Novi2Visible}" CommandParameter="dodajSklDok" Margin="20,0,410,0"  />
-            <Button Content="Izbriši" Command="{Binding IzbrisiSklDokCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="0,0,20,0"/>
+            <Button Content="{Binding Novi2}" Command="{Binding DodajSklDok2NavCommand}" Visibility="{Binding Novi2Visible}" CommandParameter="dodajSklDok" Margin="20,0,0,0"  />
+            <Button Content="Izbriši" Command="{Binding IzbrisiSklDokCommand}"  HorizontalAlignment="Right" IsEnabled="{Binding SelectedInGrid}" Margin="410,0,20,0"/>
             <Button Content="Detaljnije" Command="{Binding DetaljnijeSklDokNavCommand}"  HorizontalAlignment="Right"  IsEnabled="{Binding SelectedInGrid}"/>
         </StackPanel>
     </Grid>

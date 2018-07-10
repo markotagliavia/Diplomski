@@ -202,6 +202,7 @@ namespace Skladistenje.ViewModel
                 else
                 {
                     skladisteSourceForBind = value;
+                    OnPropertyChanged("SkladisteSourceForBind");
                 }
             }
         }
@@ -221,9 +222,11 @@ namespace Skladistenje.ViewModel
                     SklDokForBind.nacinotpreme = s.nacinotpreme;
                     SklDokForBind.regbr = s.regbr;
                     SklDokForBind.vozac = s.vozac;
-                    SklDokForBind.Skladiste.naziv = s.Skladiste.naziv;
-                    SklDokForBind.Skladiste1.naziv = s.Skladiste1.naziv;
-                    foreach(var stavka in s.StavkaSklDokumentas)
+                    OnPropertyChanged("SklDokForBind");
+                    SkladisteSourceForBind = s.Skladiste.naziv;
+                    SkladisteDestForBind = s.Skladiste1.naziv;
+                    proizvodiSaKolicinomDesno.Clear();
+                    foreach (var stavka in s.StavkaSklDokumentas)
                     {
                         ProizvodiSaKolicinomDesno.Add(new ProizvodKolicina(stavka.Zalihe.Proizvod.naziv, stavka.Zalihe.Proizvod.sifra, stavka.kolicina.ToString()));
                     }
@@ -496,26 +499,6 @@ namespace Skladistenje.ViewModel
                 sd.regbr = sklDokForBind.regbr;
                 dbContext.SkladisteniDokuments.Add(sd);
 
-                if (tip == "INT_OTP")
-                {
-                    Common.Model.Notification n = new Common.Model.Notification();
-                    n.adresa = sd.Skladiste1.naziv;
-                    n.aplikacija = "Skladistenje";
-                    n.obradjena = false;
-                    n.procitana = false;
-                    n.tekst = "Kreirana je nova otpremnica";
-                    n.idDokumenta = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.sifra == sd.sifra).id;
-                    dbContext.Notifications.Add(n);
-                    foreach (Window w in System.Windows.Application.Current.Windows)
-                    {
-                        if (w.GetType().Equals(typeof(MainWindow)))
-                        {
-                            ((MainWindow)w).ZvonceCrveno();
-                        }
-                    }
-
-                    dbContext.SaveChanges();
-                }
                 ////ovo je ono o cemu smo pricali, da radnik mora biti zaposlen u skladistu da bi mogao da kreira dokument za to skladiste, ali ja jesam zaposlen u nisi u skladiste2,  pa onda ispada da moram biti u oba zaposlenne ne sad si pravio prjemnicu za skladiste u kom sam zaposlen (dest) jao ali nisi dobro kupio... 
                 //stavke dodaj fali nam i uslov pre svega da li radi u tom skladistu za koje pravi dokument gde to da stavim
                 int i = 1;
@@ -548,6 +531,28 @@ namespace Skladistenje.ViewModel
                         dbContext.Zalihes.Add(new Zalihe() { kolicina = stavka.kolicina, proizvod_id = stavka.zalihe_proizvod_id, raf = "", minimumkolicine = 0, rezervisano = 0, skladiste_id = stavka.zalihe_idskladista });
                     }
                 }
+
+                dbContext.SaveChanges();
+
+                if (tip == "INT_OTP")
+                {
+                    Common.Model.Notification n = new Common.Model.Notification();
+                    n.adresa = sd.Skladiste1.naziv;
+                    n.aplikacija = "Skladistenje";
+                    n.obradjena = false;
+                    n.procitana = false;
+                    n.tekst = "Kreirana je nova otpremnica";
+                    n.idDokumenta = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.sifra == sd.sifra).id;
+                    dbContext.Notifications.Add(n);
+                    foreach (Window w in System.Windows.Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindow)w).ZvonceCrveno();
+                        }
+                    }
+                }
+
                 if (notification != null)
                 {
                     notification.obradjena = true;
@@ -568,10 +573,13 @@ namespace Skladistenje.ViewModel
             }
             else if (tip == "STORNI") //storni
             {
+                int storniranId = -1;
+                int storniranId2 = -1;  //ako je interna pri/otp
+                int sklId1 = -1, sklId2 = -1;
                 if (SifraStornoForBind != null && SifraStornoForBind != "")
                 {
                     SkladisteniDokument s = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.active == true && x.storniranceo == false && x.sifra == sifraStornoForBind);
-
+                    storniranId = s.id;
                     if (s.tipredovnog == "INT_PR" || s.tipredovnog == "INT_OTP")
                     {
                         DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Storniranje internog skladišnog dokumenta stornira i prijemnicu i otpremnicu. Da li zaista želite da stornirate?", "Upit", MessageBoxButtons.YesNo);
@@ -591,8 +599,11 @@ namespace Skladistenje.ViewModel
                                     }
                                     stavka.storno = true;
                                 }
+                                sklId1 = s.Skladiste1.id;
                                 //odgovarajucu otpremnicu sredi
-                                SkladisteniDokument sPom = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.active == true && x.sifra.Equals(x.sifra.Substring(0, x.sifra.Length - 7)));
+                                SkladisteniDokument sPom = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.active == true && x.sifra.Equals(sifraStornoForBind.Substring(0, sifraStornoForBind.Length - 7)));
+                                storniranId2 = sPom.id;
+                                sklId2 = sPom.Skladiste.id;
                                 foreach (var stavka1 in sPom.StavkaSklDokumentas)
                                 {
                                     dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka1.zalihe_proizvod_id && x.skladiste_id == stavka1.zalihe_idskladista).kolicina += stavka1.kolicina;
@@ -606,8 +617,11 @@ namespace Skladistenje.ViewModel
                                     dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).kolicina += stavka.kolicina;
                                     stavka.storno = true;
                                 }
+                                sklId1 = s.Skladiste.id;
                                 //odgovarajucu prijemnicu sredi
-                                SkladisteniDokument sPom = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.active == true && x.sifra.Equals(x.sifra + "_INT_PR"));
+                                SkladisteniDokument sPom = dbContext.SkladisteniDokuments.FirstOrDefault(x => x.active == true && x.sifra.Equals(SifraStornoForBind + "_INT_PR"));
+                                storniranId2 = sPom.id;
+                                sklId2 = sPom.Skladiste1.id;
                                 foreach (var stavka1 in sPom.StavkaSklDokumentas)
                                 {
                                     dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka1.zalihe_proizvod_id && x.skladiste_id == stavka1.zalihe_idskladista).kolicina -= stavka1.kolicina;
@@ -649,6 +663,38 @@ namespace Skladistenje.ViewModel
                         }
                     }
 
+                    //dodaj storne dokumente
+                    SkladisteniDokument sd1 = new SkladisteniDokument();
+                    sd1.active = true;
+                    sd1.redovniskldok_id = storniranId;
+                    sd1.upripremi = false;
+                    sd1.datum = DateTime.UtcNow;
+                    sd1.redovni = false;
+                    sd1.storniranceo = true;
+                    sd1.tipredovnog = "STORNI";
+                    sd1.sifra = sklDokForBind.sifra;
+                    sd1.zaposleniskladista_zaposleni_id = dbContext.Zaposlenis.FirstOrDefault(x => x.active == true && x.Korisniks.Any(y => y.id == UserOnSession.id)).id;
+                    sd1.zaposleniskladista_skladiste_id = sklId1;
+                    dbContext.SkladisteniDokuments.Add(sd1);
+
+                    if (storniranId2 != -1)
+                    {
+                        SkladisteniDokument sd2 = new SkladisteniDokument();
+                        sd2.active = true;
+                        sd2.redovniskldok_id = storniranId2;
+                        sd2.upripremi = false;
+                        sd2.datum = DateTime.UtcNow;
+                        sd2.redovni = false;
+                        sd2.storniranceo = true;
+                        sd2.tipredovnog = "STORNI";
+                        sd2.sifra = sklDokForBind.sifra+"_Auto";
+                        sd2.zaposleniskladista_zaposleni_id = dbContext.Zaposlenis.FirstOrDefault(x => x.active == true && x.Korisniks.Any(y => y.id == UserOnSession.id)).id;
+                        sd2.zaposleniskladista_skladiste_id = sklId2;
+                        dbContext.SkladisteniDokuments.Add(sd2);
+                    }
+
+                    Success su = new Success("Uspešno ste stornirali dokument.");
+                    su.Show();
                     dbContext.SaveChanges();
 
                 }
