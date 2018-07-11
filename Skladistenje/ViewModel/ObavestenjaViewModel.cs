@@ -184,8 +184,36 @@ namespace Skladistenje.ViewModel
                             ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišni dokumenti -> Nova Interna Prijemnica";
                             ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("INT_PR",SelectedValue.idDokumenta, SelectedValue);
                             ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel;
-                            dbContext.Notifications.FirstOrDefault(x => x.Id == SelectedValue.Id).obradjena = true;
-                            dbContext.SaveChanges();
+                            //dbContext.Notifications.FirstOrDefault(x => x.Id == SelectedValue.Id).obradjena = true;
+                            //dbContext.SaveChanges();
+                        }
+                    }
+                }
+                else if (SelectedValue.tekst.StartsWith("Kreirana je Izlazna faktura"))
+                {
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišni dokumenti -> Nova Spoljna Otpremnica";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("SP_OTP", SelectedValue.idDokumenta, SelectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel;
+                            //dbContext.Notifications.FirstOrDefault(x => x.Id == SelectedValue.Id).obradjena = true;
+                            //dbContext.SaveChanges();
+                        }
+                    }
+                }
+                else if (SelectedValue.tekst.StartsWith("Kreirana je Ulazna faktura"))
+                {
+                    foreach (Window w in Application.Current.Windows)
+                    {
+                        if (w.GetType().Equals(typeof(MainWindow)))
+                        {
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).ViewModelTitle = "Skladišni dokumenti -> Nova Spoljna Prijemnica";
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel = new DodajGenericSklDokViewModel("SP_PR", SelectedValue.idDokumenta, SelectedValue);
+                            ((MainWindowViewModel)((MainWindow)w).DataContext).CurrentViewModel = ((MainWindowViewModel)((MainWindow)w).DataContext).DodajGenericSklDokViewModel;
+                            //dbContext.Notifications.FirstOrDefault(x => x.Id == SelectedValue.Id).obradjena = true;
+                            //dbContext.SaveChanges();
                         }
                     }
                 }

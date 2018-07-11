@@ -328,7 +328,7 @@ namespace Skladistenje
                     CurrentViewModel = pregledProizvodjacaViewModel;
                     break;
                 case "dodajProizvodjaca":
-                    ViewModelTitle = "Proizvo]a;i -> Novi";
+                    ViewModelTitle = "Proizvođači -> Novi";
                     CurrentViewModel = dodajProizvodjacaViewModel;
                     break;
                 case "popisi":

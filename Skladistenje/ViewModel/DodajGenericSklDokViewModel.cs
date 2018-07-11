@@ -20,10 +20,12 @@ namespace Skladistenje.ViewModel
         private Korisnik userOnSession;
         private string kolicinaText;
         private string rafText = "";
+        private string partner = "";
         private bool addEnabled;
         private bool removeEnabled;
         private int _selectedProizvodSaKolicinomLevo = -1;
         private int _selectedProizvodSaKolicinomDesno = -1;
+        private int width;
         private Common.Model.DeltaEximEntities dbContext = new Common.Model.DeltaEximEntities();
         private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomLevo;
         private ObservableCollection<ProizvodKolicina> proizvodiSaKolicinomDesno;
@@ -33,10 +35,10 @@ namespace Skladistenje.ViewModel
         private ObservableCollection<SkladisteniDokument> sklDoks;
         private string sourceZalihe = "";
         private string destinationZalihe = "";
-        private Visibility izdaoVisible, primioVisible, vozacVisible, regBrVisible, nacinOtpremeVisible, izSklVisible, uSklVisible, stornoVisible;
+        private Visibility izdaoVisible, primioVisible, vozacVisible, regBrVisible, nacinOtpremeVisible, izSklVisible, uSklVisible, stornoVisible, spoljneVisible;
         private bool isEditable = true, isEditableIzdao = true, sifraEnabled = true;
         private Common.Model.Notification notification;
-
+        
         #endregion
 
         #region Commands
@@ -70,6 +72,9 @@ namespace Skladistenje.ViewModel
             skladisteSourceForBind = "";
             skladisteDestForBind = "";
             KolicinaText = "";
+            SpoljneVisible = Visibility.Collapsed;
+            Width = 200;
+
 
             foreach (var item in dbContext.Skladistes)
             {
@@ -114,11 +119,26 @@ namespace Skladistenje.ViewModel
                 VozacVisible = Visibility.Visible;
                 RegBrVisible = Visibility.Visible;
                 NacinOtpremeVisible = Visibility.Visible;
-                IzSklVisible = Visibility.Visible;
-                USklVisible = Visibility.Visible;
+                SpoljneVisible = Visibility.Visible;
+                IzSklVisible = Visibility.Collapsed;
+                USklVisible = Visibility.Collapsed;
                 StornoVisible = Visibility.Collapsed;
-                SourceZalihe = "Svi Proizvodi : ";
-                DestinationZalihe = "Izabrano : ";
+                SourceZalihe = "Stavke : ";
+                DestinationZalihe = "";
+                Width = 400;
+
+                if (notification != null)
+                {
+                    foreach (var stavka in dbContext.Fakturas.FirstOrDefault(x => x.id == notification.idDokumenta).StavkaFaktures.Where(x => x.storno == false))
+                    {
+                        ProizvodKolicina pk = new ProizvodKolicina(stavka.Zalihe.Proizvod.naziv, stavka.Zalihe.Proizvod.sifra, stavka.kolicina.ToString());
+                        ProizvodiSaKolicinomLevo.Add(pk);
+                    }
+                }
+                
+                SklDokForBind.Fakturas.Add(dbContext.Fakturas.FirstOrDefault(x => x.id == notification.idDokumenta));
+                SklDokForBind.PoslovniPartner = dbContext.Fakturas.FirstOrDefault(x => x.id == notification.idDokumenta).PoslovniPartner;
+                Partner = dbContext.Fakturas.FirstOrDefault(x => x.id == notification.idDokumenta).PoslovniPartner.naziv;
             }
             else if (tip == "KOR_PR" || tip == "KOR_OTP") //korekcioni
             {
@@ -369,9 +389,13 @@ namespace Skladistenje.ViewModel
         public Visibility IzSklVisible { get => izSklVisible; set { izSklVisible = value; OnPropertyChanged("IzSklVisible"); }}
         public Visibility USklVisible { get => uSklVisible; set { uSklVisible = value; OnPropertyChanged("USklVisible"); }}
         public Visibility StornoVisible { get => stornoVisible; set { stornoVisible = value; OnPropertyChanged("StornoVisible"); } }
+        public Visibility SpoljneVisible { get => spoljneVisible; set { spoljneVisible = value; OnPropertyChanged("SpoljneVisible"); } }
         public bool IsEditable { get => isEditable; set { isEditable = value; OnPropertyChanged("IsEditable"); } }
         public bool IsEditableIzdao { get => isEditableIzdao; set { isEditableIzdao = value; OnPropertyChanged("IsEditableIzdao"); } }
         public bool SifraEnabled { get => sifraEnabled; set { sifraEnabled = value; OnPropertyChanged("SifraEnabled"); } }
+        public string Partner { get => partner; set { partner = value; OnPropertyChanged("Partner"); } }
+
+        public int Width { get => width; set { width = value; OnPropertyChanged("Width"); } }
         #endregion
 
 
@@ -497,6 +521,7 @@ namespace Skladistenje.ViewModel
                 sd.tipredovnog = tip;
                 sd.sifra = sklDokForBind.sifra;
                 sd.regbr = sklDokForBind.regbr;
+                //dbContext.Notifications.FirstOrDefault(x => x.Id == notification.Id).obradjena = true;
                 dbContext.SkladisteniDokuments.Add(sd);
 
                 ////ovo je ono o cemu smo pricali, da radnik mora biti zaposlen u skladistu da bi mogao da kreira dokument za to skladiste, ali ja jesam zaposlen u nisi u skladiste2,  pa onda ispada da moram biti u oba zaposlenne ne sad si pravio prjemnicu za skladiste u kom sam zaposlen (dest) jao ali nisi dobro kupio... 
@@ -555,7 +580,7 @@ namespace Skladistenje.ViewModel
 
                 if (notification != null)
                 {
-                    notification.obradjena = true;
+                    dbContext.Notifications.FirstOrDefault(x => x.Id == notification.Id).obradjena = true;
 
                 }
                 dbContext.SaveChanges();//kako se stavke popune koje stavke dokumenta
@@ -565,7 +590,74 @@ namespace Skladistenje.ViewModel
             }
             else if (tip == "SP_PR" || tip == "SP_OTP")  //spoljni
             {
-                //a ne tu pa kad testiras ovo da uradimo spoljnu otp hajde testiraj ovo 
+                Skladiste skladiste = SklDokForBind.Fakturas.ElementAt(0).StavkaFaktures.ElementAt(0).Zalihe.Skladiste;
+                if (!dbContext.ZaposleniSkladistas.Any(x => x.Skladiste.naziv.Equals(skladiste.naziv) && x.zaposleni_id == UserOnSession.zaposleni_id))
+                {
+                    Error er = new Error("Niste zaposleni u ovom skladištu.");
+                    er.Show();
+                    return;
+                }
+                SkladisteniDokument sd = new SkladisteniDokument();
+                sd.active = true;
+                sd.nacinotpreme = sklDokForBind.nacinotpreme;
+                sd.izdao = sklDokForBind.izdao;
+                sd.primio = sklDokForBind.primio;
+                sd.vozac = sklDokForBind.vozac;
+                sd.PoslovniPartner = SklDokForBind.PoslovniPartner;
+                sd.Fakturas = SklDokForBind.Fakturas;
+                sd.upripremi = false;
+                sd.datum = sklDokForBind.datum;
+                sd.redovni = true;
+                sd.storniranceo = false;
+                sd.tipredovnog = tip;
+                sd.sifra = sklDokForBind.sifra;
+                sd.regbr = sklDokForBind.regbr;
+                sd.zaposleniskladista_zaposleni_id = dbContext.Zaposlenis.FirstOrDefault(x => x.active == true && x.Korisniks.Any(y => y.id == UserOnSession.id)).id;
+                sd.zaposleniskladista_skladiste_id = skladiste.id;
+
+                dbContext.SkladisteniDokuments.Add(sd);
+
+                
+                int i = 1;
+                foreach (ProizvodKolicina item in ProizvodiSaKolicinomLevo)
+                {
+                    StavkaSklDokumenta stavka = new StavkaSklDokumenta();
+                    stavka.kolicina = Double.Parse(item.Kolicina);
+                    stavka.rednibroj = i;
+                    stavka.skladistenidokument_id = sd.id;
+                    stavka.StavkaFakture = SklDokForBind.Fakturas.ElementAt(0).StavkaFaktures.FirstOrDefault(x => x.rednibroj == i); 
+                    stavka.storno = false;
+
+                    
+                    stavka.zalihe_proizvod_id = dbContext.Proizvods.FirstOrDefault(x => x.sifra == item.Sifra).id;
+                    stavka.zalihe_idskladista = skladiste.id;
+                    dbContext.StavkaSklDokumentas.Add(stavka);
+                    if (dbContext.Zalihes.Any(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista))
+                    {
+                        if (tip == "SP_PR")
+                        {
+                            dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).kolicina += stavka.kolicina;
+                        }
+                        else
+                        {
+                            dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).rezervisano -= stavka.kolicina;
+                            dbContext.Zalihes.FirstOrDefault(x => x.proizvod_id == stavka.zalihe_proizvod_id && x.skladiste_id == stavka.zalihe_idskladista).kolicina -= stavka.kolicina;
+                        }
+                    }
+                    else
+                    {
+                        dbContext.Zalihes.Add(new Zalihe() { kolicina = stavka.kolicina, proizvod_id = stavka.zalihe_proizvod_id, raf = "", minimumkolicine = 0, rezervisano = 0, skladiste_id = stavka.zalihe_idskladista });
+                    }
+                }
+
+               
+                if (notification != null)
+                {
+                    dbContext.Notifications.FirstOrDefault(x => x.Id == notification.Id).obradjena = true;
+                }
+                Faktura f = SklDokForBind.Fakturas.ElementAt(0);
+                dbContext.Fakturas.FirstOrDefault(x => x.id == f.id).otpremljena = true;
+                dbContext.SaveChanges();
             }
             else if (tip == "KOR_PR" || tip == "KOR_OTP") //korekcioni
             {

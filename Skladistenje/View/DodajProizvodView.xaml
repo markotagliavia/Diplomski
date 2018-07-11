@@ -84,7 +84,7 @@
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Margin="30,10,0,0">
-                <Label Content="Proizvođać : " Height="30" Width="130" FontSize="14"/>
+                <Label Content="Proizvođač : " Height="30" Width="130" FontSize="14"/>
                 <ComboBox x:Name="proizvodjacComboBox" Width="170" Margin="5,0,0,0" ItemsSource="{Binding Proizvodjaci}"
                     DisplayMemberPath="naziv" 
                     SelectedValuePath="naziv"

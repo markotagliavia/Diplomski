@@ -39,6 +39,11 @@
                 <DatePicker Text="{Binding SklDokForBind.datum}"  Width="170" Margin="50,0,0,0" Foreground="White"/>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding SpoljneVisible}">
+                <Label Content="Poslovni partner : " Height="30" Width="125" FontSize="14"/>
+                <TextBox MaxLength="30" Width="170" Margin="25,0,0,0" Text="{Binding Partner}" IsEnabled="False" Foreground="White"/>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="20,10,0,0" Visibility="{Binding IzSklVisible}">
                 <Label Content="Izvorno Skladište : " Height="30" Width="125" FontSize="14"/>
                 <ComboBox x:Name="IzskladisteComboBox" Width="170" Margin="25,0,0,0" ItemsSource="{Binding Skladista}" IsEnabled="{Binding IsEditable}" Foreground="White"
@@ -93,7 +98,7 @@
                 <StackPanel Orientation="Horizontal">
 
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                        <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvodSaKolicinomLevo}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding ProizvodiSaKolicinomLevo, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
+                        <DataGrid CanUserAddRows="False" IsReadOnly="True" SelectedIndex="{Binding SelectedProizvodSaKolicinomLevo}" AutoGenerateColumns="False" x:Name="proizvodiGrid" ItemsSource="{Binding ProizvodiSaKolicinomLevo, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="{Binding Width}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}"></DataGridTextColumn>
@@ -102,7 +107,7 @@
                         </DataGrid>
                     </ScrollViewer>
 
-                    <StackPanel Orientation="Vertical" Height="300" Width="50">
+                    <StackPanel Orientation="Vertical" Height="300" Width="50" Visibility="{Binding IzSklVisible}">
                         <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="10,120,0,0" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Left" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=proizvodiGrid,Path=SelectedIndex}" IsEnabled="{Binding AddEnabled}">
                             <materialDesign:PackIcon Kind="ArrowRight" Foreground="White"/>
                         </Button>
@@ -111,7 +116,7 @@
                         </Button>
                     </StackPanel>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="{Binding IzSklVisible}">
                         <DataGrid CanUserAddRows="False" SelectedIndex="{Binding SelectedProizvodSaKolicinomDesno}" AutoGenerateColumns="False" x:Name="proizvodiKolicinaGrid" ItemsSource="{Binding ProizvodiSaKolicinomDesno, Mode=OneWay}" VerticalAlignment="Top" Height="300" Width="200">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Šifra" Binding="{Binding Sifra}" IsReadOnly="True"></DataGridTextColumn>
@@ -125,7 +130,7 @@
 
 
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Visibility="{Binding IzSklVisible}">
                 <Label Content="Količina : " FontSize="14" HorizontalAlignment="Left"/>
                 <TextBox Text="{Binding KolicinaText}" Width="100" Margin="20,0,0,0" Foreground="White"/>
             </StackPanel>
